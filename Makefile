@@ -36,10 +36,12 @@ RPM_BUILD_ROOT=/tmp/candelabra-buildroot
 
 # where the sources are and how to build them
 PACKAGE_DIR=$(TOP)/candelabra
+PACKAGE_TESTS_DIR=$(TOP)/tests
 SETUP_PY=$(TOP)/setup.py
 
 # the main script
 MAIN_SCRIPT=$(TOP)/bin/candelabra
+NOSE_SCRIPT=nosetests-2.7
 
 # API docs dir
 API_GEN=$(TOP)/bin/sphinx-apidoc
@@ -57,7 +59,6 @@ BUILDOUT_CONF=$(TOP)/buildout.cfg
 
 all: devel
 
-
 $(BUILDOUT): $(BOOTSTRAP_FILE)
 	@echo ">>> Bootstraping..."
 	@[ -d downloads ] || mkdir downloads
@@ -72,7 +73,7 @@ $(BUILDOUT): $(BOOTSTRAP_FILE)
 	@rm -rf $(POST_BUILD_CLEANUPS)
 	@echo
 
-candelabra: $(BUILDOUT) 00-common
+$(MAIN_SCRIPT): $(BUILDOUT) 00-common
 
 devel: $(BUILDOUT)
 	@echo ">>> Running buildout for DEVELOPMENT..."
@@ -87,11 +88,6 @@ fast: $(BUILDOUT)
 	@echo ">>> Fast-build SUCCESSFUL !!"
 	@echo ">>> You can now 'make docs', 'make coverage'..."
 
-$(BOOTSTRAP_FILE):
-	@echo ">>> Getting boostrap.py..."
-	@wget -q -O $(BOOTSTRAP_FILE)   $(BOOTSTRAP_PY_URL)
-	@echo ">>> We got the bootstrap file !!"
-
 
 ####################################################################################################
 # cleanup
@@ -100,8 +96,8 @@ $(BOOTSTRAP_FILE):
 
 clean-pyc: 
 	@echo ">>> Cleaning pyc..."
-	rm -f     `find $(PACKAGE_DIR) tests -name '*.pyc'`
-	rm -f     `find $(PACKAGE_DIR) tests -name '*.pyo'`
+	rm -f     `find $(PACKAGE_DIR) $(PACKAGE_TESTS_DIR) -name '*.pyc'`
+	rm -f     `find $(PACKAGE_DIR) $(PACKAGE_TESTS_DIR) -name '*.pyo'`
 
 clean-dcache:
 	rm -rf    $(TOP)/downloads
@@ -213,7 +209,7 @@ docs-pdf-fast:     clean-docs                               00-docs-pdf-run
 .PHONY: 00-test-run
 00-test-run:
 	@echo ">>> Running unit tests FAST..."
-	$(TOP)/bin/candelabra-tess
+	$(NOSE_SCRIPT) -w $(PACKAGE_TESTS_DIR)
 	@echo ">>> done!"
 
 .PHONY: test
@@ -225,9 +221,12 @@ test-fast:                         00-test-run
 	@echo ">>> Creating coverage report for the node..."
 	@[ -d $(COVERAGE_DOCS_OUTPUT_DIR) ] || mkdir $(COVERAGE_DOCS_OUTPUT_DIR)
 	@rm -rf $(COVERAGE_DOCS_OUTPUT_DIR)/*
-	$(TOP)/bin/candelabra-tests --node \
-	    --with-xcoverage --xcoverage-file=coverage.xml --cover-package=candelabra --cover-erase && \
-	[ $$? -eq 0 ] && $(TOP)/bin/coverage html -d $(COVERAGE_DOCS_OUTPUT_DIR)
+	$(NOSE_SCRIPT) --with-xcoverage \
+	      --xcoverage-file=coverage.xml \
+	      --cover-package=candelabra \
+	      --cover-erase \
+	      --cover-html \
+	      --cover-html-dir=$(COVERAGE_DOCS_OUTPUT_DIR)
 	@echo ">>> Documentation left at $(COVERAGE_DOCS_OUTPUT_DIR)"
 
 .PHONY: coverage
