@@ -100,8 +100,8 @@ $(BOOTSTRAP_FILE):
 
 clean-pyc: 
 	@echo ">>> Cleaning pyc..."
-	rm -f     `find $(PACKAGE_DIR) -name '*.pyc'`
-	rm -f     `find $(PACKAGE_DIR) -name '*.pyo'`
+	rm -f     `find $(PACKAGE_DIR) tests -name '*.pyc'`
+	rm -f     `find $(PACKAGE_DIR) tests -name '*.pyo'`
 
 clean-dcache:
 	rm -rf    $(TOP)/downloads

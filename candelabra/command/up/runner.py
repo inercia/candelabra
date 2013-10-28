@@ -9,7 +9,8 @@ from logging import getLogger
 logger = getLogger(__name__)
 
 
-def run(args):
+def run(args, topology, command):
     """ Run the command
     """
-    logger.info('Running command')
+    logger.info('running command "%s"', command)
+    topology.run('up')

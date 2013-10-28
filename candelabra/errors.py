@@ -13,6 +13,14 @@ class CandelabraException(Exception):
     pass
 
 #########################################
+# config file
+
+
+class ConfigFileMissingException(CandelabraException):
+    pass
+
+#########################################
+# machines
 
 
 class MachineException(CandelabraException):
@@ -24,6 +32,18 @@ class MachineDefinitionException(MachineException):
 
 
 #########################################
+# topologies
 
 class TopologyException(CandelabraException):
+    pass
+
+#########################################
+# providers
+
+
+class ProviderException(CandelabraException):
+    pass
+
+
+class ProviderNotFoundException(ProviderException):
     pass

@@ -19,25 +19,39 @@ class Machine(TopologyNode):
     hostname = None
     interfaces = []
 
+    _known_attributes = {
+        'hostname': 'the hostname',
+        'interfaces': 'the interface',
+        'provisioner': 'the provisioner',
+        'shared': 'shared folders',
+    }
+
     def __init__(self, dictionary, parent=None):
         """ Initialize a machines definition
         """
         super(Machine, self).__init__(dictionary, parent)
 
         # get some attributes
-        # it is important to NOT SET the attribute if not found in the dictionary, so it will inherit from its father
-        if 'hostname' in dictionary:
-            self.hostname = dictionary["hostname"]
+        self._settattr_dict_defaults(dictionary, self._known_attributes)
 
-        if 'interfaces' in dictionary:
-            self.interfaces = dictionary["interfaces"]
+    #####################
+    # tasks
+    #####################
 
-        if 'provisioner' in dictionary:
-            self.provisioner = dictionary["provisioner"]
+    def get_tasks_up(self):
+        return []
 
-        if 'shared' in dictionary:
-            self.shared = dictionary["shared"]
+    #####################
+    # auxiliary
+    #####################
 
     def __str__(self):
+        """ Return a string representation for this machine
+        """
+        provisioner = getattr(self, 'provisioner', '')
+        interfaces = getattr(self, 'interfaces', [])
+        shared = getattr(self, 'shared', [])
+
         return super(Machine, self).__str__() + \
-               ' provisioner:%s ifaces:%d shared:%d' % (self.provisioner, len(self.interfaces), len(self.shared))
+               ' provisioner:%s ifaces:%d shared:%d' % (provisioner, len(interfaces), len(shared))
+

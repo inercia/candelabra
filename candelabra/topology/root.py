@@ -7,9 +7,10 @@
 from logging import getLogger
 import yaml
 
-from candelabra.constants import YAML_ROOT, YAML_SECTION_GLOBAL, YAML_SECTION_MACHINES
+from candelabra.constants import YAML_ROOT, YAML_SECTION_DEFAULT, YAML_SECTION_MACHINES
 from candelabra.errors import TopologyException
 from candelabra.loader import load_machine_for_class
+from candelabra.scheduler.base import Scheduler
 from candelabra.topology.machine import Machine
 
 logger = getLogger(__name__)
@@ -39,27 +40,50 @@ class TopologyRoot(object):
         except KeyError, e:
             raise TopologyException('topology definition error: "%s" key not found' % str(e))
 
-        if YAML_SECTION_GLOBAL in self._yaml:
+        if YAML_SECTION_DEFAULT in self._yaml:
             logger.debug('loading globals...')
-            global_dict = self._yaml[YAML_SECTION_GLOBAL]
+            global_dict = self._yaml[YAML_SECTION_DEFAULT]
             self._global_machine = Machine(global_dict)
             logger.debug('    %s', self._global_machine)
 
         if YAML_SECTION_MACHINES in self._yaml:
-            machines_dict = self._yaml[YAML_SECTION_MACHINES]
             logger.debug('loading machines...')
-            for machine in machines_dict:
-                try:
-                    machine_class_str = machine['class']
-                except KeyError, e:
-                    raise TopologyException('topology definition error: "class" key not found for machine "%s"' % machine)
+            machines_list = self._yaml[YAML_SECTION_MACHINES]
+            for machine in machines_list:
+                if 'machine' in machine:
+                    machine_definition = machine['machine']
+                    try:
+                        machine_class_str = machine_definition['class']
+                    except KeyError, e:
+                        raise TopologyException(
+                            'topology definition error: "class" key not found for machine "%s"' % machine_definition)
 
-                machine_class = load_machine_for_class(machine_class_str)
-                machine_inst = machine_class(machine, parent=self._global_machine)
+                    machine_class = load_machine_for_class(machine_class_str)
+                    machine_inst = machine_class(machine_definition, parent=self._global_machine)
 
-                self._machines.append(machine_inst)
+                    self._machines.append(machine_inst)
+
             logger.debug('    %d machines loaded', len(self._machines))
 
             for m in self._machines:
                 logger.debug('       %s', m)
+
+    def run(self, task_name):
+        """ Run a task name in all machines
+        """
+        logger.debug('running %s on %d machines', task_name, len(self._machines))
+        scheduler = Scheduler()
+        method_name = 'get_tasks_%s' % task_name
+        for machine in self._machines:
+            try:
+                tasks_gen = getattr(machine, method_name)
+            except AttributeError:
+                logger.debug('nothing to do for "%s" in "%s"', task_name, machine)
+                continue
+            else:
+                new_tasks = tasks_gen()
+                logger.debug('adding %d tasks', len(new_tasks))
+                scheduler.append(new_tasks)
+
+        scheduler.run()
 
