@@ -1,0 +1,39 @@
+candelabra:
+
+  global:
+
+    provisioner:
+      class: puppet
+
+    shared:
+      - folder:
+          local: docs
+          remote: /home/docs
+      - folder:
+          local: .
+          remote: /home/candelabra
+      - file:
+          local: /etc/hosts
+          remote: /etc/hosts.host
+
+  machines:
+
+    - class:   virtualbox
+      name:    vm1
+      network:
+        class:      automatic
+        hostname:   vm1
+
+    - class:   virtualbox
+      name:    vm2
+      network:
+        class:      automatic
+        hostname:   vm2
+
+    - class:   virtualbox
+      name:    vm3
+      provisioner:
+        class:      chef
+      network:
+        class:      automatic
+        hostname:   vm2
