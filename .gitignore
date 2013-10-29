@@ -7,5 +7,4 @@ eggs/
 .idea/
 .installed.cfg
 *.egg-info
-
-candelabra/static/candelabra.conf
+*.pyc
