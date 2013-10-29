@@ -4,10 +4,9 @@
 # Copyright Alvaro Saurin 2013 - All right Reserved
 #
 
+from command import command as _command
 
-COMMAND_DESCRIPTION = 'import a machine'
-""" The command description
-"""
+COMMAND_DESCRIPTION = _command.DESCRIPTION
+argparser = _command.argparser
+run = _command.argparser
 
-from parser import argparser
-from runner import run

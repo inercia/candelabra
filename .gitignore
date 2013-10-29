@@ -8,4 +8,4 @@ eggs/
 .installed.cfg
 *.egg-info
 
-conf/candelabra.conf
+candelabra/static/candelabra.conf

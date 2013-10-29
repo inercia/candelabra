@@ -13,7 +13,7 @@ YAML_SECTION_MACHINES = 'machines'
 YAML_SECTION_NETWORKS = 'networks'
 
 # default supported commands
-DEFAULT_COMMANDS = ['up', 'provision', 'import']
+DEFAULT_COMMANDS = ['up', 'provision', 'import', 'show']
 
 # paths where the config file can be found
 CONFIG_FILE_PATHS = [

@@ -139,6 +139,15 @@ run-cleanup:
 	@for i in $(RUN_DIRS) ; do mkdir -p $$i ; done
 
 ####################################################################################################
+# distribution
+
+sdist:
+	$(SYS_PYTHON) setup.py sdist
+
+bdist:
+	$(SYS_PYTHON) setup.py bdist
+
+####################################################################################################
 # run
 
 run: run-cleanup

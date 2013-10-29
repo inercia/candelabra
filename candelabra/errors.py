@@ -47,3 +47,17 @@ class ProviderException(CandelabraException):
 
 class ProviderNotFoundException(ProviderException):
     pass
+
+
+#########################################
+# scheduling and execution
+
+class SchedulerTaskException(CandelabraException):
+    pass
+
+#########################################
+# images
+
+class ImportException(CandelabraException):
+    pass
+

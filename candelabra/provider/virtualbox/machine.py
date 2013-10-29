@@ -8,7 +8,6 @@ from logging import getLogger
 
 import vbox
 
-from candelabra.scheduler.base import Task
 from candelabra.constants import VIRTUALBOX_EXTRA_PATHS, DEFAULT_CFG_SECTION_VIRTUALBOX
 from candelabra.errors import ProviderNotFoundException
 from candelabra.topology.machine import Machine
@@ -56,7 +55,7 @@ class VirtualboxMachine(Machine):
     #####################
 
     def get_tasks_up(self):
-        #return [(Task(self.do_get_vms_registered), )]
+        #return [(self.do_get_vms_registered, )]
         return []
 
     def do_get_vms_registered(self):

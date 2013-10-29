@@ -10,7 +10,6 @@ import yaml
 from candelabra.constants import YAML_ROOT, YAML_SECTION_DEFAULT, YAML_SECTION_MACHINES
 from candelabra.errors import TopologyException
 from candelabra.loader import load_machine_for_class
-from candelabra.scheduler.base import Scheduler
 from candelabra.topology.machine import Machine
 
 logger = getLogger(__name__)
@@ -59,21 +58,24 @@ class TopologyRoot(object):
                             'topology definition error: "class" key not found for machine "%s"' % machine_definition)
 
                     machine_class = load_machine_for_class(machine_class_str)
-                    machine_inst = machine_class(machine_definition, parent=self._global_machine)
+                    if not machine_class:
+                        logger.warning('   unknown machine class "%s"!!!', machine_class_str)
+                    else:
+                        machine_inst = machine_class(machine_definition, parent=self._global_machine)
 
-                    self._machines.append(machine_inst)
+                        self._machines.append(machine_inst)
 
             logger.debug('    %d machines loaded', len(self._machines))
 
             for m in self._machines:
                 logger.debug('       %s', m)
 
-    def run(self, task_name):
+    def get_tasks(self, task_name):
         """ Run a task name in all machines
         """
-        logger.debug('running %s on %d machines', task_name, len(self._machines))
-        scheduler = Scheduler()
+        logger.debug('getting tasks for running %s on %d machines', task_name, len(self._machines))
         method_name = 'get_tasks_%s' % task_name
+        res = []
         for machine in self._machines:
             try:
                 tasks_gen = getattr(machine, method_name)
@@ -83,7 +85,6 @@ class TopologyRoot(object):
             else:
                 new_tasks = tasks_gen()
                 logger.debug('adding %d tasks', len(new_tasks))
-                scheduler.append(new_tasks)
+                res += new_tasks
 
-        scheduler.run()
-
+        return res

@@ -5,9 +5,8 @@
 #
 
 
-COMMAND_DESCRIPTION = 'provision the machines'
-""" The command description
-"""
+from command import command as _command
 
-from parser import argparser
-from runner import run
+COMMAND_DESCRIPTION = _command.DESCRIPTION
+argparser = _command.argparser
+run = _command.argparser

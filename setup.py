@@ -4,7 +4,7 @@
 
 import os
 
-from setuptools import setup, find_packages, Extension
+from setuptools import setup, find_packages
 
 
 __HERE__ = os.path.abspath(os.path.dirname(__file__))
@@ -38,14 +38,22 @@ if __name__ == "__main__":
             '': '.'
         },
 
+        # trying to add files...
+        include_package_data=True,
+        package_data={
+            '': ['static/*.conf']
+        },
+
         install_requires=[
             'setuptools',
             'setproctitle',
             'configparser',
             'vbox',
             'pyaml',
+            'pycurl',
         ],
 
+        test_suite='nose.collector',
         tests_require=[
             'nose',
         ],

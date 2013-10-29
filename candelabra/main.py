@@ -12,7 +12,7 @@ Commands must define, in the __init__ file:
 
 import sys
 import logging
-from candelabra.errors import TopologyException, ProviderNotFoundException
+from candelabra.errors import TopologyException, ProviderNotFoundException, CandelabraException
 
 from candelabra.constants import DEFAULT_COMMANDS
 from candelabra.loader import load_argparser_for_command, load_runner_for_command
@@ -39,12 +39,6 @@ def main():
                         type=basestring,
                         default=None,
                         help='configuration file')
-    parser.add_argument('TOPOLOGY',
-                        nargs='?',
-                        type=argparse.FileType('r'),
-                        default=sys.stdin,
-                        help='the machine(s) definition(s) file(s)')
-
 
     subparsers = parser.add_subparsers(help='commands help', dest='command')
 
@@ -57,21 +51,26 @@ def main():
                 parser_module.argparser(parser_command)
             except AttributeError, e:
                 logger.warning('command "%s" cannot parse args', command)
+            except Exception, e:
+                logger.warning('could not load parser for "%s"', command)
 
     args = parser.parse_args()
 
     config.load(args.config)
 
-    # load the topology file and create a tree
-    try:
-        topology = TopologyRoot()
-        topology.load(args.infile)
-    except TopologyException, e:
-        logger.critical(str(e))
-        sys.exit(1)
-    except ProviderNotFoundException, e:
-        logger.critical(str(e))
-        sys.exit(1)
+    if hasattr(args, 'topology'):
+        # load the topology file and create a tree
+        try:
+            topology = TopologyRoot()
+            topology.load(args.topology)
+        except TopologyException, e:
+            logger.critical(str(e))
+            sys.exit(1)
+        except ProviderNotFoundException, e:
+            logger.critical(str(e))
+            sys.exit(1)
+    else:
+        topology = None
 
     # load the runner and run the command with the tree
     runner_module = load_runner_for_command(args.command)
@@ -82,4 +81,7 @@ def main():
             runner_module.run(args=args, topology=topology, command=args.command)
         except AttributeError, e:
             logger.warning('command "%s" cannot be run: %s', args.command, str(e))
+        except CandelabraException, e:
+            logger.critical('error: %s', str(e))
+            sys.exit(1)
 

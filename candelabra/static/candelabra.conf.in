@@ -1,0 +1,17 @@
+##############################################
+# candelabra configuration file
+##############################################
+[candelabra]
+
+# the default storage path
+storage_path    = {DEFAULT_STORAGE_PATH}
+
+##############################################
+[candelabra:provisioner:puppet]
+
+##############################################
+[candelabra:provider:virtualbox]
+
+##############################################
+[candelabra:logging]
+level           = INFO

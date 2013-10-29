@@ -14,33 +14,16 @@ from candelabra.constants import CONFIG_FILE_PATHS, CONFIG_FILE_PATH_CREATION, D
 
 logger = getLogger(__name__)
 
-_DEFAULT_CONFIG_FILE_CONTENTS = """
-##############################################
-# candelabra configuration file
-##############################################
-[candelabra]
+__HERE__ = os.path.abspath(os.path.dirname(__file__))
 
-# the default storage path
-storage_path = {DEFAULT_STORAGE_PATH}
-
-##############################################
-[{DEFAULT_CFG_SECTION_PUPPET}]
-
-##############################################
-[{DEFAULT_CFG_SECTION_VIRTUALBOX}]
-
-##############################################
-[candelabra:logging]
-level = INFO
-"""
+_DEFAULT_CONFIG_FILE = os.path.join(__HERE__, 'static', 'candelabra.conf')
 
 # replacements we will do in the config file template
 _DEFAULT_CONFIG_FILE_REPLACEMENTS = {
     'DEFAULT_STORAGE_PATH': DEFAULT_STORAGE_PATH[sys.platform],
-    'DEFAULT_CFG_SECTION_VIRTUALBOX': DEFAULT_CFG_SECTION_VIRTUALBOX,
-    'DEFAULT_CFG_SECTION_PUPPET': DEFAULT_CFG_SECTION_PUPPET,
 }
 
+#: methods that we map to the config object
 _CONFIG_MAPPED_METHODS = [
     'set',
     'get',
@@ -93,8 +76,9 @@ class CandelabraConfig(object):
         if not os.path.exists(b):
             os.makedirs(b)
 
-        with open(filename, 'w') as f:
-            f.write(_DEFAULT_CONFIG_FILE_CONTENTS.format(**_DEFAULT_CONFIG_FILE_REPLACEMENTS))
+        with open(_DEFAULT_CONFIG_FILE, 'r') as input_f:
+            with open(filename, 'w') as output_f:
+                output_f.write(input_f.read().format(**_DEFAULT_CONFIG_FILE_REPLACEMENTS))
 
 
 config = CandelabraConfig()
