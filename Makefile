@@ -115,6 +115,8 @@ clean: clean-pyc
 	rm -rf    $(TOP)/*.egg-info  $(TOP)/*/*.egg-info   $(TOP)/nosetests.xml
 	rm -rf    $(TOP)/*__tmp  $(TOP)/*log.txt  $(TOP)/test.py*  $(TOP)/*.log  $(TOP)/log
 	rm -rf    $(TOP)/.installed.cfg $(TOP)/depends-log.txt
+	rm -rf    $(TOP)/coverage.xml
+	rm -rf    $(TOP)/atlassian-ide-plugin.xml
 	rm -rf    $(TOP)/*packages-log.txt $(TOP)/profile.* $(TOP)/*.log
 	rm -rf    $(TOP)/nosetests.xml  $(TOP)/nosetests.log
 	rm -rf    $(TOP)/*.rpm $(TOP)/*.deb $(TOP)/*.tgz $(TOP)/*.pdf $(TOP)/*.dump
