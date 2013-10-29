@@ -1,0 +1,11 @@
+bin/
+develop-eggs/
+downloads/
+eggs/
+
+.coverage
+.idea/
+.installed.cfg
+*.egg-info
+
+conf/candelabra.conf
