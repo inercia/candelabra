@@ -67,6 +67,12 @@ class MalformedTopologyException(TopologyException):
     """
     pass
 
+
+class MalformedStateFileException(TopologyException):
+    """ Malfomed state file
+    """
+    pass
+
 #########################################
 # providers
 

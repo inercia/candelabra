@@ -73,6 +73,25 @@ DEFAULT_LOGS_PATH = {
     'darwin': '$HOME/Library/Logs/',
 }
 
+DEFAULT_TOPOLOGY_FILE_GUESSES = [
+    "candelabra.yaml",
+    "candelabra.cfg",
+    "candelabra.conf",
+    "topology.yaml",
+    "topology.cfg",
+    "topology.conf",
+    "machines.yaml",
+    "machines.cfg",
+    "machines.conf",
+]
+
+DEFAULT_TOPOLOGY_DIR_GUESSES = [
+    ".",
+    "candelabra",
+    "topology",
+    ".candelabra",
+]
+
 ################################################
 # configuration keys
 ################################################
@@ -109,7 +128,7 @@ VIRTUALBOX_EXTRA_PATHS = [
 ]
 
 # state file extension
-STATE_FILE_EXTENSION = 'cstate'
+STATE_FILE_EXTENSION = 'state'
 
 ################################################
 # logging

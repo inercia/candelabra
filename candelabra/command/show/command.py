@@ -5,13 +5,9 @@
 #
 
 from logging import getLogger
-import os
-import sys
 
 from candelabra.base import Command
-from candelabra.errors import UnsupportedCommandException, TopologyException, ProviderNotFoundException
-from candelabra.scheduler.base import Scheduler
-from candelabra.topology.root import TopologyRoot
+from candelabra.errors import UnsupportedCommandException
 
 logger = getLogger(__name__)
 
@@ -75,26 +71,7 @@ class ShowCommand(Command):
     def do_show_status(self, args):
         """ Show the status of the machines in the topology
         """
-        if args.topology is None:
-            logger.critical('no topology file provided')
-            sys.exit(1)
-        if not os.path.exists(args.topology):
-            logger.critical('topology file %s does not exist')
-            sys.exit(1)
-
-        try:
-            topology = TopologyRoot()
-            topology.load(args.topology)
-        except TopologyException, e:
-            logger.critical(str(e))
-            sys.exit(1)
-        except ProviderNotFoundException, e:
-            logger.critical(str(e))
-            sys.exit(1)
-        except KeyboardInterrupt:
-            logger.critical('interrupted with Ctrl-C... bye!')
-            sys.exit(0)
-
+        topology = self.run_with_topology(args, args.topology, save_state=False)
         for machine in topology.machines:
             logger.info('machine: %s', machine.cfg_name)
             logger.info('... state: %d [%s]', int(machine.state), machine.state_str)

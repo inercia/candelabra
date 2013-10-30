@@ -10,7 +10,7 @@ from logging import getLogger
 import pyaml
 
 from candelabra.constants import YAML_ROOT, YAML_SECTION_MACHINES, STATE_FILE_EXTENSION
-from candelabra.errors import TopologyException
+from candelabra.errors import TopologyException, MalformedStateFileException
 
 logger = getLogger(__name__)
 
@@ -33,12 +33,22 @@ class State(object):
         logger.info('state: loading from "%s"...', self.filename)
         with open(self.filename) as input_file:
             input_contents = input_file.read()
+            if len(input_contents) == 0:
+                logger.warning('state: state file is present but empty!!')
+                logger.warning('state: you should check it and/or remove it.')
+                raise MalformedStateFileException('invalid state file.')
+
             y = pyaml.yaml.safe_load(input_contents)
+
+        if not y:
+            logger.warning('state: could not parse the state file.')
+            logger.warning('state: you should check it and/or remove it.')
+            raise MalformedStateFileException('invalid state file.')
 
         try:
             self._yaml = y[YAML_ROOT]
         except KeyError, e:
-            raise TopologyException('topology definition error: "%s" key not found' % str(e))
+            raise TopologyException('state file error: "%s" key not found' % str(e))
 
         if YAML_SECTION_MACHINES in self._yaml:
             logger.debug('state: loading state for machines...')
@@ -60,7 +70,7 @@ class State(object):
         output[YAML_ROOT] = {}
         output[YAML_ROOT][YAML_SECTION_MACHINES] = []
 
-        logger.debug('saving topology state:')
+        logger.info('saving topology state...')
         with open(self.filename, 'w+') as output_file:
             for machine in self._topology._machines:
                 machine_definition = {}
@@ -69,7 +79,7 @@ class State(object):
 
             output_file.write(pyaml.dump(output))
 
-        logger.debug('state saved as %s', self.filename)
+        logger.debug('... state saved as %s', self.filename)
 
     @property
     def filename(self):

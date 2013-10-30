@@ -5,9 +5,10 @@
 #
 
 from logging import getLogger
+import os
 import pyaml
 
-from candelabra.constants import YAML_ROOT, YAML_SECTION_DEFAULT, YAML_SECTION_MACHINES
+from candelabra.constants import YAML_ROOT, YAML_SECTION_DEFAULT, YAML_SECTION_MACHINES, DEFAULT_TOPOLOGY_DIR_GUESSES, DEFAULT_TOPOLOGY_FILE_GUESSES
 from candelabra.errors import TopologyException
 from candelabra.loader import load_provider_machine_for
 from candelabra.topology.machine import Machine
@@ -15,6 +16,21 @@ from candelabra.topology.state import State
 
 logger = getLogger(__name__)
 
+
+def guess_topology_file(extra=[]):
+    """ Try to guess the topology file
+    """
+    for directory in DEFAULT_TOPOLOGY_DIR_GUESSES:
+        for filename in DEFAULT_TOPOLOGY_FILE_GUESSES:
+            filename = os.path.expandvars(os.path.join(directory, filename))
+            if os.path.isfile(filename):
+                return filename
+
+    for filename in extra:
+        if os.path.isfile(filename):
+            return filename
+
+    return None
 
 class TopologyRoot(object):
     """ Topology definition
@@ -113,8 +129,10 @@ class TopologyRoot(object):
                 continue
             else:
                 new_tasks = tasks_gen()
-                logger.debug('adding %d tasks', len(new_tasks))
-                res += new_tasks
+                num_new_tasks = len(new_tasks)
+                if num_new_tasks:
+                    logger.debug('adding %d tasks', num_new_tasks)
+                    res += new_tasks
 
         return res
 

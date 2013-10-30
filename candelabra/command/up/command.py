@@ -5,13 +5,8 @@
 #
 
 from logging import getLogger
-import os
-import sys
 
 from candelabra.base import Command
-from candelabra.errors import TopologyException, ProviderNotFoundException
-from candelabra.scheduler.base import Scheduler
-from candelabra.topology.root import TopologyRoot
 
 logger = getLogger(__name__)
 
@@ -36,35 +31,7 @@ class UpCommand(Command):
     def run(self, args, command):
         """ Run the command
         """
-        logger.info('running command "%s"', command)
-
-        if args.topology is None:
-            logger.critical('no topology file provided')
-            sys.exit(1)
-        if not os.path.exists(args.topology):
-            logger.critical('topology file %s does not exist')
-            sys.exit(1)
-
-        # load the topology file and create a tree
-        try:
-            topology = TopologyRoot()
-            topology.load(args.topology)
-        except TopologyException, e:
-            logger.critical(str(e))
-            sys.exit(1)
-        except ProviderNotFoundException, e:
-            logger.critical(str(e))
-            sys.exit(1)
-        except KeyboardInterrupt:
-            logger.critical('interrupted with Ctrl-C... bye!')
-            sys.exit(0)
-
-        scheduler = Scheduler()
-        tasks = topology.get_tasks('up')
-        scheduler.append(tasks)
-        scheduler.run()
-
-        topology.state.save()
+        self.run_with_topology(args, args.topology, command)
 
 
 command = UpCommand()

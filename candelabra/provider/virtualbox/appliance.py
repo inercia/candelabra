@@ -57,7 +57,7 @@ class VirtualboxAppliance(object):
 
         logger.info('... importing the machines')
         progress = appliance.import_machines([])
-        logger.info('... waiting')
+        logger.info('... waiting for import to finish')
         progress.wait_for_completion(-1)
 
         if len(appliance.machines) > 0:
