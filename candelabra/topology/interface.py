@@ -16,11 +16,13 @@ class Interface(TopologyNode):
     """ A interface
     """
 
+    _KNOWN_ATTRIBUTES = {
+    }
+
     def __init__(self, dictionary, parent=None):
-        """ Initialize a interface definition
+        """ Initialize a machines definition
         """
         super(Interface, self).__init__(dictionary, parent)
 
-        self._hostname = dictionary.get("hostname", None)
-        self._network = dictionary.get("network", None)
-
+        # get some attributes
+        self._settattr_dict_defaults(dictionary, self._KNOWN_ATTRIBUTES)

@@ -26,15 +26,26 @@ class Scheduler(object):
     def add(self, task, depends_on=None):
         """ Adds a new task to the scheduler
         """
+        assert task is not None
+        name1 = task.__name__
+        if hasattr(task, '__self__'):
+            name1 += '@0x%x' % id(task.__self__)
+
         if depends_on:
             if not isinstance(depends_on, (tuple, list)):
                 depends_on = [depends_on]
 
             for task2 in depends_on:
-                logger.debug('    adding %s (depends on %s)', task.__name__, task2.__name__)
+                if task2:
+                    name2 = task2.__name__
+                    if hasattr(task2, '__self__'):
+                        name2 += '@0x%x' % id(task2.__self__)
+                    logger.debug('... adding %s (depends on %s)', name1, name2)
+                else:
+                    logger.debug('... adding %s', name1)
                 self._target_tasks.append((task, task2))
         else:
-            logger.debug('    adding %s with no dependencies', task.__name__)
+            logger.debug('... adding %s with no dependencies', name1)
             self._target_tasks.append((task, None))
 
         if self._running:
@@ -53,7 +64,6 @@ class Scheduler(object):
         if self._target_tasks:
             logger.debug('scheduling tasks...')
             tasks_to_run = [t for t in topsort(self._target_tasks) if t]
-            logger.debug('    %d tasks to run: running', len(tasks_to_run))
             self._tasks_to_run = tasks_to_run
         else:
             self._tasks_to_run = []
@@ -62,6 +72,8 @@ class Scheduler(object):
         """ Run all the tasks in the order that dependencies need
         """
         self.schedule()
+
+        logger.debug('%d tasks to run: running!', len(self._tasks_to_run))
         self._running = True
         while len(self._tasks_to_run) > 0:
             task = self._tasks_to_run.pop()

@@ -2,6 +2,10 @@ candelabra:
 
   default:
 
+    box:
+      name:       test
+      url:        http://shonky.info/centos64.box
+
     provisioner:
       class: puppet
 
@@ -33,15 +37,6 @@ candelabra:
         class:    virtualbox
         name:     vm2
         hostname: vm2
-        network:
-          class:  automatic
-
-    - machine:
-        class:    virtualbox
-        name:     vm3
-        hostname: vm3
-        provisioner:
-          class:  chef
         network:
           class:  automatic
 

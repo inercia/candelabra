@@ -1,9 +1,17 @@
-import argparse
+#
+# Candelabra
+#
+# Copyright Alvaro Saurin 2013 - All right Reserved
+#
+
 from logging import getLogger
+import os
 import sys
 
 from candelabra.base import Command
+from candelabra.errors import UnsupportedCommandException, TopologyException, ProviderNotFoundException
 from candelabra.scheduler.base import Scheduler
+from candelabra.topology.root import TopologyRoot
 
 logger = getLogger(__name__)
 
@@ -18,34 +26,89 @@ class ShowCommand(Command):
                                            dest='show_command')
 
         # boxes
-        parser_a = subparsers.add_parser('boxes',
-                                         help='show the list of boxes')
-        parser_a.add_argument('-v',
-                              '--verbose',
-                              action='store_true',
-                              help='verbose display')
+        parser_boxes = subparsers.add_parser('boxes',
+                                             help='show the list of boxes')
+        parser_boxes.add_argument('-v',
+                                  '--verbose',
+                                  action='store_true',
+                                  help='verbose display')
 
         # topologies
-        parser_a = subparsers.add_parser('topologies',
-                                         help='show the list of created topologies')
-        parser_a.add_argument('-v',
-                              '--verbose',
-                              action='store_true',
-                              help='verbose display')
+        parser_topo = subparsers.add_parser('topologies',
+                                            help='show the list of created topologies')
+        parser_topo.add_argument('-v',
+                                 '--verbose',
+                                 action='store_true',
+                                 help='verbose display')
 
-    def run(self, args, topology, command):
+        # status
+        parser_status = subparsers.add_parser('status',
+                                              help='show the machines statuses')
+        parser_status.add_argument('-t',
+                                   '--topology',
+                                   metavar='TOPOLOGY',
+                                   dest='topology',
+                                   type=str,
+                                   default=None,
+                                   help='the machine(s) definition(s) file(s)')
+        parser_status.add_argument('-v',
+                                   '--verbose',
+                                   action='store_true',
+                                   help='verbose display')
+
+    def run(self, args, command):
         """ Run the command
         """
         logger.info('running command "%s"', command)
 
-        scheduler = Scheduler()
-        tasks = topology.get_tasks('up')
-        scheduler.append(tasks)
-        scheduler.run()
+        if args.show_command == 'boxes':
+            self.do_show_boxes(args)
+        elif args.show_command == 'status':
+            self.do_show_status(args)
+        else:
+            raise UnsupportedCommandException('unknown subcommand "%s"' % args.show_command)
 
     #####################
     # tasks
     #####################
 
+    def do_show_status(self, args):
+        """ Show the status of the machines in the topology
+        """
+        if args.topology is None:
+            logger.critical('no topology file provided')
+            sys.exit(1)
+        if not os.path.exists(args.topology):
+            logger.critical('topology file %s does not exist')
+            sys.exit(1)
+
+        try:
+            topology = TopologyRoot()
+            topology.load(args.topology)
+        except TopologyException, e:
+            logger.critical(str(e))
+            sys.exit(1)
+        except ProviderNotFoundException, e:
+            logger.critical(str(e))
+            sys.exit(1)
+        except KeyboardInterrupt:
+            logger.critical('interrupted with Ctrl-C... bye!')
+            sys.exit(0)
+
+        for machine in topology.machines:
+            logger.info('machine: %s', machine.cfg_name)
+            logger.info('... state: %d [%s]', int(machine.state), machine.state_str)
+
+    def do_show_boxes(self, args):
+        """ Show all the boxes in the system
+        """
+        from candelabra.boxes import boxes_storage_factory
+
+        boxes_storage = boxes_storage_factory()
+        for box_name, box in boxes_storage.boxes.iteritems():
+            logger.info('box info:')
+            logger.info('%s = %s', box_name, box)
+
 
 command = ShowCommand()
+

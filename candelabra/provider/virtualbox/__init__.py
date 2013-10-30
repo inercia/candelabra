@@ -5,6 +5,7 @@
 #
 
 from machine import VirtualboxMachine
+from appliance import VirtualboxAppliance
 
-MACHINE_CLASS_NAME = "virtualbox"
 MACHINE_CLASS = VirtualboxMachine
+BOX_CLASS = VirtualboxAppliance

@@ -10,8 +10,16 @@ logger = getLogger(__name__)
 
 
 class TopologyNode(object):
-    """ A topology node
+    """ Base class for all topology nodes.
 
+    Attributes
+    ----------
+    All known attributed will be loaded from the topology wile and added to the current instance with
+    the 'cfg_' prefix. For example, if 'hostname' is a known attribute, it will be set for the
+    instance under the name 'cfg_hostname'
+
+    Commands
+    --------
     Topology nodes must react to commands by providing methods named `get_tasks_<COMMAND>` that return a list
     of tuples (:class:`Task`, :class:`Task`)
     """
@@ -19,8 +27,10 @@ class TopologyNode(object):
     def __init__(self, dictionary, parent=None):
         """ Initialize a topology node
         """
-        self.name = dictionary.get("name", None)
-        self.clas = dictionary.get("class", None)
+        self.cfg_name = dictionary.get("name", None)
+        self.cfg_class = dictionary.get("class", None)
+        self.cfg_uuid = dictionary.get("uuid", None)
+
         self.parent = parent
 
     #####################
@@ -33,17 +43,12 @@ class TopologyNode(object):
         else:
             raise AttributeError('"%s" not found' % item)
 
-    def _settattr_if_dict(self, dictionary, attr):
-        """ Set an attribute `attr` if found in a dictionary
+    def _settattr_dict_defaults(self, dictionary, known_attributes):
+        """ Set attributes from a dictionary if they are found in the `known_attributes` as known attributes
         """
-        if attr in dictionary:
-            setattr(self, attr, dictionary[attr])
-
-    def _settattr_dict_defaults(self, dictionary, defaults):
-        """ Set attributes from a dictionary if they are found in the `defaults` as known attributes
-        """
-        for k, v in defaults.iteritems():
-            self._settattr_if_dict(dictionary, k)
+        for k, v in known_attributes.iteritems():
+            if k in dictionary:
+                setattr(self, 'cfg_' + k, dictionary[k])
 
     #####################
     # auxiliary
@@ -51,9 +56,10 @@ class TopologyNode(object):
 
     def __repr__(self):
         if self.name and self.clas:
-            return '<%s [name:%s, class:%s] at %x>' % (self.__class__.__name__, self.name, self.clas, id(self))
+            assert self.__class__
+            return '<%s [name:%s, class:%s] at %x>' % (self.__class__.__name__, self.cfg_name, self.cfg_class, id(self))
         else:
             return '<%s at %x]>' % (id(self))
 
     def __str__(self):
-        return 'name:%s class:%s' % (self.name, self.clas)
+        return 'name:%s class:%s' % (self.cfg_name, self.cfg_class)

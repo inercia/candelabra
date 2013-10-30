@@ -46,11 +46,11 @@ if __name__ == "__main__":
 
         install_requires=[
             'setuptools',
-            'setproctitle',
             'configparser',
-            'vbox',
-            'pyaml',
             'pycurl',
+            'pyvbox',
+            'pyaml',
+            'colorlog',
         ],
 
         test_suite='nose.collector',

@@ -16,8 +16,8 @@ from candelabra.topology.root import TopologyRoot
 logger = getLogger(__name__)
 
 
-class UpCommand(Command):
-    DESCRIPTION = "creates machines from the box, according to the topology file."
+class DownCommand(Command):
+    DESCRIPTION = "stops all the machines specified in the topology file."
 
     def argparser(self, parser):
         """ Parse arguments
@@ -31,7 +31,7 @@ class UpCommand(Command):
                             help='the machine(s) definition(s) file(s)')
         parser.add_argument('--timeout',
                             type=int,
-                            help='timeout for the provision')
+                            help='timeout for stopping')
 
     def run(self, args, command):
         """ Run the command
@@ -60,11 +60,11 @@ class UpCommand(Command):
             sys.exit(0)
 
         scheduler = Scheduler()
-        tasks = topology.get_tasks('up')
+        tasks = topology.get_tasks('down')
         scheduler.append(tasks)
         scheduler.run()
 
         topology.state.save()
 
 
-command = UpCommand()
+command = DownCommand()
