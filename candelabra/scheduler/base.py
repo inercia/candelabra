@@ -73,7 +73,6 @@ class Scheduler(object):
         """
         self.schedule()
 
-        num_tasks_completed = 0
         num_tasks_to_run = len(self._tasks_to_run)
         if num_tasks_to_run == 0:
             logger.info('nothing to do!')
@@ -89,16 +88,12 @@ class Scheduler(object):
                         if abort_on_error:
                             raise SchedulerTaskException(str(e))
                         raise
-                    else:
-                        num_tasks_completed += 1
                     finally:
                         self._performed_tasks.add(task)
 
             logger.debug('done!')
             self._running = False
             self._performed_tasks = set()
-
-        return num_tasks_completed
 
     def clean(self):
         """ Clean the tasks list
@@ -107,3 +102,6 @@ class Scheduler(object):
         self._tasks_to_run = []
         self._performed_tasks = set()
 
+    @property
+    def num_completed(self):
+        return len(self._performed_tasks)

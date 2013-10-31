@@ -49,7 +49,7 @@ class Command(object):
             logger.critical('interrupted with Ctrl-C... bye!')
             sys.exit(0)
 
-        num_tasks_completed = 0
+        scheduler = None
         try:
             if command:
                 scheduler = Scheduler()
@@ -62,7 +62,8 @@ class Command(object):
             logger.critical('uncaught exception')
             raise
         finally:
-            if save_state and num_tasks_completed > 0:
-                topology.state.save()
+            if save_state:
+                if scheduler and scheduler.num_completed > 0:
+                    topology.state.save()
 
         return topology
