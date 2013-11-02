@@ -8,12 +8,11 @@ Unit tests
 ----------
 
 
-You can run the unit tests with the 'XXXX-tests' script.
-For example:
+You can run the unit tests with:
 
 ::
 
-    # ./bin/XXXX-tests
+    # make tests
 
 After running a test, you can inspect the output in ``nosetests.log``.
 

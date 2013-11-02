@@ -1,11 +1,9 @@
 
-
-
-XXXX software
+Candelabra software
 ==================================
 
-XXXX Software Distribution
-
+Candelabra Software Distribution
+Copyright Alvaro Saurin 2013
 
 Third party packages
 ====================

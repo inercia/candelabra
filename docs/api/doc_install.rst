@@ -22,45 +22,6 @@ For a development build of the software, just do a
 This will install all the required components in the local project directory. You only need to do
 this once, or if you change the dependencies.
 
-
-On Linux
---------
-
-Extra repositories for RPM-based systems
-----------------------------------------
-
-On CentOS 5.5/RedHat 5.5 you could install some extra repositories:
-
-- the 'Extra Packages for Enterprise Linux (EPEL)' repository for grabbing extra packages.
-
-::
-
-        wget http://download.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
-        sudo rpm -ivh ./epel-release-5-4.noarch.rpm
-
-- the 'rpmforge' repository:
-
-::
-
-        wget http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm
-        sudo rpm -ivh ./rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm
-
-
-RPM creation
-------------
-
-If you want to create a RPM, you can do a:
-
-::
-
-        make rpm-clean
-        make rpm
-
-This will do a ``distclean`` and then build the broker and node RPMs. You can also create only the broker
-or the node RPMs with ``make rpm-broker``  and ``make rpm-node`` respectively.
-
-
-
 On Mac OS X
 -----------
 
@@ -99,14 +60,6 @@ add the corresponding paths to the ``CFLAGS`` and ``LDFLAGS``.
         
 Troubleshooting
 ---------------
-
-
-
-* Problems with ``uuid`` in Mac OS X
-
-   If compilation fails with some ``uuid`` related problem, check there is no
-   uuid.h in your ``/usr/local/include`` path. If you find the file there, the
-   you will have to remove it...
 
 * You are getting this error: ``/usr/include/gnu/stubs.h:7:27: fatal error: gnu/stubs-32.h: No such file or directory``
 

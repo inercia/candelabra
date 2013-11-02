@@ -185,9 +185,7 @@ docs-api:
 	@echo ">>> Documentation left at $(API_DOCS_OUTPUT_DIR)/doc_index.html"
 
 .PHONY: docs
-docs:              clean-docs all $(TOP)/bin/sphinx-build   00-docs-run
-.PHONY: docs-fast
-docs-fast:         clean-docs                                00-docs-run
+docs:              clean-docs all 00-docs-run
 
 .PHONY: 00-docs-pdf-run
 00-docs-pdf-run: docs-api
@@ -205,9 +203,7 @@ docs-fast:         clean-docs                                00-docs-run
 
 
 .PHONY: docs-pdf
-docs-pdf:          clean-docs all $(TOP)/bin/sphinx-build   00-docs-pdf-run
-.PHONY: docs-pdf-fast
-docs-pdf-fast:     clean-docs                               00-docs-pdf-run
+docs-pdf:          clean-docs all 00-docs-pdf-run
 
 
 ####################################################################################################
