@@ -7,7 +7,7 @@
 from logging import getLogger
 
 from candelabra.base import Command
-from candelabra.boxes import boxes_storage_factory, Box
+from candelabra.boxes import boxes_storage_factory
 from candelabra.errors import ImportException
 
 
@@ -15,6 +15,7 @@ logger = getLogger(__name__)
 
 
 class ImportCommand(Command):
+    NAME = 'import'
     DESCRIPTION = "import a box from a file/URL."
 
     def argparser(self, parser):

@@ -46,8 +46,8 @@ class VirtualboxAppliance(object):
         """ Copy (import) the appliance to VirtualBox
         """
         logger.info('importing appliance from /%s as "%s"', BoxesStorage.get_relative_path(self.ovf), node.cfg_name)
-        import virtualbox
 
+        import virtualbox
         vbox = virtualbox.VirtualBox()
 
         appliance = vbox.create_appliance()
@@ -62,8 +62,7 @@ class VirtualboxAppliance(object):
 
         if len(appliance.machines) > 0:
             machine_uuid = appliance.machines[0]
-            node.uuid = machine_uuid
-            node.sync_name()
+            node.cfg_uuid = machine_uuid
             logger.debug(node.get_info())
         else:
             raise ImportException('no virtual machine created after import of %s' % node.cfg_name)

@@ -16,7 +16,9 @@ logger = getLogger(__name__)
 
 
 class State(object):
-    """ Topology definition
+    """ State definition
+
+    State definition is kept in memory _as a dictionary_, not as a tree of topology :class:`Node`:
     """
 
     def __init__(self, topology):
@@ -29,6 +31,8 @@ class State(object):
 
     def load(self):
         """ Load the state from a persisted file
+
+        The state file is kept in memory as a dictionary, not as a tree of topology :class:`Node`:
         """
         logger.info('state: loading from "%s"...', self.filename)
         with open(self.filename) as input_file:
@@ -66,20 +70,24 @@ class State(object):
     def save(self):
         """ Save the state to a persisted file
         """
-        output = {}
-        output[YAML_ROOT] = {}
-        output[YAML_ROOT][YAML_SECTION_MACHINES] = []
-
+        machines_states = []
         logger.info('saving topology state...')
-        with open(self.filename, 'w+') as output_file:
-            for machine in self._topology._machines:
-                machine_definition = {}
-                machine_definition['machine'] = machine.get_state_dict()
-                output[YAML_ROOT][YAML_SECTION_MACHINES].append(machine_definition)
+        for machine in self._topology._machines:
+            machine_definition = {}
+            machine_state = machine.get_state_dict()
+            if machine_state:
+                machine_definition['machine'] = machine_state
+                machines_states.append(machine_definition)
 
-            output_file.write(pyaml.dump(output))
-
-        logger.debug('... state saved as %s', self.filename)
+        if len(machines_states) > 0:
+            output = {}
+            output[YAML_ROOT] = {}
+            output[YAML_ROOT][YAML_SECTION_MACHINES] = machines_states
+            with open(self.filename, 'w+') as output_file:
+                output_file.write(pyaml.dump(output))
+            logger.debug('... state saved as %s', self.filename)
+        else:
+            logger.info('... no state saved: no machines reported valid state')
 
     @property
     def filename(self):

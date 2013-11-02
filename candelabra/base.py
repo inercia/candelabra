@@ -18,6 +18,8 @@ logger = getLogger(__name__)
 class Command(object):
     """ A command from command line
     """
+    NAME = 'unknown'
+    DESCRIPTION = 'unknown'
 
     def run_with_topology(self, args, topology_file, command=None, save_state=True):
         """ Run a command, managing the topology
@@ -54,8 +56,9 @@ class Command(object):
             if command:
                 scheduler = Scheduler()
                 tasks = topology.get_tasks(command)
+                assert all(isinstance(t, tuple) for t in tasks)
                 scheduler.append(tasks)
-                num_tasks_completed = scheduler.run()
+                scheduler.run()
         except CandelabraException:
             raise
         except Exception, e:
@@ -67,3 +70,4 @@ class Command(object):
                     topology.state.save()
 
         return topology
+

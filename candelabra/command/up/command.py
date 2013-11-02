@@ -12,6 +12,7 @@ logger = getLogger(__name__)
 
 
 class UpCommand(Command):
+    NAME = 'up'
     DESCRIPTION = "creates machines from the box, according to the topology file."
 
     def argparser(self, parser):

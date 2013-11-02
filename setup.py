@@ -16,6 +16,13 @@ __RELEASE__ = os.environ.get('CANDELABRA_RELEASE', open('RELEASE', 'r').read().s
 entry_points = """
 [console_scripts]
 candelabra  = candelabra.main:main
+
+[candelabra.command]
+down = candelabra.command.down.plugin:register
+import = candelabra.command.import.plugin:register
+provision = candelabra.command.provision.plugin:register
+show = candelabra.command.show.plugin:register
+up = candelabra.command.up.plugin:register
 """
 
 if __name__ == "__main__":

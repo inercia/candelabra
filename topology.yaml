@@ -10,15 +10,10 @@ candelabra:
       class: puppet
 
     shared:
-      - folder:
-          local:    docs
-          remote:   /home/docs
-      - folder:
-          local:    .
-          remote:   /home/candelabra
-      - file:
-          local:    /etc/hosts
-          remote:   /etc/hosts.host
+      - local:    docs
+        remote:   /home/docs
+      - local:    $HOME
+        remote:   /home/host_home
 
   networks:
     - class:  private
@@ -32,11 +27,3 @@ candelabra:
         hostname: vm1
         network:
           class:  automatic
-
-    - machine:
-        class:    virtualbox
-        name:     vm2
-        hostname: vm2
-        network:
-          class:  automatic
-

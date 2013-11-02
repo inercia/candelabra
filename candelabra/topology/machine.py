@@ -5,8 +5,12 @@
 #
 
 from logging import getLogger
+from candelabra.topology.box import Box
+from candelabra.topology.interface import Interface
 
 from candelabra.topology.node import TopologyNode
+from candelabra.topology.provisioner import Provisioner
+from candelabra.topology.shared import Shared
 
 
 logger = getLogger(__name__)
@@ -29,29 +33,29 @@ STR_TO_STATE = {v: k for k, v in STATES_ALL}
 
 ########################################################################################################################
 
-
 class Machine(TopologyNode):
     """ A machine
     """
 
-    hostname = None
-    interfaces = []
-
-    _KNOWN_ATTRIBUTES = {
-        'box': 'the box',
-        'hostname': 'the hostname',
-        'interfaces': 'the interface',
-        'provisioner': 'the provisioner',
-        'shared': 'shared folders',
+    # known attributes
+    # the right tuple is the constructor and a default value (None means "inherited from parent")
+    __known_attributes = {
+        'box': Box,
+        'hostname': str,
+        'interfaces': Interface,
+        'provisioner': Provisioner,
+        'shared': Shared,
     }
 
-    def __init__(self, dictionary, parent=None):
+    __state_attributes = {
+        'state'
+    }
+
+    def __init__(self, _parent=None, **kwargs):
         """ Initialize a machines definition
         """
-        super(Machine, self).__init__(dictionary, parent)
-
-        # get some attributes
-        self._settattr_dict_defaults(dictionary, self._KNOWN_ATTRIBUTES)
+        super(Machine, self).__init__(_parent=_parent, **kwargs)
+        self._settattr_dict_defaults(kwargs, self.__known_attributes)
 
     #####################
     # state
@@ -60,40 +64,34 @@ class Machine(TopologyNode):
     def get_state_dict(self):
         """ Get current state as a dictionary, suitable for saving in a state file
         """
-        return {
-            'class': str(self.cfg_class),
-            'name': str(self.cfg_name),
-            'uuid': str(self.uuid),
-            'state': str(self.state_str),
-        }
+        local_dict = {}
+        super_dict = super(Machine, self).get_state_dict()
+        try:
+            for attr in self.__state_attributes:
+                v = getattr(self, 'cfg_' + attr, None)
+                if v:
+                    local_dict[attr] = v
+            super_dict.update(local_dict)
+        except AttributeError:
+            pass
+        return super_dict
 
-    @property
-    def state(self):
+    def get_state(self):
         """ Return the machine current state
         """
-        return STATE_UNKNOWN[0]
+        #return STATE_UNKNOWN[0]
+        pass
 
-    @property
-    def state_str(self):
-        """ Return the machine current state (as an string)
-        """
-        return STATE_TO_STR[self.state]
+    state = property(lambda self: self.get_state())
 
-    @property
-    def is_running(self):
-        return bool(self.state == STATE_RUNNING[0])
+    state_str = property(lambda self: STATE_TO_STR[self.get_state()])
 
-    @property
-    def is_powered_down(self):
-        return bool(self.state == STATE_POWERDOWN[0])
-
-    @property
-    def is_starting(self):
-        return bool(self.state == STATE_STARTING[0])
-
-    @property
-    def is_stopping(self):
-        return bool(self.state == STATE_STOPPING[0])
+    is_unknown = property(lambda self: self.get_state() == STATE_UNKNOWN[0])
+    is_running = property(lambda self: self.get_state() == STATE_RUNNING[0])
+    is_powered_down = property(lambda self: self.get_state() == STATE_POWERDOWN[0])
+    is_aborted = property(lambda self: self.get_state() == STATE_ABORTED[0])
+    is_starting = property(lambda self: self.get_state() == STATE_STARTING[0])
+    is_stopping = property(lambda self: self.get_state() == STATE_STOPPING[0])
 
     #####################
     # tasks
@@ -109,10 +107,13 @@ class Machine(TopologyNode):
     def __str__(self):
         """ Return a string representation for this machine
         """
-        provisioner = getattr(self, 'cfg_provisioner', '')
-        interfaces = getattr(self, 'cfg_interfaces', [])
-        shared = getattr(self, 'cfg_shared', [])
+        provisioner = getattr(self, 'cfg_provisioner', None)
+        #interfaces = getattr(self, 'cfg_interfaces', None)
+        #shared = getattr(self, 'cfg_shared', None)
 
         return super(Machine, self).__str__() + \
-               ' provisioner:%s ifaces:%d shared:%d' % (provisioner, len(interfaces), len(shared))
+               ' provisioner:%s' % (    #ifaces:%d shared:%d' % (
+                                        provisioner if provisioner else '') #,
+        #len(interfaces) if interfaces else 0,
+        #len(shared) if shared else 0)
 

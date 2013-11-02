@@ -14,6 +14,7 @@ logger = getLogger(__name__)
 
 
 class ProvisionCommand(Command):
+    NAME = 'provision'
     DESCRIPTION = "provision all virtual machines."
 
     def argparser(self, parser):

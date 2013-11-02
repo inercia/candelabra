@@ -14,8 +14,7 @@ import sys
 import logging
 
 from candelabra.errors import CandelabraException
-from candelabra.constants import DEFAULT_COMMANDS
-from candelabra.loader import load_command_for
+from candelabra.plugins import register_all, PLUGINS_REGISTRIES
 from candelabra.config import config
 from candelabra import logs
 
@@ -74,17 +73,18 @@ def main():
 
     _delayed_warnings = None
 
+    register_all()
+
     # for all possible sub-commands, check if they have their own sub-parser and and it if present...
-    for command in DEFAULT_COMMANDS:
-        command_class = load_command_for(command)
-        if command_class:
-            try:
-                parser_command = subparsers.add_parser(command, help=command_class.DESCRIPTION)
-                command_class.argparser(parser_command)
-            except AttributeError, e:
-                _delayed_warnings = 'command "%s" cannot parse args' % command
-            except Exception, e:
-                _delayed_warnings = 'could not load parser for "%s"' % command
+    commands = PLUGINS_REGISTRIES['candelabra.command']
+    for command_name, command_instance in commands.plugins.iteritems():
+        try:
+            parser_command = subparsers.add_parser(command_name, help=command_instance.DESCRIPTION)
+            command_instance.argparser(parser_command)
+        except AttributeError, e:
+            _delayed_warnings = 'command "%s" cannot parse args' % command_name
+        except Exception, e:
+            _delayed_warnings = 'could not load parser for "%s"' % command_name
 
     args = parser.parse_args()
 
@@ -99,13 +99,13 @@ def main():
     logs.setup_file(filename=args.logfile, level=args.logfilelevel.upper() if args.logfilelevel else None)
 
     # load the runner and run the command with the tree
-    runner_module = load_command_for(args.command)
-    if not runner_module:
-        logger.critical('could not load runner class for command "%s": %s', args.command, str(e))
-    else:
-        try:
-            runner_module.run(args=args, command=args.command)
-        except CandelabraException, e:
-            logger.critical('error: %s', str(e))
-            sys.exit(1)
+    command_instance = commands.plugins[args.command]
+    try:
+        command_instance.run(args=args, command=args.command)
+    except CandelabraException, e:
+        logger.critical('error: %s', str(e))
+        sys.exit(1)
 
+
+if __name__ == '__main__':
+    main()

@@ -12,6 +12,7 @@ logger = getLogger(__name__)
 
 
 class DownCommand(Command):
+    NAME = 'down'
     DESCRIPTION = "stops all the machines specified in the topology file."
 
     def argparser(self, parser):

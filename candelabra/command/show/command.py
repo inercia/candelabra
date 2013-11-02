@@ -13,6 +13,7 @@ logger = getLogger(__name__)
 
 
 class ShowCommand(Command):
+    NAME = 'show'
     DESCRIPTION = "show information."
 
     def argparser(self, parser):

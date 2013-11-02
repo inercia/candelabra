@@ -4,6 +4,7 @@
 # Copyright Alvaro Saurin 2013 - All right Reserved
 #
 
+import logging
 import importlib
 from logging import getLogger
 
@@ -11,22 +12,6 @@ from candelabra.errors import MachineDefinitionException
 from candelabra.constants import COMMANDS_BASE, PROVIDER_BASE
 
 logger = getLogger(__name__)
-
-
-def load_command_for(name):
-    """ Load a command class for a command
-    """
-    try:
-        command_package = '.'.join(COMMANDS_BASE + [name])
-        command_module = importlib.import_module(command_package)
-    except ImportError:
-        return None
-    else:
-        try:
-            return command_module.COMMAND_INSTANCE
-        except AttributeError:
-            return None
-
 
 def load_provider_module_for(name):
     """ Load a box for a provider
@@ -37,7 +22,7 @@ def load_provider_module_for(name):
     try:
         return importlib.import_module(provider_package)
     except ImportError:
-        logger.debug('provider package "%s" not found', provider_package)
+        logging.critical('provider package "%s" not found', provider_package)
         return None
 
 
