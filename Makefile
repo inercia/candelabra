@@ -44,7 +44,7 @@ MAIN_SCRIPT=$(TOP)/bin/candelabra
 NOSE_SCRIPT=nosetests-2.7
 
 # API docs dir
-API_GEN=$(TOP)/bin/sphinx-apidoc
+API_GEN=sphinx-apidoc
 API_DOCS_DIR=$(TOP)/docs/api/
 API_DOCS_OUTPUT_DIR=$(TOP)/docs/api/build
 
@@ -166,10 +166,6 @@ clean-docs:
 	@echo ">>> Cleaning docs..."
 	rm -rf    $(API_DOCS_OUTPUT_DIR)
 
-$(TOP)/bin/sphinx-build: $(BUILDOUT)
-	@echo ">>> Creating docs builder..."
-	@[ -d $(API_DOCS_OUTPUT_DIR) ] || mkdir -p $(API_DOCS_OUTPUT_DIR)
-
 docs-api:
 	@echo ">>> Creating API docs..."
 	rm -f $(API_DOCS_DIR)/candelabra.*.rst
@@ -185,8 +181,8 @@ docs-api:
 	    CANDELABRA_CONF=$(TOP)/conf/candelabra.conf \
 	    LD_LIBRARY_PATH=$(TOP)/lib:$$LD_LIBRARY_PATH   \
 	    DYLD_LIBRARY_PATH=$(TOP)/lib:$$DYLD_LIBRARY_PATH   \
-		    $(TOP)/bin/sphinx-build -q -b html  $(API_DOCS_DIR)  $(API_DOCS_OUTPUT_DIR)
-	@echo ">>> Documentation left at $(API_DOCS_OUTPUT_DIR)"
+		    sphinx-build -q -b html  $(API_DOCS_DIR)  $(API_DOCS_OUTPUT_DIR)
+	@echo ">>> Documentation left at $(API_DOCS_OUTPUT_DIR)/doc_index.html"
 
 .PHONY: docs
 docs:              clean-docs all $(TOP)/bin/sphinx-build   00-docs-run
@@ -201,7 +197,7 @@ docs-fast:         clean-docs                                00-docs-run
 	    CANDELABRA_CONF=$(TOP)/conf/candelabra.conf \
 	    LD_LIBRARY_PATH=$(TOP)/lib:$$LD_LIBRARY_PATH   \
 	    DYLD_LIBRARY_PATH=$(TOP)/lib:$$DYLD_LIBRARY_PATH   \
-		    $(TOP)/bin/sphinx-build -q -b latex  \
+		    sphinx-build -q -b latex  \
 		        $(API_DOCS_DIR)  $(API_DOCS_OUTPUT_DIR)/latex
 	make -C  $(API_DOCS_OUTPUT_DIR)/latex   all-pdf
 	@echo ">>> PDF documentation at $(API_DOCS_OUTPUT_DIR)/latex"
