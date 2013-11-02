@@ -1,3 +1,5 @@
+
+
 #
 # Candelabra
 #
@@ -6,12 +8,12 @@
 
 from logging import getLogger
 
-from candelabra.base import Command
+from candelabra.base import CommandPlugin
 
 logger = getLogger(__name__)
 
 
-class DownCommand(Command):
+class DownCommandPlugin(CommandPlugin):
     NAME = 'down'
     DESCRIPTION = "stops all the machines specified in the topology file."
 
@@ -35,4 +37,4 @@ class DownCommand(Command):
         self.run_with_topology(args, args.topology, command)
 
 
-command = DownCommand()
+command = DownCommandPlugin()

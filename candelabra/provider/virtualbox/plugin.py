@@ -6,7 +6,7 @@
 
 from logging import getLogger
 
-from candelabra.base import Provider
+from candelabra.base import ProviderPlugin
 
 from .appliance import VirtualboxAppliance
 from .machine import VirtualboxMachine
@@ -14,7 +14,7 @@ from .machine import VirtualboxMachine
 logger = getLogger(__name__)
 
 
-class VirtualboxProvider(Provider):
+class VirtualboxProviderPlugin(ProviderPlugin):
     """ A provider
     """
     NAME = 'virtualbox'
@@ -24,7 +24,7 @@ class VirtualboxProvider(Provider):
     MACHINE = VirtualboxMachine
 
 
-provider_instance = VirtualboxProvider()
+provider_instance = VirtualboxProviderPlugin()
 
 
 def register(registry_instance):

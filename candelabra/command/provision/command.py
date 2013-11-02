@@ -8,12 +8,12 @@ import argparse
 from logging import getLogger
 import sys
 
-from candelabra.base import Command
+from candelabra.base import CommandPlugin
 
 logger = getLogger(__name__)
 
 
-class ProvisionCommand(Command):
+class ProvisionCommandPlugin(CommandPlugin):
     NAME = 'provision'
     DESCRIPTION = "provision all virtual machines."
 
@@ -37,4 +37,4 @@ class ProvisionCommand(Command):
         self.run_with_topology(args, args.topology, command)
 
 
-command = ProvisionCommand()
+command = ProvisionCommandPlugin()

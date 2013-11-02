@@ -3,26 +3,9 @@
 #
 # Copyright Alvaro Saurin 2013 - All right Reserved
 #
-import os
 
 import sys
 
-COMMANDS_BASE = ['candelabra', 'command']
-PROVIDER_BASE = ['candelabra', 'provider']
-
-
-################################################
-# supported commands, providers, provisioners...
-################################################
-
-# default supported providers
-DEFAULT_PROVIDERS = ['virtualbox']
-
-# default supported provisioners
-DEFAULT_PROVISIONERS = ['puppet']
-
-# default supported commands
-DEFAULT_COMMANDS = ['up', 'down', 'provision', 'import', 'show']
 
 ################################################
 # configuration file

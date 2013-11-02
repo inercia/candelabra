@@ -6,7 +6,7 @@
 
 from logging import getLogger
 
-from candelabra.base import Command
+from candelabra.base import CommandPlugin
 from candelabra.boxes import boxes_storage_factory
 from candelabra.errors import ImportException
 
@@ -14,7 +14,7 @@ from candelabra.errors import ImportException
 logger = getLogger(__name__)
 
 
-class ImportCommand(Command):
+class ImportCommandPlugin(CommandPlugin):
     NAME = 'import'
     DESCRIPTION = "import a box from a file/URL."
 
@@ -55,4 +55,4 @@ class ImportCommand(Command):
         box.do_download()
 
 
-command = ImportCommand()
+command = ImportCommandPlugin()

@@ -6,19 +6,19 @@
 
 from logging import getLogger
 
-from candelabra.base import Provisioner
+from candelabra.base import ProvisionerPlugin
 
 logger = getLogger(__name__)
 
 
-class PuppetProvisioner(Provisioner):
+class PuppetProvisionerPlugin(ProvisionerPlugin):
     """ A provisioner
     """
     NAME = 'puppet'
     DESCRIPTION = 'a puppet provisioner'
 
 
-provisioner_instance = PuppetProvisioner()
+provisioner_instance = PuppetProvisionerPlugin()
 
 
 def register(registry_instance):

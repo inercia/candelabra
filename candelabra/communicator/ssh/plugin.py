@@ -6,19 +6,19 @@
 
 from logging import getLogger
 
-from candelabra.base import Communicator
+from candelabra.base import CommunicatorPlugin
 
 logger = getLogger(__name__)
 
 
-class SshCommunicator(Communicator):
+class SshCommunicatorPlugin(CommunicatorPlugin):
     """ A communicator
     """
     NAME = 'ssh'
     DESCRIPTION = 'a ssh communicator'
 
 
-communicator_instance = SshCommunicator()
+communicator_instance = SshCommunicatorPlugin()
 
 
 def register(registry_instance):

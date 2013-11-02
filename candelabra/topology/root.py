@@ -9,8 +9,8 @@ import os
 import pyaml
 
 from candelabra.constants import YAML_ROOT, YAML_SECTION_DEFAULT, YAML_SECTION_MACHINES, DEFAULT_TOPOLOGY_DIR_GUESSES, DEFAULT_TOPOLOGY_FILE_GUESSES
-from candelabra.errors import TopologyException, MalformedStateFileException
-from candelabra.loader import load_provider_machine_for
+from candelabra.errors import TopologyException
+from candelabra.plugins import PLUGINS_REGISTRIES
 from candelabra.topology.machine import Machine
 from candelabra.topology.state import State
 
@@ -31,6 +31,7 @@ def guess_topology_file(extra=[]):
             return filename
 
     return None
+
 
 class TopologyRoot(object):
     """ Topology definition
@@ -103,8 +104,11 @@ class TopologyRoot(object):
                             'topology definition error: "class" key not found for machine "%s"' % machine_definition)
 
                     # load the machine class (ie, VirtualboxMachine)
-                    machine_class = load_provider_machine_for(machine_class_str)
-                    if not machine_class:
+                    try:
+                        providers = PLUGINS_REGISTRIES['candelabra.provider']
+                        provider_plugin = providers[machine_class_str]
+                        machine_class = provider_plugin.MACHINE
+                    except KeyError:
                         logger.warning('topology: ... unknown machine class "%s"!!!', machine_class_str)
                     else:
                         machine_inst = machine_class(_parent=self._global_machine, **machine_definition)

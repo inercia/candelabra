@@ -11,9 +11,9 @@ from candelabra.base import CommandPlugin
 logger = getLogger(__name__)
 
 
-class UpCommandPlugin(CommandPlugin):
-    NAME = 'up'
-    DESCRIPTION = "creates machines from the box, according to the topology file."
+class DestroyCommandPlugin(CommandPlugin):
+    NAME = 'destroy'
+    DESCRIPTION = "destroys all the machines, freeing all resources like virtual disks, etc..."
 
     def argparser(self, parser):
         """ Parse arguments
@@ -27,7 +27,7 @@ class UpCommandPlugin(CommandPlugin):
                             help='the machine(s) definition(s) file(s)')
         parser.add_argument('--timeout',
                             type=int,
-                            help='timeout for the provision')
+                            help='timeout for stopping')
 
     def run(self, args, command):
         """ Run the command
@@ -35,4 +35,4 @@ class UpCommandPlugin(CommandPlugin):
         self.run_with_topology(args, args.topology, command)
 
 
-command = UpCommandPlugin()
+command = DestroyCommandPlugin()

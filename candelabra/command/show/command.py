@@ -6,13 +6,13 @@
 
 from logging import getLogger
 
-from candelabra.base import Command
+from candelabra.base import CommandPlugin
 from candelabra.errors import UnsupportedCommandException
 
 logger = getLogger(__name__)
 
 
-class ShowCommand(Command):
+class ShowCommandPlugin(CommandPlugin):
     NAME = 'show'
     DESCRIPTION = "show information."
 
@@ -88,5 +88,5 @@ class ShowCommand(Command):
             logger.info('%s = %s', box_name, box)
 
 
-command = ShowCommand()
+command = ShowCommandPlugin()
 

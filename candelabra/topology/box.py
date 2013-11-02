@@ -11,9 +11,8 @@ import tarfile
 import json
 
 from candelabra.tasks import TaskGenerator
-from candelabra.constants import DEFAULT_PROVIDERS
 from candelabra.errors import UnsupportedBoxException, ImportException
-from candelabra.loader import load_provider_box_for
+from candelabra.plugins import PLUGINS_REGISTRIES
 from candelabra.config import config
 from candelabra.constants import CFG_CONNECT_TIMEOUT, CFG_DOWNLOAD_TIMEOUT
 from candelabra.topology.node import TopologyNode
@@ -73,21 +72,27 @@ class Box(TopologyNode, TaskGenerator):
     def load(self):
         """ Load a box from a path
         """
+        supported_providers_names = PLUGINS_REGISTRIES['candelabra.provider'].names
+
         logger.debug('... searching for providers in box %s', self.cfg_name)
         self.appliances.clear()
         for provider in os.listdir(self.path):
-            if provider in set(DEFAULT_PROVIDERS):
+            if provider in set(supported_providers_names):
                 logger.debug('...... found a %s template', provider)
-                box_class = load_provider_box_for(provider)
+
+                providers = PLUGINS_REGISTRIES['candelabra.provider']
+                provider_plugin = providers[provider]
+                appliance_class = provider_plugin.APPLIANCE
+
                 full_provider_path = os.path.abspath(os.path.join(self.path, provider))
 
                 # try to load the appliance provider for this box class (ie, 'VirtualboxAppliance')
                 try:
-                    box_provider = box_class.from_dir(full_provider_path)
+                    appliance_instance = appliance_class.from_dir(full_provider_path)
                 except UnsupportedBoxException, e:
                     logger.warning('...... not a valid %s template in %s', provider, full_provider_path)
                 else:
-                    self.appliances[provider] = box_provider
+                    self.appliances[provider] = appliance_instance
 
         return bool(len(self.appliances) > 0)
 

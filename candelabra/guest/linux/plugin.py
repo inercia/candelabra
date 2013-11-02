@@ -6,19 +6,19 @@
 
 from logging import getLogger
 
-from candelabra.base import Guest
+from candelabra.base import GuestPlugin
 
 logger = getLogger(__name__)
 
 
-class LinuxGuest(Guest):
+class LinuxGuestPlugin(GuestPlugin):
     """ A Linux guest definition
     """
     NAME = 'linux'
     DESCRIPTION = 'a Linux guest'
 
 
-guest_instance = LinuxGuest()
+guest_instance = LinuxGuestPlugin()
 
 
 def register(registry_instance):

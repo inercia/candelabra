@@ -15,7 +15,7 @@ from candelabra.topology.root import TopologyRoot, guess_topology_file
 logger = getLogger(__name__)
 
 
-class Command(object):
+class CommandPlugin(object):
     """ A command from command line
     """
     NAME = 'unknown'
@@ -77,20 +77,25 @@ class Command(object):
         return topology
 
 
-class Provider(object):
+class ProviderPlugin(object):
     """ A provider
     """
     NAME = 'unknown'
     DESCRIPTION = 'unknown'
-    APPLIANCE = None        # the class for appliances
-    MACHINE = None          # the class for machines in the topology
+    MACHINE = None              # the machine class that will be instantiated for each definition in the topology
+    APPLIANCE = None            # the appliance class that will be instantiated for each definition in the topology
 
 
 class Provisioner(object):
+    pass
+
+
+class ProvisionerPlugin(object):
     """ A provisioner
     """
     NAME = 'unknown'
     DESCRIPTION = 'unknown'
+    PROVISIONER = None          # the provisioner class that will be instantiated for each machine
 
     def run(self, command):
         """ Run a command
@@ -98,7 +103,7 @@ class Provisioner(object):
         raise NotImplementedError('must be implemented')
 
 
-class Guest(object):
+class GuestPlugin(object):
     """ A guest definition
     """
     NAME = 'unknown'
@@ -106,19 +111,18 @@ class Guest(object):
 
 
 class Communicator(object):
+    def __init__(self, machine, credentials):
+        """ Initialize a communication chanel to a :param:`machine` with some :param:`credentials`
+        """
+        pass
+
+
+class CommunicatorPlugin(object):
     """ A communicator
     """
     NAME = 'unknown'
     DESCRIPTION = 'unknown'
     ONLY_PROVIDERS = []
+    COMMUNICATOR = None                 # the communicator class that will be instantiated for each machine
 
-    def run(self, command):
-        """ Run a command
-        """
-        raise NotImplementedError('must be implemented')
-
-    def run_sudo(self, command):
-        """ Run a command with sudo
-        """
-        raise NotImplementedError('must be implemented')
 

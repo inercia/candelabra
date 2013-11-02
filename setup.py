@@ -18,6 +18,7 @@ entry_points = """
 candelabra  = candelabra.main:main
 
 [candelabra.command]
+destroy = candelabra.command.destroy.plugin:register
 down = candelabra.command.down.plugin:register
 import = candelabra.command.import.plugin:register
 provision = candelabra.command.provision.plugin:register

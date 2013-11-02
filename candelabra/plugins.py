@@ -52,6 +52,9 @@ class PluginsRegistry(object):
     def validate(self, plugin):
         return True
 
+    @property
+    def names(self):
+        return self.plugins.keys()
 
 PLUGINS_REGISTRIES = {
     'candelabra.provider': PluginsRegistry(),
