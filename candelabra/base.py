@@ -21,6 +21,11 @@ class Command(object):
     NAME = 'unknown'
     DESCRIPTION = 'unknown'
 
+    def run(self, args, command):
+        """ Run the command
+        """
+        raise NotImplementedError('must be implemented')
+
     def run_with_topology(self, args, topology_file, command=None, save_state=True):
         """ Run a command, managing the topology
         """
@@ -70,4 +75,50 @@ class Command(object):
                     topology.state.save()
 
         return topology
+
+
+class Provider(object):
+    """ A provider
+    """
+    NAME = 'unknown'
+    DESCRIPTION = 'unknown'
+    APPLIANCE = None        # the class for appliances
+    MACHINE = None          # the class for machines in the topology
+
+
+class Provisioner(object):
+    """ A provisioner
+    """
+    NAME = 'unknown'
+    DESCRIPTION = 'unknown'
+
+    def run(self, command):
+        """ Run a command
+        """
+        raise NotImplementedError('must be implemented')
+
+
+class Guest(object):
+    """ A guest definition
+    """
+    NAME = 'unknown'
+    DESCRIPTION = 'unknown'
+
+
+class Communicator(object):
+    """ A communicator
+    """
+    NAME = 'unknown'
+    DESCRIPTION = 'unknown'
+    ONLY_PROVIDERS = []
+
+    def run(self, command):
+        """ Run a command
+        """
+        raise NotImplementedError('must be implemented')
+
+    def run_sudo(self, command):
+        """ Run a command with sudo
+        """
+        raise NotImplementedError('must be implemented')
 

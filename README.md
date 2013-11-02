@@ -17,10 +17,10 @@ The you can run `candelabra` with
 See the topology examples, like `machines.yaml`.
 
 
-Example topology
-================
+Topologies
+==========
 
-Manchines topologies are defined in topology files like this:
+Manchines topologies are defined in _topology files_: YAML files where we can define how the topology is built. For example:
 
 	candelabra:
 
@@ -59,7 +59,7 @@ Manchines topologies are defined in topology files like this:
 	        network:
 	          class:  automatic
 
-In this topology, two machines will be setup, with two shared folders and automatic networking.
+In this topology, two VirtualBox machines will be started, with two shared folders, automatic networking and provisioned with Puppet.
 
 Development
 ===========
@@ -73,4 +73,3 @@ If you have the `coverage` program installed, you can generate coverage reports 
     $ make coverage
 
 
-    

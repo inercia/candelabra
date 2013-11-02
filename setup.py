@@ -23,6 +23,18 @@ import = candelabra.command.import.plugin:register
 provision = candelabra.command.provision.plugin:register
 show = candelabra.command.show.plugin:register
 up = candelabra.command.up.plugin:register
+
+[candelabra.provider]
+virtualbox = candelabra.provider.virtualbox.plugin:register
+
+[candelabra.provisioner]
+puppet = candelabra.provisioner.puppet.plugin:register
+
+[candelabra.guest]
+linux = candelabra.guest.linux.plugin:register
+
+[candelabra.communicator]
+ssh = candelabra.communicator.ssh.plugin:register
 """
 
 if __name__ == "__main__":

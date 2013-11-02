@@ -27,7 +27,6 @@ Then, in your candelabra_vmware/plugin.py, there must be a register_me function 
 
 """
 
-import logging
 from logging import getLogger
 
 import pkg_resources
@@ -42,6 +41,7 @@ logger = getLogger(__name__)
 class PluginsRegistry(object):
     """ A registry for plugins
     """
+
     def __init__(self):
         self.plugins = {}
 
@@ -53,27 +53,12 @@ class PluginsRegistry(object):
         return True
 
 
-class ProvidersRegistry(PluginsRegistry):
-    pass
-
-
-class ProvisionersRegistry(PluginsRegistry):
-    pass
-
-
-class GuestsRegistry(PluginsRegistry):
-    pass
-
-
-class CommandsRegistry(PluginsRegistry):
-    pass
-
-
 PLUGINS_REGISTRIES = {
-    'candelabra.provider': ProvidersRegistry(),
-    'candelabra.provisioner': ProvisionersRegistry(),
-    'candelabra.guest': GuestsRegistry(),
-    'candelabra.command': CommandsRegistry(),
+    'candelabra.provider': PluginsRegistry(),
+    'candelabra.provisioner': PluginsRegistry(),
+    'candelabra.guest': PluginsRegistry(),
+    'candelabra.command': PluginsRegistry(),
+    'candelabra.communicator': PluginsRegistry(),
 }
 
 
