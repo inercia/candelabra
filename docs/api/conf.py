@@ -13,8 +13,6 @@
 
 import sys, os
 
-import sys
-
 class Mock(object):
     def __init__(self, *args, **kwargs):
         pass
@@ -33,7 +31,7 @@ class Mock(object):
         else:
             return Mock()
 
-MOCK_MODULES = ['pycurl']
+MOCK_MODULES = ['pycurl', 'pyaml', 'pyyaml', 'pyvbox']
 for mod_name in MOCK_MODULES:
     sys.modules[mod_name] = Mock()
 
@@ -79,7 +77,7 @@ master_doc = 'doc_index'
 
 # General information about the project.
 project = u'candelabra'
-copyright = u'Some Company'
+copyright = u'Alvaro Saurin'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -271,7 +269,7 @@ man_pages = [
 epub_title = u'candelabra'
 epub_author = u'Author'
 epub_publisher = u'Alvaro Saurin'
-epub_copyright = u'Some Company'
+epub_copyright = u'Alvaro Saurin'
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.
