@@ -11,7 +11,9 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys, os
+import sys
+import os
+
 
 class Mock(object):
     def __init__(self, *args, **kwargs):
@@ -31,7 +33,8 @@ class Mock(object):
         else:
             return Mock()
 
-MOCK_MODULES = ['pycurl', 'pyaml', 'pyyaml', 'pyvbox']
+
+MOCK_MODULES = ['pyaml', 'PyYAML', 'pyvbox']
 for mod_name in MOCK_MODULES:
     sys.modules[mod_name] = Mock()
 
@@ -61,7 +64,7 @@ extensions = ['sphinx.ext.autodoc',
               #'sphinx.ext.inheritance_diagram',
               #'qubic.sphinx.graphvizinclude',
               #'sphinxcontrib.programoutput'
-              ]
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['.templates']
@@ -217,11 +220,11 @@ latex_font_size = '10pt'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('doc_index',
-   'candelabra.tex',
-   u'Candelabra Documentation',
-   u'Alvaro Saurin',
-   'manual'),
+    ('doc_index',
+     'candelabra.tex',
+     u'Candelabra Documentation',
+     u'Alvaro Saurin',
+     'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -250,7 +253,7 @@ latex_documents = [
 latex_elements = {
     'fontpkg': '',
     'fncychap': '\\usepackage[Sonny]{fncychap}',
-    'printindex': '',                                  ## this removes the index
+    'printindex': '', ## this removes the index
 }
 
 # -- Options for manual page output --------------------------------------------
@@ -323,11 +326,11 @@ intersphinx_mapping = {'http://docs.python.org/': None}
 # would mean that specific document would be compressed
 # regardless of the global pdf_compressed setting.
 
-pdf_documents = [ 
-  ('index',
-   u'candelabra',
-   u'Candelabra Documentation',
-   u'Alvaro Saurin'),
+pdf_documents = [
+    ('index',
+     u'candelabra',
+     u'Candelabra Documentation',
+     u'Alvaro Saurin'),
 ]
 
 # A comma-separated list of custom stylesheets. Example:
