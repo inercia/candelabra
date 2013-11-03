@@ -3,6 +3,8 @@ Overview
 
 *Candelabra* is a virtual machines manager, similar to Vagrant but more focused on the having multiple machines running at the same time.
 
+[![Build Status](https://travis-ci.org/inercia/candelabra.png?branch=master)](https://travis-ci.org/inercia/candelabra)
+
 Running
 =======
 
