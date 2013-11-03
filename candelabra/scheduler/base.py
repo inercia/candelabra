@@ -12,7 +12,7 @@ from candelabra.scheduler.topsort import topsort, CycleError
 logger = getLogger(__name__)
 
 
-class Scheduler(object):
+class TasksScheduler(object):
     """ A scheduler for tasks
     """
 
@@ -27,7 +27,7 @@ class Scheduler(object):
         """ Adds a new task to the scheduler
         """
         assert task is not None
-        name1 = Scheduler.get_task_as_str(task)
+        name1 = TasksScheduler.get_task_as_str(task)
 
         if depends_on:
             if not isinstance(depends_on, (tuple, list)):
@@ -35,7 +35,7 @@ class Scheduler(object):
 
             for task2 in depends_on:
                 if task2:
-                    name2 = Scheduler.get_task_as_str(task2)
+                    name2 = TasksScheduler.get_task_as_str(task2)
                     logger.debug('... adding %s (depends on %s)', name1, name2)
                 else:
                     logger.debug('... adding %s', name1)
@@ -65,7 +65,6 @@ class Scheduler(object):
             else:
                 self._tasks_to_run = []
         except CycleError, e:
-            print dir(e)
             logger.critical('cycle error:')
             logger.critical('%s', str(e))
             raise SchedulerTaskException('cycle error')
@@ -73,14 +72,14 @@ class Scheduler(object):
             logger.critical('uncaught exception when scheduling tasks:')
             logger.debug('target tasks to run:')
             for t in self._target_tasks:
-                logger.debug('... task: %s', Scheduler.get_task_as_str(t[0]))
+                logger.debug('... task: %s', TasksScheduler.get_task_as_str(t[0]))
             raise
         else:
             logger.debug('... %d required tasks -> %d tasks to run',
                          len(self._target_tasks), len(self._tasks_to_run))
             for t in reversed(self._tasks_to_run):
                 assert not isinstance(t, tuple)
-                logger.debug('...... task: %s', Scheduler.get_task_as_str(t))
+                logger.debug('...... task: %s', TasksScheduler.get_task_as_str(t))
 
     def run(self, abort_on_error=False):
         """ Run all the tasks in the order that dependencies need
@@ -104,10 +103,10 @@ class Scheduler(object):
                         except Exception, e:
                             logger.critical('uncaught exception when running in the scheduler:')
                             logger.debug('current task:')
-                            logger.debug('... task: %s', Scheduler.get_task_as_str(task))
+                            logger.debug('... task: %s', TasksScheduler.get_task_as_str(task))
                             logger.debug('pending tasks:')
                             for t in reversed(self._tasks_to_run):
-                                logger.debug('... task: %s', Scheduler.get_task_as_str(t))
+                                logger.debug('... task: %s', TasksScheduler.get_task_as_str(t))
 
                             if abort_on_error:
                                 raise SchedulerTaskException(str(e))

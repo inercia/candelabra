@@ -20,25 +20,26 @@ Installation
     Software installation <doc_install>
 
 Using Candelabra
-====================
+================
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
 
     Running the software <doc_running>
     Topology files <doc_topology>
 	Provisioning <doc_provisioning>
-	Plugins <doc_plugins>
+    Hooks <doc_hooks>
 
-Software Modules
-================
+Developer Documentation
+=======================
 
-Modules and classes in the libraries and applications.
+Modules and classes in the Candelabra software.
 
 .. toctree::
     :maxdepth: 1
 
-    Project main modules <modules>
+    Main modules <modules>
+    Extending Candelabra with plugins <doc_plugins>
 
 License
 =======
@@ -47,3 +48,4 @@ License
     :maxdepth: 1
 
     License <doc_license>
+

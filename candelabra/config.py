@@ -11,6 +11,7 @@ from logging import getLogger
 from configparser import ConfigParser
 
 from candelabra.constants import CONFIG_FILE_PATHS, CONFIG_FILE_PATH_CREATION, CFG_BOXES_PATH, CFG_LOG_FILE, CFG_LOG_FILE_LEVEL
+from candelabra.errors import ConfigFileNotLoadedException
 
 logger = getLogger(__name__)
 
@@ -46,6 +47,7 @@ class CandelabraConfig(object):
 
     def __init__(self):
         self.path = None
+        self.config = None
 
     def load(self, path=None):
         """ Load or create the config file
@@ -87,6 +89,9 @@ class CandelabraConfig(object):
     def get_key(self, k, default=None):
         """ Get a configuration key
         """
+        if not self.config:
+            raise ConfigFileNotLoadedException('the configuration file has not been loaded yet')
+
         if len(k) == 2:
             return self.get(k[0], k[1], fallback=default)
         elif len(k) == 3:

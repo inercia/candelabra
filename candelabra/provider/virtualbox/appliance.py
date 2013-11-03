@@ -42,14 +42,15 @@ class VirtualboxAppliance(object):
         else:
             raise UnsupportedBoxException('OVF file not found at %s' % ovf_file)
 
-    def copy_to_virtualbox(self, node):
+    def import_to_machine(self, machine_node):
         """ Copy (import) the appliance to VirtualBox
         """
-        logger.info('importing appliance from /%s as "%s"', BoxesStorage.get_relative_path(self.ovf), node.cfg_name)
+        logger.info('importing appliance from /%s as "%s"', BoxesStorage.get_relative_path(self.ovf),
+                    machine_node.cfg_name)
 
         import virtualbox
-        vbox = virtualbox.VirtualBox()
 
+        vbox = virtualbox.VirtualBox()
         appliance = vbox.create_appliance()
         progress = appliance.read(self.ovf)
         progress.wait_for_completion(-1)
@@ -62,10 +63,10 @@ class VirtualboxAppliance(object):
 
         if len(appliance.machines) > 0:
             machine_uuid = appliance.machines[0]
-            node.cfg_uuid = machine_uuid
-            logger.debug(node.get_info())
+            machine_node.cfg_uuid = machine_uuid
+            logger.debug(machine_node.get_info())
         else:
-            raise ImportException('no virtual machine created after import of %s' % node.cfg_name)
+            raise ImportException('no virtual machine created after import of %s' % machine_node.cfg_name)
 
     #####################
     # auxiliary

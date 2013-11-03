@@ -25,6 +25,11 @@ class UnsupportedCommandException(CandelabraException):
     pass
 
 
+class ConfigFileNotLoadedException(CandelabraException):
+    """ The configuration file has not been loaded
+    """
+    pass
+
 class ConfigFileMissingException(CandelabraException):
     """ The configuration file is missing
     """

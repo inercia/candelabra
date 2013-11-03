@@ -6,7 +6,7 @@
 
 from logging import getLogger
 
-from candelabra.base import GuestPlugin
+from candelabra.plugins import GuestPlugin
 
 logger = getLogger(__name__)
 

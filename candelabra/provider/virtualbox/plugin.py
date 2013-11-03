@@ -6,10 +6,12 @@
 
 from logging import getLogger
 
-from candelabra.base import ProviderPlugin
+from candelabra.plugins import ProviderPlugin
 
 from .appliance import VirtualboxAppliance
-from .machine import VirtualboxMachine
+from .machine import VirtualboxMachineNode
+from .interface import VirtualboxInterfaceNode
+from .shared import VirtualboxSharedNode
 
 logger = getLogger(__name__)
 
@@ -20,8 +22,12 @@ class VirtualboxProviderPlugin(ProviderPlugin):
     NAME = 'virtualbox'
     DESCRIPTION = 'a virtualbox provider'
 
+    # the classes this plugin provides
     APPLIANCE = VirtualboxAppliance
-    MACHINE = VirtualboxMachine
+    MACHINE = VirtualboxMachineNode
+    INTERFACE = VirtualboxInterfaceNode
+    SHARED = VirtualboxSharedNode
+    COMMUNICATORS = None
 
 
 provider_instance = VirtualboxProviderPlugin()

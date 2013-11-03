@@ -3,6 +3,13 @@
 #
 # Copyright Alvaro Saurin 2013 - All right Reserved
 #
+"""
+Topology state.
+
+This module is responsible for saving the current toplogy nodes state, as well as restorying a previously
+saved dump of the state.
+"""
+
 import os
 
 from weakref import proxy
@@ -22,7 +29,7 @@ class State(object):
     """
 
     def __init__(self, topology):
-        """ Initialize a topology definition
+        """ Initialize a state.
         """
         self._machines = {}
         self._yaml = None

@@ -6,7 +6,7 @@
 
 from logging import getLogger
 
-from candelabra.base import CommandPlugin
+from candelabra.plugins import CommandPlugin
 from candelabra.boxes import boxes_storage_factory
 from candelabra.errors import ImportException
 

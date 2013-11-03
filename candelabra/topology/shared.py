@@ -3,16 +3,28 @@
 #
 # Copyright Alvaro Saurin 2013 - All right Reserved
 #
+"""
+A shared folder node in the topology.
+
+Shared folders must belong to machines, so their container must be a :class:`MachineNode`.
+"""
 
 from logging import getLogger
+import os
 
-from candelabra.topology.node import TopologyNode
+from candelabra.topology.node import TopologyNode, TopologyAttribute
 
 logger = getLogger(__name__)
 
 
-class Shared(TopologyNode):
-    """ A shared for a machine
+def _path_norm(path):
+    """ Returns a normalized version of a path
+    """
+    return os.path.abspath(os.path.expandvars(path))
+
+
+class SharedNode(TopologyNode):
+    """ A shared folder for a machine.
     """
 
     # known attributes
@@ -20,14 +32,13 @@ class Shared(TopologyNode):
     # - a constructor (and default value will be obtained from parent)
     # - tuple is the constructor and a default value
     __known_attributes = {
-        'local': (str, ''),
-        'remote': (str, ''),
-        'writable': (bool, True),
-        'automount': (bool, True),
+        'local': TopologyAttribute(constructor=_path_norm, default='', copy=True),
+        'remote': TopologyAttribute(constructor=_path_norm, default='', copy=True),
+        'writable': TopologyAttribute(constructor=bool, default=True, copy=True),
     }
 
     def __init__(self, _parent=None, **kwargs):
         """ Initialize a topology node
         """
-        super(Shared, self).__init__(_parent=_parent, **kwargs)
-        self._settattr_dict_defaults(kwargs, self.__known_attributes)
+        super(SharedNode, self).__init__(_parent=_parent, **kwargs)
+        TopologyAttribute.setall(self, kwargs, self.__known_attributes)

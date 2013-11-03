@@ -6,7 +6,7 @@
 
 from logging import getLogger
 
-from candelabra.base import CommandPlugin
+from candelabra.plugins import CommandPlugin
 from candelabra.errors import UnsupportedCommandException
 
 logger = getLogger(__name__)
@@ -74,8 +74,9 @@ class ShowCommandPlugin(CommandPlugin):
         """
         topology = self.run_with_topology(args, args.topology, save_state=False)
         for machine in topology.machines:
-            logger.info('machine: %s', machine.cfg_name)
-            logger.info('... state: %d [%s]', int(machine.state), machine.state_str)
+            if not machine.is_global:
+                logger.info('machine: %s', machine.cfg_name)
+                logger.info('... state: %d [%s]', int(machine.state), machine.state_str)
 
     def do_show_boxes(self, args):
         """ Show all the boxes in the system

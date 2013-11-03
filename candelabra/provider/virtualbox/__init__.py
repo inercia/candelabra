@@ -4,8 +4,8 @@
 # Copyright Alvaro Saurin 2013 - All right Reserved
 #
 
-from machine import VirtualboxMachine
+from machine import VirtualboxMachineNode
 from appliance import VirtualboxAppliance
 
-MACHINE_CLASS = VirtualboxMachine
+MACHINE_CLASS = VirtualboxMachineNode
 BOX_CLASS = VirtualboxAppliance

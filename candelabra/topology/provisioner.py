@@ -3,29 +3,29 @@
 #
 # Copyright Alvaro Saurin 2013 - All right Reserved
 #
+"""
+A provisioner node in the topology.
+
+Provsioners must belong to machines, so their container must be a :class:`MachineNode`.
+"""
 
 from logging import getLogger
 
-from candelabra.topology.node import TopologyNode
+from candelabra.topology.node import TopologyNode, TopologyAttribute
 
 logger = getLogger(__name__)
 
 
-class Provisioner(TopologyNode):
+class ProvisionerNode(TopologyNode):
     """ A provisioner for a machine
     """
 
-    # known attributes
-    # the right value is either:
-    # - a constructor (and default value will be obtained from parent)
-    # - tuple is the constructor and a default value
     __known_attributes = {
-        'manifest': (str, ''),
-        'modules': (str, ''),
     }
 
     def __init__(self, _parent=None, **kwargs):
-        """ Initialize a topology node
+        """ Initialize a provisioner node
         """
-        super(Provisioner, self).__init__(_parent=_parent, **kwargs)
-        self._settattr_dict_defaults(kwargs, self.__known_attributes)
+        super(ProvisionerNode, self).__init__(_parent=_parent, **kwargs)
+        TopologyAttribute.setall(self, kwargs, self.__known_attributes)
+

@@ -15,7 +15,7 @@ from candelabra.errors import UnsupportedBoxException, ImportException
 from candelabra.plugins import PLUGINS_REGISTRIES
 from candelabra.config import config
 from candelabra.constants import CFG_CONNECT_TIMEOUT, CFG_DOWNLOAD_TIMEOUT
-from candelabra.topology.node import TopologyNode
+from candelabra.topology.node import TopologyNode, TopologyAttribute
 
 logger = getLogger(__name__)
 
@@ -23,37 +23,36 @@ logger = getLogger(__name__)
 MBYTE = 1024 * 1024
 
 
-class Box(TopologyNode, TaskGenerator):
-    """ A box is one or more virtual machine templates that will be used for creating multiple virtual machines
-    following a topology.
+class BoxNode(TopologyNode, TaskGenerator):
+    """ A box is one or more virtual machine templates that will be used for creating
+    multiple virtual machines following a topology.
 
     Boxes contain subdirectories for providers, where appliances are stored.
 
     Example: box1 has two appliances: a virtualbox appliance and a vmware appliance
 
-    - box1
-      - virtualbox
-        - box.ovf
-        - disk.vmdk
-      - vmware
-        - ...
+::
+
+            - box1
+              - virtualbox
+                - box.ovf
+                - disk.vmdk
+              - vmware
+                - ...
+
     """
 
-    # known attributes
-    # the right value is either:
-    # - a constructor
-    # - tuple is the constructor and a default value (None means "inherited from parent")
     __known_attributes = {
-        'name': (str, ''),
-        'path': (str, ''),
-        'url': (str, ''),
+        'name': TopologyAttribute(constructor=str, default='', inherited=True),
+        'path': TopologyAttribute(constructor=str, default='', inherited=True),
+        'url': TopologyAttribute(constructor=str, default='', inherited=True),
     }
 
     def __init__(self, _parent=None, **kwargs):
         """ Initialize a topology node
         """
-        super(Box, self).__init__(_parent=_parent, **kwargs)
-        self._settattr_dict_defaults(kwargs, self.__known_attributes)
+        super(BoxNode, self).__init__(_parent=_parent, **kwargs)
+        TopologyAttribute.setall(self, kwargs, self.__known_attributes)
 
         self.appliances = {}
 
@@ -80,8 +79,8 @@ class Box(TopologyNode, TaskGenerator):
             if provider in set(supported_providers_names):
                 logger.debug('...... found a %s template', provider)
 
-                providers = PLUGINS_REGISTRIES['candelabra.provider']
-                provider_plugin = providers[provider]
+                providers_registry = PLUGINS_REGISTRIES['candelabra.provider']
+                provider_plugin = providers_registry.plugins[provider]
                 appliance_class = provider_plugin.APPLIANCE
 
                 full_provider_path = os.path.abspath(os.path.join(self.path, provider))

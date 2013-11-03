@@ -2,12 +2,17 @@ candelabra:
 
   default:
 
+    class:        virtualbox
+
     box:
       name:       test
       url:        http://shonky.info/centos64.box
 
     provisioner:
-      class: puppet
+      - class:    puppet
+        manifest: puppet/manifest1.pp
+      - class:    puppet
+        manifest: puppet/manifest2.pp
 
     shared:
       - local:    docs
@@ -15,15 +20,11 @@ candelabra:
       - local:    $HOME
         remote:   /home/host_home
 
-  networks:
-    - class:  private
-      name:   private
-
   machines:
 
     - machine:
-        class:    virtualbox
         name:     vm1
         hostname: vm1
         network:
           class:  automatic
+          ip:     dhcp

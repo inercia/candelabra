@@ -3,6 +3,16 @@
 #
 # Copyright Alvaro Saurin 2013 - All right Reserved
 #
+"""
+The topology hierarchy root.
+
+The topology root represents the top element in the topology hierarchy. It has two important attributes:
+
+* the global machine, a parent machine definition used for setting global attributes.
+* the list of machines defined in the topology.
+
+The root provides some convenience methods for running a task on all the nodes in the tree. See :meth:`get_tasks`
+"""
 
 from logging import getLogger
 import os
@@ -10,8 +20,8 @@ import pyaml
 
 from candelabra.constants import YAML_ROOT, YAML_SECTION_DEFAULT, YAML_SECTION_MACHINES, DEFAULT_TOPOLOGY_DIR_GUESSES, DEFAULT_TOPOLOGY_FILE_GUESSES
 from candelabra.errors import TopologyException
-from candelabra.plugins import PLUGINS_REGISTRIES
-from candelabra.topology.machine import Machine
+from candelabra.plugins import PLUGINS_REGISTRIES, build_machine_instance
+from candelabra.topology.machine import MachineNode
 from candelabra.topology.state import State
 
 logger = getLogger(__name__)
@@ -74,7 +84,8 @@ class TopologyRoot(object):
         if YAML_SECTION_DEFAULT in self._yaml:
             logger.debug('topology: loading globals...')
             global_dict = self._yaml[YAML_SECTION_DEFAULT]
-            self._global_machine = Machine(**global_dict)
+            self._global_machine = build_machine_instance(**global_dict)
+            self._global_machine._is_global = True
             logger.debug('topology: ... %s', self._global_machine)
 
         # process all the machines found in the topology file
@@ -96,29 +107,22 @@ class TopologyRoot(object):
                         else:
                             logger.warning('data for %s in state file seems useless... ignoring', machine_name)
 
-                    # get the machine class (ie, 'virtualbox')
-                    try:
-                        machine_class_str = machine_definition['class']
-                    except KeyError, e:
-                        raise TopologyException(
-                            'topology definition error: "class" key not found for machine "%s"' % machine_definition)
-
                     # load the machine class (ie, VirtualboxMachine)
-                    try:
-                        providers = PLUGINS_REGISTRIES['candelabra.provider']
-                        provider_plugin = providers[machine_class_str]
-                        machine_class = provider_plugin.MACHINE
-                    except KeyError:
-                        logger.warning('topology: ... unknown machine class "%s"!!!', machine_class_str)
-                    else:
-                        machine_inst = machine_class(_parent=self._global_machine, **machine_definition)
-
-                        self._machines.append(machine_inst)
+                    machine_inst = build_machine_instance(_parent=self._global_machine, **machine_definition)
+                    machine_inst._is_global = False
+                    self._machines.append(machine_inst)
 
             logger.debug('topology: ... %d machines loaded', len(self._machines))
 
+            logger.debug('topology: loaded the following machines:')
             for m in self._machines:
                 logger.debug('topology: ... %s', m)
+                for s in m.cfg_shared:
+                    logger.debug('topology: ...... %s', s)
+                for i in m.cfg_interfaces:
+                    logger.debug('topology: ...... %s', i)
+                for p in m.cfg_provisioner:
+                    logger.debug('topology: ...... %s', p)
 
     @property
     def state(self):

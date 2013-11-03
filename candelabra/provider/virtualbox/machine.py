@@ -5,7 +5,6 @@
 #
 
 from logging import getLogger
-import os
 from time import sleep
 
 import virtualbox as _virtualbox
@@ -14,8 +13,9 @@ from candelabra.config import config
 from candelabra.tasks import TaskGenerator
 from candelabra.constants import DEFAULT_CFG_SECTION_VIRTUALBOX
 from candelabra.errors import MissingBoxException, MalformedTopologyException, MachineChangeException, MachineException
-from candelabra.topology.machine import Machine
+from candelabra.topology.machine import MachineNode
 from candelabra.topology.machine import STATE_POWERDOWN, STATE_RUNNING, STATE_PAUSED, STATE_ABORTED, STATE_STARTING, STATE_STOPPING, STATE_UNKNOWN
+from candelabra.topology.node import TopologyAttribute
 
 logger = getLogger(__name__)
 
@@ -47,26 +47,26 @@ _DEFAULT_POWER_DOWN_TIMEOUT = 5 * 1000
 ########################################################################################################################
 
 
-class VirtualboxMachine(Machine, TaskGenerator):
+class VirtualboxMachineNode(MachineNode):
     """ A VirtualBox machine
     """
 
     # known attributes
     # the right tuple is the constructor and a default value (None means "inherited from parent")
     __known_attributes = {
-        'path': (str, None),
+        'path': TopologyAttribute(constructor=str, default='', inherited=True),
     }
 
     # attributes that are saved in the state file
-    __state_attributes = {
+    _state_attributes = {
         'state',
     }
 
-    def __init__(self, _parent=None, **kwargs):
+    def __init__(self, **kwargs):
         """ Initialize a VirtualBox machine
         """
-        super(VirtualboxMachine, self).__init__(_parent=_parent, **kwargs)
-        self._settattr_dict_defaults(kwargs, self.__known_attributes)
+        super(VirtualboxMachineNode, self).__init__(**kwargs)
+        TopologyAttribute.setall(self, kwargs, self.__known_attributes)
 
         # get any VirtualBox default parameters from the config file
         if config.has_section(DEFAULT_CFG_SECTION_VIRTUALBOX):
@@ -153,6 +153,9 @@ class VirtualboxMachine(Machine, TaskGenerator):
         """
         try:
             return _VIRTUALBOX_ST_TO_STATES[self.machine.state._value][0]
+        except AttributeError, e:
+            logger.debug('no machine state available: %s', str(e))
+            return STATE_UNKNOWN[0]
         except KeyError, e:
             logger.debug('no machine state available: %s', str(e))
             return STATE_UNKNOWN[0]
@@ -225,9 +228,13 @@ class VirtualboxMachine(Machine, TaskGenerator):
             self.add_task_seq(self.do_networking)
             self.add_task_seq(self.do_power_up)
 
-        self.add_task_seq(self.do_create_shared_folders)
+        for shared_folder in self.cfg_shared:
+            self.add_task_seq(shared_folder.do_install)
+
         self.add_task_seq(self.do_create_guest_session)
-        self.add_task_seq(self.do_mount_shared_folders)
+
+        for shared_folder in self.cfg_shared:
+            self.add_task_seq(shared_folder.do_mount)
 
         return self.get_tasks()
 
@@ -259,6 +266,26 @@ class VirtualboxMachine(Machine, TaskGenerator):
         """ Power up the machine via launch
         """
         timeout = getattr(self, 'default_power_up_timeout', _DEFAULT_POWER_UP_TIMEOUT)
+
+        def on_property_change(_event):
+            logger.debug('event: %s', _event)
+
+        self._vbox.event_source.register_callback(on_property_change,
+                                                  _virtualbox.library.VBoxEventType.on_state_changed)
+        self._vbox.event_source.register_callback(on_property_change,
+                                                  _virtualbox.library.VBoxEventType.on_session_state_changed)
+        self._vbox.event_source.register_callback(on_property_change,
+                                                  _virtualbox.library.VBoxEventType.on_machine_state_changed)
+        self._vbox.event_source.register_callback(on_property_change,
+                                                  _virtualbox.library.VBoxEventType.on_additions_state_changed)
+        self._vbox.event_source.register_callback(on_property_change,
+                                                  _virtualbox.library.VBoxEventType.on_shared_folder_changed)
+        self._vbox.event_source.register_callback(on_property_change,
+                                                  _virtualbox.library.VBoxEventType.on_guest_keyboard)
+        self._vbox.event_source.register_callback(on_property_change,
+                                                  _virtualbox.library.VBoxEventType.on_guest_session_state_changed)
+        self._vbox.event_source.register_callback(on_property_change,
+                                                  _virtualbox.library.VBoxEventType.on_guest_process_registered)
 
         logger.info('powering up "%s"', self.cfg_name)
         try:
@@ -318,10 +345,10 @@ class VirtualboxMachine(Machine, TaskGenerator):
         if not self._appliance:
             raise MissingBoxException('box "%s" does not have a VirtualBox appliance' % self.cfg_box.cfg_name)
 
-        self._appliance.copy_to_virtualbox(self)
+        self._appliance.import_to_machine(self)
 
     def do_sync_name(self):
-        """ Synchronize the consigured name with the VM name
+        """ Synchronize the configured name with the VM name
         """
         self.sync_name()
 
@@ -375,43 +402,6 @@ class VirtualboxMachine(Machine, TaskGenerator):
                         adapter.enabled,
                         adapter.nat_network)
 
-    def do_create_shared_folders(self):
-        """ Share the folders
-        """
-        logger.info('starting shared folders')
-        try:
-            s = self.machine.create_session()
-
-            for shared_folder in self.cfg_shared:
-                local_path = os.path.abspath(os.path.expandvars(shared_folder.cfg_local))
-                remote_path = shared_folder.cfg_remote
-
-                # update the paths, so they are left for the "mount" action
-                shared_folder.cfg_local = local_path
-                shared_folder.cfg_remote = remote_path
-
-                if not os.path.exists(local_path):
-                    logger.warning('... local folder %s does not exist! skipping...', local_path)
-                elif not os.path.isdir(local_path):
-                    logger.warning('... local folder %s is not a directory! skipping...', local_path)
-                else:
-                    logger.info('... %s -> %s', local_path, remote_path)
-                    try:
-                        s.console.create_shared_folder(remote_path,
-                                                       local_path,
-                                                       writable=shared_folder.cfg_writable,
-                                                       automount=False)
-                    except _virtualbox.library.VBoxErrorFileError:
-                        pass
-                    else:
-                        self._created_shared_folders.append(shared_folder)
-
-            logger.info('shared folders configured.')
-        except _virtualbox.library.VBoxError, e:
-            logger.warning(str(e))
-        finally:
-            s.unlock_machine()
-
     def do_create_guest_session(self):
         """ Create a guest session
         """
@@ -434,32 +424,7 @@ class VirtualboxMachine(Machine, TaskGenerator):
         finally:
             s.unlock_machine()
 
-    def do_mount_shared_folders(self):
-        """ Mount the folders
-        """
-        assert self._guest_session is not None
-
-        logger.info('mounting shared folders')
-        s = _virtualbox.Session()
-        try:
-            self.machine.lock_machine(s, _virtualbox.library.LockType.shared)
-            # guest = s.console.guest.create_session('vagrant', 'vagrant')
-
-            for shared_folder in self._created_shared_folders:
-                remote_path = shared_folder.cfg_remote
-
-                logger.info('... mounting %s', remote_path)
-                try:
-                    self._guest_session.directory_create(remote_path, 755,
-                                                         [_virtualbox.library.DirectoryCreateFlag.parents])
-                except _virtualbox.library.VBoxErrorFileError:
-                    pass
-
-            logger.info('shared folders configured.')
-        except _virtualbox.library.VBoxError, e:
-            logger.warning(str(e))
-        finally:
-            s.unlock_machine()
+        sleep(50.0)
 
     def do_run_echo(self):
         session = self.machine.create_session()
@@ -486,11 +451,12 @@ class VirtualboxMachine(Machine, TaskGenerator):
     def __repr__(self):
         """ The representation
         """
+        extra = []
+        if self.cfg_name:
+            extra += ['name:%s' % self.cfg_name]
         if self.cfg_uuid:
-            return "<VirtualboxMachine uuid:%s at 0x%x>" % (self.cfg_uuid, id(self))
-        else:
-            return "<VirtualboxMachine at 0x%x>" % (id(self))
+            extra += ['uuid:%s' % self.cfg_uuid]
+        if self._parent is None:
+            extra += ['global']
 
-    @staticmethod
-    def get_session_as_str(session):
-        return 'state=%s type=%s' % (str(session.state), str(session.type_p))
+        return "<VirtualboxMachine(%s) at 0x%x>" % (','.join(extra), id(self))

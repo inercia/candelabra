@@ -6,7 +6,7 @@
 
 import unittest
 import logging
-from candelabra.scheduler.base import Scheduler
+from candelabra.scheduler.base import TasksScheduler
 
 from candelabra.scheduler.topsort import topsort
 
@@ -114,7 +114,7 @@ class TasksTestSuite(unittest.TestCase):
         inc_1 = Incrementer(0)
         dec_1 = Decrementer(2)
 
-        sched = Scheduler()
+        sched = TasksScheduler()
         sched.add(inc_1.inc)
         sched.add(dec_1.dec, depends_on=inc_1.inc)
         sched.run()

@@ -6,7 +6,7 @@
 
 from logging import getLogger
 
-from candelabra.base import CommunicatorPlugin
+from candelabra.plugins import CommunicatorPlugin
 
 logger = getLogger(__name__)
 

@@ -4,20 +4,23 @@
 # Copyright Alvaro Saurin 2013 - All right Reserved
 #
 """
-Plugins support.
+Plugins infrastructure for Candelabra..
 
-You can add a plugin by defining a new entry-point. For example, for a provider for VMware we would have:
+You can add a plugin by defining an entry-point in your software distribution. For example, for a provider
+for VMware, you should define an entry point like this in your `setup.py` file:
 
-    entry_points={
-        'candelabra.provider': [
-            'vmware_provider = candelabra_vmware.plugin:register_me,
-        ]
-    },
+    >>> entry_points={
+    >>>     'candelabra.provider': [
+    >>>        'vmware_provider = candelabra_vmware.plugin:register_me',
+    >>>    ]
+    >>> }
 
 Then, in your candelabra_vmware/plugin.py, there must be a register_me function like this:
 
-    >>> class VMWareProvider(object):
-    >>>     pass
+    >>> from candelabra.plugins import ProviderPlugin
+    >>>
+    >>> class VMWareProvider(ProviderPlugin):
+    >>>     MACHINE = VMWareMachine
     >>>
     >>> provider_instance = VMWareProvider()
     >>>
@@ -28,8 +31,13 @@ Then, in your candelabra_vmware/plugin.py, there must be a register_me function 
 """
 
 from logging import getLogger
-
+import os
+import sys
 import pkg_resources
+
+from candelabra.config import config
+from candelabra.constants import CFG_DEFAULT_PROVIDER
+from candelabra.errors import TopologyException
 
 
 logger = getLogger(__name__)
@@ -55,6 +63,7 @@ class PluginsRegistry(object):
     @property
     def names(self):
         return self.plugins.keys()
+
 
 PLUGINS_REGISTRIES = {
     'candelabra.provider': PluginsRegistry(),
@@ -83,3 +92,207 @@ def register_all():
             plugin_entrypoint(registry_instance)
 
 
+########################################################################################################################
+
+class CommandPlugin(object):
+    """ A command from command line
+    """
+    NAME = 'unknown'
+    DESCRIPTION = 'unknown'
+
+    def run(self, args, command):
+        """ Run the command
+        """
+        raise NotImplementedError('must be implemented')
+
+    def run_with_topology(self, args, topology_file, command=None, save_state=True):
+        """ Run a command, managing the topology
+        """
+        if command:
+            logger.info('running command "%s"', command)
+
+        if topology_file is None:
+            from candelabra.topology.root import guess_topology_file
+
+            topology_file = guess_topology_file()
+
+        if topology_file is None:
+            logger.critical('no topology file provided')
+            sys.exit(1)
+        if not os.path.exists(topology_file):
+            logger.critical('topology file %s does not exist', topology_file)
+            sys.exit(1)
+
+        from candelabra.errors import TopologyException, ProviderNotFoundException, CandelabraException
+        from candelabra.scheduler.base import TasksScheduler
+
+        # load the topology file and create a tree
+        try:
+            from candelabra.topology.root import TopologyRoot
+
+            topology = TopologyRoot()
+            topology.load(topology_file)
+        except TopologyException, e:
+            logger.critical(str(e))
+            sys.exit(1)
+        except ProviderNotFoundException, e:
+            logger.critical(str(e))
+            sys.exit(1)
+        except KeyboardInterrupt:
+            logger.critical('interrupted with Ctrl-C... bye!')
+            sys.exit(0)
+
+        scheduler = None
+        try:
+            if command:
+                scheduler = TasksScheduler()
+                tasks = topology.get_tasks(command)
+                assert all(isinstance(t, tuple) for t in tasks)
+                scheduler.append(tasks)
+                scheduler.run()
+        except CandelabraException:
+            raise
+        except Exception, e:
+            logger.critical('uncaught exception')
+            raise
+        finally:
+            if save_state:
+                if scheduler and scheduler.num_completed > 0:
+                    topology.state.save()
+
+        return topology
+
+
+class ProviderPlugin(object):
+    """ A provider
+    """
+    NAME = 'unknown'
+    DESCRIPTION = 'unknown'
+    MACHINE = None              # the machine class that will be instantiated for each definition in the topology
+    APPLIANCE = None            # the appliance class that will be instantiated for each definition in the topology
+    INTERFACE = None
+    SHARED = None
+    COMMUNICATORS = None
+
+
+class ProvisionerPlugin(object):
+    """ A provisioner
+    """
+    NAME = 'unknown'
+    DESCRIPTION = 'unknown'
+    PROVISIONER = None          # the provisioner class that will be instantiated for each machine
+
+    def run(self, command):
+        """ Run a command
+        """
+        raise NotImplementedError('must be implemented')
+
+
+class GuestPlugin(object):
+    """ A guest definition
+    """
+    NAME = 'unknown'
+    DESCRIPTION = 'unknown'
+
+
+class CommunicatorPlugin(object):
+    """ A communicator
+    """
+    NAME = 'unknown'
+    DESCRIPTION = 'unknown'
+    ONLY_PROVIDERS = []
+    COMMUNICATOR = None                 # the communicator class that will be instantiated for each machine
+
+
+########################################################################################################################
+
+def get_provider(name):
+    """ Get a ProviderPlugin for a given name
+    """
+    return PLUGINS_REGISTRIES['candelabra.provider'].plugins[name]
+
+
+def _get_provider_class_from_dict(**kwargs):
+    """ Get a a provider class from a dictionary
+    """
+    for name in ['class', 'cfg_class']:
+        if name in kwargs:
+            return kwargs[name]
+
+    for alternative in ['_container', '_parent']:
+        if alternative in kwargs:
+            alternative_attr = kwargs[alternative]
+            if alternative_attr:
+                for name in ['class', 'cfg_class']:
+                    if hasattr(alternative_attr, name):
+                        return getattr(alternative_attr, name)
+
+    return config.get_key(CFG_DEFAULT_PROVIDER)
+
+
+def build_machine_instance(**kwargs):
+    """ The factory for machine that returns a subclass fo MachineNode with the right node
+    """
+    machine_class_name = _get_provider_class_from_dict(**kwargs)
+    if not machine_class_name:
+        raise TopologyException('internal: no shared folder class available in parent constructor')
+
+    try:
+        machine_class = PLUGINS_REGISTRIES['candelabra.provider'].plugins[machine_class_name].MACHINE
+    except KeyError, e:
+        m = 'cannot build a machine of class %s' % machine_class_name
+        logger.warning(m)
+        raise TopologyException(m)
+
+    return machine_class(**kwargs)
+
+
+def build_provisioner_instance(**kwargs):
+    """ The factory for provisioners that returns a subclass fo Provisioner with the right node
+    """
+    provisioner_name = _get_provider_class_from_dict(**kwargs)
+    if not provisioner_name:
+        raise TopologyException('internal: no provisioner class available in parent constructor')
+
+    try:
+        provisioner_class = PLUGINS_REGISTRIES['candelabra.provisioner'].plugins[provisioner_name].PROVISIONER
+    except KeyError, e:
+        m = 'cannot build a provisioner of class %s' % provisioner_name
+        logger.warning(m)
+        raise TopologyException(m)
+
+    return provisioner_class(**kwargs)
+
+
+def build_shared_instance(**kwargs):
+    """ The factory for shared folders that returns a subclass fo SharedNode with the right node
+    """
+    shared_class_name = _get_provider_class_from_dict(**kwargs)
+    if not shared_class_name:
+        raise TopologyException('internal: no shared folder class available in parent constructor')
+
+    try:
+        shared_class = PLUGINS_REGISTRIES['candelabra.provider'].plugins[shared_class_name].SHARED
+    except KeyError, e:
+        m = 'cannot build a shared folder of class %s' % shared_class_name
+        logger.warning(m)
+        raise TopologyException(m)
+
+    return shared_class(**kwargs)
+
+
+def build_interface_instance(_container, **kwargs):
+    """ The factory for interfaces that returns a subclass fo InterfaceNode with the right node
+    """
+    interface_name = _get_provider_class_from_dict(**kwargs)
+    if not interface_name:
+        raise TopologyException('internal: no provisioner class available in parent constructor')
+
+    try:
+        interface_class = PLUGINS_REGISTRIES['candelabra.provisioner'].plugins[interface_name].INTERFACE
+    except KeyError, e:
+        m = 'cannot build a interface of class %s' % interface_name
+        logger.warning(m)
+        raise TopologyException(m)
+
+    return interface_class(**kwargs)

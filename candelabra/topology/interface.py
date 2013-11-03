@@ -3,29 +3,34 @@
 #
 # Copyright Alvaro Saurin 2013 - All right Reserved
 #
+"""
+A network interface in the topology.
+
+Network interfaces must belong to a Machine, so they must be contained in a :class:`MachineNode` instance.
+"""
 
 from logging import getLogger
 
-from candelabra.topology.node import TopologyNode
+from candelabra.topology.node import TopologyNode, TopologyAttribute
 
 logger = getLogger(__name__)
 
 
-class Interface(TopologyNode):
-    """ A machine interface
+class InterfaceNode(TopologyNode):
+    """ A machine network interface
+
+    Some important attributes:
+    * the **ip** address, that can be a numeric IP, a host name, or some reserved words like *automatic*
+    * the interace name, **ifname**.
     """
 
-    # known attributes
-    # the right value is either:
-    # - a constructor (and default value will be obtained from parent)
-    # - tuple is the constructor and a default value
     __known_attributes = {
-        'ip': (str, ''),
-        'ifname': (str, ''),
+        'ip': TopologyAttribute(constructor=str, default='', copy=True),
+        'ifname': TopologyAttribute(constructor=str, default='', copy=True),
     }
 
     def __init__(self, _parent=None, **kwargs):
-        """ Initialize a topology node
+        """ Initialize a network interface in the machine
         """
-        super(Interface, self).__init__(_parent=_parent, **kwargs)
-        self._settattr_dict_defaults(kwargs, self.__known_attributes)
+        super(InterfaceNode, self).__init__(_parent=_parent, **kwargs)
+        TopologyAttribute.setall(self, kwargs, self.__known_attributes)

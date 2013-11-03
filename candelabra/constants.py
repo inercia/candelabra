@@ -8,6 +8,12 @@ import sys
 
 
 ################################################
+# globals
+################################################
+
+DEFAULT_PROVIDER = 'virtualbox'
+
+################################################
 # configuration file
 ################################################
 
@@ -79,6 +85,9 @@ DEFAULT_TOPOLOGY_DIR_GUESSES = [
 # configuration keys
 ################################################
 
+# default provider
+CFG_DEFAULT_PROVIDER = (DEFAULT_CFG_SECTION, "default_provider", DEFAULT_PROVIDER)
+
 # boxes path
 CFG_BOXES_PATH = (DEFAULT_CFG_SECTION, "boxes_path", DEFAULT_BOXES_PATH[sys.platform])
 
@@ -117,8 +126,8 @@ STATE_FILE_EXTENSION = 'state'
 # logging
 ################################################
 
-LOG_CONSOLE_FORMAT = "%(log_color)s[%(asctime)-15s | %(levelname)-8s]  %(message)-60s"
+LOG_CONSOLE_FORMAT = "%(log_color)s[%(asctime)-15s | %(levelname)-8s]  %(message)-80s"
 LOG_CONSOLE_FORMAT_DEBUG = LOG_CONSOLE_FORMAT + " [%(filename)s/%(funcName)s():%(lineno)d]"
 
-LOG_FILE_FORMAT = "[%(asctime)-15s | %(levelname)-8s]  %(message)-60s"
+LOG_FILE_FORMAT = "[%(asctime)-15s | %(levelname)-8s]  %(message)-80s"
 LOG_FILE_FORMAT_DEBUG = LOG_FILE_FORMAT + " [%(filename)s/%(funcName)s():%(lineno)d]"

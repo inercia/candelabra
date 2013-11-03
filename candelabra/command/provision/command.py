@@ -8,7 +8,7 @@ import argparse
 from logging import getLogger
 import sys
 
-from candelabra.base import CommandPlugin
+from candelabra.plugins import CommandPlugin
 
 logger = getLogger(__name__)
 
