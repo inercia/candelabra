@@ -68,7 +68,8 @@ class TopologyAttribute(object):
 
         def copy_builder(value, container, attr_name):
             v = copy(value)
-            v._container = container
+            if hasattr(v, '_container'):
+                v._container = container
             return v
 
         for attr_name, attr_instance in known_attributes.iteritems():

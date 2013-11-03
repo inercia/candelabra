@@ -7,7 +7,7 @@
 import unittest
 import logging
 
-from candelabra.topology.node import TopologyNode
+from candelabra.topology.node import TopologyNode, TopologyAttribute
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -24,11 +24,11 @@ class NodeTestSuite(unittest.TestCase):
         class TestNode(TopologyNode):
             def __init__(self, _parent=None, **kwargs):
                 super(TestNode, self).__init__(_parent=_parent, **kwargs)
-                self._settattr_dict_defaults(kwargs, self.__known_attributes)
+                TopologyAttribute.setall(self, kwargs, self.__known_attributes)
 
             __known_attributes = {
-                'a': str,
-                'b': int,
+                'a': TopologyAttribute(constructor=str, copy=True),
+                'b': TopologyAttribute(constructor=int, copy=True),
             }
 
         node1 = TestNode(a=8, b=9)

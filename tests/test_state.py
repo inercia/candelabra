@@ -6,8 +6,8 @@
 
 import unittest
 import logging
-from candelabra.topology.machine import MachineNode
 
+from candelabra.topology.machine import MachineNode
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -20,7 +20,6 @@ class StateTestSuite(unittest.TestCase):
     def test_nodes(self):
         """ Testing tha we can manage nodes attributes
         """
-
         vm1 = MachineNode(name='vm1', uuid='some-uuid')
         state = vm1.get_state_dict()
         self.assertTrue(isinstance(state, dict))

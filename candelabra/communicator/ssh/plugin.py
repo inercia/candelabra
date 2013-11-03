@@ -8,6 +8,8 @@ from logging import getLogger
 
 from candelabra.plugins import CommunicatorPlugin
 
+from .communicator import SshCommunicator
+
 logger = getLogger(__name__)
 
 
@@ -16,7 +18,7 @@ class SshCommunicatorPlugin(CommunicatorPlugin):
     """
     NAME = 'ssh'
     DESCRIPTION = 'a ssh communicator'
-
+    COMMUNICATOR = SshCommunicator
 
 communicator_instance = SshCommunicatorPlugin()
 

@@ -65,6 +65,13 @@ class CandelabraConfig(object):
         for method in _CONFIG_MAPPED_METHODS:
             setattr(self, method, getattr(self.config, method))
 
+    def load_string(self, text):
+        self.config = ConfigParser()
+        logger.info('loading config from string')
+        self.config.read_string(text)
+        for method in _CONFIG_MAPPED_METHODS:
+            setattr(self, method, getattr(self.config, method))
+
     def _find_config_path(self):
         """ Find the config file, if it is already present in the system
         """
@@ -90,7 +97,7 @@ class CandelabraConfig(object):
         """ Get a configuration key
         """
         if not self.config:
-            raise ConfigFileNotLoadedException('the configuration file has not been loaded yet')
+            return default
 
         if len(k) == 2:
             return self.get(k[0], k[1], fallback=default)
