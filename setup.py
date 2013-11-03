@@ -67,7 +67,7 @@ if __name__ == "__main__":
         install_requires=[
             'setuptools',
             'configparser',
-            'pycurl',
+            'requests',
             'pyvbox',
             'pyaml',
             'colorlog',

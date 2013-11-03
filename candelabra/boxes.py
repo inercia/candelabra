@@ -54,7 +54,7 @@ class BoxesStorage(object):
     def get_box(self, name, url):
         """ Get a box instance or make it as missing
         """
-        from candelabra.topology.appliance import BoxNode
+        from candelabra.topology.box import BoxNode
 
         if not name in self.boxes:
             new_box = BoxNode(name=name, url=url)
@@ -70,7 +70,7 @@ class BoxesStorage(object):
     def refresh(self):
         """ Refresh the list of boxes
         """
-        from candelabra.topology.appliance import BoxNode
+        from candelabra.topology.box import BoxNode
 
         self.boxes = {}
         logger.debug('refreshing list of boxes at the storage')

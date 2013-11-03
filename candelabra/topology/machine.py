@@ -12,7 +12,7 @@ from logging import getLogger
 
 from candelabra.config import config
 from candelabra.constants import CFG_DEFAULT_PROVIDER
-from candelabra.topology.appliance import BoxNode
+from candelabra.topology.box import BoxNode
 from candelabra.topology.node import TopologyNode, TopologyAttribute
 
 

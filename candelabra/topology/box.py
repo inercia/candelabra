@@ -13,14 +13,15 @@ import json
 from candelabra.tasks import TaskGenerator
 from candelabra.errors import UnsupportedBoxException, ImportException
 from candelabra.plugins import PLUGINS_REGISTRIES
-from candelabra.config import config
-from candelabra.constants import CFG_CONNECT_TIMEOUT, CFG_DOWNLOAD_TIMEOUT
 from candelabra.topology.node import TopologyNode, TopologyAttribute
 
 logger = getLogger(__name__)
 
 #: a mbyte
 MBYTE = 1024 * 1024
+
+#: download chunk size
+CHUNK_SIZE = 4 * MBYTE
 
 
 class BoxNode(TopologyNode, TaskGenerator):
@@ -59,6 +60,7 @@ class BoxNode(TopologyNode, TaskGenerator):
         self.path = getattr(self, 'cfg_path', None)
         if not self.path:
             from candelabra.boxes import BoxesStorage
+
             self.path = os.path.join(BoxesStorage.get_storage_root(), self.cfg_name)
 
         if not os.path.exists(self.path):
@@ -127,26 +129,23 @@ class BoxNode(TopologyNode, TaskGenerator):
                 raise ImportException('could not create temporal file for download: %s' % str(e))
 
             try:
-                import pycurl
-                curl = pycurl.Curl()
                 logger.info('... downloading to temporal file "%s"', temp_box_name)
 
-                self.downloaded_mbytes = 0
+                import requests
 
-                def cb_progress(download_t, download_d, upload_t, upload_d):
-                    dmbytes = int(download_d / MBYTE)
-                    if dmbytes > self.downloaded_mbytes:
-                        logger.debug('downloaded=%d Mb, total=%d Mbytes', dmbytes, download_t / MBYTE)
-                        self.downloaded_mbytes = dmbytes
+                downloaded_bytes = 0
+                last_downloaded_mbytes = 0
+                r = requests.get(self.cfg_url, stream=True)
+                for chunk in r.iter_content(chunk_size=CHUNK_SIZE):
+                    if chunk:                           # filter out keep-alive new chunks
+                        downloaded_bytes += temp_box_file.write(chunk)
+                        downloaded_mbytes = int(downloaded_bytes / MBYTE)
+                        if downloaded_mbytes > last_downloaded_mbytes:
+                            logger.debug('downloaded=%d Mb', downloaded_mbytes)
+                            last_downloaded_mbytes = downloaded_mbytes
 
-                curl.setopt(pycurl.URL, str(self.cfg_url))
-                curl.setopt(pycurl.WRITEFUNCTION, temp_box_file.write)
-                curl.setopt(curl.NOPROGRESS, 0)
-                curl.setopt(curl.PROGRESSFUNCTION, cb_progress)
-                curl.setopt(pycurl.CONNECTTIMEOUT, config.get_key(CFG_CONNECT_TIMEOUT))
-                curl.setopt(pycurl.TIMEOUT, config.get_key(CFG_DOWNLOAD_TIMEOUT))
-                curl.setopt(pycurl.FOLLOWLOCATION, 1)
-                curl.perform()
+                        temp_box_file.flush()
+
             except KeyboardInterrupt:
                 logger.debug('... removing %s', temp_box_name)
                 os.remove(temp_box_name)
@@ -157,7 +156,6 @@ class BoxNode(TopologyNode, TaskGenerator):
                 os.remove(temp_box_name)
                 raise ImportException('could not perform download')
             finally:
-                curl.close()
                 temp_box_file.close()
 
             logger.info('downloaded %d bytes!', self.downloaded_mbytes)

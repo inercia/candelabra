@@ -20,7 +20,8 @@ import pyaml
 
 from candelabra.constants import YAML_ROOT, YAML_SECTION_DEFAULT, YAML_SECTION_MACHINES, DEFAULT_TOPOLOGY_DIR_GUESSES, DEFAULT_TOPOLOGY_FILE_GUESSES
 from candelabra.errors import TopologyException
-from candelabra.plugins import PLUGINS_REGISTRIES, build_machine_instance
+from candelabra.plugins import PLUGINS_REGISTRIES, build_machine_instance, build_interface_instance
+from candelabra.topology.interface import DEFAULT_INTERFACES
 from candelabra.topology.machine import MachineNode
 from candelabra.topology.state import State
 
@@ -70,23 +71,22 @@ class TopologyRoot(object):
         with open(self._filename) as infile:
             y = pyaml.yaml.safe_load(infile)
 
-        # logger.debug('topology: loaded:')
-        # for line in yaml.safe_dump(y).splitlines():
-        #     logger.debug('topology: ... %s', line)
-
         try:
             self._yaml = y[YAML_ROOT]
         except KeyError, e:
             raise TopologyException('topology definition error: "%s" key not found' % str(e))
 
         # load the default section and create a "global machine"
-        # all mahines will refer to this global machine when they do not find some attribute
+        # all machines will refer to this global machine when they do not find some attribute
         if YAML_SECTION_DEFAULT in self._yaml:
             logger.debug('topology: loading globals...')
             global_dict = self._yaml[YAML_SECTION_DEFAULT]
             self._global_machine = build_machine_instance(**global_dict)
-            self._global_machine._is_global = True
             logger.debug('topology: ... %s', self._global_machine)
+            if len(self._global_machine.cfg_interfaces) == 0:
+                for iface_desc in DEFAULT_INTERFACES:
+                    iface = build_interface_instance(_container=self._global_machine, **iface_desc)
+                    self._global_machine.cfg_interfaces.append(iface)
 
         # process all the machines found in the topology file
         if YAML_SECTION_MACHINES in self._yaml:
@@ -109,7 +109,6 @@ class TopologyRoot(object):
 
                     # load the machine class (ie, VirtualboxMachine)
                     machine_inst = build_machine_instance(_parent=self._global_machine, **machine_definition)
-                    machine_inst._is_global = False
                     self._machines.append(machine_inst)
 
             logger.debug('topology: ... %d machines loaded', len(self._machines))

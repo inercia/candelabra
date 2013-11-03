@@ -102,11 +102,20 @@ class VirtualboxSharedNode(SharedNode):
     # auxiliary
     #####################
 
+    #####################
+    # auxiliary
+    #####################
     def __repr__(self):
-        if self.cfg_local and self.cfg_remote:
-            return '<%s [local:%s, remote:%s] at %x>' % (self.__class__.__name__,
-                                                         self.cfg_local,
-                                                         self.cfg_remote,
-                                                         id(self))
-        else:
-            return '<%s at %x]>' % (self.__class__.__name__, id(self))
+        """ The representation
+        """
+        extra = []
+        if self.cfg_name:
+            extra += ['name:%s' % self.cfg_name]
+        if self.cfg_uuid:
+            extra += ['uuid:%s' % self.cfg_uuid]
+        if self.cfg_local:
+            extra += ['local:%s' % self.cfg_local]
+        if self.cfg_remote:
+            extra += ['remote:%s' % self.cfg_remote]
+
+        return "<VirtualboxShared(%s) at 0x%x>" % (','.join(extra), id(self))

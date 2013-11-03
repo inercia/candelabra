@@ -225,7 +225,9 @@ class VirtualboxMachineNode(MachineNode):
         if self.is_running:
             logger.info('machine %s seems to be running', self.cfg_name)
         else:
-            self.add_task_seq(self.do_networking)
+            for iface in self.cfg_interfaces:
+                self.add_task_seq(iface.do_create)
+
             self.add_task_seq(self.do_power_up)
 
         for shared_folder in self.cfg_shared:
@@ -352,56 +354,6 @@ class VirtualboxMachineNode(MachineNode):
         """
         self.sync_name()
 
-    def do_networking(self):
-        """ Setup the net
-        """
-        logger.info('starting networking')
-
-        #try:
-        #    logger.info('... creating NAT')
-        #    network = self._vbox.create_nat_network(NAT_NETWORK)
-        #    network.enabled = True
-        #    logger.info('...... name: %s', network.network_name)
-        #    logger.info('...... net: %s', network.network)
-        #except _virtualbox.library.VBoxErrorIprtError, e:
-        #    logger.warning(str(e))
-
-        # get the maximum number of adapters
-        #properties = self._vbox.system_properties
-        ##properties.get_max_network_adapters()
-
-        try:
-            sleep(1.0)
-            s = _virtualbox.Session()
-            self.machine.lock_machine(s, _virtualbox.library.LockType.write)
-            new_machine = s.machine
-
-            adapter = new_machine.get_network_adapter(0)
-            adapter.attachment_type = _virtualbox.library.NetworkAttachmentType.nat
-            adapter.cable_connected = True
-            adapter.enabled = True
-
-            adapter = new_machine.get_network_adapter(1)
-            adapter.cable_connected = True
-            adapter.enabled = True
-
-            new_machine.save_settings()
-            s.unlock_machine()
-        except _virtualbox.library.VBoxError, e:
-            raise MachineChangeException(str(e))
-        else:
-            sleep(1.0)
-
-        logger.info('... network devices:')
-        for num_adapter in xrange(4):
-            adapter = self.machine.get_network_adapter(num_adapter)
-            logger.info("...... [%d] MAC:%s family:%s enabled:%s %s",
-                        adapter.slot,
-                        adapter.mac_address,
-                        adapter.adapter_type,
-                        adapter.enabled,
-                        adapter.nat_network)
-
     def do_create_guest_session(self):
         """ Create a guest session
         """
@@ -446,7 +398,7 @@ class VirtualboxMachineNode(MachineNode):
             guest.close()
 
     #####################
-    # tasks
+    # auxiliary
     #####################
     def __repr__(self):
         """ The representation

@@ -281,17 +281,17 @@ def build_shared_instance(**kwargs):
     return shared_class(**kwargs)
 
 
-def build_interface_instance(_container, **kwargs):
+def build_interface_instance(**kwargs):
     """ The factory for interfaces that returns a subclass fo InterfaceNode with the right node
     """
-    interface_name = _get_provider_class_from_dict(**kwargs)
-    if not interface_name:
+    provider_name = _get_provider_class_from_dict(**kwargs)
+    if not provider_name:
         raise TopologyException('internal: no provisioner class available in parent constructor')
 
     try:
-        interface_class = PLUGINS_REGISTRIES['candelabra.provisioner'].plugins[interface_name].INTERFACE
+        interface_class = PLUGINS_REGISTRIES['candelabra.provider'].plugins[provider_name].INTERFACE
     except KeyError, e:
-        m = 'cannot build a interface of class %s' % interface_name
+        m = 'cannot build a interface of class %s' % provider_name
         logger.warning(m)
         raise TopologyException(m)
 
