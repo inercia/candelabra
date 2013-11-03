@@ -11,7 +11,7 @@ BUILDOUT_ARGS=-t 120
 # the boostrap file
 BOOTSTRAP_PY_URL=http://svn.zope.org/*checkout*/zc.buildout/trunk/bootstrap/bootstrap.py
 BOOTSTRAP_FILE=$(TOP)/buildout/bootstrap.py
-BOOTSTRAP_ARGS=-c $(BUILDOUT_CONF)
+BOOTSTRAP_ARGS=--version=2.2.1 --config-file=$(BUILDOUT_CONF)
 
 # directories we need for running the server but are not automatically created
 RUN_DIRS=\
