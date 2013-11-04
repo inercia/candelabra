@@ -12,6 +12,7 @@ from logging import getLogger
 
 from candelabra.config import config
 from candelabra.constants import CFG_DEFAULT_PROVIDER
+from candelabra.errors import MalformedTopologyException, MissingBoxException
 from candelabra.topology.box import BoxNode
 from candelabra.topology.node import TopologyNode, TopologyAttribute
 
@@ -121,11 +122,108 @@ class MachineNode(TopologyNode):
                            doc='True if the machine is stopping')
 
     #####################
-    # tasks
+    # tasks: sched
     #####################
 
     def get_tasks_up(self):
-        return []
+        """ Get the tasks needed for the command "up"
+        """
+        if not self.cfg_name:
+            raise MalformedTopologyException('missing attribute in topology: the virtual machine has no "name"')
+
+        self.clear_tasks()
+
+        logger.debug('checking if the machine "%s" exists', self.cfg_name)
+        if self.cfg_uuid and self.machine:
+            logger.info('... %s seems to have been already created', self.machine)
+        else:
+            logger.info('"%s" does not seem to exist', self.cfg_name)
+            logger.info('... will import it from %s appliance "%s"', self.cfg_class, self.cfg_box.cfg_name)
+            if self.cfg_box.missing:
+                logger.debug('... box "%s" must be downloaded first', self.cfg_name)
+                self.add_task_seq(self._box_instance.do_download)
+
+            self.add_task_seq(self.do_copy_appliance)
+
+        if self.is_running:
+            logger.info('machine %s seems to be running', self.cfg_name)
+        else:
+            for iface in self.cfg_interfaces:
+                self.add_task_seq(iface.do_create)
+
+            self.add_task_seq(self.do_power_up)
+
+        for shared_folder in self.cfg_shared:
+            self.add_task_seq(shared_folder.do_install)
+
+        self.add_task_seq(self.do_create_guest_session)
+
+        for shared_folder in self.cfg_shared:
+            self.add_task_seq(shared_folder.do_mount)
+
+        return self.get_tasks()
+
+    def get_tasks_down(self):
+        """ Get the tasks needed for the command "down"
+        """
+        self.clear_tasks()
+        if not self.is_powered_down:
+            self.add_task_seq(self.do_power_down)
+        else:
+            logger.info('machine %s is not running', self.cfg_name)
+        return self.get_tasks()
+
+    def get_tasks_pause(self):
+        """ Get the tasks needed for the command "pause"
+        """
+        self.clear_tasks()
+        if self.is_running:
+            self.add_task_seq(self.do_pause)
+        else:
+            logger.info('machine %s is not running', self.cfg_name)
+        return self.get_tasks()
+
+    def get_tasks_destroy(self):
+        """ Get the tasks needed for the command "destroy"
+        """
+        self.clear_tasks()
+        if self.is_running:
+            self.add_task_seq(self.do_power_down)
+        self.add_task_seq(self.do_destroy)
+        return self.get_tasks()
+
+    #####################
+    # tasks
+    #####################
+
+    def do_power_up(self):
+        """ Power up the machine via launch
+        """
+        raise NotImplementedError('not implemented')
+
+    def do_power_down(self):
+        """ Power down the machine via launch
+        """
+        raise NotImplementedError('not implemented')
+
+    def do_pause(self):
+        """ Pause the machine via launch
+        """
+        raise NotImplementedError('not implemented')
+
+    def do_copy_appliance(self):
+        """ Copy the appliance as a new virtual machine.
+        """
+        self._appliance = self.cfg_box.get_appliance(self.cfg_class)
+        if not self._appliance:
+            raise MissingBoxException('box "%s" does not have a %s appliance' % (self.cfg_box.cfg_name, self.cfg_class))
+
+        self._appliance.import_to_machine(self)
+
+    def do_create_guest_session(self):
+        """ Create a guest session
+        """
+        raise NotImplementedError('not implemented')
 
     #####################
     # auxiliary

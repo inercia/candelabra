@@ -5,14 +5,15 @@
 #
 
 from logging import getLogger
+import os
+import shutil
 from time import sleep
 
 import virtualbox as _virtualbox
 
 from candelabra.config import config
-from candelabra.tasks import TaskGenerator
 from candelabra.constants import DEFAULT_CFG_SECTION_VIRTUALBOX
-from candelabra.errors import MissingBoxException, MalformedTopologyException, MachineChangeException, MachineException
+from candelabra.errors import MachineChangeException, MachineException
 from candelabra.topology.machine import MachineNode
 from candelabra.topology.machine import STATE_POWERDOWN, STATE_RUNNING, STATE_PAUSED, STATE_ABORTED, STATE_STARTING, STATE_STOPPING, STATE_UNKNOWN
 from candelabra.topology.node import TopologyAttribute
@@ -196,68 +197,13 @@ class VirtualboxMachineNode(MachineNode):
         logger.debug('waiting up to %d seconds for guest session state change...', timeout)
         self.wait_for_event(event=_virtualbox.library.VBoxEventType.on_guest_session_state_changed, timeout=timeout)
 
-
     #####################
-    # scheduling
+    # tasks: sched
     #####################
 
     def get_tasks_up(self):
-        """ Get the tasks needed for the command "up"
-        """
-        if not self.cfg_name:
-            raise MalformedTopologyException('missing attribute in topology: the virtual machine has no "name"')
-
-        self.clear_tasks()
-
-        logger.debug('checking if the virtual machine "%s" exists', self.cfg_name)
-        if self.cfg_uuid and self.machine:
-            logger.info('... %s seems to have been already created', self.machine)
-        else:
-            logger.info('"%s" does not seem to exist', self.cfg_name)
-            logger.info('... will import it from VirtualBox appliance "%s"', self.cfg_box.cfg_name)
-            if self.cfg_box.missing:
-                logger.debug('... box "%s" must be downloaded first', self.cfg_name)
-                self.add_task_seq(self._box_instance.do_download)
-
-            self.add_task_seq(self.do_copy_appliance)
-            self.add_task_seq(self.do_sync_name)
-
-        if self.is_running:
-            logger.info('machine %s seems to be running', self.cfg_name)
-        else:
-            for iface in self.cfg_interfaces:
-                self.add_task_seq(iface.do_create)
-
-            self.add_task_seq(self.do_power_up)
-
-        for shared_folder in self.cfg_shared:
-            self.add_task_seq(shared_folder.do_install)
-
-        self.add_task_seq(self.do_create_guest_session)
-
-        for shared_folder in self.cfg_shared:
-            self.add_task_seq(shared_folder.do_mount)
-
-        return self.get_tasks()
-
-    def get_tasks_down(self):
-        """ Get the tasks needed for the command "down"
-        """
-        self.clear_tasks()
-        if not self.is_powered_down:
-            self.add_task_seq(self.do_power_down)
-        else:
-            logger.info('machine %s is not running', self.cfg_name)
-        return self.get_tasks()
-
-    def get_tasks_pause(self):
-        """ Get the tasks needed for the command "pause"
-        """
-        self.clear_tasks()
-        if self.is_running:
-            self.add_task_seq(self.do_pause)
-        else:
-            logger.info('machine %s is not running', self.cfg_name)
+        super(VirtualboxMachineNode, self).get_tasks_up()
+        # self.add_task_seq(self.do_run_echo)
         return self.get_tasks()
 
     #####################
@@ -343,16 +289,29 @@ class VirtualboxMachineNode(MachineNode):
     def do_copy_appliance(self):
         """ Copy the appliance as a new virtual machine.
         """
-        self._appliance = self.cfg_box.get_appliance('virtualbox')
-        if not self._appliance:
-            raise MissingBoxException('box "%s" does not have a VirtualBox appliance' % self.cfg_box.cfg_name)
-
-        self._appliance.import_to_machine(self)
-
-    def do_sync_name(self):
-        """ Synchronize the configured name with the VM name
-        """
+        super(VirtualboxMachineNode, self).do_copy_appliance()
         self.sync_name()
+
+    def do_destroy(self):
+        """ Destroy a virtual machine
+        """
+        sleep(1.0)
+        logger.info('destroying %s', self.cfg_name)
+        try:
+            if self.machine:
+                media = self.machine.unregister(_virtualbox.library.CleanupMode.full)
+                p = self.machine.delete_config(media)
+                p.wait_for_completion(-1)
+                self.machine.save_settings()
+        except _virtualbox.library.VBoxErrorIprtError, e:
+            logger.warning(str(e))
+        else:
+            sleep(1.0)
+            properties = self._vbox.system_properties
+            full_path = os.path.join(properties.default_machine_folder, self.cfg_name)
+            if os.path.isdir(full_path):
+                logger.debug('... removing %s', full_path)
+                shutil.rmtree(full_path)
 
     def do_create_guest_session(self):
         """ Create a guest session
@@ -373,19 +332,19 @@ class VirtualboxMachineNode(MachineNode):
         except _virtualbox.library.VBoxErrorIprtError, e:
             logger.warning(str(e))
             logger.debug(res)
+        else:
+            sleep(5.0)
         finally:
             s.unlock_machine()
 
-        sleep(50.0)
 
     def do_run_echo(self):
-        session = self.machine.create_session()
-        guest = session.console.guest.create_session('vagrant', 'vagrant')
+        s = _virtualbox.Session()
+        self.machine.lock_machine(s, _virtualbox.library.LockType.shared)
+        guest = s.console.guest.create_session('vagrant', 'vagrant')
         try:
             p, o, e = guest.execute('/bin/ls', ['-lisa'], timeout_ms=10 * 1000)
-            p.wait_for_array([_virtualbox.library.ProcessWaitForFlag(8),
-                              _virtualbox.library.ProcessWaitForFlag(16),
-                              _virtualbox.library.ProcessWaitForFlag.terminate], 3 * 1000)
+            p.wait_for_array([_virtualbox.library.ProcessWaitForFlag.terminate], 3 * 1000)
 
             logger.debug('pid=%d exit_code=%d', p.pid, p.exit_code)
             logger.debug('output="%s"', o)
@@ -395,7 +354,8 @@ class VirtualboxMachineNode(MachineNode):
         except _virtualbox.library.VBoxErrorIprtError, e:
             logger.warning(str(e))
         finally:
-            guest.close()
+            pass
+            #guest.close()
 
     #####################
     # auxiliary
