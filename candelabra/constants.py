@@ -19,6 +19,8 @@ DEFAULT_PROVIDER = 'virtualbox'
 
 CONFIG_FILE_PATH_CREATION = {
     'darwin': '$HOME/Library/Application Support/Candelabra/candelabra.conf',
+    'linux': '$HOME/.candelabra/candelabra.conf',
+    'linux2': '$HOME/.candelabra/candelabra.conf',
 }
 
 # paths where the config file can be found
@@ -50,16 +52,22 @@ YAML_SECTION_NETWORKS = 'networks'
 
 DEFAULT_BASE_PATH = {
     'darwin': '$HOME/Library/Application Support/Candelabra/',
+    'linux': '$HOME/.candelabra/',
+    'linux2': '$HOME/.candelabra/',
 }
 
 # default path for the boxes
 DEFAULT_BOXES_PATH = {
     'darwin': DEFAULT_BASE_PATH[sys.platform] + 'Boxes/',
+    'linux': DEFAULT_BASE_PATH[sys.platform] + 'boxes/',
+    'linux2': DEFAULT_BASE_PATH[sys.platform] + 'boxes/',
 }
 
 # default logs path
 DEFAULT_LOGS_PATH = {
     'darwin': '$HOME/Library/Logs/',
+    'linux': DEFAULT_BASE_PATH[sys.platform] + 'logs/',
+    'linux2': DEFAULT_BASE_PATH[sys.platform] + 'logs/',
 }
 
 DEFAULT_TOPOLOGY_FILE_GUESSES = [
