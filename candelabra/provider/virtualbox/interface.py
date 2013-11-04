@@ -33,11 +33,9 @@ class VirtualboxInterfaceNode(InterfaceNode):
     def machine(self):
         return self._container.get_machine()
 
-    def do_create(self):
+    def do_iface_create(self):
         """ Setup the net
         """
-        logger.info('starting network device')
-
         #try:
         #    logger.info('... creating NAT')
         #    network = self._vbox.create_nat_network(NAT_NETWORK)
@@ -52,23 +50,28 @@ class VirtualboxInterfaceNode(InterfaceNode):
         ##properties.get_max_network_adapters()
 
         num_iface = getattr(self._container, '_num_ifaces_setup', 0)
+        logger.info('setting up network device num:%d', num_iface)
 
         try:
             sleep(1.0)
             s = _virtualbox.Session()
             self.machine.lock_machine(s, _virtualbox.library.LockType.write)
-            new_machine = s.machine
 
+            # create a mutable copy of the machine for doing changes...
+            new_machine = s.machine
             adapter = new_machine.get_network_adapter(num_iface)
 
             if self.cfg_type == 'nat':
+                logger.info('... type: NAT')
                 adapter.attachment_type = _virtualbox.library.NetworkAttachmentType.nat
             elif self.cfg_type == 'host-only':
+                logger.info('... type: host-only')
                 adapter.attachment_type = _virtualbox.library.NetworkAttachmentType.host_only
 
             adapter.cable_connected = True
             adapter.enabled = True
 
+            # save the new machine and unlock it
             new_machine.save_settings()
             s.unlock_machine()
         except _virtualbox.library.VBoxError, e:

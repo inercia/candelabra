@@ -47,6 +47,11 @@ class BoxNode(TopologyNode, TaskGenerator):
         'name': TopologyAttribute(constructor=str, default='', inherited=True),
         'path': TopologyAttribute(constructor=str, default='', inherited=True),
         'url': TopologyAttribute(constructor=str, default='', inherited=True),
+
+        'username': TopologyAttribute(constructor=str, default='vagrant', inherited=True),
+        'password': TopologyAttribute(constructor=str, default='password', inherited=True),
+        'sudo_command': TopologyAttribute(constructor=str, default='/usr/bin/sudo', inherited=True),
+        'ifconfig_command': TopologyAttribute(constructor=str, default='/sbin/ifconfig', inherited=True),
     }
 
     def __init__(self, _parent=None, **kwargs):

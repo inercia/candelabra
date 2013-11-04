@@ -47,6 +47,11 @@ class MachineNode(TopologyNode):
 
     * the global machine, a machine used for storing global attributes.
     * regular machines.
+
+    Machines have some important attributes:
+
+    * communicator: a :class:`Communicator` instance, used for communicating with the machine.
+    * guest: a :class:`Guest` instance, used for running some standard commands in the machine.
     """
 
     __known_attributes = {
@@ -72,6 +77,9 @@ class MachineNode(TopologyNode):
             logger.debug('using default node class: %s', self.cfg_class)
 
         TopologyAttribute.setall(self, kwargs, self.__known_attributes)
+
+        self.guest = None
+        self.communicator = None
 
     #####################
     # state
@@ -121,6 +129,14 @@ class MachineNode(TopologyNode):
     is_stopping = property(lambda self: self.get_state() == STATE_STOPPING[0],
                            doc='True if the machine is stopping')
 
+    def get_communicator_ip(self):
+        """ Get the IP where a communicator can connect to
+        """
+        return None
+
+    communicator_ip = property(lambda self: self.get_communicator_ip(),
+                               doc='get an IP where the communicator can connect to')
+
     #####################
     # tasks: sched
     #####################
@@ -130,8 +146,6 @@ class MachineNode(TopologyNode):
         """
         if not self.cfg_name:
             raise MalformedTopologyException('missing attribute in topology: the virtual machine has no "name"')
-
-        self.clear_tasks()
 
         logger.debug('checking if the machine "%s" exists', self.cfg_name)
         if self.cfg_uuid and self.machine:
@@ -149,48 +163,64 @@ class MachineNode(TopologyNode):
             logger.info('machine %s seems to be running', self.cfg_name)
         else:
             for iface in self.cfg_interfaces:
-                self.add_task_seq(iface.do_create)
+                self.add_task_seq(iface.do_iface_create)
 
             self.add_task_seq(self.do_power_up)
 
+        self.add_task_seq(self.do_wait_userland)
+        self.add_task_seq(self.do_create_guest)
+
         for shared_folder in self.cfg_shared:
-            self.add_task_seq(shared_folder.do_install)
+            self.add_task_seq(shared_folder.do_shared_create)
 
         self.add_task_seq(self.do_create_guest_session)
 
         for shared_folder in self.cfg_shared:
-            self.add_task_seq(shared_folder.do_mount)
-
-        return self.get_tasks()
+            self.add_task_seq(shared_folder.do_shared_mount)
 
     def get_tasks_down(self):
         """ Get the tasks needed for the command "down"
         """
-        self.clear_tasks()
-        if not self.is_powered_down:
+        if not (self.is_unknown or self.is_powered_down):
             self.add_task_seq(self.do_power_down)
         else:
             logger.info('machine %s is not running', self.cfg_name)
-        return self.get_tasks()
 
     def get_tasks_pause(self):
         """ Get the tasks needed for the command "pause"
         """
-        self.clear_tasks()
         if self.is_running:
             self.add_task_seq(self.do_pause)
         else:
             logger.info('machine %s is not running', self.cfg_name)
-        return self.get_tasks()
 
     def get_tasks_destroy(self):
         """ Get the tasks needed for the command "destroy"
         """
-        self.clear_tasks()
         if self.is_running:
             self.add_task_seq(self.do_power_down)
         self.add_task_seq(self.do_destroy)
-        return self.get_tasks()
+
+    def get_tasks_net_up(self):
+        """ Get the tasks needed for the command "net up"
+        """
+        if self.is_running:
+            logger.info('machine %s seems to be running', self.cfg_name)
+            for iface in self.cfg_interfaces:
+                self.add_task_seq(iface.do_create)
+        else:
+            logger.error('machine %s is not running!', self.cfg_name)
+            logger.error('... it must be running for this command (it will not be started automatically)')
+
+    def get_tasks_net_show(self):
+        """ Get the tasks needed for the command "net show"
+        """
+        if self.is_running:
+            logger.info('machine %s seems to be running', self.cfg_name)
+            # TODO: not implemented yet
+        else:
+            logger.error('machine %s is not running!', self.cfg_name)
+            logger.error('... it must be running for this command (it will not be started automatically)')
 
     #####################
     # tasks
@@ -199,17 +229,17 @@ class MachineNode(TopologyNode):
     def do_power_up(self):
         """ Power up the machine via launch
         """
-        raise NotImplementedError('not implemented')
+        logger.debug('power up: nothing to do')
 
     def do_power_down(self):
         """ Power down the machine via launch
         """
-        raise NotImplementedError('not implemented')
+        logger.debug('power down: nothing to do')
 
     def do_pause(self):
         """ Pause the machine via launch
         """
-        raise NotImplementedError('not implemented')
+        logger.debug('pause: nothing to do')
 
     def do_copy_appliance(self):
         """ Copy the appliance as a new virtual machine.
@@ -223,7 +253,17 @@ class MachineNode(TopologyNode):
     def do_create_guest_session(self):
         """ Create a guest session
         """
-        raise NotImplementedError('not implemented')
+        logger.debug('guess session creation: nothing to do')
+
+    def do_wait_userland(self):
+        """ Wait for userland
+        """
+        logger.debug('wait userland: nothing to do')
+
+    def do_create_guest(self):
+        """ Create a guest reference
+        """
+        logger.debug('create guest: nothing to do')
 
     #####################
     # auxiliary

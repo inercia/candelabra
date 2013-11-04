@@ -12,8 +12,9 @@ from time import sleep
 import virtualbox as _virtualbox
 
 from candelabra.config import config
-from candelabra.constants import DEFAULT_CFG_SECTION_VIRTUALBOX
-from candelabra.errors import MachineChangeException, MachineException
+from candelabra.constants import DEFAULT_CFG_SECTION_VIRTUALBOX, CFG_USERLAND_TIMEOUT, CFG_MACHINE_UPDOWN_TIMEOUT, CFG_MACHINE_COMMANDS_TIMEOUT
+from candelabra.errors import MachineChangeException, MachineException, MalformedTopologyException
+from candelabra.plugins import build_communicator_instance, build_guest_instance
 from candelabra.topology.machine import MachineNode
 from candelabra.topology.machine import STATE_POWERDOWN, STATE_RUNNING, STATE_PAUSED, STATE_ABORTED, STATE_STARTING, STATE_STOPPING, STATE_UNKNOWN
 from candelabra.topology.node import TopologyAttribute
@@ -30,19 +31,10 @@ _VIRTUALBOX_ST_TO_STATES = {
     11: STATE_STOPPING,
 }
 
-########################################################################################################################
-
-_DEFAULT_SESSION_TIMEOUT = 15 * 1000
-""" Default timeout for getting a valid session (in milliseconds)
-"""
-
-_DEFAULT_POWER_UP_TIMEOUT = 5 * 1000
-""" Default timeout while waiting for power up a machine (in milliseconds)
-"""
-
-_DEFAULT_POWER_DOWN_TIMEOUT = 5 * 1000
-""" Default timeout while waiting for power down a machine (in milliseconds)
-"""
+LOCK_TYPES = {
+    'shared': _virtualbox.library.LockType.shared,
+    'write': _virtualbox.library.LockType.write,
+}
 
 
 ########################################################################################################################
@@ -56,6 +48,12 @@ class VirtualboxMachineNode(MachineNode):
     # the right tuple is the constructor and a default value (None means "inherited from parent")
     __known_attributes = {
         'path': TopologyAttribute(constructor=str, default='', inherited=True),
+        'updown_timeout': TopologyAttribute(constructor=int, default=None, copy=True),
+        'gui': TopologyAttribute(constructor=str, default='headless', copy=True),
+        'username': TopologyAttribute(constructor=str, default='vagrant', copy=True),
+        'password': TopologyAttribute(constructor=str, default='vagrant', copy=True),
+        'userland_timeout': TopologyAttribute(constructor=int, default=None, copy=True),
+        'commands_timeout': TopologyAttribute(constructor=int, default=None, copy=True),
     }
 
     # attributes that are saved in the state file
@@ -81,23 +79,37 @@ class VirtualboxMachineNode(MachineNode):
             self._cfg = None
 
         self._vbox = _virtualbox.VirtualBox()
-        self._uuid = self.cfg_uuid if getattr(self, 'cfg_uuid', None) else None
-        self._machine = None
-        self._events = {}
-        self._guest_session = None
+        self._vbox_uuid = self.cfg_uuid if getattr(self, 'cfg_uuid', None) else None
+        self._vbox_machine = None
+        self._vbox_guest = None
+        self._vbox_guest_os_type = None
+        self._vbox_wait_events = {}
+
         self._created_shared_folders = []
+
+        # check and fix topology parameters
+        if not self.cfg_gui in ['headless', 'gui']:
+            raise MalformedTopologyException('invalid GUI type %s', self.cfg_gui)
+        if not self.cfg_updown_timeout:
+            self.cfg_updown_timeout = config.get_key(CFG_MACHINE_UPDOWN_TIMEOUT)
+        if not self.cfg_userland_timeout:
+            self.cfg_userland_timeout = config.get_key(CFG_USERLAND_TIMEOUT)
+        if not self.cfg_commands_timeout:
+            self.cfg_commands_timeout = config.get_key(CFG_MACHINE_COMMANDS_TIMEOUT)
+
+        # create a communicator for this machine
+        self.communicator = build_communicator_instance(_class='virtualbox', machine=self)
 
     def sync_name(self):
         """ Set the VirtualBox virtual machine name to the same name as this node
         """
         logger.debug('synchronizing VM name: setting as %s', self.cfg_name)
         try:
-            s = _virtualbox.Session()
-            self.machine.lock_machine(s, _virtualbox.library.LockType.write)
+            s = self.lock('write')
             new_machine = s.machine
             new_machine.name = self.cfg_name
             new_machine.save_settings()
-            s.unlock_machine()
+            self.unlock(s)
         except _virtualbox.library.VBoxError, e:
             raise MachineChangeException(str(e))
         else:
@@ -106,9 +118,9 @@ class VirtualboxMachineNode(MachineNode):
     def check_name(self):
         """ Check that the configured name matches the real VM name
         """
-        if self._machine.name != self.cfg_name:
+        if self._vbox_machine.name != self.cfg_name:
             logger.warning('the configured name (%s) does not match the VM name (%s)',
-                           self.cfg_name, self._machine.name)
+                           self.cfg_name, self._vbox_machine.name)
             return False
         return True
 
@@ -119,13 +131,13 @@ class VirtualboxMachineNode(MachineNode):
     def get_uuid(self):
         """ Get the machine UUID
         """
-        return self._uuid
+        return self._vbox_uuid
 
     def set_uuid(self, val):
         """ Set the machine UUID
         """
-        self._uuid = val
-        self._machine = None
+        self._vbox_uuid = val
+        self._vbox_machine = None
 
     cfg_uuid = property(get_uuid, set_uuid)
 
@@ -133,11 +145,11 @@ class VirtualboxMachineNode(MachineNode):
         """ Get the underlying VirtualBox "machine" instance
         """
         try:
-            if self._uuid and not self._machine:
-                self._machine = self._vbox.find_machine(self._uuid)
+            if self._vbox_uuid and not self._vbox_machine:
+                self._vbox_machine = self._vbox.find_machine(self._vbox_uuid)
         except _virtualbox.library.VBoxErrorObjectNotFound, e:
             logger.debug(str(e))
-        return self._machine
+        return self._vbox_machine
 
     machine = property(get_machine)
 
@@ -148,6 +160,46 @@ class VirtualboxMachineNode(MachineNode):
                'CPUs:%d (exec-cap:%d) ' % (self.machine.cpu_count, self.machine.cpu_execution_cap) + \
                'mem:%d vram:%d ' % (self.machine.memory_size, self.machine.vram_size) + \
                'state:%s ' % (str(self.machine.state))
+
+    def get_guest_type(self, session=None):
+        """ Get the guess type, as a tuple of (name, description)
+        """
+        res = (None, None)
+        try:
+            s = self.lock() if not session else session
+            t = self._vbox.get_guest_os_type(s.machine.os_type_id)
+            res = (t.family_id.lower(), t.family_description)
+        except _virtualbox.library.VBoxError, e:
+            raise MachineException(str(e))
+        finally:
+            if not session:
+                self.unlock(s)
+
+        return res
+
+    def get_guest_level_system(self, guest=None, session=None):
+        """ Return True if the guest session level is system
+        """
+        if not guest:
+            s = self.lock() if not session else session
+            guest = s.console.guest
+
+        res = bool(guest.get_additions_status(_virtualbox.library.AdditionsRunLevelType.system))
+        if not guest and not session:
+            self.unlock(s)
+        return res
+
+    def get_guest_level_userland(self, guest=None, session=None):
+        """ Return True if the guest session level is userland
+        """
+        if not guest:
+            s = self.lock() if not session else session
+            guest = s.console.guest
+
+        res = bool(guest.get_additions_status(_virtualbox.library.AdditionsRunLevelType.userland))
+        if not session:
+            self.unlock(s)
+        return res
 
     def get_state(self):
         """ Get the VirtualBox machine state, as a recognized state code
@@ -165,25 +217,41 @@ class VirtualboxMachineNode(MachineNode):
         """ Wait for an event
         :param event: an instance of _virtualbox.library.VBoxEventType
         """
-        self._events[event] = False
+        self._vbox_wait_events[event] = False
 
         def on_property_change(_event):
             logger.debug('event: %s %s %s', _event.name, _event.value, _event.flags)
-            self._events[event] = True
+            self._vbox_wait_events[event] = True
 
         callback_id = self._vbox.event_source.register_callback(on_property_change, event)
 
         # wait for some time...
         num = 0
-        while not self._events[event]:
+        while not self._vbox_wait_events[event]:
             sleep(1.0)
             num += 1
             if num >= timeout:
                 break
 
         # clenaup
-        del self._events[event]
+        del self._vbox_wait_events[event]
         _virtualbox.events.unregister_callback(callback_id)
+
+    #####################
+    # guest sessions
+    #####################
+
+    def get_guest_session(self, session, username='vagrant', password='vagrant', name='vagrant'):
+        """ Get or create a guest session
+        """
+        guest_sessions = session.console.guest.sessions
+        if len(guest_sessions) == 0:
+            guest_session = session.console.guest.create_session(username, password, '', name)
+            guest_session.wait_for_array([_virtualbox.library.GuestSessionWaitForFlag.start],
+                                         timeout_ms=self.cfg_updown_timeout * 1000)
+        else:
+            guest_session = guest_sessions[0]
+        return guest_session
 
     def wait_for_session_state_change(self, timeout=5):
         """ Wait for the session state to change
@@ -197,23 +265,9 @@ class VirtualboxMachineNode(MachineNode):
         logger.debug('waiting up to %d seconds for guest session state change...', timeout)
         self.wait_for_event(event=_virtualbox.library.VBoxEventType.on_guest_session_state_changed, timeout=timeout)
 
-    #####################
-    # tasks: sched
-    #####################
-
-    def get_tasks_up(self):
-        super(VirtualboxMachineNode, self).get_tasks_up()
-        # self.add_task_seq(self.do_run_echo)
-        return self.get_tasks()
-
-    #####################
-    # tasks
-    #####################
-
-    def do_power_up(self):
-        """ Power up the machine via launch
+    def listen_events(self):
+        """ Listen for events
         """
-        timeout = getattr(self, 'default_power_up_timeout', _DEFAULT_POWER_UP_TIMEOUT)
 
         def on_property_change(_event):
             logger.debug('event: %s', _event)
@@ -235,61 +289,139 @@ class VirtualboxMachineNode(MachineNode):
         self._vbox.event_source.register_callback(on_property_change,
                                                   _virtualbox.library.VBoxEventType.on_guest_process_registered)
 
+    #####################
+    # locking
+    #####################
+    def lock(self, session=None, lock_type='shared'):
+        if not session:
+            session = _virtualbox.Session()
+
+        self._vbox_machine.lock_machine(session, LOCK_TYPES[lock_type])
+        return session
+
+    def unlock(self, session):
+        session.unlock_machine()
+
+    #####################
+    # tasks
+    #####################
+
+    def do_power_up(self):
+        """ Power up the machine via launch
+        """
+        self.listen_events()
+
         logger.info('powering up "%s"', self.cfg_name)
         try:
             s = _virtualbox.Session()
-            #p = self.machine.launch_vm_process(s, "headless", "")
-            p = self.machine.launch_vm_process(s, "gui", "")
-            logger.info('... waiting from completion (up to %d seconds)', timeout / 1000)
-            p.wait_for_completion(timeout)
-            s.unlock_machine()
+            p = self.machine.launch_vm_process(s, self.cfg_gui, "")
+            logger.info('... waiting from completion (up to %d seconds)', self.cfg_updown_timeout)
+            p.wait_for_completion(self.cfg_updown_timeout * 1000)
+            self.unlock(s)
         except _virtualbox.library.VBoxError, e:
             raise MachineException(str(e))
         else:
             sleep(1.0)
+
+    def do_wait_userland(self):
+        """ Wait for the guest session to be in userland-ready
+
+        Once the session is in userland-ready, we can launch processes from here...
+        """
+        logger.info('waiting for userland on "%s"', self.cfg_name)
+        s = self.lock()
+        try:
+            logger.debug('getting guest information...')
+            self._vbox_guest = s.console.guest
+            self._vbox_guest_os_type = self._vbox.get_guest_os_type(s.machine.os_type_id)
+
+            logger.info('... guest OS: %s (%s)' % self.get_guest_type(session=s))
+
+            logger.debug('... guest additions: vers:%s - rev:%s ',
+                         self._vbox_guest.additions_version,
+                         self._vbox_guest.additions_revision)
+
+            logger.info('waiting for machine up to %d seconds...', self.cfg_userland_timeout)
+            for _ in xrange(self.cfg_userland_timeout):
+                systemland = self.get_guest_level_system(guest=self._vbox_guest, session=s)
+                userland = self.get_guest_level_userland(guest=self._vbox_guest, session=s)
+                logger.debug('... status: system=%s userland=%s', systemland, userland)
+                if userland and systemland:
+                    break
+                else:
+                    sleep(1.0)
+
+            logger.debug('%s facilities:', self.cfg_name)
+            for f in self._vbox_guest.facilities:
+                logger.debug('... %s', f.name)
+
+        except _virtualbox.library.VBoxError, e:
+            raise MachineException(str(e))
+        else:
+            sleep(1.0)
+            self.communicator.connected = True
+        finally:
+            self.unlock(s)
+
+    def do_create_guest(self):
+        """ Create a guest reference, creating a :class:`Guest` instance that can be used for
+        mounting directories, creating network devices, etc...
+        """
+        logger.debug('creating guest reference...')
+        guest_type, guest_descr = self.get_guest_type()
+        self.guest = build_guest_instance(_class=guest_type, machine=self, communicator=self.communicator)
 
     def do_power_down(self):
-        """ Power down the machine via launch
+        """ Power down the machine
         """
-        timeout = getattr(self, 'default_power_down_timeout', _DEFAULT_POWER_DOWN_TIMEOUT)
-        logger.info('powering down "%s"', self.cfg_name)
-
+        s = self.lock()
         try:
-            s = _virtualbox.Session()
-            self.machine.lock_machine(s, _virtualbox.library.LockType.shared)
+            #if self.guest:
+            #    self.guest.shutdown()
+            # # wait for a change in the machine state
+
             p = s.console.power_down()
-            logger.info('... waiting from power down to finish (up to %d seconds)', timeout / 1000)
-            p.wait_for_completion(timeout)
+            logger.info('... waiting from power down to finish (up to %d seconds)', self.cfg_updown_timeout)
+            p.wait_for_completion(self.cfg_updown_timeout * 1000)
             logger.debug('...... done [code:%d]', p.result_code)
-            s.unlock_machine()
         except _virtualbox.library.VBoxError, e:
             raise MachineException(str(e))
         else:
             sleep(1.0)
+            self.communicator.connected = False
+        finally:
+            self.unlock(s)
+            self._vbox_guest = None
+            self._vbox_guest_os_type = None
 
     def do_pause(self):
         """ Pause the machine via launch
         """
-        timeout = getattr(self, 'default_power_down_timeout', _DEFAULT_POWER_DOWN_TIMEOUT)
-
         logger.info('powering down "%s"', self.cfg_name)
+        s = self.lock()
         try:
-            s = _virtualbox.Session()
-            self.machine.lock_machine(s, _virtualbox.library.LockType.shared)
             p = s.console.pause()
-            logger.info('... waiting from power down to finish (up to %d seconds)', timeout / 1000)
+            logger.info('... waiting from power down to finish (up to %d seconds)', self.cfg_updown_timeout)
             while self.machine.state >= _virtualbox.library.MachineState.running:
                 sleep(1.0)
-                # p.wait_for_completion(timeout)
+                # p.wait_for_completion(self.cfg_updown_timeout * 1000)
             logger.debug('...... done [code:%d]', p.result_code)
-            s.unlock_machine()
         except _virtualbox.library.VBoxError, e:
             raise MachineException(str(e))
+        else:
+            sleep(1.0)
+            self.communicator.connected = False
+        finally:
+            self.unlock(s)
 
     def do_copy_appliance(self):
         """ Copy the appliance as a new virtual machine.
         """
+        logger.debug('copying the appliance...')
         super(VirtualboxMachineNode, self).do_copy_appliance()
+
+        # we must synchronize the name, as the appliance can be something like 'redhat-minimal' and
+        # we want to set a nice, friendly name...
         self.sync_name()
 
     def do_destroy(self):
@@ -313,49 +445,30 @@ class VirtualboxMachineNode(MachineNode):
                 logger.debug('... removing %s', full_path)
                 shutil.rmtree(full_path)
 
-    def do_create_guest_session(self):
-        """ Create a guest session
+        self.communicator.connected = False
+        self._vbox_uuid = None
+        self._vbox_machine = None
+        self._vbox_guest = None
+        self._vbox_guest_os_type = None
+
+    def do_create_guest_reference(self):
+        """ Create a communicator for this machine
         """
-        timeout = getattr(self, 'default_session_timeout', _DEFAULT_SESSION_TIMEOUT)
-        res = 0
+        t, desc = self.get_guest_type()
+        logger.debug('creating a %s guest reference', t)
+        self.guest = build_guest_instance(_class=t, machine=self)
 
-        sleep(1.0)
-        s = _virtualbox.Session()
-        self.machine.lock_machine(s, _virtualbox.library.LockType.shared)
-        logger.info('waiting for guest session on %s', self.cfg_name)
-        self._guest_session = s.console.guest.create_session('vagrant', 'vagrant')
+    def do_create_user(self):
+        """ Create a user
+        """
+        logger.info('creating user/pass=%s/%s in "%s"', self.cfg_username, self.cfg_password, self.cfg_name)
+        s = self.lock()
         try:
-            sleep(1.0)
-            res = self._guest_session.wait_for_array([_virtualbox.library.GuestSessionWaitForFlag.start],
-                                                     timeout_ms=timeout)
-            logger.info('... guest session started')
-        except _virtualbox.library.VBoxErrorIprtError, e:
-            logger.warning(str(e))
-            logger.debug(res)
-        else:
-            sleep(5.0)
+            s.console.guest.set_credentials(self.cfg_username, self.cfg_password, '', False)
+        except _virtualbox.library.VBoxError, e:
+            raise MachineException(str(e))
         finally:
-            s.unlock_machine()
-
-
-    def do_run_echo(self):
-        s = _virtualbox.Session()
-        self.machine.lock_machine(s, _virtualbox.library.LockType.shared)
-        guest = s.console.guest.create_session('vagrant', 'vagrant')
-        try:
-            p, o, e = guest.execute('/bin/ls', ['-lisa'], timeout_ms=10 * 1000)
-            p.wait_for_array([_virtualbox.library.ProcessWaitForFlag.terminate], 3 * 1000)
-
-            logger.debug('pid=%d exit_code=%d', p.pid, p.exit_code)
-            logger.debug('output="%s"', o)
-            for line in o.splitlines():
-                logger.debug('output="%s"', line)
-            logger.debug('error="%s"', e)
-        except _virtualbox.library.VBoxErrorIprtError, e:
-            logger.warning(str(e))
-        finally:
-            pass
-            #guest.close()
+            self.unlock(s)
 
     #####################
     # auxiliary

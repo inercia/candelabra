@@ -108,6 +108,15 @@ CFG_LOG_FILE_LEVEL = (DEFAULT_CFG_SECTION_LOGGING_FILE, "level", 'DEBUG')
 # log file max size
 CFG_LOG_FILE_MAX_LEN = (DEFAULT_CFG_SECTION_LOGGING_FILE, "max_len", 10 * 1024 * 1024)
 
+# bootup until userland session timeout (in seconds)
+CFG_USERLAND_TIMEOUT = (DEFAULT_CFG_SECTION, "userland_timeout", 120)
+
+# machine up/down timeout (in seconds)
+CFG_MACHINE_UPDOWN_TIMEOUT = (DEFAULT_CFG_SECTION, "updown_timeout", 30)
+
+# machine commands timeout (in seconds)
+CFG_MACHINE_COMMANDS_TIMEOUT = (DEFAULT_CFG_SECTION, "commands_timeout", 10)
+
 # download timeout
 CFG_DOWNLOAD_TIMEOUT = (DEFAULT_CFG_SECTION_DOWNLOADER, "download_timeout", 120)
 

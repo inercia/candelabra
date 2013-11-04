@@ -57,6 +57,22 @@ class MachineChangeException(MachineException):
     """
     pass
 
+
+#########################################
+# comunicator
+
+
+class CommunicatorException(CandelabraException):
+    """ Communicator error
+    """
+    pass
+
+
+class CommunicatorNotConnectedException(CommunicatorException):
+    """ Communicator not connected error
+    """
+    pass
+
 #########################################
 # topologies
 

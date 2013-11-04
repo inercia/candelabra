@@ -21,6 +21,7 @@ candelabra  = candelabra.main:main
 destroy = candelabra.command.destroy.plugin:register
 down = candelabra.command.down.plugin:register
 import = candelabra.command.import.plugin:register
+net = candelabra.command.net.plugin:register
 provision = candelabra.command.provision.plugin:register
 show = candelabra.command.show.plugin:register
 up = candelabra.command.up.plugin:register
@@ -36,6 +37,7 @@ linux = candelabra.guest.linux.plugin:register
 
 [candelabra.communicator]
 ssh = candelabra.communicator.ssh.plugin:register
+virtualbox = candelabra.communicator.virtualbox.plugin:register
 """
 
 if __name__ == "__main__":

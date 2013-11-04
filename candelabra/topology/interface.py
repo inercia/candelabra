@@ -58,3 +58,7 @@ class InterfaceNode(TopologyNode):
                                                  self.cfg_type,
                                                  INTERFACE_TYPES)
 
+    def do_iface_create(self):
+        """ Create a network interface
+        """
+        logger.debug('interface create: nothing to do')

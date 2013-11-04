@@ -6,7 +6,6 @@
 
 from logging import getLogger
 import os
-from time import sleep
 
 import virtualbox as _virtualbox
 from candelabra.topology.node import TopologyAttribute
@@ -28,20 +27,25 @@ class VirtualboxSharedNode(SharedNode):
         TopologyAttribute.setall(self, kwargs, self._SharedNode__known_attributes)
 
         from candelabra.provider.virtualbox import VirtualboxMachineNode
+
         assert self._container is not None and isinstance(self._container, VirtualboxMachineNode)
 
         self.installed = False
 
     @property
     def machine(self):
-        return self._container.get_machine()
+        return self._container
 
-    def do_install(self):
+    #####################
+    # tasks
+    #####################
+
+    def do_shared_create(self):
         """ Share the folders
         """
         assert not self._container.is_global
 
-        s = self.machine.create_session()
+        s = self.machine.lock()
         try:
             local_path = os.path.abspath(os.path.expandvars(self.cfg_local))
             remote_path = self.cfg_remote
@@ -69,38 +73,38 @@ class VirtualboxSharedNode(SharedNode):
         except _virtualbox.library.VBoxError, e:
             logger.warning(str(e))
         finally:
-            s.unlock_machine()
+            self.machine.unlock(s)
 
-    def do_mount(self):
+    def do_shared_mount(self):
         """ Mount the folders
         """
         if self.installed:
-            s = _virtualbox.Session()
+            # s = self.machine.lock()
             try:
-                self.machine.lock_machine(s, _virtualbox.library.LockType.shared)
-                sleep(1.0)
-                # guest = s.console.guest.create_session('vagrant', 'vagrant')
+                # guest_session = self.machine.get_guest_session(s)
 
-                remote_path = self.cfg_remote
+                logger.info('mounting %s', self.cfg_remote)
 
-                logger.info('mounting shared folders')
-                # assert self._guest_session is not None
-                #logger.info('... mounting %s', remote_path)
-                #try:
-                #    self._guest_session.directory_create(remote_path, 755,
-                #                                         [_virtualbox.library.DirectoryCreateFlag.parents])
-                #except _virtualbox.library.VBoxErrorFileError:
-                #    pass
+                if self.cfg_create_if_missing:
+                    logger.debug('... creating directory %s', self.cfg_remote)
+                    code, stdout, stderr = self.machine.guest.mkdir(self.cfg_remote)
+                    for line in stdout.splitlines():
+                        logger.debug('... output: %s', line)
 
-                logger.info('shared folders configured.')
+                # when mounting the remote, the directory is identifies _only_ by the remote name
+                code, stdout, stderr = self.machine.guest.mount(self.cfg_remote, self.cfg_remote, type='vboxsf',
+                                                                owner=self.cfg_owner, group=self.cfg_group)
+                for line in stdout.splitlines():
+                    logger.debug('... output: %s', line)
+
+                logger.debug('... done')
+
             except _virtualbox.library.VBoxError, e:
                 logger.warning(str(e))
             finally:
-                s.unlock_machine()
+                #self.machine.unlock(s)
+                pass
 
-    #####################
-    # auxiliary
-    #####################
 
     #####################
     # auxiliary

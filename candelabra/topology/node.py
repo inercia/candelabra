@@ -26,7 +26,7 @@ class TopologyAttribute(object):
     * a unique **uuid**, usually established by the Candelabra engine.
     """
 
-    def __init__(self, constructor, default=_unset, inherited=False, copy=False):
+    def __init__(self, constructor, default=_unset, doc='', inherited=False, copy=False):
         """
         Initialize a topology node attribute
 
@@ -47,6 +47,7 @@ class TopologyAttribute(object):
         self.default = default
         self.inherited = inherited
         self.copy = copy
+        self.doc = doc
 
     @staticmethod
     def setall(container, dictionary, known_attributes):

@@ -215,7 +215,7 @@ def get_provider(name):
 def _get_provider_class_from_dict(**kwargs):
     """ Get a a provider class from a dictionary
     """
-    for name in ['class', 'cfg_class']:
+    for name in ['class', 'cfg_class', '_class']:
         if name in kwargs:
             return kwargs[name]
 
@@ -223,7 +223,7 @@ def _get_provider_class_from_dict(**kwargs):
         if alternative in kwargs:
             alternative_attr = kwargs[alternative]
             if alternative_attr:
-                for name in ['class', 'cfg_class']:
+                for name in ['class', 'cfg_class', '_class']:
                     if hasattr(alternative_attr, name):
                         return getattr(alternative_attr, name)
 
@@ -269,7 +269,7 @@ def build_shared_instance(**kwargs):
     """
     shared_class_name = _get_provider_class_from_dict(**kwargs)
     if not shared_class_name:
-        raise TopologyException('internal: no shared folder class available in parent constructor')
+        raise TopologyException('internal: no shared folder class available')
 
     try:
         shared_class = PLUGINS_REGISTRIES['candelabra.provider'].plugins[shared_class_name].SHARED
@@ -286,7 +286,7 @@ def build_interface_instance(**kwargs):
     """
     provider_name = _get_provider_class_from_dict(**kwargs)
     if not provider_name:
-        raise TopologyException('internal: no provisioner class available in parent constructor')
+        raise TopologyException('internal: no provisioner class available')
 
     try:
         interface_class = PLUGINS_REGISTRIES['candelabra.provider'].plugins[provider_name].INTERFACE
@@ -296,3 +296,37 @@ def build_interface_instance(**kwargs):
         raise TopologyException(m)
 
     return interface_class(**kwargs)
+
+
+def build_guest_instance(**kwargs):
+    """ The factory for guests that returns a subclass fo Guest with the right node
+    """
+    guest_name = _get_provider_class_from_dict(**kwargs).lower()
+    if not guest_name:
+        raise TopologyException('internal: no provisioner class available')
+
+    try:
+        guest_class = PLUGINS_REGISTRIES['candelabra.guest'].plugins[guest_name].GUEST
+    except KeyError, e:
+        m = 'cannot build a guest of class %s' % guest_name
+        logger.warning(m)
+        raise TopologyException(m)
+
+    return guest_class(**kwargs)
+
+
+def build_communicator_instance(**kwargs):
+    """ The factory for communicator that returns a subclass fo Communicator with the right node
+    """
+    communicator_class_name = _get_provider_class_from_dict(**kwargs).lower()
+    if not communicator_class_name:
+        raise TopologyException('internal: no communicator class available')
+
+    try:
+        communicator_class = PLUGINS_REGISTRIES['candelabra.communicator'].plugins[communicator_class_name].COMMUNICATOR
+    except KeyError, e:
+        m = 'cannot build a communicator of class %s' % communicator_class_name
+        logger.warning(m)
+        raise TopologyException(m)
+
+    return communicator_class(**kwargs)

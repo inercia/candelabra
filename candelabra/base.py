@@ -8,6 +8,7 @@ Base module for some abstract classes.
 """
 
 from logging import getLogger
+from weakref import proxy
 
 logger = getLogger(__name__)
 
@@ -27,14 +28,36 @@ class Communicator(object):
     Communicators are communication channels with the machines. A typical communicator is 'ssh'.
     """
 
-    def __init__(self, machine, credentials):
-        """ Initialize a communication chanel to a :param:`machine` with some :param:`credentials`
+    def __init__(self, machine, **kwargs):
+        """ Initialize a communication chanel to a :param:`machine` of class :class:`MachineNode`
         """
+        from candelabra.topology.machine import MachineNode
+
+        assert isinstance(machine, MachineNode)
+        self.machine = proxy(machine)
+        self.connected = False
+
+    def run(self, command, environment=None):
         pass
 
-    def run(self, command):
+    def sudo(self, command, environment=None):
         pass
 
-    def sudo(self, command):
+
+class Guest(object):
+    """ A guest
+    """
+
+    def __init__(self, machine, communicator=None, **kwargs):
+        from candelabra.topology.machine import MachineNode
+
+        assert isinstance(machine, MachineNode)
+        assert isinstance(communicator, Communicator)
+        self.machine = proxy(machine)
+        self.communicator = proxy(communicator) if communicator else proxy(machine.communicator)
+
+    def mount(self, directory, mount_point):
+        """ Mount a directory on a mount point
+        """
         pass
 

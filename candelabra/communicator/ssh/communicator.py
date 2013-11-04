@@ -19,20 +19,22 @@ class SshCommunicator(Communicator):
     """ A communicator that communicates with a remote machine
     """
 
-    def __init__(self, machine, credentials):
+    def __init__(self, machine, **kwargs):
         """ Initialize a communicator with a remote machine
-        :param machine: a hostname or IP address, or a tuple with `(hostname/IP, port)`
+        :param machine: a :class:`MachineNode`
         :param credentials: a pair of `(username, password)`
         """
-        super(SshCommunicator, self).__init__(machine, credentials)
-        self.machine = (machine, DEFAULT_SSH_PORT) if not isinstance(machine, tuple) else machine
-        self.credentials = credentials
+        super(SshCommunicator, self).__init__(machine)
+        from candelabra.topology.machine import MachineNode
+        assert isinstance(machine, MachineNode)
 
-    def run(self, command):
+    def run(self, command, environment=None):
         env.host_string = "%s:%s" % self.machine
         run(command)
 
     def sudo(self, command):
         env.host_string = "%s:%s" % self.machine
-        sudo(command)
+        sudo(command, environment=None)
+
+
 

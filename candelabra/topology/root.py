@@ -146,7 +146,9 @@ class TopologyRoot(object):
                 logger.debug('nothing to do for "%s" in "%s"', task_name, machine)
                 continue
             else:
-                new_tasks = tasks_gen()
+                machine.clear_tasks()
+                tasks_gen()
+                new_tasks = machine.get_tasks()
                 assert all(isinstance(t, tuple) for t in new_tasks)
                 num_new_tasks = len(new_tasks)
                 if num_new_tasks:
