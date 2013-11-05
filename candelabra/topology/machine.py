@@ -206,8 +206,9 @@ class MachineNode(TopologyNode):
         """
         if self.is_running:
             logger.info('machine %s seems to be running', self.cfg_name)
+            self.add_task_seq(self.do_wait_userland)
             for iface in self.cfg_interfaces:
-                self.add_task_seq(iface.do_create)
+                self.add_task_seq(iface.do_iface_up)
         else:
             logger.error('machine %s is not running!', self.cfg_name)
             logger.error('... it must be running for this command (it will not be started automatically)')

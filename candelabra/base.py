@@ -41,7 +41,16 @@ class Communicator(object):
         pass
 
     def sudo(self, command, environment=None):
-        pass
+        """ Runs a command in the virtual machine with sudo
+        """
+        assert not isinstance(command, basestring)
+        assert isinstance(command, list)
+
+        sudo_command = self.machine.cfg_box.cfg_sudo_command
+        return self.run([sudo_command, 'sh', '-c', '"%s"' % ' '.join(command)])
+
+    def test(self, condition):
+        return bool(int(self.run('[ -e {condition} ] && echo 1 || echo 0'.format(condition=condition))))
 
 
 class Guest(object):

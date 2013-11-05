@@ -48,6 +48,7 @@ class VirtualboxCommunicator(Communicator):
 
         code = None
         stdout = ''
+        stderr = ''
         try:
             environment = [] if not environment else environment
             logger.debug('running "%s"', ' '.join(command))
@@ -71,10 +72,9 @@ class VirtualboxCommunicator(Communicator):
 
         return code, stdout, stderr
 
-    def sudo(self, command, environment=None):
-        """ Runs a command in the virtual machine with sudo
-        """
-        sudo_command = self.machine.cfg_box.cfg_sudo_command
-        return self.run([sudo_command, 'sh', '-c', ' '.join(command)])
-
-
+    def write_file(self, content, filename):
+        TEMP_FILE = '/tmp/candelabra_upload'
+        self.run(['/bin/touch', TEMP_FILE])
+        for line in content.splitlines():
+            self.run(['/bin/sh', '-c', '\"echo \'%s\' >> %s\"' % (line, TEMP_FILE)])
+        self.sudo(['mv', '-f', TEMP_FILE, filename])
