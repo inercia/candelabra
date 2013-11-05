@@ -32,7 +32,7 @@ class BoxNode(TopologyNode, TaskGenerator):
 
     Example: box1 has two appliances: a virtualbox appliance and a vmware appliance
 
-::
+.. code-block:: yaml
 
             - box1
               - virtualbox
@@ -168,7 +168,7 @@ class BoxNode(TopologyNode, TaskGenerator):
 
             appliance_path = os.path.join(self.path, 'unknown')
             if not os.path.exists(appliance_path):
-                logger.debug('creating unknown appliance directory "%s"', appliance_path)
+                logger.debug('creating unknown box directory "%s"', appliance_path)
                 os.makedirs(appliance_path)
 
             try:
@@ -189,7 +189,7 @@ class BoxNode(TopologyNode, TaskGenerator):
                     metadata = json.load(metadata_file)
                     provider = metadata["provider"]
 
-                    logger.debug('renaming appliance to "%s"', provider)
+                    logger.debug('renaming box to "%s"', provider)
                     fixed_appliance_path = os.path.join(self.path, provider)
                     os.rename(appliance_path, fixed_appliance_path)
 
