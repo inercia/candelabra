@@ -73,6 +73,8 @@ if __name__ == "__main__":
             'pyvbox',
             'pyaml',
             'colorlog',
+            'ssh',
+            'paramiko',
         ],
 
         test_suite='nose.collector',
