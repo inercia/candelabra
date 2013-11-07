@@ -112,7 +112,10 @@ html_theme_path = ['themes']
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 # use 'agogo', 'nature','haiku'
-html_theme = 'kr'
+
+#html_theme = 'kr'
+html_theme = 'kr_small'
+#html_theme = 'celery'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
