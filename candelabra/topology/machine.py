@@ -213,6 +213,12 @@ class MachineNode(TopologyNode):
             logger.error('machine %s is not running!', self.cfg_name)
             logger.error('... it must be running for this command (it will not be started automatically)')
 
+    def get_tasks_net_bridge(self):
+        """ Get the tasks needed for the command "net bridge"
+        """
+        logger.info('machine %s does not support bridge setup', self.cfg_name)
+        return []
+
     def get_tasks_net_show(self):
         """ Get the tasks needed for the command "net show"
         """

@@ -37,17 +37,23 @@ class Communicator(object):
         self.machine = proxy(machine)
         self.connected = False
 
-    def run(self, command, environment=None):
+    def run(self, command, environment=None, verbose=False):
         pass
 
-    def sudo(self, command, environment=None):
+    def sudo(self, command, environment=None, verbose=False):
         """ Runs a command in the virtual machine with sudo
         """
         assert not isinstance(command, basestring)
         assert isinstance(command, list)
 
         sudo_command = self.machine.cfg_box.cfg_sudo_command
-        return self.run([sudo_command, 'sh', '-c', '"%s"' % ' '.join(command)])
+        real_command = '%s' % ' '.join(command)
+        if len(real_command) > 0:
+            return self.run([sudo_command, 'sh', '-c', real_command])
+        else:
+            return None, None, None
+
+    def sudo_lines(self, commands_string, environment=None, verbose=False):
 
     def test(self, condition):
         return bool(int(self.run('[ -e {condition} ] && echo 1 || echo 0'.format(condition=condition))))

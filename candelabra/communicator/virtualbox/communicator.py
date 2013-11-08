@@ -8,6 +8,8 @@ A Virtualbox communicator plugin
 """
 
 from logging import getLogger
+import os
+import tempfile
 
 import virtualbox as _virtualbox
 
@@ -18,6 +20,9 @@ from candelabra.errors import CommunicatorNotConnectedException
 logger = getLogger(__name__)
 
 READ_BUFFER = 100000
+
+
+
 
 class VirtualboxCommunicator(Communicator):
     """ A communicator that communicates with a Virtualbox machine
@@ -33,7 +38,7 @@ class VirtualboxCommunicator(Communicator):
 
         assert isinstance(self.machine, VirtualboxMachineNode)
 
-    def run(self, command, environment=None):
+    def run(self, command, environment=None, verbose=False):
         """ Runs a command on the virtual machine
         """
         if not self.connected:
@@ -55,14 +60,16 @@ class VirtualboxCommunicator(Communicator):
             guest_process = guest_session.process_create(command[0], command[1:], environment,
                                                          [_virtualbox.library.ProcessCreateFlag.wait_for_std_out],
                                                          timeout_ms=self.machine.cfg_commands_timeout * 1000)
+
+            # wait for the command to finish
             guest_process.wait_for(_virtualbox.library.ProcessWaitForFlag.terminate._value,
                                    self.machine.cfg_commands_timeout * 1000)
 
             logger.debug('... pid=%d exit_code=%d', guest_process.pid, guest_process.exit_code)
             code = guest_process.exit_code
 
-            stdout = guest_process.read(0, READ_BUFFER, 1 * 1000)
-            stderr = guest_process.read(1, READ_BUFFER, 1 * 1000)
+            stdout = guest_process.read(0, READ_BUFFER, 0)
+            stderr = guest_process.read(1, READ_BUFFER, 0)
 
         except _virtualbox.library.VBoxErrorIprtError, e:
             logger.warning(str(e))
@@ -72,9 +79,42 @@ class VirtualboxCommunicator(Communicator):
 
         return code, stdout, stderr
 
-    def write_file(self, content, filename):
-        TEMP_FILE = '/tmp/candelabra_upload'
-        self.run(['/bin/touch', TEMP_FILE])
-        for line in content.splitlines():
-            self.run(['/bin/sh', '-c', '\"echo \'%s\' >> %s\"' % (line, TEMP_FILE)])
-        self.sudo(['mv', '-f', TEMP_FILE, filename])
+    def upload_file(self, local_filename, remote_filename, tmp_remote='/tmp'):
+        local_tmp_basename = os.path.basename(local_filename)
+        remote_tmp_filename = os.path.join(tmp_remote, local_tmp_basename)
+        s = self.machine.lock()
+        try:
+            guest_session = self.machine.get_guest_session(s)
+            guest_session.copy_to(local_filename, remote_tmp_filename, [])
+            guest_session.file_rename(remote_tmp_filename, remote_filename,
+                                      [_virtualbox.library.PathRenameFlag.replace])
+            guest_session.file_remove(remote_tmp_filename)
+        except _virtualbox.library.VBoxErrorIprtError, e:
+            logger.warning(str(e))
+        finally:
+            #guest_session.close()
+            self.machine.unlock(s)
+
+    def write_file(self, content, filename, tmp_remote='/tmp'):
+        """ Write some file contents to a file to the remote machine
+        """
+        local_tmp_fd, local_tmp_filename = tempfile.mkstemp(prefix='candelabra-')
+        os.write(local_tmp_fd, content)
+        os.close(local_tmp_fd)
+
+        local_tmp_basename = os.path.basename(local_tmp_filename)
+        remote_tmp_filename = os.path.join(tmp_remote, local_tmp_basename)
+
+        s = self.machine.lock()
+        try:
+            guest_session = self.machine.get_guest_session(s)
+            logger.debug('copying %s to %s...', local_tmp_filename, filename)
+            guest_session.copy_to(local_tmp_filename, filename, [])
+            # guest_session.file_rename(remote_tmp_filename, filename, [_virtualbox.library.PathRenameFlag.replace])
+            # guest_session.file_remove(remote_tmp_filename)
+        except _virtualbox.library.VBoxErrorIprtError, e:
+            logger.warning(str(e))
+        finally:
+            #guest_session.close()
+            self.machine.unlock(s)
+

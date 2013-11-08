@@ -303,6 +303,21 @@ class VirtualboxMachineNode(MachineNode):
         session.unlock_machine()
 
     #####################
+    # scheduling
+    #####################
+
+    def get_tasks_net_bridge(self):
+        """ Get the tasks needed for the command "net up"
+        """
+        if self.is_running:
+            logger.info('machine %s seems to be running', self.cfg_name)
+            self.add_task_seq(self.do_wait_userland)
+            self.add_task_seq(self.do_bridge)
+        else:
+            logger.error('machine %s is not running!', self.cfg_name)
+            logger.error('... it must be running for this command (it will not be started automatically)')
+
+    #####################
     # tasks
     #####################
 
@@ -469,6 +484,67 @@ class VirtualboxMachineNode(MachineNode):
             raise MachineException(str(e))
         finally:
             self.unlock(s)
+
+    def do_bridge(self):
+        """ Create a port bridge
+        """
+        # get a session, lock the machine and run the command
+        #s = self.lock()
+        #guest_session = self.get_guest_session(s)
+        #LISTEN_ADDR = ('0.0.0.0', 2222)
+        #
+        # import socket
+        # try:
+        #     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        #     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        #
+        #     logger.info('Binding to %s', str(LISTEN_ADDR))
+        #     sock.bind(LISTEN_ADDR)
+        #     sock.listen(1)
+        # except socket.error, e:
+        #     logger.warning('socket error: %s', str(e))
+        #     return
+        #
+        # conn, addr = sock.accept()
+        # logger.info('Connected from %s', str(addr))
+        #
+        # try:
+        #     command = ["/usr/bin/nc", "127.0.0.1", "22"]
+        #     logger.debug('running "%s"', ' '.join(command))
+        #     guest_process = guest_session.process_create(command[0], command[1:], [],
+        #                                                  [_virtualbox.library.ProcessCreateFlag.wait_for_std_out],
+        #                                                  timeout_ms=10 * 1000)
+        #
+        #     # wait for the command to start
+        #     guest_process.wait_for(_virtualbox.library.ProcessWaitForFlag.start._value,
+        #                            10 * 1000)
+        #     logger.debug('... pid=%d exit_code=%d', guest_process.pid, guest_process.exit_code)
+        #
+        #     conn.setblocking(False)
+        #     while True:
+        #         stdin = conn.recv(10000)
+        #         if not stdin:
+        #             break
+        #         else:
+        #             logger.debug('VM <-[ %d bytes ]- host', len(stdin))
+        #             guest_process.write(0, 0, stdin, 0)
+        #
+        #         stdout = guest_process.read(0, 100000, 10)
+        #         logger.debug('VM -[ %d bytes ]-> host', len(stdout))
+        #         if stdout:
+        #             conn.sendall(stdout)
+
+        #except _virtualbox.library.VBoxErrorIprtError, e:
+        #    logger.warning(str(e))
+        #except KeyboardInterrupt:
+        #    logger.info('Interrupted')
+        #finally:
+        #    #guest_session.close()
+        #    self.unlock(s)
+        #    #conn.close()
+        pass
+
+
 
     #####################
     # auxiliary

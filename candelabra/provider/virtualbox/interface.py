@@ -117,20 +117,7 @@ class VirtualboxInterfaceNode(InterfaceNode):
         # Accumulate the configurations to add to the interfaces file as
         # well as what interfaces we're actually configuring since we use that
         # later.
-        scripts_dir = '/etc/sysconfig/network-scripts/'
-
-        logger.debug('removing any previous file')
-        # Remove any previous vagrant configuration in this network interface's
-        # configuration files.
-        self.machine.communicator.sudo([
-            "touch {scripts_dir}/ifcfg-eth{iface}".format(iface=iface, scripts_dir=scripts_dir)])
-        self.machine.communicator.sudo([
-            "sed -e '/^#VAGRANT-BEGIN/,/^#VAGRANT-END/ d' {scripts_dir}/ifcfg-eth{iface} > /tmp/vagrant-ifcfg-eth{iface}".format(
-                iface=iface, scripts_dir=scripts_dir)])
-        self.machine.communicator.sudo([
-            "cat /tmp/vagrant-ifcfg-eth{iface} > {scripts_dir}/ifcfg-eth{iface}".format(iface=iface,
-                                                                                        scripts_dir=scripts_dir)])
-        self.machine.communicator.sudo(["rm /tmp/vagrant-ifcfg-eth{iface}".format(iface=iface)])
+        scripts_dir = '/etc/sysconfig/network-scripts'
 
         # Render and upload the network entry file to a deterministic
         # temporary location.
@@ -143,17 +130,27 @@ class VirtualboxInterfaceNode(InterfaceNode):
         logger.debug('saving template to temporal file...')
         self.machine.communicator.write_file(content, "/tmp/vagrant-network-entry_{iface}".format(iface=iface))
 
-        # Bring down all the interfaces we're reconfiguring. By bringing down
-        # each specifically, we avoid reconfiguring eth0 (the NAT interface) so
-        # SSH never dies.
+        # Remove any previous vagrant configuration in this network interface's
+        # configuration files.
+        COMMANDS = """
+        touch {scripts_dir}/ifcfg-eth{iface}
+        sed -e '/^#VAGRANT-BEGIN/,/^#VAGRANT-END/ d' {scripts_dir}/ifcfg-eth{iface} > /tmp/vagrant-ifcfg-eth{iface}
+        cat /tmp/vagrant-ifcfg-eth{iface} > {scripts_dir}/ifcfg-eth{iface}
+        rm -f /tmp/vagrant-ifcfg-eth{iface}
+
+        /sbin/ifdown eth{iface} 2> /dev/null
+        cat /tmp/vagrant-network-entry_{iface} >> {scripts_dir}/ifcfg-eth{iface}
+        ARPCHECK=no /sbin/ifup eth{iface} 2> /dev/null
+        rm -f /tmp/vagrant-network-entry_{iface}
+        """
         logger.debug('bringing down interface %s...', iface)
-        self.machine.communicator.sudo(["/sbin/ifdown eth{iface} 2> /dev/null".format(iface=iface)])
-        self.machine.communicator.sudo([
-            "cat /tmp/vagrant-network-entry_{iface} >> {scripts_dir}/ifcfg-eth{iface}".format(iface=iface,
-                                                                                              scripts_dir=scripts_dir)])
-        self.machine.communicator.sudo(["ARPCHECK=no /sbin/ifup eth{iface} 2> /dev/null".format(iface=iface,
-                                                                                                scripts_dir=scripts_dir)])
-        self.machine.communicator.sudo(["rm /tmp/vagrant-network-entry_{iface}".format(iface=iface)])
+        for line in COMMANDS.splitlines():
+            if line:
+                line_exp = line.format(iface=iface, scripts_dir=scripts_dir).strip()
+                code, stdout, stderr = self.machine.communicator.sudo(line_exp.split(' '))
+                if code > 0:
+                    for l in stderr.splitlines():
+                        logger.debug('stderr: %s', l)
 
         setattr(self._container, '_num_ifaces_setup', iface + 1)
         sleep(1.0)
