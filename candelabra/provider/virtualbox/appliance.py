@@ -10,6 +10,9 @@ from candelabra.boxes import BoxesStorage
 
 from candelabra.errors import UnsupportedBoxException, ImportException
 
+import virtualbox as _virtualbox
+
+
 logger = getLogger(__name__)
 
 
@@ -57,7 +60,7 @@ class VirtualboxAppliance(object):
         appliance.interpret()
 
         logger.info('... importing the machines')
-        progress = appliance.import_machines([])
+        progress = appliance.import_machines([_virtualbox.library.ImportOptions.keep_natma_cs])
         logger.info('... waiting for import to finish')
         progress.wait_for_completion(-1)
 

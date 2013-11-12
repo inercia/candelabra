@@ -20,6 +20,13 @@ from candelabra.constants import LOG_CONSOLE_FORMAT_DEBUG, LOG_CONSOLE_FORMAT, L
 # supported log levels
 LOGLEVELS = [l for l in logging._levelNames if isinstance(l, basestring)]
 
+DEFAULT_LOG_COLORS = {
+    'DEBUG':    'cyan',
+    'INFO':     'green',
+    'WARNING':  'yellow',
+    'ERROR':    'red',
+    'CRITICAL': 'bold_red',
+}
 
 def setup_console(level=logging.INFO, date_format=None):
     """ Setup the logging in console
@@ -35,6 +42,7 @@ def setup_console(level=logging.INFO, date_format=None):
         log_format_console,
         datefmt=None,
         reset=True,
+        log_colors=DEFAULT_LOG_COLORS,
     )
     hdlr.setFormatter(formatter)
     hdlr.setLevel(level)

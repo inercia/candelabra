@@ -32,7 +32,8 @@ class DestroyCommandPlugin(CommandPlugin):
     def run(self, args, command):
         """ Run the command
         """
-        self.run_with_topology(args, args.topology, command)
+        topology = self.run_with_topology(args, args.topology, command, save_state=False)
+        topology.state.remove()
 
 
 command = DestroyCommandPlugin()

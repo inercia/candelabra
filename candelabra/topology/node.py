@@ -26,7 +26,7 @@ class TopologyAttribute(object):
     * a unique **uuid**, usually established by the Candelabra engine.
     """
 
-    def __init__(self, constructor, default=_unset, doc='', inherited=False, copy=False):
+    def __init__(self, constructor, default=_unset, doc='', inherited=False, copy=False, append=False):
         """
         Initialize a topology node attribute
 
@@ -48,6 +48,7 @@ class TopologyAttribute(object):
         self.inherited = inherited
         self.copy = copy
         self.doc = doc
+        self.append = append
 
     @staticmethod
     def setall(container, dictionary, known_attributes):
@@ -79,9 +80,12 @@ class TopologyAttribute(object):
                 value = dictionary[attr_name]
                 if attr_instance.constructor:
                     constructed_value = recursive_builder(value, attr_instance.constructor)
+                    if attr_instance.append:
+                        constructed_value = getattr(container, 'cfg_' + attr_name) + constructed_value
                 else:
                     constructed_value = attr_instance.default
                 setattr(container, 'cfg_' + attr_name, constructed_value)
+
             elif attr_instance.copy and container._parent:
                 parent_value = getattr(container._parent, 'cfg_' + attr_name, _unset)
                 if parent_value is not _unset:
@@ -99,6 +103,7 @@ class TopologyAttribute(object):
                 setattr(container, 'cfg_' + attr_name, attr_instance.default)
             else:
                 assert attr_instance.inherited
+                assert attr_instance.default is _unset
                 # do not try to set the default value if it was not set
                 # so __getattr__ will be invoked and we will look for the value in the parent object
 

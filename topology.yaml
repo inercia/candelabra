@@ -1,31 +1,45 @@
 candelabra:
 
-  default:
+    default:
 
-    class:        virtualbox
+        class:                      virtualbox
 
-    box:
-      name:       test
-      url:        http://shonky.info/centos64.box
+        box:
+            class:                  vagrant
+            name:                   test
+            url:                    http://shonky.info/centos64.box
 
-    provisioner:
-      - class:    puppet
-        manifest: puppet/manifest1.pp
-      - class:    puppet
-        manifest: puppet/manifest2.pp
+        provisioners:
+            - class:                puppet
+              manifest:             puppet/manifest1.pp
+            - class:                puppet
+              manifest:             puppet/manifest2.pp
 
-    shared:
-      - local:    docs
-        remote:   /home/docs
-      - local:    $HOME
-        remote:   /home/host_home
+        shared:
+            - local:                docs
+              remote:               /home/docs
+            - local:                $HOME
+              remote:               /home/host_home
 
-  machines:
+    networks:
 
-    - machine:
-        name:     vm1
-        hostname: vm1
-        gui:      gui
-        network:
-          class:  automatic
-          ip:     dhcp
+        - network:
+                scope:              private
+                name:               net1
+
+        - network:
+                scope:              private
+                name:               net2
+
+    machines:
+
+        - machine:
+                name:               vm1
+                hostname:           vm1
+                gui:                gui
+                interfaces:
+                    - name:         iface-1
+                      connected:    net1
+                    - name:         iface-2
+                      connected:    net2
+

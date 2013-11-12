@@ -16,20 +16,18 @@ from candelabra.topology.node import TopologyNode, TopologyAttribute
 
 logger = getLogger(__name__)
 
-#: supported interface types
-INTERFACE_TYPES = {
-    'nat',
-    'host-only',
+#: how an interface can get an IP address
+_SUPPORTED_IFACE_TYPES = {
+    'dhcp',
+    'static'
 }
 
-#: how an interface can get an IP address
-GET_IP_TYPES = {'dhcp', 'static'}
-
-#: default interfaces that will be added if nothing is specified...
+#: default interfaces that will be added
 DEFAULT_INTERFACES = [
     {
-        'type': 'nat',
-        'ip': 'automatic',
+        'name': 'nat-iface',
+        'type': 'dhcp',
+        'connected': 'nat',
     }
 ]
 
@@ -44,11 +42,11 @@ class InterfaceNode(TopologyNode):
     """
 
     __known_attributes = {
-        'type': TopologyAttribute(constructor=str, default='nat', inherited=True),
+        'type': TopologyAttribute(constructor=str, default='dhcp', inherited=True),
         'ip': TopologyAttribute(constructor=str, default='', inherited=True),
         'netmask': TopologyAttribute(constructor=str, default='', inherited=True),
         'ifname': TopologyAttribute(constructor=str, default='', inherited=True),
-        'get_ip': TopologyAttribute(constructor=str, default='dhcp', inherited=True),
+        'connected': TopologyAttribute(constructor=str, default='', inherited=True),
     }
 
     def __init__(self, _parent=None, **kwargs):
@@ -58,19 +56,48 @@ class InterfaceNode(TopologyNode):
         TopologyAttribute.setall(self, kwargs, self.__known_attributes)
 
         # check the attributes
-        if self.cfg_type:
-            if not self.cfg_type in INTERFACE_TYPES:
-                raise MalformedTopologyException('unkown interface type %s: should be one of %s',
-                                                 self.cfg_type,
-                                                 INTERFACE_TYPES)
+        if self.cfg_type not in _SUPPORTED_IFACE_TYPES:
+            raise MalformedTopologyException('unknown interface type "%s": should be one of %s' % (
+                self.cfg_type, _SUPPORTED_IFACE_TYPES))
 
-        if self.cfg_get_ip not in GET_IP_TYPES:
-            raise MalformedTopologyException('unknown method for getting an IP %s: should be one of %s',
-                                             self.cfg_get_ip,
-                                             GET_IP_TYPES)
+        if not self.machine.is_global:
+            if not self.cfg_connected:
+                raise MalformedTopologyException('interfaces must be "connected" to some network')
 
+            # get the network this interface is connected to, but as a NetworkNode (or subclass) instance
+            network = self.machine._parent.get_network_by_name(self.cfg_connected)
+            if not network:
+                raise MalformedTopologyException('network "%s" not defined' % self.cfg_connected)
+            self.cfg_connected = network
+
+        # private attributes
+        self._created = False
 
     def do_iface_create(self):
         """ Create a network interface
         """
         logger.debug('interface create: nothing to do')
+
+    @property
+    def machine(self):
+        """ Return the machine where this insterface s installed
+        :returns: a :class:`MachineNode`: instance
+        """
+        return self._container
+
+    #####################
+    # auxiliary
+    #####################
+
+    def __repr__(self):
+        extra = []
+        if self.cfg_name:
+            extra += ['name:%s' % self.cfg_name]
+        if self.cfg_class:
+            extra += ['class:%s' % self.cfg_class]
+        if self.cfg_connected:
+            extra += ['connected-to:%s' % self.cfg_connected.cfg_name]
+
+        return "<%s(%s) at 0x%x>" % (self.__class__.__name__, ','.join(extra), id(self))
+
+

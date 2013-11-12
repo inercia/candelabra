@@ -118,3 +118,12 @@ class State(object):
             return self._machines[machine]
         else:
             return {}
+
+    def remove(self):
+        """ Remove the state file, if it exists
+        """
+        if self._filename:
+            try:
+                os.remove(self._filename)
+            except IOError:
+                pass

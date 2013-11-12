@@ -204,14 +204,15 @@ class VirtualboxMachineNode(MachineNode):
     def get_state(self):
         """ Get the VirtualBox machine state, as a recognized state code
         """
-        try:
-            return _VIRTUALBOX_ST_TO_STATES[self.machine.state._value][0]
-        except AttributeError, e:
-            logger.debug('no machine state available: %s', str(e))
-            return STATE_UNKNOWN[0]
-        except KeyError, e:
-            logger.debug('no machine state available: %s', str(e))
-            return STATE_UNKNOWN[0]
+        if self.machine:
+            try:
+                return _VIRTUALBOX_ST_TO_STATES[self.machine.state._value][0]
+            except AttributeError, e:
+                logger.debug('no machine state available: %s', str(e))
+            except KeyError, e:
+                logger.debug('no machine state available: %s', str(e))
+
+        return STATE_UNKNOWN[0]
 
     def wait_for_event(self, event, timeout=10000):
         """ Wait for an event

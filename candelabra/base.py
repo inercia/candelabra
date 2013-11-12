@@ -53,7 +53,16 @@ class Communicator(object):
         else:
             return None, None, None
 
-    def sudo_lines(self, commands_string, environment=None, verbose=False):
+    def sudo_lines(self, commands_string, environment=None, verbose=False, **kwargs):
+        """ Run a a list of lines, provided as a long string
+        """
+        for line in commands_string.splitlines():
+            if line:
+                line_exp = line.format(**kwargs).strip()
+                code, stdout, stderr = self.machine.communicator.sudo(line_exp.split(' '))
+                if code > 0:
+                    for l in stderr.splitlines():
+                        logger.debug('stderr: %s', l)
 
     def test(self, condition):
         return bool(int(self.run('[ -e {condition} ] && echo 1 || echo 0'.format(condition=condition))))

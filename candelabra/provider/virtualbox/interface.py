@@ -56,19 +56,6 @@ class VirtualboxInterfaceNode(InterfaceNode):
     def do_iface_create(self):
         """ Setup the net
         """
-        #try:
-        #    logger.info('... creating NAT')
-        #    network = self._vbox.create_nat_network(NAT_NETWORK)
-        #    network.enabled = True
-        #    logger.info('...... name: %s', network.network_name)
-        #    logger.info('...... net: %s', network.network)
-        #except _virtualbox.library.VBoxErrorIprtError, e:
-        #    logger.warning(str(e))
-
-        # get the maximum number of adapters
-        #properties = self._vbox.system_properties
-        ##properties.get_max_network_adapters()
-
         num_iface = getattr(self._container, '_num_ifaces_setup', 0)
         logger.info('setting up network device num:%d', num_iface)
 
@@ -137,27 +124,19 @@ class VirtualboxInterfaceNode(InterfaceNode):
         sed -e '/^#VAGRANT-BEGIN/,/^#VAGRANT-END/ d' {scripts_dir}/ifcfg-eth{iface} > /tmp/vagrant-ifcfg-eth{iface}
         cat /tmp/vagrant-ifcfg-eth{iface} > {scripts_dir}/ifcfg-eth{iface}
         rm -f /tmp/vagrant-ifcfg-eth{iface}
-
         /sbin/ifdown eth{iface} 2> /dev/null
         cat /tmp/vagrant-network-entry_{iface} >> {scripts_dir}/ifcfg-eth{iface}
         ARPCHECK=no /sbin/ifup eth{iface} 2> /dev/null
         rm -f /tmp/vagrant-network-entry_{iface}
         """
-        logger.debug('bringing down interface %s...', iface)
-        for line in COMMANDS.splitlines():
-            if line:
-                line_exp = line.format(iface=iface, scripts_dir=scripts_dir).strip()
-                code, stdout, stderr = self.machine.communicator.sudo(line_exp.split(' '))
-                if code > 0:
-                    for l in stderr.splitlines():
-                        logger.debug('stderr: %s', l)
+        self.machine.communicator.sudo_lines(COMMANDS, iface=iface, scripts_dir=scripts_dir)
 
         setattr(self._container, '_num_ifaces_setup', iface + 1)
         sleep(1.0)
 
-        #####################
-        # auxiliary
-        #####################
+    #####################
+    # auxiliary
+    #####################
 
     def __repr__(self):
         """ The representation
@@ -169,5 +148,7 @@ class VirtualboxInterfaceNode(InterfaceNode):
             extra += ['uuid:%s' % self.cfg_uuid]
         if self.cfg_type:
             extra += ['type=%s' % self.cfg_type]
+        if self.cfg_connected and isinstance(self.cfg_connected, InterfaceNode):
+            extra += ['connected-to:%s' % self.cfg_connected.cfg_name]
 
         return "<VirtualboxInterface(%s) at 0x%x>" % (','.join(extra), id(self))

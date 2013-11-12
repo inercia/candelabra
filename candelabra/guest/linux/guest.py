@@ -61,8 +61,8 @@ class LinuxGuest(Guest):
         # Get the current hostname
         # if existing fqdn setup improperly, this returns just hostname
         old = ''
-        command = "hostname -f"
-        code, stdout, stderr = self.communicator.sudo(command)
+        COMMAND = "hostname -f"
+        code, stdout, stderr = self.communicator.sudo(COMMAND)
         if len(stdout):
             old = stdout
 
@@ -70,30 +70,30 @@ class LinuxGuest(Guest):
         old_1 = old.split('.')[0]
         name_1 = name.split('.')[0]
         if old_1 != name_1:
-
-            self.communicator.sudo("sed -i 's/.*$/{name_1}/' /etc/hostname".format(name_1=name_1))
-
             # hosts should resemble:
             # 127.0.0.1   localhost host.fqdn.com host
             # 127.0.1.1   host.fqdn.com host
-            self.communicator.sudo(
-                "sed -ri 's@^(([0-9]{1,3}\.){3}[0-9]{1,3})\\s+(localhost)\\b.*$@\\1\\t{name} {name_1} \\3@g' /etc/hosts".format(
-                    name=name,
-                    name_1=name_1))
 
-            self.communicator.sudo(
-                "sed -ri 's@^(([0-9]{1,3}\.){3}[0-9]{1,3})\\s+({old_1})\\b.*$@\\1\\t{name} {name_1}@g' /etc/hosts".format(
-                    old_1=old_1,
-                    name=name,
-                    name_1=name_1))
+            COMMAND = """
+            sed -i 's/.*$/{name_1}/' /etc/hostname
+            sed -ri 's@^(([0-9]{1,3}\.){3}[0-9]{1,3})\\s+(localhost)\\b.*$@\\1\\t{name} {name_1} \\3@g' /etc/hosts
+            sed -ri 's@^(([0-9]{1,3}\.){3}[0-9]{1,3})\\s+({old_1})\\b.*$@\\1\\t{name} {name_1}@g' /etc/hosts
+            """
 
             if self.communicator.test("`lsb_release -c -s` = hardy"):
-            # hostname.sh returns 1, so I grep for the right name in /etc/hostname just to have a 0 exitcode
-                self.communicator.sudo(("/etc/init.d/hostname.sh start; grep '{name}' /etc/hostname".format(name=name)))
-
+                # hostname.sh returns 1, so I grep for the right name in /etc/hostname just to have a 0 exitcode
+                COMMAND += """
+                /etc/init.d/hostname.sh start; grep '{name}' /etc/hostname
+                """
             else:
-                self.communicator.sudo("service hostname start")
+                COMMAND += """
+                service hostname start
+                """
 
-            self.communicator.sudo("hostname --fqdn > /etc/mailname")
-            self.communicator.sudo("ifdown -a; ifup -a; ifup -a --allow=hotplug")
+            COMMAND += """
+            hostname --fqdn > /etc/mailname
+            ifdown -a; ifup -a; ifup -a --allow=hotplug
+            """
+
+            self.communicator.sudo_lines(COMMAND, old_1=old_1, name=name, name_1=name_1)
 

@@ -230,7 +230,7 @@ def _get_provider_class_from_dict(**kwargs):
     return config.get_key(CFG_DEFAULT_PROVIDER)
 
 
-def _get_class(_family, _attr, _name, **kwargs):
+def _get_instance_from_plugin(_family, _attr, _name, **kwargs):
     _class_name = _get_provider_class_from_dict(**kwargs).lower()
     if not _class_name:
         raise TopologyException('internal: no %s class available' % (_name))
@@ -248,36 +248,42 @@ def _get_class(_family, _attr, _name, **kwargs):
 def build_machine_instance(**kwargs):
     """ The factory for machine that returns a subclass fo MachineNode with the right node
     """
-    return _get_class('candelabra.provider', 'MACHINE', 'communicator', **kwargs)
+    return _get_instance_from_plugin('candelabra.provider', 'MACHINE', 'communicator', **kwargs)
 
 
 def build_provisioner_instance(**kwargs):
     """ The factory for provisioners that returns a subclass fo Provisioner with the right node
     """
-    return _get_class('candelabra.provisioner', 'PROVISIONER', 'provisioner', **kwargs)
+    return _get_instance_from_plugin('candelabra.provisioner', 'PROVISIONER', 'provisioner', **kwargs)
 
 
 def build_shared_instance(**kwargs):
     """ The factory for shared folders that returns a subclass fo SharedNode with the right node
     """
-    return _get_class('candelabra.provider', 'SHARED', 'shared folder', **kwargs)
+    return _get_instance_from_plugin('candelabra.provider', 'SHARED', 'shared folder', **kwargs)
+
+
+def build_network_instance(**kwargs):
+    """ The factory for networks that returns a subclass fo NetworkNode with the right node
+    """
+    return _get_instance_from_plugin('candelabra.provider', 'NETWORK', 'network', **kwargs)
 
 
 def build_interface_instance(**kwargs):
     """ The factory for interfaces that returns a subclass fo InterfaceNode with the right node
     """
-    return _get_class('candelabra.provider', 'INTERFACE', 'interface', **kwargs)
+    return _get_instance_from_plugin('candelabra.provider', 'INTERFACE', 'interface', **kwargs)
 
 
 def build_guest_instance(**kwargs):
     """ The factory for guests that returns a subclass fo Guest with the right node
     """
-    return _get_class('candelabra.guest', 'GUEST', 'guest', **kwargs)
+    return _get_instance_from_plugin('candelabra.guest', 'GUEST', 'guest', **kwargs)
 
 
 def build_communicator_instance(**kwargs):
     """ The factory for communicator that returns a subclass fo Communicator with the right node
     """
-    return _get_class('candelabra.communicator', 'COMMUNICATOR', 'communicator', **kwargs)
+    return _get_instance_from_plugin('candelabra.communicator', 'COMMUNICATOR', 'communicator', **kwargs)
 
 

@@ -37,7 +37,7 @@ STR_TO_STATE = {v: k for k, v in STATES_ALL}
 
 ########################################################################################################################
 
-from candelabra.plugins import build_shared_instance, build_provisioner_instance, build_interface_instance
+from candelabra.plugins import build_shared_instance, build_provisioner_instance, build_interface_instance, build_network_instance
 
 
 class MachineNode(TopologyNode):
@@ -57,8 +57,9 @@ class MachineNode(TopologyNode):
     __known_attributes = {
         'box': TopologyAttribute(constructor=BoxNode, inherited=True),
         'hostname': TopologyAttribute(constructor=str, default='', inherited=True),
-        'interfaces': TopologyAttribute(constructor=build_interface_instance, default=[], copy=True),
-        'provisioner': TopologyAttribute(constructor=build_provisioner_instance, default=[], copy=True),
+        'interfaces': TopologyAttribute(constructor=build_interface_instance, default=[], copy=True, append=True),
+        'networks': TopologyAttribute(constructor=build_network_instance, inherited=True),
+        'provisioners': TopologyAttribute(constructor=build_provisioner_instance, default=[], copy=True),
         'shared': TopologyAttribute(constructor=build_shared_instance, default=[], copy=True),
     }
 
@@ -129,6 +130,10 @@ class MachineNode(TopologyNode):
     is_stopping = property(lambda self: self.get_state() == STATE_STOPPING[0],
                            doc='True if the machine is stopping')
 
+    #####################
+    # properties
+    #####################
+
     def get_communicator_ip(self):
         """ Get the IP where a communicator can connect to
         """
@@ -136,6 +141,14 @@ class MachineNode(TopologyNode):
 
     communicator_ip = property(lambda self: self.get_communicator_ip(),
                                doc='get an IP where the communicator can connect to')
+
+    def get_network_by_name(self, name):
+        """ Get a network given a name
+        """
+        for network in self.cfg_networks:
+            if network.cfg_name == name:
+                return network
+        return None
 
     #####################
     # tasks: sched
@@ -162,6 +175,8 @@ class MachineNode(TopologyNode):
         if self.is_running:
             logger.info('machine %s seems to be running', self.cfg_name)
         else:
+            for network in self.cfg_networks:
+                self.add_task_seq(network.do_network_create)
             for iface in self.cfg_interfaces:
                 self.add_task_seq(iface.do_iface_create)
 
@@ -197,8 +212,7 @@ class MachineNode(TopologyNode):
     def get_tasks_destroy(self):
         """ Get the tasks needed for the command "destroy"
         """
-        if self.is_running:
-            self.add_task_seq(self.do_power_down)
+        self.get_tasks_down()
         self.add_task_seq(self.do_destroy)
 
     def get_tasks_net_up(self):
@@ -207,6 +221,8 @@ class MachineNode(TopologyNode):
         if self.is_running:
             logger.info('machine %s seems to be running', self.cfg_name)
             self.add_task_seq(self.do_wait_userland)
+            for network in self.cfg_networks:
+                self.add_task_seq(network.do_network_up)
             for iface in self.cfg_interfaces:
                 self.add_task_seq(iface.do_iface_up)
         else:
@@ -289,4 +305,22 @@ class MachineNode(TopologyNode):
 
         return "<Machine(%s) at 0x%x>" % (','.join(extra), id(self))
 
+    def pretty_print(self, prefix=''):
+        logger.debug('%s %s', prefix, str(self))
+
+        logger.debug('%s ... shared:', prefix)
+        for s in self.cfg_shared:
+            logger.debug('%s ...... %s', prefix, s)
+
+        logger.debug('%s ... networks:', prefix)
+        for n in self.cfg_networks:
+            logger.debug('%s ...... %s', prefix, n)
+
+        logger.debug('%s ... interfaces:', prefix)
+        for i in self.cfg_interfaces:
+            logger.debug('%s ...... %s', prefix, i)
+
+        logger.debug('%s ... provisioners:', prefix)
+        for p in self.cfg_provisioners:
+            logger.debug('%s ...... %s', prefix, p)
 

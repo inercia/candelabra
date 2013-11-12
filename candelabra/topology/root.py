@@ -17,12 +17,13 @@ The root provides some convenience methods for running a task on all the nodes i
 from logging import getLogger
 import os
 import pyaml
+import yaml
 
-from candelabra.constants import YAML_ROOT, YAML_SECTION_DEFAULT, YAML_SECTION_MACHINES, DEFAULT_TOPOLOGY_DIR_GUESSES, DEFAULT_TOPOLOGY_FILE_GUESSES
+from candelabra.constants import YAML_ROOT, YAML_SECTION_DEFAULT, YAML_SECTION_MACHINES, DEFAULT_TOPOLOGY_DIR_GUESSES, DEFAULT_TOPOLOGY_FILE_GUESSES, YAML_SECTION_NETWORKS
 from candelabra.errors import TopologyException
-from candelabra.plugins import PLUGINS_REGISTRIES, build_machine_instance, build_interface_instance
+from candelabra.plugins import build_machine_instance, build_interface_instance, build_network_instance
 from candelabra.topology.interface import DEFAULT_INTERFACES
-from candelabra.topology.machine import MachineNode
+from candelabra.topology.network import DEFAULT_NETWORKS
 from candelabra.topology.state import State
 
 logger = getLogger(__name__)
@@ -52,9 +53,10 @@ class TopologyRoot(object):
         """ Initialize a topology definition
         """
         self._filename = None
-        self._machines = []
         self._yaml = None
         self._global_machine = None
+        self._networks = []
+        self._machines = []
         self._state = State(self)
 
     def load(self, filename):
@@ -68,8 +70,11 @@ class TopologyRoot(object):
             logger.info('no previous state found for this topology')
 
         logger.info('topology: loading from "%s"...', self._filename)
-        with open(self._filename) as infile:
-            y = pyaml.yaml.safe_load(infile)
+        try:
+            with open(self._filename) as infile:
+                y = pyaml.yaml.safe_load(infile)
+        except yaml.scanner.ScannerError, e:
+            raise TopologyException('malformed topology file: %s' % str(e))
 
         try:
             self._yaml = y[YAML_ROOT]
@@ -82,11 +87,32 @@ class TopologyRoot(object):
             logger.debug('topology: loading globals...')
             global_dict = self._yaml[YAML_SECTION_DEFAULT]
             self._global_machine = build_machine_instance(**global_dict)
-            logger.debug('topology: ... %s', self._global_machine)
-            if len(self._global_machine.cfg_interfaces) == 0:
-                for iface_desc in DEFAULT_INTERFACES:
-                    iface = build_interface_instance(_container=self._global_machine, **iface_desc)
-                    self._global_machine.cfg_interfaces.append(iface)
+
+            # create all the default networks
+            default_networks = [build_network_instance(_container=self._global_machine, **desc)
+                                for desc in DEFAULT_NETWORKS]
+
+            # process all the networks found in the topology file, and add them to the global machine
+            global_networks = []
+            if YAML_SECTION_NETWORKS in self._yaml:
+                logger.debug('topology: loading networks...')
+                networks_list = self._yaml[YAML_SECTION_NETWORKS]
+                for network in networks_list:
+                    if 'network' in network:
+                        network_definition = network['network']
+                        network_inst = build_network_instance(_container=self._global_machine, **network_definition)
+                        global_networks.append(network_inst)
+
+            self._global_machine.cfg_networks = default_networks + global_networks
+
+            # add the default network interfaces to the global machine (the default interfaces are added first)
+            default_ifaces = [build_interface_instance(_container=self._global_machine, **desc)
+                              for desc in DEFAULT_INTERFACES]
+            self._global_machine.cfg_interfaces = default_ifaces + self._global_machine.cfg_interfaces
+
+            # done! we have the global machine ready!!
+            logger.debug('topology: global machine:')
+            self._global_machine.pretty_print(prefix='topology:')
 
         # process all the machines found in the topology file
         if YAML_SECTION_MACHINES in self._yaml:
@@ -100,6 +126,7 @@ class TopologyRoot(object):
                     # try to locate the state file...
                     machine_state = self._state.get_machine_state(machine_name)
                     if machine_state:
+                        # check if there is some valid information for this machine, like a valid UUID
                         if 'uuid' in machine_state:
                             logger.debug('topology: ... updating %s with saved state', machine_name)
                             machine_definition.update(machine_state)
@@ -107,7 +134,7 @@ class TopologyRoot(object):
                         else:
                             logger.warning('data for %s in state file seems useless... ignoring', machine_name)
 
-                    # load the machine class (ie, VirtualboxMachine)
+                    # get the right instance for this machine class (ie, VirtualboxMachine)
                     machine_inst = build_machine_instance(_parent=self._global_machine, **machine_definition)
                     self._machines.append(machine_inst)
 
@@ -115,13 +142,7 @@ class TopologyRoot(object):
 
             logger.debug('topology: loaded the following machines:')
             for m in self._machines:
-                logger.debug('topology: ... %s', m)
-                for s in m.cfg_shared:
-                    logger.debug('topology: ...... %s', s)
-                for i in m.cfg_interfaces:
-                    logger.debug('topology: ...... %s', i)
-                for p in m.cfg_provisioner:
-                    logger.debug('topology: ...... %s', p)
+                m.pretty_print(prefix='topology:')
 
     @property
     def state(self):
