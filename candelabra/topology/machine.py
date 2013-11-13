@@ -67,10 +67,10 @@ class MachineNode(TopologyNode):
         'state'
     }
 
-    def __init__(self, _parent=None, **kwargs):
+    def __init__(self, **kwargs):
         """ Initialize a machines definition
         """
-        super(MachineNode, self).__init__(_parent=_parent, **kwargs)
+        super(MachineNode, self).__init__(**kwargs)
 
         # set the default class for nodes if it has not been set
         if not self.cfg_class:

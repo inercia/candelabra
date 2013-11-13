@@ -40,10 +40,10 @@ class InterfaceNode(TopologyNode):
         TopologyAttribute('connected', str, default='', inherited=True),
     ]
 
-    def __init__(self, _parent=None, **kwargs):
+    def __init__(self, **kwargs):
         """ Initialize a network interface in the machine
         """
-        super(InterfaceNode, self).__init__(_parent=_parent, **kwargs)
+        super(InterfaceNode, self).__init__(**kwargs)
         TopologyAttribute.setall(self, kwargs, self.__known_attributes)
 
         # check the attributes

@@ -61,53 +61,54 @@ class TopologyAttribute(object):
         for referring to this instance.
         """
 
-        def recursive_constructor(value, constructor):
-            if isinstance(value, (list, tuple)):
-                constructed_value = [recursive_constructor(value_item, constructor) for value_item in value]
-            elif isinstance(value, dict):
-                constructed_value = constructor(_container=container, **value)
-            else:
-                constructed_value = constructor(value)
-            return constructed_value
+        def simple_constructor(attr_instance, attr_name):
+            def recursive_constructor(value, constructor):
+                if isinstance(value, (list, tuple)):
+                    constructed_value = [recursive_constructor(value_item, constructor) for value_item in value]
+                elif isinstance(value, dict):
+                    constructed_value = constructor(_container=container, **value)
+                else:
+                    constructed_value = constructor(value)
+                return constructed_value
 
-        def copy_constructor(parent_value, container, attr_name):
-            def copy_builder(value, container, attr_name):
+            if attr_instance.constructor:
+                return recursive_constructor(dictionary[attr_name], attr_instance.constructor)
+            else:
+                return attr_instance.default
+
+        def copy_constructor(parent_value, container):
+            def copy_builder(value, container):
                 v = copy(value)
                 if hasattr(v, '_container'):
                     v._container = container
                 return v
 
             if isinstance(parent_value, (list, tuple)):
-                copied_value = [copy_builder(v, container, attr_name) for v in parent_value]
+                return [copy_builder(v, container) for v in parent_value]
             else:
-                copied_value = copy_builder(parent_value, container, attr_name)
-            return copied_value
+                return copy_builder(parent_value, container)
 
+        # iterate for each known attribute...
         for attr_instance in known_attributes:
             attr_name = attr_instance.name
             assert isinstance(attr_instance, TopologyAttribute)
 
             if attr_instance.copy and container._parent:
+                # get the parent value (if it exists), and copy it
                 parent_value = getattr(container._parent, 'cfg_' + attr_name, _unset)
                 if parent_value is not _unset:
-                    copied_value = copy_constructor(parent_value, container, attr_name)
-
-                    if attr_instance.append:
-                        parent_value = getattr(container, 'cfg_' + attr_name, [])
-                        copied_value = copy_constructor(parent_value, container, attr_name) + copied_value
-
-                    setattr(container, 'cfg_' + attr_name, copied_value)
-
+                    copied_value = copy_constructor(parent_value, container)
                 elif attr_instance.default is not _unset:
-                    setattr(container, 'cfg_' + attr_name, attr_instance.default)
+                    copied_value = attr_instance.default
+
+                # ... maybe we must append a locally generated attribute
+                if attr_instance.append:
+                    copied_value += simple_constructor(attr_instance, attr_name)
+
+                setattr(container, 'cfg_' + attr_name, copied_value)
 
             elif attr_name in dictionary:
-                value = dictionary[attr_name]
-
-                if attr_instance.constructor:
-                    constructed_value = recursive_constructor(value, attr_instance.constructor)
-                else:
-                    constructed_value = attr_instance.default
+                constructed_value = simple_constructor(attr_instance, attr_name)
                 setattr(container, 'cfg_' + attr_name, constructed_value)
 
             elif attr_instance.default is not _unset:
@@ -198,5 +199,4 @@ class TopologyNode(TaskGenerator):
             extra += ['class:%s' % self.cfg_class]
 
         return "<%s(%s) at 0x%x>" % (self.__class__.__name__, ','.join(extra), id(self))
-
 

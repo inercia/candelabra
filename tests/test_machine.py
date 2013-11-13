@@ -66,6 +66,7 @@ class MachineParsingTestSuite(CandelabraTestBase):
 
         # check the machine and some basic properties
         vm1_machine = root.get_machine_by_name('vm1')
+        self.assertGreaterEqual(len(root.machines), 0)
         self.assertIsNotNone(vm1_machine)
         self.assertIsInstance(vm1_machine, VirtualboxMachineNode)
         self.assertEquals(vm1_machine.cfg_gui, 'gui')
