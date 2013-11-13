@@ -7,8 +7,6 @@
 A SSH communicator plugin
 """
 
-from fabric.api import env, run, sudo
-
 from candelabra.base import Communicator
 
 #: default ssh port
@@ -29,10 +27,12 @@ class SshCommunicator(Communicator):
         assert isinstance(machine, MachineNode)
 
     def run(self, command, environment=None):
+        from fabric.api import env, run
         env.host_string = "%s:%s" % self.machine
         run(command)
 
     def sudo(self, command):
+        from fabric.api import env, sudo
         env.host_string = "%s:%s" % self.machine
         sudo(command, environment=None)
 

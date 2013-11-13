@@ -75,6 +75,7 @@ if __name__ == "__main__":
             'colorlog',
             'ssh',
             'paramiko',
+            'fabric',
         ],
 
         test_suite='nose.collector',
