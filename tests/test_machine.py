@@ -7,13 +7,14 @@
 import logging
 from candelabra.provider.virtualbox import VirtualboxMachineNode
 
-from candelabra.tests import CandelabraTestBase
+from candelabra.tests import CandelabraTestBase, skipTravis
 from candelabra.topology.root import TopologyRoot, DEFAULT_NAT_INTERFACE_NAME
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
+@skipTravis
 class MachineParsingTestSuite(CandelabraTestBase):
     """ Test suite for machines parsing
     """

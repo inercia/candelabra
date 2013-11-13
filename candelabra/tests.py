@@ -4,6 +4,7 @@
 # Copyright Alvaro Saurin 2013 - All right Reserved
 #
 
+import os
 import unittest
 
 from candelabra.config import config
@@ -22,4 +23,7 @@ class CandelabraTestBase(unittest.TestCase):
         register_all()
 
 
+#: skip a unit test if running in Travis CI
+skipTravis = lambda x: unittest.skipIf(os.environ.get('TRAVIS', '').lower() in ['true', 'yes', '1'],
+	                                   'running in Travis-CI')
 
