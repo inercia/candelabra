@@ -9,8 +9,10 @@ python:
 # command to install dependencies
 install:
   - "pip install --use-mirrors ."
-  - "pip install --use-mirrors -e .[develop]"
   - "pip install --use-mirrors -r requirements.txt"
+
+# we could add
+# - "pip install --use-mirrors -e .[develop]"
 
 # command to run tests
 script: python setup.py test
