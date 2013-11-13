@@ -1,5 +1,3 @@
---index https://pypi.python.org/simple/
-
 -e .
 
 # add extra version specification below. ie:
