@@ -7,13 +7,14 @@
 import unittest
 import logging
 
+from candelabra.tests import CandelabraTestBase
 from candelabra.topology.machine import MachineNode
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
-class StateTestSuite(unittest.TestCase):
+class StateTestSuite(CandelabraTestBase):
     """ Test suite for states
     """
 

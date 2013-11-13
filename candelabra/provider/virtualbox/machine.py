@@ -46,15 +46,15 @@ class VirtualboxMachineNode(MachineNode):
 
     # known attributes
     # the right tuple is the constructor and a default value (None means "inherited from parent")
-    __known_attributes = {
-        'path': TopologyAttribute(constructor=str, default='', inherited=True),
-        'updown_timeout': TopologyAttribute(constructor=int, default=None, copy=True),
-        'gui': TopologyAttribute(constructor=str, default='headless', copy=True),
-        'username': TopologyAttribute(constructor=str, default='vagrant', copy=True),
-        'password': TopologyAttribute(constructor=str, default='vagrant', copy=True),
-        'userland_timeout': TopologyAttribute(constructor=int, default=None, copy=True),
-        'commands_timeout': TopologyAttribute(constructor=int, default=None, copy=True),
-    }
+    __known_attributes = [
+        TopologyAttribute('path', str, default='', inherited=True),
+        TopologyAttribute('updown_timeout', int, default=None, inherited=True),
+        TopologyAttribute('gui', str, default='headless', inherited=True),
+        TopologyAttribute('username', str, default='vagrant', inherited=True),
+        TopologyAttribute('password', str, default='vagrant', inherited=True),
+        TopologyAttribute('userland_timeout', int, default=None, inherited=True),
+        TopologyAttribute('commands_timeout', int, default=None, inherited=True),
+    ]
 
     # attributes that are saved in the state file
     _state_attributes = {
@@ -103,9 +103,12 @@ class VirtualboxMachineNode(MachineNode):
     def sync_name(self):
         """ Set the VirtualBox virtual machine name to the same name as this node
         """
+        if self.machine.is_global:
+            raise RuntimeError('invalid operation on global machine')
+
         logger.debug('synchronizing VM name: setting as %s', self.cfg_name)
         try:
-            s = self.lock('write')
+            s = self.lock(lock_type='write')
             new_machine = s.machine
             new_machine.name = self.cfg_name
             new_machine.save_settings()
@@ -118,6 +121,9 @@ class VirtualboxMachineNode(MachineNode):
     def check_name(self):
         """ Check that the configured name matches the real VM name
         """
+        if self.machine.is_global:
+            raise RuntimeError('invalid operation on global machine')
+
         if self._vbox_machine.name != self.cfg_name:
             logger.warning('the configured name (%s) does not match the VM name (%s)',
                            self.cfg_name, self._vbox_machine.name)
@@ -141,38 +147,39 @@ class VirtualboxMachineNode(MachineNode):
 
     cfg_uuid = property(get_uuid, set_uuid)
 
-    def get_machine(self):
+    def get_vbox_machine(self):
         """ Get the underlying VirtualBox "machine" instance
         """
         try:
             if self._vbox_uuid and not self._vbox_machine:
+                logger.debug('(getting machine for %s [UUID:%s])', self.cfg_name, self._vbox_uuid)
                 self._vbox_machine = self._vbox.find_machine(self._vbox_uuid)
         except _virtualbox.library.VBoxErrorObjectNotFound, e:
             logger.debug(str(e))
         return self._vbox_machine
 
-    machine = property(get_machine)
+    vbox_machine = property(get_vbox_machine)
 
     def get_info(self):
         """ Get some machine information
         """
         return 'name: %s UUID:%s ' % (self.cfg_name, self.cfg_uuid) + \
-               'CPUs:%d (exec-cap:%d) ' % (self.machine.cpu_count, self.machine.cpu_execution_cap) + \
-               'mem:%d vram:%d ' % (self.machine.memory_size, self.machine.vram_size) + \
-               'state:%s ' % (str(self.machine.state))
+               'CPUs:%d (exec-cap:%d) ' % (self.vbox_machine.cpu_count, self.vbox_machine.cpu_execution_cap) + \
+               'mem:%d vram:%d ' % (self.vbox_machine.memory_size, self.vbox_machine.vram_size) + \
+               'state:%s ' % (str(self.vbox_machine.state))
 
-    def get_guest_type(self, session=None):
+    def get_guest_type(self, locked_session=None):
         """ Get the guess type, as a tuple of (name, description)
         """
         res = (None, None)
         try:
-            s = self.lock() if not session else session
+            s = locked_session if locked_session else self.lock()
             t = self._vbox.get_guest_os_type(s.machine.os_type_id)
             res = (t.family_id.lower(), t.family_description)
         except _virtualbox.library.VBoxError, e:
             raise MachineException(str(e))
         finally:
-            if not session:
+            if not locked_session:
                 self.unlock(s)
 
         return res
@@ -204,9 +211,9 @@ class VirtualboxMachineNode(MachineNode):
     def get_state(self):
         """ Get the VirtualBox machine state, as a recognized state code
         """
-        if self.machine:
+        if self.vbox_machine:
             try:
-                return _VIRTUALBOX_ST_TO_STATES[self.machine.state._value][0]
+                return _VIRTUALBOX_ST_TO_STATES[self.vbox_machine.state._value][0]
             except AttributeError, e:
                 logger.debug('no machine state available: %s', str(e))
             except KeyError, e:
@@ -293,14 +300,19 @@ class VirtualboxMachineNode(MachineNode):
     #####################
     # locking
     #####################
-    def lock(self, session=None, lock_type='shared'):
-        if not session:
-            session = _virtualbox.Session()
 
-        self._vbox_machine.lock_machine(session, LOCK_TYPES[lock_type])
+    def lock(self, session=None, lock_type='shared'):
+        """ Lock the machine
+        """
+        assert lock_type in ['shared', 'write']
+        assert self._vbox_machine is not None
+        session = session if session else _virtualbox.Session()
+        self.vbox_machine.lock_machine(session, LOCK_TYPES[lock_type])
         return session
 
     def unlock(self, session):
+        """ Unlock the machine
+        """
         session.unlock_machine()
 
     #####################
@@ -330,7 +342,7 @@ class VirtualboxMachineNode(MachineNode):
         logger.info('powering up "%s"', self.cfg_name)
         try:
             s = _virtualbox.Session()
-            p = self.machine.launch_vm_process(s, self.cfg_gui, "")
+            p = self.vbox_machine.launch_vm_process(s, self.cfg_gui, "")
             logger.info('... waiting from completion (up to %d seconds)', self.cfg_updown_timeout)
             p.wait_for_completion(self.cfg_updown_timeout * 1000)
             self.unlock(s)
@@ -351,7 +363,7 @@ class VirtualboxMachineNode(MachineNode):
             self._vbox_guest = s.console.guest
             self._vbox_guest_os_type = self._vbox.get_guest_os_type(s.machine.os_type_id)
 
-            logger.info('... guest OS: %s (%s)' % self.get_guest_type(session=s))
+            logger.info('... guest OS: %s (%s)' % self.get_guest_type(locked_session=s))
 
             logger.debug('... guest additions: vers:%s - rev:%s ',
                          self._vbox_guest.additions_version,
@@ -418,7 +430,7 @@ class VirtualboxMachineNode(MachineNode):
         try:
             p = s.console.pause()
             logger.info('... waiting from power down to finish (up to %d seconds)', self.cfg_updown_timeout)
-            while self.machine.state >= _virtualbox.library.MachineState.running:
+            while self.vbox_machine.state >= _virtualbox.library.MachineState.running:
                 sleep(1.0)
                 # p.wait_for_completion(self.cfg_updown_timeout * 1000)
             logger.debug('...... done [code:%d]', p.result_code)
@@ -446,11 +458,11 @@ class VirtualboxMachineNode(MachineNode):
         sleep(1.0)
         logger.info('destroying %s', self.cfg_name)
         try:
-            if self.machine:
-                media = self.machine.unregister(_virtualbox.library.CleanupMode.full)
-                p = self.machine.delete_config(media)
+            if self.vbox_machine:
+                media = self.vbox_machine.unregister(_virtualbox.library.CleanupMode.full)
+                p = self.vbox_machine.delete_config(media)
                 p.wait_for_completion(-1)
-                self.machine.save_settings()
+                self.vbox_machine.save_settings()
         except _virtualbox.library.VBoxErrorIprtError, e:
             logger.warning(str(e))
         else:

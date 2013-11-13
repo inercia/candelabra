@@ -23,12 +23,12 @@ class PuppetProvisioner(ProvisionerNode):
     # the right value is either:
     # - a constructor (and default value will be obtained from parent)
     # - tuple is the constructor and a default value
-    __known_attributes = {
-        'init_pp': TopologyAttribute(constructor=str, default='', copy=True),
-        'manifest': TopologyAttribute(constructor=str, default='', copy=True),
-        'modules': TopologyAttribute(constructor=str, default='', copy=True),
-        'command': TopologyAttribute(constructor=str, default=PUPPET_APPLY_COMMAND, copy=True),
-    }
+    __known_attributes = [
+        TopologyAttribute('init_pp', str, default='', inherited=True),
+        TopologyAttribute('manifest', str, default='', inherited=True),
+        TopologyAttribute('modules', str, default='', inherited=True),
+        TopologyAttribute('command', str, default=PUPPET_APPLY_COMMAND, inherited=True),
+    ]
 
     # attributes that are saved in the state file
     _state_attributes = {

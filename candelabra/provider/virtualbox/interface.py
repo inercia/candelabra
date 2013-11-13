@@ -11,6 +11,7 @@ import virtualbox as _virtualbox
 
 from candelabra.errors import MachineChangeException
 from candelabra.topology.interface import InterfaceNode
+from candelabra.topology.network import NetworkNode
 from candelabra.topology.node import TopologyAttribute
 
 logger = getLogger(__name__)
@@ -49,6 +50,9 @@ class VirtualboxInterfaceNode(InterfaceNode):
         super(VirtualboxInterfaceNode, self).__init__(_parent=_parent, **kwargs)
         TopologyAttribute.setall(self, kwargs, self.__known_attributes)
 
+        if not self.cfg_connected:
+            logger.warning('interface is not connected')
+
     @property
     def machine(self):
         return self._container
@@ -59,13 +63,16 @@ class VirtualboxInterfaceNode(InterfaceNode):
         num_iface = getattr(self._container, '_num_ifaces_setup', 0)
         logger.info('setting up network device num:%d', num_iface)
 
+        if self.machine.is_global:
+            logger.warning('... trying to setup a network interface in a global machine!!')
+            return
+
         try:
             sleep(1.0)
-            s = _virtualbox.Session()
-            self.machine._vbox_machine.lock_machine(s, _virtualbox.library.LockType.write)
+            session = self.machine.lock(lock_type='write')
 
             # create a mutable copy of the machine for doing changes...
-            new_machine = s.machine
+            new_machine = session.machine
             adapter = new_machine.get_network_adapter(num_iface)
 
             if self.cfg_type == 'nat':
@@ -80,11 +87,11 @@ class VirtualboxInterfaceNode(InterfaceNode):
 
             # save the new machine and unlock it
             new_machine.save_settings()
-            s.unlock_machine()
+            self.machine.unlock(session)
         except _virtualbox.library.VBoxError, e:
             raise MachineChangeException(str(e))
         else:
-            adapter = self.machine._vbox_machine.get_network_adapter(num_iface)
+            adapter = self.machine.vbox_machine.get_network_adapter(num_iface)
             logger.info("...... [%d] MAC:%s family:%s enabled:%s %s",
                         adapter.slot,
                         adapter.mac_address,
@@ -148,7 +155,8 @@ class VirtualboxInterfaceNode(InterfaceNode):
             extra += ['uuid:%s' % self.cfg_uuid]
         if self.cfg_type:
             extra += ['type=%s' % self.cfg_type]
-        if self.cfg_connected and isinstance(self.cfg_connected, InterfaceNode):
+
+        if self.cfg_connected and isinstance(self.cfg_connected, NetworkNode):
             extra += ['connected-to:%s' % self.cfg_connected.cfg_name]
 
         return "<VirtualboxInterface(%s) at 0x%x>" % (','.join(extra), id(self))

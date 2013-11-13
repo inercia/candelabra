@@ -6,15 +6,16 @@
 
 import unittest
 import logging
-from candelabra.scheduler.base import TasksScheduler
 
+from candelabra.scheduler.base import TasksScheduler
 from candelabra.scheduler.topsort import topsort
+from candelabra.tests import CandelabraTestBase
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
-class TasksTestSuite(unittest.TestCase):
+class TasksTestSuite(CandelabraTestBase):
     """ Test suite for tasks and scheduler
     """
 

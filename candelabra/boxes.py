@@ -37,7 +37,7 @@ class BoxesStorage(object):
         """ Get the storage root for boxes
         """
         d = config.get_key(CFG_BOXES_PATH)
-        return os.path.expandvars(d)
+        return os.path.expandvars(d) if d else d
 
     @staticmethod
     def get_relative_path(path):

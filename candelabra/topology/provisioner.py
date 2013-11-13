@@ -20,8 +20,8 @@ class ProvisionerNode(TopologyNode):
     """ A provisioner for a machine
     """
 
-    __known_attributes = {
-    }
+    __known_attributes = [
+    ]
 
     def __init__(self, _parent=None, **kwargs):
         """ Initialize a provisioner node

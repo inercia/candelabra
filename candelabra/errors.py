@@ -30,11 +30,17 @@ class ConfigFileNotLoadedException(CandelabraException):
     """
     pass
 
+
 class ConfigFileMissingException(CandelabraException):
     """ The configuration file is missing
     """
     pass
 
+
+class ComponentNotFoundException(CandelabraException):
+    """ A component (ie, a plugin) is missing
+    """
+    pass
 
 #########################################
 # machines

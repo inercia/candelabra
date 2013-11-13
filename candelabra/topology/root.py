@@ -22,11 +22,32 @@ import yaml
 from candelabra.constants import YAML_ROOT, YAML_SECTION_DEFAULT, YAML_SECTION_MACHINES, DEFAULT_TOPOLOGY_DIR_GUESSES, DEFAULT_TOPOLOGY_FILE_GUESSES, YAML_SECTION_NETWORKS
 from candelabra.errors import TopologyException
 from candelabra.plugins import build_machine_instance, build_interface_instance, build_network_instance
-from candelabra.topology.interface import DEFAULT_INTERFACES
-from candelabra.topology.network import DEFAULT_NETWORKS
 from candelabra.topology.state import State
 
 logger = getLogger(__name__)
+
+#: default network interface name
+DEFAULT_NAT_INTERFACE_NAME = 'nat-iface'
+
+#: default NAT network name
+DEFAULT_NAT_NETWORK_NAME = 'nat'
+
+#: default interfaces that will be added
+DEFAULT_INTERFACES = [
+    {
+        'name': DEFAULT_NAT_INTERFACE_NAME,
+        'type': 'dhcp',
+        'connected': 'nat',
+    }
+]
+
+#: default networks
+DEFAULT_NETWORKS = [
+    {
+        'name': DEFAULT_NAT_NETWORK_NAME,
+        'scope': 'nat',
+    }
+]
 
 
 def guess_topology_file(extra=[]):
@@ -43,6 +64,9 @@ def guess_topology_file(extra=[]):
             return filename
 
     return None
+
+
+########################################################################################################################
 
 
 class TopologyRoot(object):
@@ -70,9 +94,15 @@ class TopologyRoot(object):
             logger.info('no previous state found for this topology')
 
         logger.info('topology: loading from "%s"...', self._filename)
+        with open(self._filename) as infile:
+            content = infile.read()
+            self.load_str(content)
+
+    def load_str(self, string):
+        """ Load the topology from a YAML string
+        """
         try:
-            with open(self._filename) as infile:
-                y = pyaml.yaml.safe_load(infile)
+            y = pyaml.yaml.load(string)
         except yaml.scanner.ScannerError, e:
             raise TopologyException('malformed topology file: %s' % str(e))
 
@@ -178,7 +208,25 @@ class TopologyRoot(object):
 
         return res
 
-    def get_machine_by_uuid(self):
+    #####################
+    # accesors
+    #####################
+
+    def get_global_machine(self):
+        return self._global_machine
+
+    def get_machine_by_uuid(self, uuid):
         """ Get a machine by UUID
         """
-        pass
+        for machine in self.machines:
+            if machine.cfg_uuid == uuid:
+                return machine
+        return None
+
+    def get_machine_by_name(self, name):
+        """ Get a machine by name
+        """
+        for machine in self.machines:
+            if machine.cfg_name == name:
+                return machine
+        return None

@@ -43,7 +43,7 @@ class VirtualboxSharedNode(SharedNode):
     def do_shared_create(self):
         """ Share the folders
         """
-        assert not self._container.is_global
+        assert not self.machine.is_global
 
         s = self.machine.lock()
         try:

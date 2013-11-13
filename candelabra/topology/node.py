@@ -26,7 +26,7 @@ class TopologyAttribute(object):
     * a unique **uuid**, usually established by the Candelabra engine.
     """
 
-    def __init__(self, constructor, default=_unset, doc='', inherited=False, copy=False, append=False):
+    def __init__(self, name, constructor, default=_unset, doc='', inherited=False, copy=False, append=False):
         """
         Initialize a topology node attribute
 
@@ -43,12 +43,14 @@ class TopologyAttribute(object):
         :param copy: the attribute is copied from the parent
         """
         assert (copy or inherited) and (copy != inherited), 'both parameters are exclusive'
+        self.name = name
         self.constructor = constructor
         self.default = default
         self.inherited = inherited
         self.copy = copy
         self.doc = doc
         self.append = append
+        assert not append or copy, "we can only append when copying"
 
     @staticmethod
     def setall(container, dictionary, known_attributes):
@@ -59,48 +61,58 @@ class TopologyAttribute(object):
         for referring to this instance.
         """
 
-        def recursive_builder(value, constructor):
+        def recursive_constructor(value, constructor):
             if isinstance(value, (list, tuple)):
-                constructed_value = [recursive_builder(value_item, constructor) for value_item in value]
+                constructed_value = [recursive_constructor(value_item, constructor) for value_item in value]
             elif isinstance(value, dict):
                 constructed_value = constructor(_container=container, **value)
             else:
                 constructed_value = constructor(value)
             return constructed_value
 
-        def copy_builder(value, container, attr_name):
-            v = copy(value)
-            if hasattr(v, '_container'):
-                v._container = container
-            return v
+        def copy_constructor(parent_value, container, attr_name):
+            def copy_builder(value, container, attr_name):
+                v = copy(value)
+                if hasattr(v, '_container'):
+                    v._container = container
+                return v
 
-        for attr_name, attr_instance in known_attributes.iteritems():
+            if isinstance(parent_value, (list, tuple)):
+                copied_value = [copy_builder(v, container, attr_name) for v in parent_value]
+            else:
+                copied_value = copy_builder(parent_value, container, attr_name)
+            return copied_value
+
+        for attr_instance in known_attributes:
+            attr_name = attr_instance.name
             assert isinstance(attr_instance, TopologyAttribute)
-            if attr_name in dictionary:
-                value = dictionary[attr_name]
-                if attr_instance.constructor:
-                    constructed_value = recursive_builder(value, attr_instance.constructor)
-                    if attr_instance.append:
-                        constructed_value = getattr(container, 'cfg_' + attr_name) + constructed_value
-                else:
-                    constructed_value = attr_instance.default
-                setattr(container, 'cfg_' + attr_name, constructed_value)
 
-            elif attr_instance.copy and container._parent:
+            if attr_instance.copy and container._parent:
                 parent_value = getattr(container._parent, 'cfg_' + attr_name, _unset)
                 if parent_value is not _unset:
-                    if isinstance(parent_value, (list, tuple)):
-                        res = [copy_builder(v, container, attr_name) for v in parent_value]
-                    else:
-                        res = copy_builder(parent_value, container, attr_name)
+                    copied_value = copy_constructor(parent_value, container, attr_name)
 
-                    setattr(container, 'cfg_' + attr_name, res)
+                    if attr_instance.append:
+                        parent_value = getattr(container, 'cfg_' + attr_name, [])
+                        copied_value = copy_constructor(parent_value, container, attr_name) + copied_value
+
+                    setattr(container, 'cfg_' + attr_name, copied_value)
 
                 elif attr_instance.default is not _unset:
                     setattr(container, 'cfg_' + attr_name, attr_instance.default)
 
+            elif attr_name in dictionary:
+                value = dictionary[attr_name]
+
+                if attr_instance.constructor:
+                    constructed_value = recursive_constructor(value, attr_instance.constructor)
+                else:
+                    constructed_value = attr_instance.default
+                setattr(container, 'cfg_' + attr_name, constructed_value)
+
             elif attr_instance.default is not _unset:
                 setattr(container, 'cfg_' + attr_name, attr_instance.default)
+
             else:
                 assert attr_instance.inherited
                 assert attr_instance.default is _unset
@@ -127,11 +139,11 @@ class TopologyNode(TaskGenerator):
 
     # known attributes
     # the right tuple is the constructor and a default value (None means "inherited from parent")
-    __known_attributes = {
-        'name': TopologyAttribute(constructor=str, default='', inherited=True),
-        'class': TopologyAttribute(constructor=str, default=None, inherited=True),
-        'uuid': TopologyAttribute(constructor=str, default='', copy=True),
-    }
+    __known_attributes = [
+        TopologyAttribute('name', str, default='', copy=True),
+        TopologyAttribute('class', str, default=None, inherited=True),
+        TopologyAttribute('uuid', str, default='', copy=True),
+    ]
 
     __state_attributes = {
         'name',
@@ -173,8 +185,6 @@ class TopologyNode(TaskGenerator):
         except AttributeError:
             pass
         return local_dict
-
-    is_global = property(lambda self: self._parent is None, doc='True if this is the global node')
 
     #####################
     # auxiliary

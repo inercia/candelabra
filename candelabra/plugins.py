@@ -37,7 +37,7 @@ import pkg_resources
 
 from candelabra.config import config
 from candelabra.constants import CFG_DEFAULT_PROVIDER
-from candelabra.errors import TopologyException
+from candelabra.errors import TopologyException, ComponentNotFoundException
 
 
 logger = getLogger(__name__)
@@ -238,9 +238,9 @@ def _get_instance_from_plugin(_family, _attr, _name, **kwargs):
     try:
         _class = getattr(PLUGINS_REGISTRIES[_family].plugins[_class_name], _attr)
     except KeyError, e:
-        m = 'cannot build a %s of class %s' % (_name, _class_name)
+        m = 'cannot build a %s of class "%s"' % (_name, _class_name)
         logger.warning(m)
-        raise TopologyException(m)
+        raise ComponentNotFoundException(m)
 
     return _class(**kwargs)
 

@@ -31,15 +31,15 @@ class SharedNode(TopologyNode):
     # the right value is either:
     # - a constructor (and default value will be obtained from parent)
     # - tuple is the constructor and a default value
-    __known_attributes = {
-        'local': TopologyAttribute(constructor=_path_norm, default='', copy=True),
-        'remote': TopologyAttribute(constructor=_path_norm, default='', copy=True),
-        'writable': TopologyAttribute(constructor=bool, default=True, copy=True),
-        'create_if_missing': TopologyAttribute(constructor=bool, default=True, copy=True),
-        'owner': TopologyAttribute(constructor=str, default='vagrant', copy=True),
-        'group': TopologyAttribute(constructor=str, default='vagrant', copy=True),
-        'mode': TopologyAttribute(constructor=int, default=755, copy=True),
-    }
+    __known_attributes = [
+        TopologyAttribute('local', _path_norm, default='', copy=True),
+        TopologyAttribute('remote', _path_norm, default='', copy=True),
+        TopologyAttribute('writable', bool, default=True, copy=True),
+        TopologyAttribute('create_if_missing', bool, default=True, copy=True),
+        TopologyAttribute('owner', str, default='vagrant', copy=True),
+        TopologyAttribute('group', str, default='vagrant', copy=True),
+        TopologyAttribute('mode', int, default=755, copy=True),
+    ]
 
     def __init__(self, _parent=None, **kwargs):
         """ Initialize a topology node

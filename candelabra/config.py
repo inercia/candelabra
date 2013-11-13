@@ -66,9 +66,11 @@ class CandelabraConfig(object):
             setattr(self, method, getattr(self.config, method))
 
     def load_string(self, text):
+        """ Load the configuration from a string
+        """
         self.config = ConfigParser()
         logger.info('loading config from string')
-        self.config.read_string(text)
+        self.config.read_string(unicode(text))
         for method in _CONFIG_MAPPED_METHODS:
             setattr(self, method, getattr(self.config, method))
 
@@ -96,15 +98,13 @@ class CandelabraConfig(object):
     def get_key(self, k, default=None):
         """ Get a configuration key
         """
-        if not self.config:
-            return default
 
         if len(k) == 2:
-            return self.get(k[0], k[1], fallback=default)
+            return self.get(k[0], k[1], fallback=default) if self.config else default
         elif len(k) == 3:
-            return self.get(k[0], k[1], fallback=k[2])
+            return self.get(k[0], k[1], fallback=k[2]) if self.config else k[2]
         else:
-            return self.get(k[0], fallback=default)
+            return self.get(k[0], fallback=default) if self.config else default
 
 
 config = CandelabraConfig()

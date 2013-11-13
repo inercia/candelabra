@@ -19,8 +19,8 @@ class VirtualboxNetworkNode(NetworkNode):
     """ A VirtualBox network
     """
 
-    __known_attributes = {
-    }
+    __known_attributes = [
+    ]
 
     def __init__(self, _parent=None, **kwargs):
         """ Initialize a network node
@@ -33,7 +33,7 @@ class VirtualboxNetworkNode(NetworkNode):
         return self._container
 
     def do_network_create(self):
-        logger.debug('network create: nothing to do')
+        logger.debug('network create: nothing to do for VirtualBox network %s', self.cfg_name)
 
         #try:
         #    logger.info('... creating NAT')
@@ -49,7 +49,7 @@ class VirtualboxNetworkNode(NetworkNode):
         ##properties.get_max_network_adapters()
 
     def do_network_up(self):
-        logger.debug('network up: nothing to do')
+        logger.debug('network up: nothing to do for VirtualBox network %s', self.cfg_name)
 
     #####################
     # auxiliary

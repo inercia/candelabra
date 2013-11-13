@@ -22,15 +22,6 @@ _SUPPORTED_IFACE_TYPES = {
     'static'
 }
 
-#: default interfaces that will be added
-DEFAULT_INTERFACES = [
-    {
-        'name': 'nat-iface',
-        'type': 'dhcp',
-        'connected': 'nat',
-    }
-]
-
 
 class InterfaceNode(TopologyNode):
     """ A machine network interface
@@ -41,13 +32,13 @@ class InterfaceNode(TopologyNode):
     * the interace name, **ifname**.
     """
 
-    __known_attributes = {
-        'type': TopologyAttribute(constructor=str, default='dhcp', inherited=True),
-        'ip': TopologyAttribute(constructor=str, default='', inherited=True),
-        'netmask': TopologyAttribute(constructor=str, default='', inherited=True),
-        'ifname': TopologyAttribute(constructor=str, default='', inherited=True),
-        'connected': TopologyAttribute(constructor=str, default='', inherited=True),
-    }
+    __known_attributes = [
+        TopologyAttribute('type', str, default='dhcp', inherited=True),
+        TopologyAttribute('ip', str, default='', inherited=True),
+        TopologyAttribute('netmask', str, default='', inherited=True),
+        TopologyAttribute('ifname', str, default='', inherited=True),
+        TopologyAttribute('connected', str, default='', inherited=True),
+    ]
 
     def __init__(self, _parent=None, **kwargs):
         """ Initialize a network interface in the machine
@@ -60,15 +51,15 @@ class InterfaceNode(TopologyNode):
             raise MalformedTopologyException('unknown interface type "%s": should be one of %s' % (
                 self.cfg_type, _SUPPORTED_IFACE_TYPES))
 
-        if not self.machine.is_global:
-            if not self.cfg_connected:
-                raise MalformedTopologyException('interfaces must be "connected" to some network')
+        if not self.cfg_connected:
+            raise MalformedTopologyException('interfaces must be "connected" to some network')
 
-            # get the network this interface is connected to, but as a NetworkNode (or subclass) instance
-            network = self.machine._parent.get_network_by_name(self.cfg_connected)
-            if not network:
-                raise MalformedTopologyException('network "%s" not defined' % self.cfg_connected)
-            self.cfg_connected = network
+        # get the network this interface is connected to, but as a NetworkNode (or subclass) instance
+        network = self.machine.get_network_by_name(self.cfg_connected)
+        if not network:
+            raise MalformedTopologyException('interface "%s" is connected to unknown network "%s"' %
+                                             (self.cfg_name, self.cfg_connected))
+        self.cfg_connected = network
 
         # private attributes
         self._created = False

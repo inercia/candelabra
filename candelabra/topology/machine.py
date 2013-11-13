@@ -41,7 +41,7 @@ from candelabra.plugins import build_shared_instance, build_provisioner_instance
 
 
 class MachineNode(TopologyNode):
-    """ A machine in the toplogy hierarchy.
+    """ A machine in the topology hierarchy.
 
     There are two important classes of machines:
 
@@ -54,14 +54,14 @@ class MachineNode(TopologyNode):
     * guest: a :class:`Guest` instance, used for running some standard commands in the machine.
     """
 
-    __known_attributes = {
-        'box': TopologyAttribute(constructor=BoxNode, inherited=True),
-        'hostname': TopologyAttribute(constructor=str, default='', inherited=True),
-        'interfaces': TopologyAttribute(constructor=build_interface_instance, default=[], copy=True, append=True),
-        'networks': TopologyAttribute(constructor=build_network_instance, inherited=True),
-        'provisioners': TopologyAttribute(constructor=build_provisioner_instance, default=[], copy=True),
-        'shared': TopologyAttribute(constructor=build_shared_instance, default=[], copy=True),
-    }
+    __known_attributes = [
+        TopologyAttribute('box', BoxNode, inherited=True),
+        TopologyAttribute('hostname', str, default='', inherited=True),
+        TopologyAttribute('networks', build_network_instance, inherited=True),
+        TopologyAttribute('interfaces', build_interface_instance, default=[], copy=True, append=True),
+        TopologyAttribute('provisioners', build_provisioner_instance, default=[], copy=True),
+        TopologyAttribute('shared', build_shared_instance, default=[], copy=True),
+    ]
 
     __state_attributes = {
         'state'
@@ -81,6 +81,8 @@ class MachineNode(TopologyNode):
 
         self.guest = None
         self.communicator = None
+
+    is_global = property(lambda self: self._parent is None, doc='True if this is the global node')
 
     #####################
     # state

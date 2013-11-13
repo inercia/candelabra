@@ -20,13 +20,6 @@ SUPPORTED_SCOPES = {
     'private',
 }
 
-#: default networks
-DEFAULT_NETWORKS = [
-    {
-        'name': 'nat',
-        'scope': 'nat',
-    }
-]
 
 class NetworkNode(TopologyNode):
     """ A network
@@ -37,8 +30,8 @@ class NetworkNode(TopologyNode):
     """
 
     __known_attributes = {
-        'scope': TopologyAttribute(constructor=str, default='nat', inherited=True),
-        'netmask': TopologyAttribute(constructor=str, default='255,255.255.0', inherited=True),
+        TopologyAttribute('scope', str, default='nat', inherited=True),
+        TopologyAttribute('netmask', str, default='255,255.255.0', inherited=True),
     }
 
     def __init__(self, _parent=None, **kwargs):
@@ -58,7 +51,7 @@ class NetworkNode(TopologyNode):
         self._created = False
 
     def do_network_create(self):
-        logger.debug('network create: nothing to do')
+        logger.debug('network create: nothing to do for network', self.cfg_name)
 
     def do_network_up(self):
-        logger.debug('network up: nothing to do')
+        logger.debug('network up: nothing to do for network', self.cfg_name)

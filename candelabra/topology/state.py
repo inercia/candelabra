@@ -125,5 +125,5 @@ class State(object):
         if self._filename:
             try:
                 os.remove(self._filename)
-            except IOError:
+            except (OSError, IOError):
                 pass
