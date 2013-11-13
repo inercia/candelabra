@@ -55,9 +55,9 @@ class MachineNode(TopologyNode):
     """
 
     __known_attributes = [
-        TopologyAttribute('box', BoxNode, inherited=True),
-        TopologyAttribute('hostname', str, default='', inherited=True),
-        TopologyAttribute('networks', build_network_instance, inherited=True),
+        TopologyAttribute('box', BoxNode),
+        TopologyAttribute('hostname', str, default=''),
+        TopologyAttribute('networks', build_network_instance),
         TopologyAttribute('interfaces', build_interface_instance, default=[], copy=True, append=True),
         TopologyAttribute('provisioners', build_provisioner_instance, default=[], copy=True),
         TopologyAttribute('shared', build_shared_instance, default=[], copy=True),

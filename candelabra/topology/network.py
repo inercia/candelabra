@@ -30,8 +30,8 @@ class NetworkNode(TopologyNode):
     """
 
     __known_attributes = {
-        TopologyAttribute('scope', str, default='nat', inherited=True),
-        TopologyAttribute('netmask', str, default='255,255.255.0', inherited=True),
+        TopologyAttribute('scope', str, default='nat'),
+        TopologyAttribute('netmask', str, default='255,255.255.0'),
     }
 
     def __init__(self, _parent=None, **kwargs):

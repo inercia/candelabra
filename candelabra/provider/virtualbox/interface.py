@@ -41,8 +41,8 @@ class VirtualboxInterfaceNode(InterfaceNode):
     """ A VirtualBox interface
     """
 
-    __known_attributes = {
-    }
+    __known_attributes = [
+    ]
 
     def __init__(self, _parent=None, **kwargs):
         """ Initialize a topology node

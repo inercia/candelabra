@@ -47,13 +47,13 @@ class VirtualboxMachineNode(MachineNode):
     # known attributes
     # the right tuple is the constructor and a default value (None means "inherited from parent")
     __known_attributes = [
-        TopologyAttribute('path', str, default='', inherited=True),
-        TopologyAttribute('updown_timeout', int, default=None, inherited=True),
-        TopologyAttribute('gui', str, default='headless', inherited=True),
-        TopologyAttribute('username', str, default='vagrant', inherited=True),
-        TopologyAttribute('password', str, default='vagrant', inherited=True),
-        TopologyAttribute('userland_timeout', int, default=None, inherited=True),
-        TopologyAttribute('commands_timeout', int, default=None, inherited=True),
+        TopologyAttribute('path', str, default=''),
+        TopologyAttribute('updown_timeout', int, default=None),
+        TopologyAttribute('gui', str, default='headless'),
+        TopologyAttribute('username', str, default='vagrant'),
+        TopologyAttribute('password', str, default='vagrant'),
+        TopologyAttribute('userland_timeout', int, default=None),
+        TopologyAttribute('commands_timeout', int, default=None),
     ]
 
     # attributes that are saved in the state file

@@ -33,11 +33,11 @@ class InterfaceNode(TopologyNode):
     """
 
     __known_attributes = [
-        TopologyAttribute('type', str, default='dhcp', inherited=True),
-        TopologyAttribute('ip', str, default='', inherited=True),
-        TopologyAttribute('netmask', str, default='', inherited=True),
-        TopologyAttribute('ifname', str, default='', inherited=True),
-        TopologyAttribute('connected', str, default='', inherited=True),
+        TopologyAttribute('type', str, default='dhcp'),
+        TopologyAttribute('ip', str, default=''),
+        TopologyAttribute('netmask', str, default=''),
+        TopologyAttribute('ifname', str, default=''),
+        TopologyAttribute('connected', str, default=''),
     ]
 
     def __init__(self, **kwargs):

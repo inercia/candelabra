@@ -26,7 +26,7 @@ class TopologyAttribute(object):
     * a unique **uuid**, usually established by the Candelabra engine.
     """
 
-    def __init__(self, name, constructor, default=_unset, doc='', inherited=False, copy=False, append=False):
+    def __init__(self, name, constructor, default=_unset, doc='', **kwargs):
         """
         Initialize a topology node attribute
 
@@ -42,15 +42,21 @@ class TopologyAttribute(object):
                           the parent, it does so in this instance
         :param copy: the attribute is copied from the parent
         """
-        assert (copy or inherited) and (copy != inherited), 'both parameters are exclusive'
         self.name = name
         self.constructor = constructor
         self.default = default
-        self.inherited = inherited
-        self.copy = copy
+
+        if 'copy' in kwargs:
+            self.copy = kwargs.get('copy')
+            self.inherited = not self.copy
+        else:
+            self.copy = False
+            self.inherited = kwargs.get('inherited', True)
+
+        assert (self.copy or self.inherited) and (self.copy != self.inherited), 'both parameters are exclusive'
         self.doc = doc
-        self.append = append
-        assert not append or copy, "we can only append when copying"
+        self.append = kwargs.get('append', False)
+        assert not self.append or self.copy, "we can only append when copying"
 
     @staticmethod
     def setall(container, dictionary, known_attributes):
@@ -145,9 +151,9 @@ class TopologyNode(TaskGenerator):
     # known attributes
     # the right tuple is the constructor and a default value (None means "inherited from parent")
     __known_attributes = [
-        TopologyAttribute('name', str, default='', inherited=True),
-        TopologyAttribute('class', str, default='', inherited=True),
-        TopologyAttribute('uuid', str, default='', inherited=True),
+        TopologyAttribute('name', str, default=''),
+        TopologyAttribute('class', str, default=''),
+        TopologyAttribute('uuid', str, default=''),
     ]
 
     __state_attributes = {
