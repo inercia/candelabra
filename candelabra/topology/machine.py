@@ -82,6 +82,10 @@ class MachineNode(TopologyNode):
         self.guest = None
         self.communicator = None
 
+        # validate the attributes
+        if not self.cfg_name and not self.is_global:
+            raise MalformedTopologyException('machines must have a name')
+
     is_global = property(lambda self: self._parent is None, doc='True if this is the global node')
 
     #####################

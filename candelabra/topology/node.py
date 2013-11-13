@@ -62,6 +62,8 @@ class TopologyAttribute(object):
         """
 
         def simple_constructor(attr_instance, attr_name):
+            """ A constructor that tries to build with the given function or type
+            """
             def recursive_constructor(value, constructor):
                 if isinstance(value, (list, tuple)):
                     constructed_value = [recursive_constructor(value_item, constructor) for value_item in value]
@@ -77,6 +79,8 @@ class TopologyAttribute(object):
                 return attr_instance.default
 
         def copy_constructor(parent_value, container):
+            """ A constructor that copies from a parent
+            """
             def copy_builder(value, container):
                 v = copy(value)
                 if hasattr(v, '_container'):
@@ -141,9 +145,9 @@ class TopologyNode(TaskGenerator):
     # known attributes
     # the right tuple is the constructor and a default value (None means "inherited from parent")
     __known_attributes = [
-        TopologyAttribute('name', str, default='', copy=True),
-        TopologyAttribute('class', str, default=None, inherited=True),
-        TopologyAttribute('uuid', str, default='', copy=True),
+        TopologyAttribute('name', str, default='', inherited=True),
+        TopologyAttribute('class', str, default='', inherited=True),
+        TopologyAttribute('uuid', str, default='', inherited=True),
     ]
 
     __state_attributes = {
