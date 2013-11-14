@@ -152,6 +152,8 @@ class CommandPlugin(object):
                 scheduler.run()
         except CandelabraException:
             raise
+        except KeyboardInterrupt:
+            raise CandelabraException('interrupted with Ctrl-C... bye!')
         except Exception, e:
             logger.critical('uncaught exception')
             raise
