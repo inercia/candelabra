@@ -59,7 +59,7 @@ class VirtualboxSharedNode(SharedNode):
             elif not os.path.isdir(local_path):
                 logger.warning('... local folder %s is not a directory! skipping...', local_path)
             else:
-                logger.info('shared folder: %s -> %s', local_path, remote_path)
+                logger.info('creating shared folder: %s -> %s', local_path, remote_path)
                 try:
                     s.console.create_shared_folder(remote_path,
                                                    local_path,
@@ -83,7 +83,7 @@ class VirtualboxSharedNode(SharedNode):
             try:
                 # guest_session = self.machine.get_guest_session(s)
 
-                logger.info('mounting %s', self.cfg_remote)
+                logger.info('starting shared folder "%s"...', self.cfg_remote)
 
                 if self.cfg_create_if_missing:
                     logger.debug('... creating directory %s', self.cfg_remote)
