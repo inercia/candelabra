@@ -103,8 +103,7 @@ class VirtualboxMachineNode(MachineNode):
     def sync_name(self):
         """ Set the VirtualBox virtual machine name to the same name as this node
         """
-        if self.machine.is_global:
-            raise RuntimeError('invalid operation on global machine')
+        assert not self.is_global
 
         logger.debug('synchronizing VM name: setting as %s', self.cfg_name)
         try:
@@ -121,8 +120,7 @@ class VirtualboxMachineNode(MachineNode):
     def check_name(self):
         """ Check that the configured name matches the real VM name
         """
-        if self.machine.is_global:
-            raise RuntimeError('invalid operation on global machine')
+        assert not self.is_global
 
         if self._vbox_machine.name != self.cfg_name:
             logger.warning('the configured name (%s) does not match the VM name (%s)',
