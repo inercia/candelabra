@@ -57,6 +57,13 @@ def main():
                         choices=logs.LOGLEVELS + [l.lower() for l in logs.LOGLEVELS],
                         help="console log level")
 
+    parser.add_argument('-v',
+                        '--verbose',
+                        dest='verbose',
+                        default=False,
+                        action='store_true',
+                        help="set verbose/debug level")
+
     parser.add_argument('--log-file',
                         dest='logfile',
                         default=None,
@@ -88,7 +95,8 @@ def main():
 
     args = parser.parse_args()
 
-    logs.setup_console(level=args.loglevel.upper())
+    level = logging.DEBUG if args.verbose else args.loglevel.upper()
+    logs.setup_console(level=level)
     logger = logging.getLogger(__name__)
 
     if _delayed_warnings:
