@@ -53,6 +53,9 @@ class VirtualboxInterfaceNode(InterfaceNode):
         if not self.cfg_connected:
             logger.warning('interface is not connected')
 
+        from .network import VirtualboxNetworkNode
+        assert isinstance(self.cfg_connected, VirtualboxNetworkNode)
+
     @property
     def machine(self):
         return self._container
@@ -78,9 +81,10 @@ class VirtualboxInterfaceNode(InterfaceNode):
             if self.cfg_type == 'nat':
                 logger.info('... type: NAT')
                 adapter.attachment_type = _virtualbox.library.NetworkAttachmentType.nat
-            elif self.cfg_type == 'host-only':
-                logger.info('... type: host-only')
-                adapter.attachment_type = _virtualbox.library.NetworkAttachmentType.host_only
+            elif self.cfg_connected.cfg_scope == 'private':
+                logger.info('... type: private')
+                adapter.attachment_type = _virtualbox.library.NetworkAttachmentType.internal
+                adapter.internal_network = self.cfg_connected.cfg_name
 
             adapter.cable_connected = True
             adapter.enabled = True
@@ -92,12 +96,11 @@ class VirtualboxInterfaceNode(InterfaceNode):
             raise MachineChangeException(str(e))
         else:
             adapter = self.machine.vbox_machine.get_network_adapter(num_iface)
-            logger.info("...... [%d] MAC:%s family:%s enabled:%s %s",
+            logger.info("...... [%d] MAC:%s family:%s enabled:%s",
                         adapter.slot,
                         adapter.mac_address,
                         adapter.adapter_type,
-                        adapter.enabled,
-                        adapter.nat_network)
+                        adapter.enabled)
 
             setattr(self._container, '_num_ifaces_setup', num_iface + 1)
             sleep(1.0)
@@ -116,10 +119,12 @@ class VirtualboxInterfaceNode(InterfaceNode):
         # Render and upload the network entry file to a deterministic
         # temporary location.
 
-        if self.cfg_get_ip == 'static':
+        if self.cfg_type == 'dhcp':
+            content = TEMPLATE_DHCP.format(iface=iface)
+        elif self.cfg_type == 'static':
             content = TEMPLATE_STATIC.format(iface=iface)
         else:
-            content = TEMPLATE_DHCP.format(iface=iface)
+            assert False
 
         logger.debug('saving template to temporal file...')
         self.machine.communicator.write_file(content, "/tmp/vagrant-network-entry_{iface}".format(iface=iface))
