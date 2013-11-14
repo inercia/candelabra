@@ -167,8 +167,8 @@ class MachineNode(TopologyNode):
             raise MalformedTopologyException('missing attribute in topology: the virtual machine has no "name"')
 
         logger.debug('checking if the machine "%s" exists', self.cfg_name)
-        if self.cfg_uuid and self.machine:
-            logger.info('... %s seems to have been already created', self.machine)
+        if self.cfg_uuid:
+            logger.info('... %s seems to have been already created', self.cfg_name)
         else:
             logger.info('"%s" does not seem to exist', self.cfg_name)
             logger.info('... will import it from %s appliance "%s"', self.cfg_class, self.cfg_box.cfg_name)
@@ -191,11 +191,19 @@ class MachineNode(TopologyNode):
         self.add_task_seq(self.do_wait_userland)
         self.add_task_seq(self.do_create_guest)
 
+        # create the shared folders
         for shared_folder in self.cfg_shared:
             self.add_task_seq(shared_folder.do_shared_create)
 
         self.add_task_seq(self.do_create_guest_session)
 
+        # startup the networks/interfaces
+        for network in self.cfg_networks:
+            self.add_task_seq(network.do_network_up)
+        for iface in self.cfg_interfaces:
+            self.add_task_seq(iface.do_iface_up)
+
+        # mount the shared folders
         for shared_folder in self.cfg_shared:
             self.add_task_seq(shared_folder.do_shared_mount)
 
