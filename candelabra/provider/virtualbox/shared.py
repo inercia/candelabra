@@ -20,10 +20,10 @@ class VirtualboxSharedNode(SharedNode):
     """ A VirtualBox shared folder for a machine
     """
 
-    def __init__(self, _parent=None, **kwargs):
+    def __init__(self, **kwargs):
         """ Initialize a topology node
         """
-        super(SharedNode, self).__init__(_parent=_parent, **kwargs)
+        super(SharedNode, self).__init__(**kwargs)
         TopologyAttribute.setall(self, kwargs, self._SharedNode__known_attributes)
 
         from candelabra.provider.virtualbox import VirtualboxMachineNode

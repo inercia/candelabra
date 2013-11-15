@@ -172,6 +172,20 @@ class TopologyNode(TaskGenerator):
 
         TopologyAttribute.setall(self, kwargs, self.__known_attributes)
 
+    def get_inc_counter(self, where, name):
+        """ Get an incremental counter on an atribute (for example, for the network interfaces)
+        """
+        if self._container:
+            already_stored = getattr(self._container, name, [])
+            assert isinstance(already_stored, (tuple, list))
+            already_stored_len = len(already_stored)
+        else:
+            already_stored_len = 0
+
+        num = getattr(where, "__num_%s" % name, already_stored_len)
+        setattr(where, "__num_%s" % name, num + 1)
+        return num
+
     #####################
     # attributes
     #####################
@@ -179,7 +193,7 @@ class TopologyNode(TaskGenerator):
     def __getattr__(self, item):
         if item.startswith('cfg_') and self._parent:
             return getattr(self._parent, item, None)
-        raise AttributeError('"%s" not found' % item)
+        raise AttributeError('"%s" not found in %s' % (item, self.__class__.__name__))
 
     def get_state_dict(self):
         """ Get current state as a dictionary, suitable for saving in a state file

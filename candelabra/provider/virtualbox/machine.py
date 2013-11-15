@@ -389,7 +389,7 @@ class VirtualboxMachineNode(MachineNode):
         finally:
             self.unlock(s)
 
-    def do_create_guest(self):
+    def do_create_guest_reference(self):
         """ Create a guest reference, creating a :class:`Guest` instance that can be used for
         mounting directories, creating network devices, etc...
         """
@@ -402,9 +402,17 @@ class VirtualboxMachineNode(MachineNode):
         """
         s = self.lock()
         try:
-            #if self.guest:
-            #    self.guest.shutdown()
-            # # wait for a change in the machine state
+            if self.guest:
+                self.guest.shutdown()
+
+                # wait for a change in the machine state
+                logger.info('waiting for machine to power down for up to %d seconds...', self.cfg_updown_timeout)
+                for _ in xrange(self.cfg_updown_timeout):
+                    systemland = self.get_guest_level_system(guest=self._vbox_guest, session=s)
+                    if not systemland:
+                        break
+                    else:
+                        sleep(1.0)
 
             p = s.console.power_down()
             logger.info('... waiting from power down to finish (up to %d seconds)', self.cfg_updown_timeout)
@@ -450,6 +458,15 @@ class VirtualboxMachineNode(MachineNode):
         # we want to set a nice, friendly name...
         self.sync_name()
 
+    def do_close_guest_sessions(self):
+        """ Close all guest sessions
+        """
+        session = self.lock()
+        guest_sessions = session.console.guest.sessions
+        for session in guest_sessions:
+            session.close()
+        self.machine.unlock(session)
+
     def do_destroy(self):
         """ Destroy a virtual machine
         """
@@ -477,13 +494,6 @@ class VirtualboxMachineNode(MachineNode):
         self._vbox_guest = None
         self._vbox_guest_os_type = None
 
-    def do_create_guest_reference(self):
-        """ Create a communicator for this machine
-        """
-        t, desc = self.get_guest_type()
-        logger.debug('creating a %s guest reference', t)
-        self.guest = build_guest_instance(_class=t, machine=self)
-
     def do_create_user(self):
         """ Create a user
         """
@@ -496,70 +506,10 @@ class VirtualboxMachineNode(MachineNode):
         finally:
             self.unlock(s)
 
-    def do_bridge(self):
-        """ Create a port bridge
-        """
-        # get a session, lock the machine and run the command
-        #s = self.lock()
-        #guest_session = self.get_guest_session(s)
-        #LISTEN_ADDR = ('0.0.0.0', 2222)
-        #
-        # import socket
-        # try:
-        #     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        #     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        #
-        #     logger.info('Binding to %s', str(LISTEN_ADDR))
-        #     sock.bind(LISTEN_ADDR)
-        #     sock.listen(1)
-        # except socket.error, e:
-        #     logger.warning('socket error: %s', str(e))
-        #     return
-        #
-        # conn, addr = sock.accept()
-        # logger.info('Connected from %s', str(addr))
-        #
-        # try:
-        #     command = ["/usr/bin/nc", "127.0.0.1", "22"]
-        #     logger.debug('running "%s"', ' '.join(command))
-        #     guest_process = guest_session.process_create(command[0], command[1:], [],
-        #                                                  [_virtualbox.library.ProcessCreateFlag.wait_for_std_out],
-        #                                                  timeout_ms=10 * 1000)
-        #
-        #     # wait for the command to start
-        #     guest_process.wait_for(_virtualbox.library.ProcessWaitForFlag.start._value,
-        #                            10 * 1000)
-        #     logger.debug('... pid=%d exit_code=%d', guest_process.pid, guest_process.exit_code)
-        #
-        #     conn.setblocking(False)
-        #     while True:
-        #         stdin = conn.recv(10000)
-        #         if not stdin:
-        #             break
-        #         else:
-        #             logger.debug('VM <-[ %d bytes ]- host', len(stdin))
-        #             guest_process.write(0, 0, stdin, 0)
-        #
-        #         stdout = guest_process.read(0, 100000, 10)
-        #         logger.debug('VM -[ %d bytes ]-> host', len(stdout))
-        #         if stdout:
-        #             conn.sendall(stdout)
-
-        #except _virtualbox.library.VBoxErrorIprtError, e:
-        #    logger.warning(str(e))
-        #except KeyboardInterrupt:
-        #    logger.info('Interrupted')
-        #finally:
-        #    #guest_session.close()
-        #    self.unlock(s)
-        #    #conn.close()
-        pass
-
-
-
     #####################
     # auxiliary
     #####################
+
     def __repr__(self):
         """ The representation
         """

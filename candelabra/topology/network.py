@@ -32,12 +32,16 @@ class NetworkNode(TopologyNode):
     __known_attributes = {
         TopologyAttribute('scope', str, default='nat'),
         TopologyAttribute('netmask', str, default='255,255.255.0'),
+
+        TopologyAttribute('dhcp_server_ip', str, default='10.10.{num}.1'),
+        TopologyAttribute('dhcp_start', str, default='10.10.{num}.2'),
+        TopologyAttribute('dhcp_end', str, default='10.10.{num}.255'),
     }
 
-    def __init__(self, _parent=None, **kwargs):
+    def __init__(self, **kwargs):
         """ Initialize a network
         """
-        super(NetworkNode, self).__init__(_parent=_parent, **kwargs)
+        super(NetworkNode, self).__init__(**kwargs)
         TopologyAttribute.setall(self, kwargs, self.__known_attributes)
 
         # check the attributes
@@ -48,6 +52,7 @@ class NetworkNode(TopologyNode):
                                                  SUPPORTED_SCOPES)
 
         # private attributes
+        self._num = self.get_inc_counter(self.machine, "cfg_networks")
         self._created = False
 
     def do_network_create(self):
@@ -55,3 +60,21 @@ class NetworkNode(TopologyNode):
 
     def do_network_up(self):
         logger.debug('network up: nothing to do for network', self.cfg_name)
+
+    #####################
+    # properties
+    #####################
+
+    @property
+    def machine(self):
+        """ Return the machine where this insterface s installed
+        :returns: a :class:`MachineNode`: instance
+        """
+        return self._container
+
+    #####################
+    # properties
+    #####################
+
+    is_nat = property(lambda self: self.cfg_scope == 'nat',
+                      doc='Check if it is the NAT network')

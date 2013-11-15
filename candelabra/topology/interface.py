@@ -62,12 +62,26 @@ class InterfaceNode(TopologyNode):
         self.cfg_connected = network
 
         # private attributes
+        self._num = self.get_inc_counter(self.machine, "cfg_interfaces")
         self._created = False
+
+    #####################
+    # tasks
+    #####################
 
     def do_iface_create(self):
         """ Create a network interface
         """
-        logger.debug('interface create: nothing to do')
+        logger.debug('interface create: nothing to do #%d', self._num)
+
+    def do_iface_up(self):
+        """ Setup the network interface
+        """
+        logger.debug('interface setup: nothing to do for #%d', self._num)
+
+    #####################
+    # properties
+    #####################
 
     @property
     def machine(self):
@@ -82,6 +96,7 @@ class InterfaceNode(TopologyNode):
 
     def __repr__(self):
         extra = []
+        extra += ['#%d' % self._num]
         if self.cfg_name:
             extra += ['name:%s' % self.cfg_name]
         if self.cfg_class:

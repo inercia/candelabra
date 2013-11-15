@@ -83,5 +83,29 @@ class Guest(object):
     def mount(self, directory, mount_point):
         """ Mount a directory on a mount point
         """
-        pass
+        raise NotImplementedError()
 
+    def mkdir(self, directory):
+        """ Create a remote directory
+        """
+        raise NotImplementedError()
+
+    def shutdown(self):
+        """ Shutdown the machine
+        """
+        raise NotImplementedError()
+
+    def get_ips(self):
+        """ Get the IP addresses
+        """
+        raise NotImplementedError()
+
+    def change_hostname(self, name):
+        """ Set the current hostname
+        """
+        raise NotImplementedError()
+
+    def setup_iface(self, number, type, ip='', netmask=''):
+        """ Setup a network interface
+        """
+        raise NotImplementedError()

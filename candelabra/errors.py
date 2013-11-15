@@ -64,6 +64,11 @@ class MachineChangeException(MachineException):
     pass
 
 
+class MachineNetworkSetupException(MachineException):
+    """ An error happened when trying to setup the network in a machine
+    """
+    pass
+
 #########################################
 # comunicator
 

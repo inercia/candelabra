@@ -41,11 +41,25 @@ class SharedNode(TopologyNode):
         TopologyAttribute('mode', int, default=755, copy=True),
     ]
 
-    def __init__(self, _parent=None, **kwargs):
+    def __init__(self, **kwargs):
         """ Initialize a topology node
         """
-        super(SharedNode, self).__init__(_parent=_parent, **kwargs)
+        super(SharedNode, self).__init__(**kwargs)
         TopologyAttribute.setall(self, kwargs, self.__known_attributes)
+
+        # private attributes
+        self._num = self.get_inc_counter(self.machine, "cfg_shared")
+
+    #####################
+    # properties
+    #####################
+
+    @property
+    def machine(self):
+        """ Return the machine where this insterface s installed
+        :returns: a :class:`MachineNode`: instance
+        """
+        return self._container
 
     #####################
     # tasks

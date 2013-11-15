@@ -189,13 +189,13 @@ class MachineNode(TopologyNode):
             self.add_task_seq(self.do_power_up)
 
         self.add_task_seq(self.do_wait_userland)
-        self.add_task_seq(self.do_create_guest)
+
+        # once we have the userland tools, detect the host type and create a guest reference
+        self.add_task_seq(self.do_create_guest_reference)
 
         # create the shared folders
         for shared_folder in self.cfg_shared:
             self.add_task_seq(shared_folder.do_shared_create)
-
-        self.add_task_seq(self.do_create_guest_session)
 
         # startup the networks/interfaces
         for network in self.cfg_networks:
@@ -212,6 +212,7 @@ class MachineNode(TopologyNode):
         """
         if not (self.is_unknown or self.is_powered_down):
             self.add_task_seq(self.do_power_down)
+            self.add_task_seq(self.do_close_guest_sessions)
         else:
             logger.info('machine %s is not running', self.cfg_name)
 
@@ -234,7 +235,12 @@ class MachineNode(TopologyNode):
         """
         if self.is_running:
             logger.info('machine %s seems to be running', self.cfg_name)
+
             self.add_task_seq(self.do_wait_userland)
+
+            # once we have the userland tools, detect the host type and create a guest reference
+            self.add_task_seq(self.do_create_guest_reference)
+
             for network in self.cfg_networks:
                 self.add_task_seq(network.do_network_up)
             for iface in self.cfg_interfaces:
@@ -242,12 +248,6 @@ class MachineNode(TopologyNode):
         else:
             logger.error('machine %s is not running!', self.cfg_name)
             logger.error('... it must be running for this command (it will not be started automatically)')
-
-    def get_tasks_net_bridge(self):
-        """ Get the tasks needed for the command "net bridge"
-        """
-        logger.info('machine %s does not support bridge setup', self.cfg_name)
-        return []
 
     def get_tasks_net_show(self):
         """ Get the tasks needed for the command "net show"
@@ -287,20 +287,15 @@ class MachineNode(TopologyNode):
 
         self._appliance.import_to_machine(self)
 
-    def do_create_guest_session(self):
-        """ Create a guest session
+    def do_create_guest_reference(self):
+        """ Create a guest reference
         """
-        logger.debug('guess session creation: nothing to do')
+        logger.debug('guest reference creation: nothing to do')
 
     def do_wait_userland(self):
         """ Wait for userland
         """
         logger.debug('wait userland: nothing to do')
-
-    def do_create_guest(self):
-        """ Create a guest reference
-        """
-        logger.debug('create guest: nothing to do')
 
     #####################
     # auxiliary

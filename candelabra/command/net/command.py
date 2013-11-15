@@ -37,21 +37,6 @@ class NetCommandPlugin(CommandPlugin):
                                action='store_true',
                                help='verbose display')
 
-        # bridge
-        parser_bridge = subparsers.add_parser('bridge',
-                                              help='setup a network bridge')
-        parser_bridge.add_argument('-t',
-                                   '--topology',
-                                   metavar='TOPOLOGY',
-                                   dest='topology',
-                                   type=str,
-                                   default=None,
-                                   help='the machine(s) definition(s) file(s)')
-        parser_bridge.add_argument('-v',
-                                   '--verbose',
-                                   action='store_true',
-                                   help='verbose display')
-
         # status
         parser_status = subparsers.add_parser('status',
                                               help='show the networks statuses')
@@ -74,8 +59,6 @@ class NetCommandPlugin(CommandPlugin):
 
         if args.net_command == 'up':
             self.run_with_topology(args, args.topology, command='net_up')
-        if args.net_command == 'bridge':
-            self.run_with_topology(args, args.topology, command='net_bridge')
         elif args.net_command == 'status':
             self.run_with_topology(args, args.topology, command='net_status')
         else:
