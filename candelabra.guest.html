@@ -1,0 +1,218 @@
+
+
+  
+  
+ 
+  
+ 
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>guest Package &mdash; candelabra 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="candelabra 1.0 documentation" href="index.html" />
+    <link rel="up" title="candelabra Package" href="candelabra.html" />
+    <link rel="next" title="linux Package" href="candelabra.guest.linux.html" />
+    <link rel="prev" title="virtualbox Package" href="candelabra.communicator.virtualbox.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="doc_index.html">Candelabra</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://github.com/inercia/candelabra">Github</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a href="doc_index.html"
+     class="dropdown-toggle"
+     data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+    ><ul class="simple">
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_install.html">Software installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#build-requirements">Build Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#on-mac-os-x">On Mac OS X</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_running.html">Running the software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#on-development-machines">On development machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#unit-tests">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_topology.html">Topology files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#topology-files-structure">Topology files structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#defaults">Defaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#networks">Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#machines">Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_provisioning.html">    Provisioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_provisioning.html#puppet">Puppet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_hooks.html">Hooks</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Main modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html">candelabra Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_plugins.html">Extending Candelabra with plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_plugins.html#deafult-plugins">Deafult plugins</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html">Candelabra software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html#third-party-packages">Third party packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_license.html#bottle">Bottle</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">guest Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">guest</span></tt> Package</a></li>
+<li><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li><a href="candelabra.communicator.virtualbox.html"
+         title="Previous Chapter: virtualbox Package">&laquo; virtualbox Packa...</a></li>
+  <li><a href="candelabra.guest.linux.html"
+         title="Next Chapter: linux Package">linux Package &raquo;</a></li>
+              
+            
+            
+            
+            
+              <li>
+<div id="sourcelink">
+  <a href="_sources/candelabra.guest.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="guest-package">
+<h1>guest Package<a class="headerlink" href="#guest-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">guest</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-candelabra.guest"></span></div>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="candelabra.guest.linux.html">linux Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.guest.linux.html#module-candelabra.guest.linux.guest"><tt class="docutils literal"><span class="pre">guest</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.guest.linux.html#module-candelabra.guest.linux.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Alvaro Saurin.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

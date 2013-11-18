@@ -1,0 +1,27 @@
+destroy Package
+===============
+
+:mod:`destroy` Package
+----------------------
+
+.. automodule:: candelabra.command.destroy
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`command` Module
+---------------------
+
+.. automodule:: candelabra.command.destroy.command
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`plugin` Module
+--------------------
+
+.. automodule:: candelabra.command.destroy.plugin
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

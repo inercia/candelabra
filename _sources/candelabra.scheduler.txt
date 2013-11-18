@@ -1,0 +1,27 @@
+scheduler Package
+=================
+
+:mod:`base` Module
+------------------
+
+.. automodule:: candelabra.scheduler.base
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`rad_util` Module
+----------------------
+
+.. automodule:: candelabra.scheduler.rad_util
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`topsort` Module
+---------------------
+
+.. automodule:: candelabra.scheduler.topsort
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

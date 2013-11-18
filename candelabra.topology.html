@@ -1,0 +1,774 @@
+
+
+  
+  
+ 
+  
+ 
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>topology Package &mdash; candelabra 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="candelabra 1.0 documentation" href="index.html" />
+    <link rel="up" title="candelabra Package" href="candelabra.html" />
+    <link rel="next" title="Plugins" href="doc_plugins.html" />
+    <link rel="prev" title="scheduler Package" href="candelabra.scheduler.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="doc_index.html">Candelabra</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://github.com/inercia/candelabra">Github</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a href="doc_index.html"
+     class="dropdown-toggle"
+     data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+    ><ul class="simple">
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_install.html">Software installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#build-requirements">Build Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#on-mac-os-x">On Mac OS X</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_running.html">Running the software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#on-development-machines">On development machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#unit-tests">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_topology.html">Topology files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#topology-files-structure">Topology files structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#defaults">Defaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#networks">Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#machines">Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_provisioning.html">    Provisioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_provisioning.html#puppet">Puppet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_hooks.html">Hooks</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Main modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html">candelabra Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_plugins.html">Extending Candelabra with plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_plugins.html#deafult-plugins">Deafult plugins</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html">Candelabra software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html#third-party-packages">Third party packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_license.html#bottle">Bottle</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">topology Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">topology</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-candelabra.topology.box"><tt class="docutils literal"><span class="pre">box</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.topology.interface"><tt class="docutils literal"><span class="pre">interface</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.topology.machine"><tt class="docutils literal"><span class="pre">machine</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.topology.network"><tt class="docutils literal"><span class="pre">network</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.topology.node"><tt class="docutils literal"><span class="pre">node</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.topology.provisioner"><tt class="docutils literal"><span class="pre">provisioner</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.topology.root"><tt class="docutils literal"><span class="pre">root</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.topology.shared"><tt class="docutils literal"><span class="pre">shared</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.topology.state"><tt class="docutils literal"><span class="pre">state</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li><a href="candelabra.scheduler.html"
+         title="Previous Chapter: scheduler Package">&laquo; scheduler Packag...</a></li>
+  <li><a href="doc_plugins.html"
+         title="Next Chapter: Plugins">Plugins &raquo;</a></li>
+              
+            
+            
+            
+            
+              <li>
+<div id="sourcelink">
+  <a href="_sources/candelabra.topology.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="topology-package">
+<h1>topology Package<a class="headerlink" href="#topology-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">topology</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-candelabra.topology"></span></div>
+<div class="section" id="module-candelabra.topology.box">
+<span id="box-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">box</span></tt> Module<a class="headerlink" href="#module-candelabra.topology.box" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="candelabra.topology.box.BoxNode">
+<em class="property">class </em><tt class="descclassname">candelabra.topology.box.</tt><tt class="descname">BoxNode</tt><big>(</big><em>_parent=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/box.html#BoxNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.box.BoxNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.topology.node.TopologyNode" title="candelabra.topology.node.TopologyNode"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.topology.node.TopologyNode</span></tt></a>, <a class="reference internal" href="candelabra.html#candelabra.tasks.TaskGenerator" title="candelabra.tasks.TaskGenerator"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.tasks.TaskGenerator</span></tt></a></p>
+<dl class="docutils">
+<dt>A box is one or more virtual machine templates that will be used for creating</dt>
+<dd><p class="first">multiple virtual machines following a topology.</p>
+<p>Boxes contain subdirectories for providers, where appliances are stored.</p>
+<p class="last">Example: box1 has two appliances: a virtualbox appliance and a vmware appliance</p>
+</dd>
+</dl>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">box1</span>
+  <span class="l-Scalar-Plain">- virtualbox</span>
+    <span class="l-Scalar-Plain">- box.ovf</span>
+    <span class="l-Scalar-Plain">- disk.vmdk</span>
+  <span class="l-Scalar-Plain">- vmware</span>
+    <span class="l-Scalar-Plain">- ...</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="candelabra.topology.box.BoxNode.do_download">
+<tt class="descname">do_download</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/box.html#BoxNode.do_download"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.box.BoxNode.do_download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download a box</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.box.BoxNode.get_appliance">
+<tt class="descname">get_appliance</tt><big>(</big><em>provider</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/box.html#BoxNode.get_appliance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.box.BoxNode.get_appliance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a instance of one of the appliances in this box, or None if not found</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.box.BoxNode.load">
+<tt class="descname">load</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/box.html#BoxNode.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.box.BoxNode.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a box from a path</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="data">
+<dt id="candelabra.topology.box.CHUNK_SIZE">
+<tt class="descclassname">candelabra.topology.box.</tt><tt class="descname">CHUNK_SIZE</tt><em class="property"> = 4194304</em><a class="headerlink" href="#candelabra.topology.box.CHUNK_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd><p>download chunk size</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="candelabra.topology.box.MBYTE">
+<tt class="descclassname">candelabra.topology.box.</tt><tt class="descname">MBYTE</tt><em class="property"> = 1048576</em><a class="headerlink" href="#candelabra.topology.box.MBYTE" title="Permalink to this definition">¶</a></dt>
+<dd><p>a mbyte</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.topology.interface">
+<span id="interface-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">interface</span></tt> Module<a class="headerlink" href="#module-candelabra.topology.interface" title="Permalink to this headline">¶</a></h2>
+<p>A network interface in the topology.</p>
+<p>Network interfaces must belong to a Machine, so they must be contained in a <tt class="xref py py-class docutils literal"><span class="pre">MachineNode</span></tt> instance.</p>
+<dl class="class">
+<dt id="candelabra.topology.interface.InterfaceNode">
+<em class="property">class </em><tt class="descclassname">candelabra.topology.interface.</tt><tt class="descname">InterfaceNode</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/interface.html#InterfaceNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.interface.InterfaceNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.topology.node.TopologyNode" title="candelabra.topology.node.TopologyNode"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.topology.node.TopologyNode</span></tt></a></p>
+<p>A machine network interface</p>
+<p>Some important attributes:
+* the interface <strong>type</strong>, that can be &#8216;nat&#8217;, &#8216;host-only&#8217;, etc...
+* the <strong>ip</strong> address, that can be a numeric IP, a host name, or some reserved words like <em>automatic</em>
+* the interace name, <strong>ifname</strong>.</p>
+<dl class="method">
+<dt id="candelabra.topology.interface.InterfaceNode.do_iface_create">
+<tt class="descname">do_iface_create</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/interface.html#InterfaceNode.do_iface_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.interface.InterfaceNode.do_iface_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a network interface</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.interface.InterfaceNode.do_iface_up">
+<tt class="descname">do_iface_up</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/interface.html#InterfaceNode.do_iface_up"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.interface.InterfaceNode.do_iface_up" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup the network interface</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.interface.InterfaceNode.machine">
+<tt class="descname">machine</tt><a class="reference internal" href="_modules/candelabra/topology/interface.html#InterfaceNode.machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.interface.InterfaceNode.machine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the machine where this insterface s installed
+:returns: a <tt class="xref py py-class docutils literal"><span class="pre">MachineNode</span></tt>: instance</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.topology.machine">
+<span id="machine-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">machine</span></tt> Module<a class="headerlink" href="#module-candelabra.topology.machine" title="Permalink to this headline">¶</a></h2>
+<p>A machine in a topology.</p>
+<dl class="class">
+<dt id="candelabra.topology.machine.MachineNode">
+<em class="property">class </em><tt class="descclassname">candelabra.topology.machine.</tt><tt class="descname">MachineNode</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.topology.node.TopologyNode" title="candelabra.topology.node.TopologyNode"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.topology.node.TopologyNode</span></tt></a></p>
+<p>A machine in the topology hierarchy.</p>
+<p>There are two important classes of machines:</p>
+<ul class="simple">
+<li>the global machine, a machine used for storing global attributes.</li>
+<li>regular machines.</li>
+</ul>
+<p>Machines have some important attributes:</p>
+<ul class="simple">
+<li>communicator: a <tt class="xref py py-class docutils literal"><span class="pre">Communicator</span></tt> instance, used for communicating with the machine.</li>
+<li>guest: a <tt class="xref py py-class docutils literal"><span class="pre">Guest</span></tt> instance, used for running some standard commands in the machine.</li>
+</ul>
+<dl class="attribute">
+<dt id="candelabra.topology.machine.MachineNode.communicator_ip">
+<tt class="descname">communicator_ip</tt><a class="headerlink" href="#candelabra.topology.machine.MachineNode.communicator_ip" title="Permalink to this definition">¶</a></dt>
+<dd><p>get an IP where the communicator can connect to</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.do_copy_appliance">
+<tt class="descname">do_copy_appliance</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.do_copy_appliance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.do_copy_appliance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy the appliance as a new virtual machine.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.do_create_guest_reference">
+<tt class="descname">do_create_guest_reference</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.do_create_guest_reference"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.do_create_guest_reference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a guest reference</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.do_pause">
+<tt class="descname">do_pause</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.do_pause"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.do_pause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pause the machine via launch</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.do_power_down">
+<tt class="descname">do_power_down</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.do_power_down"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.do_power_down" title="Permalink to this definition">¶</a></dt>
+<dd><p>Power down the machine via launch</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.do_power_up">
+<tt class="descname">do_power_up</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.do_power_up"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.do_power_up" title="Permalink to this definition">¶</a></dt>
+<dd><p>Power up the machine via launch</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.do_wait_userland">
+<tt class="descname">do_wait_userland</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.do_wait_userland"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.do_wait_userland" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for userland</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.get_communicator_ip">
+<tt class="descname">get_communicator_ip</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.get_communicator_ip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.get_communicator_ip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the IP where a communicator can connect to</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.get_network_by_name">
+<tt class="descname">get_network_by_name</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.get_network_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.get_network_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a network given a name</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.get_state">
+<tt class="descname">get_state</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.get_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.get_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the machine current state</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.get_state_dict">
+<tt class="descname">get_state_dict</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.get_state_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.get_state_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get current state as a dictionary, suitable for saving in a state file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.get_state_str">
+<tt class="descname">get_state_str</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.get_state_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.get_state_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the machine current state</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.get_tasks_destroy">
+<tt class="descname">get_tasks_destroy</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.get_tasks_destroy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.get_tasks_destroy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the tasks needed for the command &#8220;destroy&#8221;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.get_tasks_down">
+<tt class="descname">get_tasks_down</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.get_tasks_down"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.get_tasks_down" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the tasks needed for the command &#8220;down&#8221;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.get_tasks_net_show">
+<tt class="descname">get_tasks_net_show</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.get_tasks_net_show"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.get_tasks_net_show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the tasks needed for the command &#8220;net show&#8221;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.get_tasks_net_up">
+<tt class="descname">get_tasks_net_up</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.get_tasks_net_up"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.get_tasks_net_up" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the tasks needed for the command &#8220;net up&#8221;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.get_tasks_pause">
+<tt class="descname">get_tasks_pause</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.get_tasks_pause"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.get_tasks_pause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the tasks needed for the command &#8220;pause&#8221;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.get_tasks_up">
+<tt class="descname">get_tasks_up</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.get_tasks_up"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.get_tasks_up" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the tasks needed for the command &#8220;up&#8221;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.machine.MachineNode.is_aborted">
+<tt class="descname">is_aborted</tt><a class="headerlink" href="#candelabra.topology.machine.MachineNode.is_aborted" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the machine is aborted</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.machine.MachineNode.is_global">
+<tt class="descname">is_global</tt><a class="headerlink" href="#candelabra.topology.machine.MachineNode.is_global" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if this is the global node</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.machine.MachineNode.is_powered_down">
+<tt class="descname">is_powered_down</tt><a class="headerlink" href="#candelabra.topology.machine.MachineNode.is_powered_down" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the machine is powered down</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.machine.MachineNode.is_running">
+<tt class="descname">is_running</tt><a class="headerlink" href="#candelabra.topology.machine.MachineNode.is_running" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the machine is running</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.machine.MachineNode.is_starting">
+<tt class="descname">is_starting</tt><a class="headerlink" href="#candelabra.topology.machine.MachineNode.is_starting" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the machine is starting</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.machine.MachineNode.is_stopping">
+<tt class="descname">is_stopping</tt><a class="headerlink" href="#candelabra.topology.machine.MachineNode.is_stopping" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the machine is stopping</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.machine.MachineNode.is_unknown">
+<tt class="descname">is_unknown</tt><a class="headerlink" href="#candelabra.topology.machine.MachineNode.is_unknown" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the machine is in unknown state</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.machine.MachineNode.pretty_print">
+<tt class="descname">pretty_print</tt><big>(</big><em>prefix=''</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/machine.html#MachineNode.pretty_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.machine.MachineNode.pretty_print" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.machine.MachineNode.state">
+<tt class="descname">state</tt><a class="headerlink" href="#candelabra.topology.machine.MachineNode.state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.machine.MachineNode.state_str">
+<tt class="descname">state_str</tt><a class="headerlink" href="#candelabra.topology.machine.MachineNode.state_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.topology.network">
+<span id="network-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">network</span></tt> Module<a class="headerlink" href="#module-candelabra.topology.network" title="Permalink to this headline">¶</a></h2>
+<p>A network in the topology.</p>
+<dl class="class">
+<dt id="candelabra.topology.network.NetworkNode">
+<em class="property">class </em><tt class="descclassname">candelabra.topology.network.</tt><tt class="descname">NetworkNode</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/network.html#NetworkNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.network.NetworkNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.topology.node.TopologyNode" title="candelabra.topology.node.TopologyNode"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.topology.node.TopologyNode</span></tt></a></p>
+<p>A network</p>
+<p>Some important attributes:
+* the network <strong>scope</strong>, that can be &#8216;nat&#8217;, &#8216;private&#8217;, etc...
+* the <strong>netmask</strong></p>
+<dl class="method">
+<dt id="candelabra.topology.network.NetworkNode.do_network_create">
+<tt class="descname">do_network_create</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/network.html#NetworkNode.do_network_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.network.NetworkNode.do_network_create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.network.NetworkNode.do_network_up">
+<tt class="descname">do_network_up</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/network.html#NetworkNode.do_network_up"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.network.NetworkNode.do_network_up" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.network.NetworkNode.is_nat">
+<tt class="descname">is_nat</tt><a class="headerlink" href="#candelabra.topology.network.NetworkNode.is_nat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if it is the NAT network</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.network.NetworkNode.machine">
+<tt class="descname">machine</tt><a class="reference internal" href="_modules/candelabra/topology/network.html#NetworkNode.machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.network.NetworkNode.machine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the machine where this insterface s installed
+:returns: a <tt class="xref py py-class docutils literal"><span class="pre">MachineNode</span></tt>: instance</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="data">
+<dt id="candelabra.topology.network.SUPPORTED_SCOPES">
+<tt class="descclassname">candelabra.topology.network.</tt><tt class="descname">SUPPORTED_SCOPES</tt><em class="property"> = set(['nat', 'private'])</em><a class="headerlink" href="#candelabra.topology.network.SUPPORTED_SCOPES" title="Permalink to this definition">¶</a></dt>
+<dd><p>supported network types</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.topology.node">
+<span id="node-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">node</span></tt> Module<a class="headerlink" href="#module-candelabra.topology.node" title="Permalink to this headline">¶</a></h2>
+<p>A base module for all the topology nodes.</p>
+<dl class="class">
+<dt id="candelabra.topology.node.TopologyAttribute">
+<em class="property">class </em><tt class="descclassname">candelabra.topology.node.</tt><tt class="descname">TopologyAttribute</tt><big>(</big><em>name</em>, <em>constructor</em>, <em>default=&lt;object object at 0x110bb4f60&gt;</em>, <em>doc=''</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/node.html#TopologyAttribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.node.TopologyAttribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A topology node attribute</p>
+<p>Nodes have some important attributes:</p>
+<ul class="simple">
+<li>a <strong>class</strong> that identifies what kind of node is this</li>
+<li>a unique <strong>name</strong></li>
+<li>a unique <strong>uuid</strong>, usually established by the Candelabra engine.</li>
+</ul>
+<dl class="staticmethod">
+<dt id="candelabra.topology.node.TopologyAttribute.setall">
+<em class="property">static </em><tt class="descname">setall</tt><big>(</big><em>container</em>, <em>dictionary</em>, <em>known_attributes</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/node.html#TopologyAttribute.setall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.node.TopologyAttribute.setall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set attributes from a dictionary if they are found in the <cite>known_attributes</cite> as known attributes.</p>
+<p>We can define all attributed this kind of object accept with the <a href="#id2"><span class="problematic" id="id3">:param:`known_attributes`</span></a>
+For constructor, we pass the dictionary expanded as parameters, and we add a <cite>_parent_contructor</cite>
+for referring to this instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="candelabra.topology.node.TopologyNode">
+<em class="property">class </em><tt class="descclassname">candelabra.topology.node.</tt><tt class="descname">TopologyNode</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/node.html#TopologyNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.node.TopologyNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="candelabra.html#candelabra.tasks.TaskGenerator" title="candelabra.tasks.TaskGenerator"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.tasks.TaskGenerator</span></tt></a></p>
+<p>Base class for all topology nodes.</p>
+<p><em>Attributes:</em></p>
+<p>All known attributed will be loaded from the topology wile and added to the current instance with
+the &#8216;<a href="#id4"><span class="problematic" id="id5">cfg_</span></a>&#8216; prefix. For example, if &#8216;hostname&#8217; is a known attribute, it will be set for the
+instance under the name &#8216;cfg_hostname&#8217;</p>
+<p><em>Commands:</em></p>
+<p>Topology nodes can react to commands by providing methods named <cite>get_tasks_&lt;COMMAND&gt;</cite> that return a list
+of tuples (function1, function2)</p>
+<dl class="method">
+<dt id="candelabra.topology.node.TopologyNode.get_inc_counter">
+<tt class="descname">get_inc_counter</tt><big>(</big><em>where</em>, <em>name</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/node.html#TopologyNode.get_inc_counter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.node.TopologyNode.get_inc_counter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an incremental counter on an atribute (for example, for the network interfaces)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.node.TopologyNode.get_state_dict">
+<tt class="descname">get_state_dict</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/node.html#TopologyNode.get_state_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.node.TopologyNode.get_state_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get current state as a dictionary, suitable for saving in a state file</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.topology.provisioner">
+<span id="provisioner-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">provisioner</span></tt> Module<a class="headerlink" href="#module-candelabra.topology.provisioner" title="Permalink to this headline">¶</a></h2>
+<p>A provisioner node in the topology.</p>
+<p>Provsioners must belong to machines, so their container must be a <tt class="xref py py-class docutils literal"><span class="pre">MachineNode</span></tt>.</p>
+<dl class="class">
+<dt id="candelabra.topology.provisioner.ProvisionerNode">
+<em class="property">class </em><tt class="descclassname">candelabra.topology.provisioner.</tt><tt class="descname">ProvisionerNode</tt><big>(</big><em>_parent=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/provisioner.html#ProvisionerNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.provisioner.ProvisionerNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.topology.node.TopologyNode" title="candelabra.topology.node.TopologyNode"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.topology.node.TopologyNode</span></tt></a></p>
+<p>A provisioner for a machine</p>
+<dl class="attribute">
+<dt id="candelabra.topology.provisioner.ProvisionerNode.machine">
+<tt class="descname">machine</tt><a class="reference internal" href="_modules/candelabra/topology/provisioner.html#ProvisionerNode.machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.provisioner.ProvisionerNode.machine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the machine where this insterface s installed
+:returns: a <tt class="xref py py-class docutils literal"><span class="pre">MachineNode</span></tt>: instance</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.topology.root">
+<span id="root-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">root</span></tt> Module<a class="headerlink" href="#module-candelabra.topology.root" title="Permalink to this headline">¶</a></h2>
+<p>The topology hierarchy root.</p>
+<p>The topology root represents the top element in the topology hierarchy. It has two important attributes:</p>
+<ul class="simple">
+<li>the global machine, a parent machine definition used for setting global attributes.</li>
+<li>the list of machines defined in the topology.</li>
+</ul>
+<p>The root provides some convenience methods for running a task on all the nodes in the tree. See <tt class="xref py py-meth docutils literal"><span class="pre">get_tasks()</span></tt></p>
+<dl class="data">
+<dt id="candelabra.topology.root.DEFAULT_INTERFACES">
+<tt class="descclassname">candelabra.topology.root.</tt><tt class="descname">DEFAULT_INTERFACES</tt><em class="property"> = [{'connected': 'nat', 'type': 'dhcp', 'name': 'nat-iface'}]</em><a class="headerlink" href="#candelabra.topology.root.DEFAULT_INTERFACES" title="Permalink to this definition">¶</a></dt>
+<dd><p>default interfaces that will be added</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="candelabra.topology.root.DEFAULT_NAT_INTERFACE_NAME">
+<tt class="descclassname">candelabra.topology.root.</tt><tt class="descname">DEFAULT_NAT_INTERFACE_NAME</tt><em class="property"> = 'nat-iface'</em><a class="headerlink" href="#candelabra.topology.root.DEFAULT_NAT_INTERFACE_NAME" title="Permalink to this definition">¶</a></dt>
+<dd><p>default network interface name</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="candelabra.topology.root.DEFAULT_NAT_NETWORK_NAME">
+<tt class="descclassname">candelabra.topology.root.</tt><tt class="descname">DEFAULT_NAT_NETWORK_NAME</tt><em class="property"> = 'nat'</em><a class="headerlink" href="#candelabra.topology.root.DEFAULT_NAT_NETWORK_NAME" title="Permalink to this definition">¶</a></dt>
+<dd><p>default NAT network name</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="candelabra.topology.root.DEFAULT_NETWORKS">
+<tt class="descclassname">candelabra.topology.root.</tt><tt class="descname">DEFAULT_NETWORKS</tt><em class="property"> = [{'scope': 'nat', 'name': 'nat'}]</em><a class="headerlink" href="#candelabra.topology.root.DEFAULT_NETWORKS" title="Permalink to this definition">¶</a></dt>
+<dd><p>default networks</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="candelabra.topology.root.TopologyRoot">
+<em class="property">class </em><tt class="descclassname">candelabra.topology.root.</tt><tt class="descname">TopologyRoot</tt><a class="reference internal" href="_modules/candelabra/topology/root.html#TopologyRoot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.root.TopologyRoot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Topology definition</p>
+<dl class="method">
+<dt id="candelabra.topology.root.TopologyRoot.get_global_machine">
+<tt class="descname">get_global_machine</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/root.html#TopologyRoot.get_global_machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.root.TopologyRoot.get_global_machine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.root.TopologyRoot.get_machine_by_name">
+<tt class="descname">get_machine_by_name</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/root.html#TopologyRoot.get_machine_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.root.TopologyRoot.get_machine_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a machine by name</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.root.TopologyRoot.get_machine_by_uuid">
+<tt class="descname">get_machine_by_uuid</tt><big>(</big><em>uuid</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/root.html#TopologyRoot.get_machine_by_uuid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.root.TopologyRoot.get_machine_by_uuid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a machine by UUID</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.root.TopologyRoot.get_tasks">
+<tt class="descname">get_tasks</tt><big>(</big><em>task_name</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/root.html#TopologyRoot.get_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.root.TopologyRoot.get_tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all tasks needed for running something in all machines</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.root.TopologyRoot.load">
+<tt class="descname">load</tt><big>(</big><em>filename</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/root.html#TopologyRoot.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.root.TopologyRoot.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the topology from a YAML file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.root.TopologyRoot.load_str">
+<tt class="descname">load_str</tt><big>(</big><em>string</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/root.html#TopologyRoot.load_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.root.TopologyRoot.load_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the topology from a YAML string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.root.TopologyRoot.machines">
+<tt class="descname">machines</tt><a class="reference internal" href="_modules/candelabra/topology/root.html#TopologyRoot.machines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.root.TopologyRoot.machines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.root.TopologyRoot.state">
+<tt class="descname">state</tt><a class="reference internal" href="_modules/candelabra/topology/root.html#TopologyRoot.state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.root.TopologyRoot.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the state for all machines in the topology</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.topology.root.guess_topology_file">
+<tt class="descclassname">candelabra.topology.root.</tt><tt class="descname">guess_topology_file</tt><big>(</big><em>extra=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="reference internal" href="_modules/candelabra/topology/root.html#guess_topology_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.root.guess_topology_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try to guess the topology file</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.topology.shared">
+<span id="shared-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">shared</span></tt> Module<a class="headerlink" href="#module-candelabra.topology.shared" title="Permalink to this headline">¶</a></h2>
+<p>A shared folder node in the topology.</p>
+<p>Shared folders must belong to machines, so their container must be a <tt class="xref py py-class docutils literal"><span class="pre">MachineNode</span></tt>.</p>
+<dl class="class">
+<dt id="candelabra.topology.shared.SharedNode">
+<em class="property">class </em><tt class="descclassname">candelabra.topology.shared.</tt><tt class="descname">SharedNode</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/shared.html#SharedNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.shared.SharedNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.topology.node.TopologyNode" title="candelabra.topology.node.TopologyNode"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.topology.node.TopologyNode</span></tt></a></p>
+<p>A shared folder for a machine.</p>
+<dl class="method">
+<dt id="candelabra.topology.shared.SharedNode.do_shared_create">
+<tt class="descname">do_shared_create</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/shared.html#SharedNode.do_shared_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.shared.SharedNode.do_shared_create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.shared.SharedNode.do_shared_mount">
+<tt class="descname">do_shared_mount</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/shared.html#SharedNode.do_shared_mount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.shared.SharedNode.do_shared_mount" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.shared.SharedNode.machine">
+<tt class="descname">machine</tt><a class="reference internal" href="_modules/candelabra/topology/shared.html#SharedNode.machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.shared.SharedNode.machine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the machine where this insterface s installed
+:returns: a <tt class="xref py py-class docutils literal"><span class="pre">MachineNode</span></tt>: instance</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.topology.state">
+<span id="state-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">state</span></tt> Module<a class="headerlink" href="#module-candelabra.topology.state" title="Permalink to this headline">¶</a></h2>
+<p>Topology state.</p>
+<p>This module is responsible for saving the current toplogy nodes state, as well as restorying a previously
+saved dump of the state.</p>
+<dl class="class">
+<dt id="candelabra.topology.state.State">
+<em class="property">class </em><tt class="descclassname">candelabra.topology.state.</tt><tt class="descname">State</tt><big>(</big><em>topology</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/state.html#State"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.state.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>State definition</p>
+<p>State definition is kept in memory _as a <a href="#id6"><span class="problematic" id="id7">dictionary_</span></a>, not as a tree of topology <tt class="xref py py-class docutils literal"><span class="pre">Node</span></tt>:</p>
+<dl class="attribute">
+<dt id="candelabra.topology.state.State.filename">
+<tt class="descname">filename</tt><a class="reference internal" href="_modules/candelabra/topology/state.html#State.filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.state.State.filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the filename for the persisted state file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.state.State.get_machine_state">
+<tt class="descname">get_machine_state</tt><big>(</big><em>machine</em><big>)</big><a class="reference internal" href="_modules/candelabra/topology/state.html#State.get_machine_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.state.State.get_machine_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dictionary with the state for a machine</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.state.State.load">
+<tt class="descname">load</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/state.html#State.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.state.State.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the state from a persisted file</p>
+<p>The state file is kept in memory as a dictionary, not as a tree of topology <tt class="xref py py-class docutils literal"><span class="pre">Node</span></tt>:</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.topology.state.State.persisted">
+<tt class="descname">persisted</tt><a class="reference internal" href="_modules/candelabra/topology/state.html#State.persisted"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.state.State.persisted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if there is a persisted state file on disc</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.state.State.remove">
+<tt class="descname">remove</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/state.html#State.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.state.State.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the state file, if it exists</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.topology.state.State.save">
+<tt class="descname">save</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/topology/state.html#State.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.topology.state.State.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the state to a persisted file</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Alvaro Saurin.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

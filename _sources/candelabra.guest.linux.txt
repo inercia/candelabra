@@ -1,0 +1,19 @@
+linux Package
+=============
+
+:mod:`guest` Module
+-------------------
+
+.. automodule:: candelabra.guest.linux.guest
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`plugin` Module
+--------------------
+
+.. automodule:: candelabra.guest.linux.plugin
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

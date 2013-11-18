@@ -1,0 +1,1047 @@
+
+
+  
+  
+ 
+  
+ 
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>scheduler Package &mdash; candelabra 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="candelabra 1.0 documentation" href="index.html" />
+    <link rel="up" title="candelabra Package" href="candelabra.html" />
+    <link rel="next" title="topology Package" href="candelabra.topology.html" />
+    <link rel="prev" title="puppet Package" href="candelabra.provisioner.puppet.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="doc_index.html">Candelabra</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://github.com/inercia/candelabra">Github</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a href="doc_index.html"
+     class="dropdown-toggle"
+     data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+    ><ul class="simple">
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_install.html">Software installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#build-requirements">Build Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#on-mac-os-x">On Mac OS X</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_running.html">Running the software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#on-development-machines">On development machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#unit-tests">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_topology.html">Topology files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#topology-files-structure">Topology files structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#defaults">Defaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#networks">Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#machines">Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_provisioning.html">    Provisioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_provisioning.html#puppet">Puppet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_hooks.html">Hooks</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Main modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html">candelabra Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_plugins.html">Extending Candelabra with plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_plugins.html#deafult-plugins">Deafult plugins</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html">Candelabra software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html#third-party-packages">Third party packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_license.html#bottle">Bottle</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">scheduler Package</a><ul>
+<li><a class="reference internal" href="#module-candelabra.scheduler.base"><tt class="docutils literal"><span class="pre">base</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.scheduler.rad_util"><tt class="docutils literal"><span class="pre">rad_util</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.scheduler.topsort"><tt class="docutils literal"><span class="pre">topsort</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li><a href="candelabra.provisioner.puppet.html"
+         title="Previous Chapter: puppet Package">&laquo; puppet Package</a></li>
+  <li><a href="candelabra.topology.html"
+         title="Next Chapter: topology Package">topology Package &raquo;</a></li>
+              
+            
+            
+            
+            
+              <li>
+<div id="sourcelink">
+  <a href="_sources/candelabra.scheduler.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="scheduler-package">
+<h1>scheduler Package<a class="headerlink" href="#scheduler-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-candelabra.scheduler.base">
+<span id="base-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">base</span></tt> Module<a class="headerlink" href="#module-candelabra.scheduler.base" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="candelabra.scheduler.base.TasksScheduler">
+<em class="property">class </em><tt class="descclassname">candelabra.scheduler.base.</tt><tt class="descname">TasksScheduler</tt><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A scheduler for tasks</p>
+<dl class="method">
+<dt id="candelabra.scheduler.base.TasksScheduler.add">
+<tt class="descname">add</tt><big>(</big><em>task</em>, <em>depends_on=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new task to the scheduler</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.scheduler.base.TasksScheduler.append">
+<tt class="descname">append</tt><big>(</big><em>lst</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Appends a list of tasks</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.scheduler.base.TasksScheduler.clean">
+<tt class="descname">clean</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler.clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clean the tasks list</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="candelabra.scheduler.base.TasksScheduler.get_task_as_str">
+<em class="property">static </em><tt class="descname">get_task_as_str</tt><big>(</big><em>task</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler.get_task_as_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.get_task_as_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.scheduler.base.TasksScheduler.num_completed">
+<tt class="descname">num_completed</tt><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler.num_completed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.num_completed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="candelabra.scheduler.base.TasksScheduler.run">
+<tt class="descname">run</tt><big>(</big><em>abort_on_error=False</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run all the tasks in the order that dependencies need</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.scheduler.base.TasksScheduler.schedule">
+<tt class="descname">schedule</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler.schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.schedule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Schedule the tasks that must be run</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.scheduler.rad_util">
+<span id="rad-util-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">rad_util</span></tt> Module<a class="headerlink" href="#module-candelabra.scheduler.rad_util" title="Permalink to this headline">¶</a></h2>
+<p>Provide various handy Python functions.</p>
+<p>Running this script directly will execute the doctests.</p>
+<p>Functions:
+int2bin(i, n) &#8211; Convert integer to binary string.
+bin2int(bin_string) &#8211; Convert binary string to integer.
+reverse(input_string) &#8211; Reverse a string.
+transpose(matrix) &#8211; Transpose a list of lists.
+polygon_area(points_list) &#8211; Calculate the area of an arbitrary polygon.
+timestamp() &#8211; Return string containing current time stamp.
+pt2str(point) &#8211; Return prettier string version of point tuple.
+gcf(a, b) &#8211; Return the greatest common factor of two numbers.
+lcm(a, b) &#8211; Return the least common multiple of two numbers.
+permutations(input_list) &#8211; Generate all permutations of a list of items.
+reduce_fraction(fraction) &#8211; Reduce fraction (num, denom) to simplest form.
+quantile(l, p) &#8211; Return p quantile of list l. E.g. p=0.25 for q1.
+trim(l) &#8211; Discard values in list more than 1.5*IQR outside IQR.
+nice_units(value) &#8211; Return value converted to human readable units.
+uniquify(seq) &#8211; Return sequence with duplicate items in sequence seq removed.
+reverse_dict(d) &#8211; Return the dictionary with the items as keys and vice-versa.
+lsb(x, n) &#8211; Return the n least significant bits of x.
+gray_encode(i) &#8211; Gray encode the given integer.
+random_vec(bits, max_value=None) &#8211; Return a random binary vector.
+binary_range(bits) &#8211; Return list of all possible binary numbers width=bits.
+float_range([start], stop, [step]) &#8211; Return range of floats.
+find_common_fixes(s1, s2) &#8211; Find common (prefix, suffix) of two strings.
+is_rotated(seq1, seq2) &#8211; Return true if the list is a rotation of other list.
+getmodule(obj) &#8211; Return the module that contains the object definition of obj.</p>
+<blockquote>
+<div>(use inspect.getmodule instead, though)</div></blockquote>
+<p>get_args(argv) &#8211; Store command-line args in a dictionary.</p>
+<p>This module requires Python &gt;= 2.2</p>
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.bin2int">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">bin2int</tt><big>(</big><em>bin_string</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#bin2int"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.bin2int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert binary number string to decimal integer.</p>
+<p>Note: Python &gt; v2 has int(bin_string, 2)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">bin2int</span><span class="p">(</span><span class="s">&#39;1111&#39;</span><span class="p">)</span>
+<span class="go">15</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">bin2int</span><span class="p">(</span><span class="s">&#39;0101&#39;</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.binary_range">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">binary_range</tt><big>(</big><em>bits</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#binary_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.binary_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all possible binary numbers in order with width=bits.</p>
+<p>It would be nice to extend it to match the
+functionality of python&#8217;s range() built-in function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.find_common_fixes">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">find_common_fixes</tt><big>(</big><em>s1</em>, <em>s2</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#find_common_fixes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.find_common_fixes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find common (prefix, suffix) of two strings.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">find_common_fixes</span><span class="p">(</span><span class="s">&#39;abc&#39;</span><span class="p">,</span> <span class="s">&#39;def&#39;</span><span class="p">)</span>
+<span class="go">(&#39;&#39;, &#39;&#39;)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">find_common_fixes</span><span class="p">(</span><span class="s">&#39;abcelephantdef&#39;</span><span class="p">,</span> <span class="s">&#39;abccowdef&#39;</span><span class="p">)</span>
+<span class="go">(&#39;abc&#39;, &#39;def&#39;)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">find_common_fixes</span><span class="p">(</span><span class="s">&#39;abcelephantdef&#39;</span><span class="p">,</span> <span class="s">&#39;abccow&#39;</span><span class="p">)</span>
+<span class="go">(&#39;abc&#39;, &#39;&#39;)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">find_common_fixes</span><span class="p">(</span><span class="s">&#39;elephantdef&#39;</span><span class="p">,</span> <span class="s">&#39;abccowdef&#39;</span><span class="p">)</span>
+<span class="go">(&#39;&#39;, &#39;def&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.float_range">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">float_range</tt><big>(</big><em>start</em>, <em>stop=None</em>, <em>step=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#float_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.float_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list containing an arithmetic progression of floats.</p>
+<p>Return a list of floats between 0.0 (or start) and stop with an
+increment of step.</p>
+<p>This is in functionality to python&#8217;s range() built-in function 
+but can accept float increments.</p>
+<p>As with range(), stop is omitted from the list.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.gcf">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">gcf</tt><big>(</big><em>a</em>, <em>b</em>, <em>epsilon=1e-16</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#gcf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.gcf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the greatest common factor of a and b, using Euclidean algorithm.</p>
+<p>Arguments:
+a, b &#8211; two numbers</p>
+<blockquote>
+<div>If both numbers are integers return an integer result, 
+otherwise return a float result.</div></blockquote>
+<dl class="docutils">
+<dt>epsilon &#8211; floats less than this magnitude are considered to be zero</dt>
+<dd>(default: 1e-16)</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gcf</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">34</span><span class="p">)</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gcf</span><span class="p">(</span><span class="mf">13.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">0.5</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gcf</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gcf</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p>By (a convenient) definition:
+&gt;&gt;&gt; gcf(0, 0)
+0</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.get_args">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">get_args</tt><big>(</big><em>argv</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#get_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.get_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store command-line args in a dictionary.</p>
+<p>-, &#8211; prefixes are removed
+Items not prefixed with - or &#8211; are stored as a list, indexed by &#8216;args&#8217;</p>
+<p>For options that take a value use &#8211;option=value</p>
+<p>Consider using optparse or getopt (in Python standard library) instead.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.getmodule">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">getmodule</tt><big>(</big><em>obj</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#getmodule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.getmodule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the module that contains the object definition of obj.</p>
+<p>Note: Use inspect.getmodule instead.</p>
+<p>Arguments:
+obj &#8211; python obj, generally a class or a function</p>
+<p>Examples:</p>
+<p>A function:
+&gt;&gt;&gt; module = getmodule(random.choice)
+&gt;&gt;&gt; module.__name__
+&#8216;random&#8217;
+&gt;&gt;&gt; module is random
+1</p>
+<p>A class:
+&gt;&gt;&gt; module = getmodule(random.Random)
+&gt;&gt;&gt; module.__name__
+&#8216;random&#8217;
+&gt;&gt;&gt; module is random
+1</p>
+<p>A class inheriting from a class in another module:
+(note: The inheriting class must define at least one function.)
+&gt;&gt;&gt; class MyRandom(random.Random):
+...     def play(self):
+...         pass
+&gt;&gt;&gt; module = getmodule(MyRandom)
+&gt;&gt;&gt; if __name__ == &#8216;__main__&#8217;:
+...     name = &#8216;rad_util&#8217;
+... else:
+...     name = module.__name__
+&gt;&gt;&gt; name
+&#8216;rad_util&#8217;
+&gt;&gt;&gt; module is sys.modules[__name__]
+1</p>
+<p>Discussion:
+This approach is slightly hackish, and won&#8217;t work in various situations.
+However, this was the approach recommended by GvR, so it&#8217;s as good as
+you&#8217;ll get.</p>
+<p>See GvR&#8217;s post in this thread:
+<a class="reference external" href="http://groups.google.com.au/group/comp.lang.python/browse_thread/thread/966a7bdee07e3b34/c3cab3f41ea84236?lnk=st&amp;q=python+determine+class+module&amp;rnum=4&amp;hl=en#c3cab3f41ea84236">http://groups.google.com.au/group/comp.lang.python/browse_thread/thread/966a7bdee07e3b34/c3cab3f41ea84236?lnk=st&amp;q=python+determine+class+module&amp;rnum=4&amp;hl=en#c3cab3f41ea84236</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.gray_encode">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">gray_encode</tt><big>(</big><em>i</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#gray_encode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.gray_encode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gray encode the given integer.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.int2bin">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">int2bin</tt><big>(</big><em>i</em>, <em>n</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#int2bin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.int2bin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert decimal integer i to n-bit binary number (string).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">int2bin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="go">&#39;00000000&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">int2bin</span><span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="go">&#39;01111011&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">int2bin</span><span class="p">(</span><span class="il">123L</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="go">&#39;01111011&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">int2bin</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="gr">ValueError</span>: <span class="n">Value too large for given number of bits.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.is_rotated">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">is_rotated</tt><big>(</big><em>seq1</em>, <em>seq2</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#is_rotated"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.is_rotated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return true if the first sequence is a rotation of the second sequence.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">seq1</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">seq2</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">is_rotated</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">))</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">seq2</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">is_rotated</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">))</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">seq1</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">seq2</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">is_rotated</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">))</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">seq2</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">is_rotated</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">))</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">seq2</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">is_rotated</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">))</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.lcm">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">lcm</tt><big>(</big><em>a</em>, <em>b</em>, <em>precision=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#lcm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.lcm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the least common multiple of a and b, using the gcf function.</p>
+<p>Arguments:
+a, b &#8211; two numbers. If both are integers return an integer result,</p>
+<blockquote>
+<div>otherwise a return a float result.</div></blockquote>
+<p>precision &#8211; scaling factor if a and/or b are floats.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lcm</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="go">42</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lcm</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">)</span>
+<span class="go">17.5</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">lcm</span><span class="p">(</span><span class="mf">1.5e-8</span><span class="p">,</span> <span class="mf">2.5e-8</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mf">1e9</span><span class="p">))</span>
+<span class="go">&#39;7.5e-08&#39;</span>
+</pre></div>
+</div>
+<p>By (an arbitary) definition:
+&gt;&gt;&gt; lcm(0, 0)
+0</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.lsb">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">lsb</tt><big>(</big><em>x</em>, <em>n</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#lsb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.lsb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the n least significant bits of x.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lsb</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.nice_units">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">nice_units</tt><big>(</big><em>value</em>, <em>dp=0</em>, <em>sigfigs=None</em>, <em>suffix=''</em>, <em>space=' '</em>, <em>use_extra_prefixes=False</em>, <em>use_full_name=False</em>, <em>mode='si'</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#nice_units"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.nice_units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return value converted to human readable units eg milli, micro, etc.</p>
+<p>Arguments:
+value &#8211; number in base units
+dp &#8211; number of decimal places to display (rounded)
+sigfigs &#8211; number of significant figures to display (rounded)</p>
+<blockquote>
+<div>This overrides dp if set.</div></blockquote>
+<p>suffix &#8211; optional unit suffix to append to unit multiplier
+space &#8211; seperator between value and unit multiplier (default: &#8216; &#8216;)
+use_extra_prefixes &#8211; use hecto, deka, deci and centi as well if set.</p>
+<blockquote>
+<div>(default: False)</div></blockquote>
+<dl class="docutils">
+<dt>use_full_name &#8211; use full name for multiplier symbol,</dt>
+<dd>e.g. milli instead of m
+(default: False)</dd>
+<dt>mode &#8211; &#8216;si&#8217; for SI prefixes, &#8216;bin&#8217; for binary multipliers (1024, etc.)</dt>
+<dd>(Default: &#8216;si&#8217;)</dd>
+</dl>
+<p>SI prefixes from:
+<a class="reference external" href="http://physics.nist.gov/cuu/Units/prefixes.html">http://physics.nist.gov/cuu/Units/prefixes.html</a>
+(Greek mu changed to u.)
+Binary prefixes based on:
+<a class="reference external" href="http://physics.nist.gov/cuu/Units/binary.html">http://physics.nist.gov/cuu/Units/binary.html</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">nice_units</span><span class="p">(</span><span class="mf">2e-11</span><span class="p">)</span>
+<span class="go">&#39;20 p&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">nice_units</span><span class="p">(</span><span class="mf">2e-11</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+<span class="go">&#39;20p&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.permutations">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">permutations</tt><big>(</big><em>input_list</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#permutations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.permutations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list containing all permutations of the input list.</p>
+<p>Note: This is a recursive function.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">perms</span> <span class="o">=</span> <span class="n">permutations</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">perms</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">perms</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">print</span> <span class="n">perm</span>
+<span class="go">[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span>
+<span class="go">[&#39;a&#39;, &#39;c&#39;, &#39;b&#39;]</span>
+<span class="go">[&#39;b&#39;, &#39;a&#39;, &#39;c&#39;]</span>
+<span class="go">[&#39;b&#39;, &#39;c&#39;, &#39;a&#39;]</span>
+<span class="go">[&#39;c&#39;, &#39;a&#39;, &#39;b&#39;]</span>
+<span class="go">[&#39;c&#39;, &#39;b&#39;, &#39;a&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.polygon_area">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">polygon_area</tt><big>(</big><em>points_list</em>, <em>precision=100</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#polygon_area"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.polygon_area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate area of an arbitrary polygon using an algorithm from the web.</p>
+<p>Return the area of the polygon as a positive float.</p>
+<p>Arguments:
+points_list &#8211; list of point tuples [(x0, y0), (x1, y1), (x2, y2), ...]</p>
+<blockquote>
+<div>(Unclosed polygons will be closed automatically.</div></blockquote>
+<p>precision &#8211; Internal arithmetic precision (integer arithmetic).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">polygon_area</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="go">3.0</span>
+</pre></div>
+</div>
+<p>Credits:
+Area of a General Polygon by David Chandler
+<a class="reference external" href="http://www.davidchandler.com/AreaOfAGeneralPolygon.pdf">http://www.davidchandler.com/AreaOfAGeneralPolygon.pdf</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.pt2str">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">pt2str</tt><big>(</big><em>point</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#pt2str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.pt2str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return prettier string version of point tuple.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pt2str</span><span class="p">((</span><span class="mf">1.8</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">))</span>
+<span class="go">&#39;(1.8, 1.9)&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.quantile">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">quantile</tt><big>(</big><em>l</em>, <em>p</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#quantile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.quantile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return p quantile of list l. E.g. p=0.25 for q1.</p>
+<p>See:
+<a class="reference external" href="http://rweb.stat.umn.edu/R/library/base/html/quantile.html">http://rweb.stat.umn.edu/R/library/base/html/quantile.html</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.random_vec">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">random_vec</tt><big>(</big><em>bits</em>, <em>max_value=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#random_vec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.random_vec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a random binary vector of length bits and given max value.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.reduce_fraction">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">reduce_fraction</tt><big>(</big><em>fraction</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#reduce_fraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.reduce_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduce fraction tuple to simplest form. fraction=(num, denom)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce_fraction</span><span class="p">((</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="go">(2, 1)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce_fraction</span><span class="p">((</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">(-1, 2)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce_fraction</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">(0, 1)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce_fraction</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="go">(1, 0)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.reverse">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">reverse</tt><big>(</big><em>input_string</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#reverse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.reverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse a string. Useful for strings of binary numbers.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;abc&#39;</span><span class="p">)</span>
+<span class="go">&#39;cba&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.reverse_dict">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">reverse_dict</tt><big>(</big><em>d</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#reverse_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.reverse_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse a dictionary so the items become the keys and vice-versa.</p>
+<p>Note: The results will be arbitrary if the items are not unique.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">reverse_dict</span><span class="p">({</span><span class="s">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d_items</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d_items</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d_items</span>
+<span class="go">[(1, &#39;a&#39;), (2, &#39;b&#39;)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.round_grid">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">round_grid</tt><big>(</big><em>value</em>, <em>grid</em>, <em>mode=0</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#round_grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.round_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Round off the given value to the given grid size.</p>
+<p>Arguments:
+value &#8211; value to be roudne
+grid &#8211; result must be a multiple of this
+mode &#8211; 0 nearest, 1 up, -1 down</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">round_grid</span><span class="p">(</span><span class="mf">7.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">10</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">round_grid</span><span class="p">(</span><span class="mf">7.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">mode</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">round_grid</span><span class="p">(</span><span class="mf">7.3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">10</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">round_grid</span><span class="p">(</span><span class="mf">7.3</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">10.0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.timestamp">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">timestamp</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#timestamp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return string containing current time stamp.</p>
+<p>Note: In Python 2 onwards can use time.asctime() with no arguments.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.transpose">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">transpose</tt><big>(</big><em>matrix</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#transpose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.transpose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transpose a list of lists.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">transpose</span><span class="p">([[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="s">&#39;e&#39;</span><span class="p">,</span> <span class="s">&#39;f&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;g&#39;</span><span class="p">,</span> <span class="s">&#39;h&#39;</span><span class="p">,</span> <span class="s">&#39;i&#39;</span><span class="p">]])</span>
+<span class="go">[[&#39;a&#39;, &#39;d&#39;, &#39;g&#39;], [&#39;b&#39;, &#39;e&#39;, &#39;h&#39;], [&#39;c&#39;, &#39;f&#39;, &#39;i&#39;]]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">transpose</span><span class="p">([[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="s">&#39;e&#39;</span><span class="p">,</span> <span class="s">&#39;f&#39;</span><span class="p">]])</span>
+<span class="go">[[&#39;a&#39;, &#39;d&#39;], [&#39;b&#39;, &#39;e&#39;], [&#39;c&#39;, &#39;f&#39;]]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">transpose</span><span class="p">([[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="s">&#39;e&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;g&#39;</span><span class="p">,</span> <span class="s">&#39;h&#39;</span><span class="p">]])</span>
+<span class="go">[[&#39;a&#39;, &#39;d&#39;, &#39;g&#39;], [&#39;b&#39;, &#39;e&#39;, &#39;h&#39;]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.trim">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">trim</tt><big>(</big><em>l</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#trim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.trim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Discard values in list more than 1.5*IQR outside IQR.</p>
+<p>(IQR is inter-quartile-range)</p>
+<p>This function uses rad_util.quantile</p>
+<p>1.5*IQR &#8211; mild outlier
+3*IQR &#8211; extreme outlier</p>
+<p>See:
+<a class="reference external" href="http://wind.cc.whecn.edu/~pwildman/statnew/">http://wind.cc.whecn.edu/~pwildman/statnew/</a><a href="#id1"><span class="problematic" id="id2">section_7_</span></a>-_exploratory_data_analysis.htm</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.unique">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">unique</tt><big>(</big><em>seq</em>, <em>preserve_order=False</em><big>)</big><a class="headerlink" href="#candelabra.scheduler.rad_util.unique" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return sequence with duplicate items in sequence seq removed.</p>
+<p>The code is based on usenet post by Tim Peters.</p>
+<p>This code is O(N) if the sequence items are hashable, O(N**2) if not.</p>
+<p>Peter Bengtsson has a blog post with an empirical comparison of other
+approaches:
+<a class="reference external" href="http://www.peterbe.com/plog/uniqifiers-benchmark">http://www.peterbe.com/plog/uniqifiers-benchmark</a></p>
+<p>If order is not important and the sequence items are hashable then
+list(set(seq)) is readable and efficient.</p>
+<p>If order is important and the sequence items are hashable generator
+expressions can be used (in py &gt;= 2.4) (useful for large sequences):
+seen = set()
+do_something(x for x in seq if x not in seen or seen.add(x))</p>
+<p>Arguments:
+seq &#8211; sequence
+preserve_order &#8211; if not set the order will be arbitrary</p>
+<blockquote>
+<div>Using this option will incur a speed penalty.
+(default: False)</div></blockquote>
+<p>Example showing order preservation:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">uniquify</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;aa&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;ccc&#39;</span><span class="p">,</span> <span class="s">&#39;ccc&#39;</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">],</span> <span class="n">preserve_order</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">[&#39;a&#39;, &#39;aa&#39;, &#39;b&#39;, &#39;ccc&#39;, &#39;d&#39;]</span>
+</pre></div>
+</div>
+<p>Example using a sequence of un-hashable items:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">uniquify</span><span class="p">([[</span><span class="s">&#39;z&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;x&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;y&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;z&#39;</span><span class="p">]],</span> <span class="n">preserve_order</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">[[&#39;z&#39;], [&#39;x&#39;], [&#39;y&#39;]]</span>
+</pre></div>
+</div>
+<p>The sorted output or the non-order-preserving approach should equal
+that of the sorted order-preserving approach output:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">unordered</span> <span class="o">=</span> <span class="n">uniquify</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">preserve_order</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">unordered</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ordered</span> <span class="o">=</span> <span class="n">uniquify</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">preserve_order</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ordered</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ordered</span>
+<span class="go">[1, 2, 3]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">ordered</span> <span class="o">==</span> <span class="n">unordered</span><span class="p">)</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.rad_util.uniquify">
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">uniquify</tt><big>(</big><em>seq</em>, <em>preserve_order=False</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#uniquify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.uniquify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return sequence with duplicate items in sequence seq removed.</p>
+<p>The code is based on usenet post by Tim Peters.</p>
+<p>This code is O(N) if the sequence items are hashable, O(N**2) if not.</p>
+<p>Peter Bengtsson has a blog post with an empirical comparison of other
+approaches:
+<a class="reference external" href="http://www.peterbe.com/plog/uniqifiers-benchmark">http://www.peterbe.com/plog/uniqifiers-benchmark</a></p>
+<p>If order is not important and the sequence items are hashable then
+list(set(seq)) is readable and efficient.</p>
+<p>If order is important and the sequence items are hashable generator
+expressions can be used (in py &gt;= 2.4) (useful for large sequences):
+seen = set()
+do_something(x for x in seq if x not in seen or seen.add(x))</p>
+<p>Arguments:
+seq &#8211; sequence
+preserve_order &#8211; if not set the order will be arbitrary</p>
+<blockquote>
+<div>Using this option will incur a speed penalty.
+(default: False)</div></blockquote>
+<p>Example showing order preservation:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">uniquify</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;aa&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;ccc&#39;</span><span class="p">,</span> <span class="s">&#39;ccc&#39;</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">],</span> <span class="n">preserve_order</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">[&#39;a&#39;, &#39;aa&#39;, &#39;b&#39;, &#39;ccc&#39;, &#39;d&#39;]</span>
+</pre></div>
+</div>
+<p>Example using a sequence of un-hashable items:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">uniquify</span><span class="p">([[</span><span class="s">&#39;z&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;x&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;y&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;z&#39;</span><span class="p">]],</span> <span class="n">preserve_order</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">[[&#39;z&#39;], [&#39;x&#39;], [&#39;y&#39;]]</span>
+</pre></div>
+</div>
+<p>The sorted output or the non-order-preserving approach should equal
+that of the sorted order-preserving approach output:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">unordered</span> <span class="o">=</span> <span class="n">uniquify</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">preserve_order</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">unordered</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ordered</span> <span class="o">=</span> <span class="n">uniquify</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">preserve_order</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ordered</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ordered</span>
+<span class="go">[1, 2, 3]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">ordered</span> <span class="o">==</span> <span class="n">unordered</span><span class="p">)</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.scheduler.topsort">
+<span id="topsort-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">topsort</span></tt> Module<a class="headerlink" href="#module-candelabra.scheduler.topsort" title="Permalink to this headline">¶</a></h2>
+<p>Provide toplogical sorting (i.e. dependency sorting) functions.</p>
+<p>The topsort function is based on code posted on Usenet by Tim Peters.</p>
+<p>Modifications:
+- added doctests
+- changed some bits to use current Python idioms</p>
+<blockquote>
+<div>(listcomp instead of filter, +=/-=, inherit from Exception)</div></blockquote>
+<ul class="simple">
+<li>added a topsort_levels version that ports items in each dependency level
+into a sub-list</li>
+<li>added find_cycles to aid in cycle debugging</li>
+</ul>
+<p>Run this module directly to run the doctests (unittests).
+Make sure they all pass before checking in any modifications.</p>
+<p>Requires Python &gt;= 2.2
+(For Python 2.2 also requires separate sets.py module)</p>
+<p>This requires the rad_util.py module.</p>
+<dl class="exception">
+<dt id="candelabra.scheduler.topsort.CycleError">
+<em class="property">exception </em><tt class="descclassname">candelabra.scheduler.topsort.</tt><tt class="descname">CycleError</tt><a class="reference internal" href="_modules/candelabra/scheduler/topsort.html#CycleError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.topsort.CycleError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></p>
+<p>Cycle Error</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.topsort.find_cycles">
+<tt class="descclassname">candelabra.scheduler.topsort.</tt><tt class="descname">find_cycles</tt><big>(</big><em>parent_children</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/topsort.html#find_cycles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.topsort.find_cycles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yield cycles. Each result is a list of items comprising a cycle.</p>
+<p>Use a &#8216;stack&#8217; based approach to find all the cycles.
+This is a generator, so yields each cycle as it finds it.</p>
+<p>It is implicit that the last item in each cycle list is a parent of the
+first item (thereby forming a cycle).</p>
+<p>Arguments:
+parent_children &#8211; parent -&gt; collection of children</p>
+<p>Simplest cycle:
+&gt;&gt;&gt; cycles = list(find_cycles({&#8216;A&#8217;: [&#8216;B&#8217;], &#8216;B&#8217;: [&#8216;A&#8217;]}))
+&gt;&gt;&gt; len(cycles)
+1
+&gt;&gt;&gt; cycle = cycles[0]
+&gt;&gt;&gt; cycle.sort()
+&gt;&gt;&gt; print cycle
+[&#8216;A&#8217;, &#8216;B&#8217;]</p>
+<p>Simplest cycle with extra baggage at the start and the end:
+&gt;&gt;&gt; cycles = list(find_cycles(parent_children={&#8216;A&#8217;: [&#8216;B&#8217;],
+...                                            &#8216;B&#8217;: [&#8216;C&#8217;],
+...                                            &#8216;C&#8217;: [&#8216;B&#8217;, &#8216;D&#8217;],
+...                                            &#8216;D&#8217;: [],
+...                                            }))
+&gt;&gt;&gt; len(cycles)
+1
+&gt;&gt;&gt; cycle = cycles[0]
+&gt;&gt;&gt; cycle.sort()
+&gt;&gt;&gt; print cycle
+[&#8216;B&#8217;, &#8216;C&#8217;]</p>
+<p>Double cycle:
+&gt;&gt;&gt; cycles = list(find_cycles(parent_children={&#8216;A&#8217;: [&#8216;B&#8217;],
+...                                            &#8216;B&#8217;: [&#8216;C1&#8217;, &#8216;C2&#8217;],
+...                                            &#8216;C1&#8217;: [&#8216;D1&#8217;],
+...                                            &#8216;D1&#8217;: [&#8216;E1&#8217;],
+...                                            &#8216;E1&#8217;: [&#8216;D1&#8217;],
+...                                            &#8216;C2&#8217;: [&#8216;D2&#8217;],
+...                                            &#8216;D2&#8217;: [&#8216;E2&#8217;],
+...                                            &#8216;E2&#8217;: [&#8216;D2&#8217;],
+...                                            }))
+&gt;&gt;&gt; len(cycles)
+2
+&gt;&gt;&gt; for cycle in cycles:
+...     cycle.sort()
+&gt;&gt;&gt; cycles.sort()
+&gt;&gt;&gt; cycle1 = cycles[0]
+&gt;&gt;&gt; cycle1.sort()
+&gt;&gt;&gt; print cycle1
+[&#8216;D1&#8217;, &#8216;E1&#8217;]
+&gt;&gt;&gt; cycle2 = cycles[1]
+&gt;&gt;&gt; cycle2.sort()
+&gt;&gt;&gt; print cycle2
+[&#8216;D2&#8217;, &#8216;E2&#8217;]</p>
+<p>Simple cycle with children not specified for one item:
+# todo: Should this barf instead?
+&gt;&gt;&gt; cycles = list(find_cycles(parent_children={&#8216;A&#8217;: [&#8216;B&#8217;],
+...                                            &#8216;B&#8217;: [&#8216;A&#8217;],
+...                                            &#8216;C&#8217;: [&#8216;D&#8217;]}))
+&gt;&gt;&gt; len(cycles)
+1
+&gt;&gt;&gt; cycle = cycles[0]
+&gt;&gt;&gt; cycle.sort()
+&gt;&gt;&gt; print cycle
+[&#8216;A&#8217;, &#8216;B&#8217;]</p>
+<p>Diamond cycle
+&gt;&gt;&gt; cycles = list(find_cycles(parent_children={&#8216;A&#8217;: [&#8216;B1&#8217;, &#8216;B2&#8217;],
+...                                            &#8216;B1&#8217;: [&#8216;C&#8217;],
+...                                            &#8216;B2&#8217;: [&#8216;C&#8217;],
+...                                            &#8216;C&#8217;: [&#8216;A&#8217;, &#8216;B1&#8217;]}))
+&gt;&gt;&gt; len(cycles)
+3
+&gt;&gt;&gt; sorted_cycles = []
+&gt;&gt;&gt; for cycle in cycles:
+...     cycle = list(cycle)
+...     cycle.sort()
+...     sorted_cycles.append(cycle)
+&gt;&gt;&gt; sorted_cycles.sort()
+&gt;&gt;&gt; for cycle in sorted_cycles:
+...     print cycle
+[&#8216;A&#8217;, &#8216;B1&#8217;, &#8216;C&#8217;]
+[&#8216;A&#8217;, &#8216;B2&#8217;, &#8216;C&#8217;]
+[&#8216;B1&#8217;, &#8216;C&#8217;]</p>
+<p>Hairy case (order can matter if something is wrong):
+(Note order of B and C in the list.)
+&gt;&gt;&gt; cycles = list(find_cycles(parent_children={
+...                                           &#8216;TD&#8217;: [&#8216;DD&#8217;],
+...                                           &#8216;TC&#8217;: [&#8216;DC&#8217;],
+...                                           &#8216;DC&#8217;: [&#8216;DQ&#8217;],
+...                                           &#8216;C&#8217;: [&#8216;DQ&#8217;],
+...                                           &#8216;DQ&#8217;: [&#8216;IA&#8217;, &#8216;TO&#8217;],
+...                                           &#8216;IA&#8217;: [&#8216;A&#8217;],
+...                                           &#8216;A&#8217;: [&#8216;B&#8217;, &#8216;C&#8217;],
+...                                           }))
+&gt;&gt;&gt; len(cycles)
+1
+&gt;&gt;&gt; cycle = cycles[0]
+&gt;&gt;&gt; cycle.sort()
+&gt;&gt;&gt; print cycle
+[&#8216;A&#8217;, &#8216;C&#8217;, &#8216;DQ&#8217;, &#8216;IA&#8217;]</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.topsort.topsort">
+<tt class="descclassname">candelabra.scheduler.topsort.</tt><tt class="descname">topsort</tt><big>(</big><em>pairlist</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/topsort.html#topsort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.topsort.topsort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Topologically sort a list of (parent, child) pairs.</p>
+<p>Return a list of the elements in dependency order (parent to child order).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">topsort</span><span class="p">(</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span> <span class="p">)</span> 
+<span class="go">[1, 2, 3, 5, 4, 6]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">topsort</span><span class="p">(</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span> <span class="p">)</span>
+<span class="go">[1, 2, 3, 4, 5, 6]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">topsort</span><span class="p">(</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span> <span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="gr">CycleError</span>: <span class="n">([1], {2: 1, 3: 1}, {2: [3], 3: [2]})</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.topsort.topsort_levels">
+<tt class="descclassname">candelabra.scheduler.topsort.</tt><tt class="descname">topsort_levels</tt><big>(</big><em>pairlist</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/topsort.html#topsort_levels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.topsort.topsort_levels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Topologically sort a list of (parent, child) pairs into depth levels.</p>
+<p>This returns a generator. 
+Turn this into a an iterator using the iter built-in function.
+(if you iterate over the iterator, each element gets generated when
+it is asked for, rather than generating the whole list up-front.)</p>
+<p>Each generated element is a list of items at that dependency level.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dependency_pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">level</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">topsort_levels</span><span class="p">(</span> <span class="n">dependency_pairs</span> <span class="p">)):</span>
+<span class="gp">... </span>   <span class="k">print</span> <span class="n">level</span>
+<span class="go">[1]</span>
+<span class="go">[2, 3]</span>
+<span class="go">[4, 5]</span>
+<span class="go">[6]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dependency_pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">level</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">topsort_levels</span><span class="p">(</span> <span class="n">dependency_pairs</span> <span class="p">)):</span>
+<span class="gp">... </span>   <span class="k">print</span> <span class="n">level</span>
+<span class="go">[1]</span>
+<span class="go">[2, 3]</span>
+<span class="go">[4]</span>
+<span class="go">[5]</span>
+<span class="go">[6]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dependency_pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">level</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">topsort_levels</span><span class="p">(</span> <span class="n">dependency_pairs</span> <span class="p">)):</span>
+<span class="gp">... </span>        <span class="k">print</span> <span class="n">level</span>
+<span class="gp">... </span><span class="k">except</span> <span class="n">CycleError</span><span class="p">,</span> <span class="n">exc</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">print</span> <span class="s">&#39;CycleError:&#39;</span><span class="p">,</span> <span class="n">exc</span>
+<span class="go">[1]</span>
+<span class="go">[2]</span>
+<span class="go">CycleError: ({3: 1, 4: 1}, {3: [4], 4: [3]})</span>
+</pre></div>
+</div>
+<p>The cycle error should look like.
+CycleError: ({3: 1, 4: 1}, {3: [4], 4: [3]})
+# todo: Make the doctest more robust (i.e. handle arbitrary dict order).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.scheduler.topsort.topsort_levels_core">
+<tt class="descclassname">candelabra.scheduler.topsort.</tt><tt class="descname">topsort_levels_core</tt><big>(</big><em>num_parents</em>, <em>children</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/topsort.html#topsort_levels_core"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.topsort.topsort_levels_core" title="Permalink to this definition">¶</a></dt>
+<dd><p>Topologically sort a bunch of interdependent items based on dependency.</p>
+<p>This returns a generator.
+Turn this into a an iterator using the iter built-in function.
+(if you iterate over the iterator, each element gets generated when
+it is asked for, rather than generating the whole list up-front.)</p>
+<p>Each generated element is a list of items at that dependency level.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">topsort_levels_core</span><span class="p">(</span>
+<span class="gp">... </span>         <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+<span class="gp">... </span>         <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="mi">2</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="mi">3</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="mi">4</span><span class="p">:</span> <span class="p">[],</span> <span class="mi">5</span><span class="p">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">]}))</span>
+<span class="go">[[1], [2, 3], [4, 5], [6]]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">topsort_levels_core</span><span class="p">(</span>
+<span class="gp">... </span>         <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+<span class="gp">... </span>         <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">2</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="mi">3</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">]}))</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="gr">CycleError</span>: <span class="n">({2: 1, 3: 1}, {2: [3], 3: [2]})</span>
+</pre></div>
+</div>
+<p>This function has a more complicated interface than topsort_levels,
+but is useful if the data is easier to generate in this form.</p>
+<p>Arguments:
+num_parents &#8211; key: item, value: number of parents (predecessors)
+children &#8211; key: item, value: list of children (successors)</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Alvaro Saurin.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

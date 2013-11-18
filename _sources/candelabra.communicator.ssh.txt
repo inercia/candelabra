@@ -1,0 +1,19 @@
+ssh Package
+===========
+
+:mod:`communicator` Module
+--------------------------
+
+.. automodule:: candelabra.communicator.ssh.communicator
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`plugin` Module
+--------------------
+
+.. automodule:: candelabra.communicator.ssh.plugin
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

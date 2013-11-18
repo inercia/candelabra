@@ -1,0 +1,27 @@
+up Package
+==========
+
+:mod:`up` Package
+-----------------
+
+.. automodule:: candelabra.command.up
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`command` Module
+---------------------
+
+.. automodule:: candelabra.command.up.command
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`plugin` Module
+--------------------
+
+.. automodule:: candelabra.command.up.plugin
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

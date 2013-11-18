@@ -1,0 +1,1007 @@
+
+
+  
+  
+ 
+  
+ 
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>candelabra Package &mdash; candelabra 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="candelabra 1.0 documentation" href="index.html" />
+    <link rel="up" title="candelabra" href="modules.html" />
+    <link rel="next" title="command Package" href="candelabra.command.html" />
+    <link rel="prev" title="candelabra" href="modules.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="doc_index.html">Candelabra</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://github.com/inercia/candelabra">Github</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a href="doc_index.html"
+     class="dropdown-toggle"
+     data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+    ><ul class="simple">
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_install.html">Software installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#build-requirements">Build Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#on-mac-os-x">On Mac OS X</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_running.html">Running the software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#on-development-machines">On development machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#unit-tests">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_topology.html">Topology files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#topology-files-structure">Topology files structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#defaults">Defaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#networks">Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#machines">Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_provisioning.html">    Provisioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_provisioning.html#puppet">Puppet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_hooks.html">Hooks</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Main modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">candelabra Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_plugins.html">Extending Candelabra with plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_plugins.html#deafult-plugins">Deafult plugins</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html">Candelabra software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html#third-party-packages">Third party packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_license.html#bottle">Bottle</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">candelabra Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">candelabra</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-candelabra.base"><tt class="docutils literal"><span class="pre">base</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.boxes"><tt class="docutils literal"><span class="pre">boxes</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.config"><tt class="docutils literal"><span class="pre">config</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.constants"><tt class="docutils literal"><span class="pre">constants</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.errors"><tt class="docutils literal"><span class="pre">errors</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.logs"><tt class="docutils literal"><span class="pre">logs</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.main"><tt class="docutils literal"><span class="pre">main</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.plugins"><tt class="docutils literal"><span class="pre">plugins</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.tasks"><tt class="docutils literal"><span class="pre">tasks</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.tests"><tt class="docutils literal"><span class="pre">tests</span></tt> Module</a></li>
+<li><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li><a href="modules.html"
+         title="Previous Chapter: candelabra">&laquo; candelabra</a></li>
+  <li><a href="candelabra.command.html"
+         title="Next Chapter: command Package">command Package &raquo;</a></li>
+              
+            
+            
+            
+            
+              <li>
+<div id="sourcelink">
+  <a href="_sources/candelabra.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="candelabra-package">
+<h1>candelabra Package<a class="headerlink" href="#candelabra-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">candelabra</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-candelabra.__init__"></span><p>Candelabra main package.</p>
+</div>
+<div class="section" id="module-candelabra.base">
+<span id="base-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">base</span></tt> Module<a class="headerlink" href="#module-candelabra.base" title="Permalink to this headline">¶</a></h2>
+<p>Base module for some abstract classes.</p>
+<dl class="class">
+<dt id="candelabra.base.Communicator">
+<em class="property">class </em><tt class="descclassname">candelabra.base.</tt><tt class="descname">Communicator</tt><big>(</big><em>machine</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/base.html#Communicator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.base.Communicator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A communicator</p>
+<p>Communicators are communication channels with the machines. A typical communicator is &#8216;ssh&#8217;.</p>
+<dl class="method">
+<dt id="candelabra.base.Communicator.run">
+<tt class="descname">run</tt><big>(</big><em>command</em>, <em>environment=None</em>, <em>verbose=False</em><big>)</big><a class="reference internal" href="_modules/candelabra/base.html#Communicator.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.base.Communicator.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="candelabra.base.Communicator.sudo">
+<tt class="descname">sudo</tt><big>(</big><em>command</em>, <em>environment=None</em>, <em>verbose=False</em><big>)</big><a class="reference internal" href="_modules/candelabra/base.html#Communicator.sudo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.base.Communicator.sudo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs a command in the virtual machine with sudo</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.base.Communicator.sudo_lines">
+<tt class="descname">sudo_lines</tt><big>(</big><em>commands_string</em>, <em>environment=None</em>, <em>verbose=False</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/base.html#Communicator.sudo_lines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.base.Communicator.sudo_lines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a a list of lines, provided as a long string</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.base.Communicator.test">
+<tt class="descname">test</tt><big>(</big><em>condition</em><big>)</big><a class="reference internal" href="_modules/candelabra/base.html#Communicator.test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.base.Communicator.test" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="candelabra.base.Guest">
+<em class="property">class </em><tt class="descclassname">candelabra.base.</tt><tt class="descname">Guest</tt><big>(</big><em>machine</em>, <em>communicator=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/base.html#Guest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.base.Guest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A guest</p>
+<dl class="method">
+<dt id="candelabra.base.Guest.change_hostname">
+<tt class="descname">change_hostname</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="_modules/candelabra/base.html#Guest.change_hostname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.base.Guest.change_hostname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the current hostname</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.base.Guest.get_ips">
+<tt class="descname">get_ips</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/base.html#Guest.get_ips"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.base.Guest.get_ips" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the IP addresses</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.base.Guest.mkdir">
+<tt class="descname">mkdir</tt><big>(</big><em>directory</em><big>)</big><a class="reference internal" href="_modules/candelabra/base.html#Guest.mkdir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.base.Guest.mkdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a remote directory</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.base.Guest.mount">
+<tt class="descname">mount</tt><big>(</big><em>directory</em>, <em>mount_point</em><big>)</big><a class="reference internal" href="_modules/candelabra/base.html#Guest.mount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.base.Guest.mount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mount a directory on a mount point</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.base.Guest.setup_iface">
+<tt class="descname">setup_iface</tt><big>(</big><em>number</em>, <em>type</em>, <em>ip=''</em>, <em>netmask=''</em><big>)</big><a class="reference internal" href="_modules/candelabra/base.html#Guest.setup_iface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.base.Guest.setup_iface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup a network interface</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.base.Guest.shutdown">
+<tt class="descname">shutdown</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/base.html#Guest.shutdown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.base.Guest.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shutdown the machine</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="candelabra.base.Provisioner">
+<em class="property">class </em><tt class="descclassname">candelabra.base.</tt><tt class="descname">Provisioner</tt><a class="reference internal" href="_modules/candelabra/base.html#Provisioner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.base.Provisioner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A provisioner</p>
+<p>Provisioners are responsible for performing actions on the machines once these machines are up
+and running. These actions are usually software installation, file contents setting, etc...</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.boxes">
+<span id="boxes-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">boxes</span></tt> Module<a class="headerlink" href="#module-candelabra.boxes" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="candelabra.boxes.BoxesStorage">
+<em class="property">class </em><tt class="descclassname">candelabra.boxes.</tt><tt class="descname">BoxesStorage</tt><a class="reference internal" href="_modules/candelabra/boxes.html#BoxesStorage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.boxes.BoxesStorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A storage where boxes are stored</p>
+<dl class="method">
+<dt id="candelabra.boxes.BoxesStorage.get_box">
+<tt class="descname">get_box</tt><big>(</big><em>name</em>, <em>url</em><big>)</big><a class="reference internal" href="_modules/candelabra/boxes.html#BoxesStorage.get_box"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.boxes.BoxesStorage.get_box" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a box instance or make it as missing</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="candelabra.boxes.BoxesStorage.get_relative_path">
+<em class="property">static </em><tt class="descname">get_relative_path</tt><big>(</big><em>path</em><big>)</big><a class="reference internal" href="_modules/candelabra/boxes.html#BoxesStorage.get_relative_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.boxes.BoxesStorage.get_relative_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a path relative to the storage root</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">get_relative_path</span><span class="p">(</span><span class="s">&quot;/storage/root/some/box&quot;</span><span class="p">)</span>
+<span class="go">&#39;some/box&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="candelabra.boxes.BoxesStorage.get_storage_root">
+<em class="property">static </em><tt class="descname">get_storage_root</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/boxes.html#BoxesStorage.get_storage_root"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.boxes.BoxesStorage.get_storage_root" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the storage root for boxes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.boxes.BoxesStorage.has_box">
+<tt class="descname">has_box</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="_modules/candelabra/boxes.html#BoxesStorage.has_box"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.boxes.BoxesStorage.has_box" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the storage has a box with a given name</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.boxes.BoxesStorage.refresh">
+<tt class="descname">refresh</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/boxes.html#BoxesStorage.refresh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.boxes.BoxesStorage.refresh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Refresh the list of boxes</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.boxes.boxes_storage_factory">
+<tt class="descclassname">candelabra.boxes.</tt><tt class="descname">boxes_storage_factory</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/boxes.html#boxes_storage_factory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.boxes.boxes_storage_factory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.config">
+<span id="config-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">config</span></tt> Module<a class="headerlink" href="#module-candelabra.config" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="candelabra.config.CandelabraConfig">
+<em class="property">class </em><tt class="descclassname">candelabra.config.</tt><tt class="descname">CandelabraConfig</tt><a class="reference internal" href="_modules/candelabra/config.html#CandelabraConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.config.CandelabraConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>The candelabra config file</p>
+<dl class="method">
+<dt id="candelabra.config.CandelabraConfig.get_key">
+<tt class="descname">get_key</tt><big>(</big><em>k</em>, <em>default=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/config.html#CandelabraConfig.get_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.config.CandelabraConfig.get_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a configuration key</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.config.CandelabraConfig.load">
+<tt class="descname">load</tt><big>(</big><em>path=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/config.html#CandelabraConfig.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.config.CandelabraConfig.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load or create the config file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.config.CandelabraConfig.load_string">
+<tt class="descname">load_string</tt><big>(</big><em>text</em><big>)</big><a class="reference internal" href="_modules/candelabra/config.html#CandelabraConfig.load_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.config.CandelabraConfig.load_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the configuration from a string</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.constants">
+<span id="constants-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">constants</span></tt> Module<a class="headerlink" href="#module-candelabra.constants" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-candelabra.errors">
+<span id="errors-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">errors</span></tt> Module<a class="headerlink" href="#module-candelabra.errors" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="candelabra.errors.CandelabraException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">CandelabraException</tt><a class="reference internal" href="_modules/candelabra/errors.html#CandelabraException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.CandelabraException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></p>
+<p>Root exception for all the Candelabra errors</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.CommunicatorException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">CommunicatorException</tt><a class="reference internal" href="_modules/candelabra/errors.html#CommunicatorException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.CommunicatorException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.CandelabraException" title="candelabra.errors.CandelabraException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.CandelabraException</span></tt></a></p>
+<p>Communicator error</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.CommunicatorNotConnectedException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">CommunicatorNotConnectedException</tt><a class="reference internal" href="_modules/candelabra/errors.html#CommunicatorNotConnectedException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.CommunicatorNotConnectedException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.CommunicatorException" title="candelabra.errors.CommunicatorException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.CommunicatorException</span></tt></a></p>
+<p>Communicator not connected error</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.ComponentNotFoundException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">ComponentNotFoundException</tt><a class="reference internal" href="_modules/candelabra/errors.html#ComponentNotFoundException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.ComponentNotFoundException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.CandelabraException" title="candelabra.errors.CandelabraException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.CandelabraException</span></tt></a></p>
+<p>A component (ie, a plugin) is missing</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.ConfigFileMissingException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">ConfigFileMissingException</tt><a class="reference internal" href="_modules/candelabra/errors.html#ConfigFileMissingException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.ConfigFileMissingException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.CandelabraException" title="candelabra.errors.CandelabraException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.CandelabraException</span></tt></a></p>
+<p>The configuration file is missing</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.ConfigFileNotLoadedException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">ConfigFileNotLoadedException</tt><a class="reference internal" href="_modules/candelabra/errors.html#ConfigFileNotLoadedException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.ConfigFileNotLoadedException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.CandelabraException" title="candelabra.errors.CandelabraException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.CandelabraException</span></tt></a></p>
+<p>The configuration file has not been loaded</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.ImportException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">ImportException</tt><a class="reference internal" href="_modules/candelabra/errors.html#ImportException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.ImportException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.CandelabraException" title="candelabra.errors.CandelabraException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.CandelabraException</span></tt></a></p>
+<p>Box import error</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.MachineChangeException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">MachineChangeException</tt><a class="reference internal" href="_modules/candelabra/errors.html#MachineChangeException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.MachineChangeException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.MachineException" title="candelabra.errors.MachineException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.MachineException</span></tt></a></p>
+<p>An error happened when trying to change a machine</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.MachineDefinitionException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">MachineDefinitionException</tt><a class="reference internal" href="_modules/candelabra/errors.html#MachineDefinitionException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.MachineDefinitionException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.MachineException" title="candelabra.errors.MachineException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.MachineException</span></tt></a></p>
+<p>Machine definition error</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.MachineException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">MachineException</tt><a class="reference internal" href="_modules/candelabra/errors.html#MachineException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.MachineException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.CandelabraException" title="candelabra.errors.CandelabraException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.CandelabraException</span></tt></a></p>
+<p>Machine error</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.MachineNetworkSetupException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">MachineNetworkSetupException</tt><a class="reference internal" href="_modules/candelabra/errors.html#MachineNetworkSetupException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.MachineNetworkSetupException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.MachineException" title="candelabra.errors.MachineException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.MachineException</span></tt></a></p>
+<p>An error happened when trying to setup the network in a machine</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.MalformedStateFileException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">MalformedStateFileException</tt><a class="reference internal" href="_modules/candelabra/errors.html#MalformedStateFileException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.MalformedStateFileException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.TopologyException" title="candelabra.errors.TopologyException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.TopologyException</span></tt></a></p>
+<p>Malfomed state file</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.MalformedTopologyException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">MalformedTopologyException</tt><a class="reference internal" href="_modules/candelabra/errors.html#MalformedTopologyException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.MalformedTopologyException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.TopologyException" title="candelabra.errors.TopologyException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.TopologyException</span></tt></a></p>
+<p>Malfomed topology error</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.MissingBoxException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">MissingBoxException</tt><a class="reference internal" href="_modules/candelabra/errors.html#MissingBoxException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.MissingBoxException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.CandelabraException" title="candelabra.errors.CandelabraException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.CandelabraException</span></tt></a></p>
+<p>Missing box or not recognized error</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.ProviderException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">ProviderException</tt><a class="reference internal" href="_modules/candelabra/errors.html#ProviderException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.ProviderException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.CandelabraException" title="candelabra.errors.CandelabraException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.CandelabraException</span></tt></a></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.ProviderNotFoundException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">ProviderNotFoundException</tt><a class="reference internal" href="_modules/candelabra/errors.html#ProviderNotFoundException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.ProviderNotFoundException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.ProviderException" title="candelabra.errors.ProviderException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.ProviderException</span></tt></a></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.SchedulerTaskException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">SchedulerTaskException</tt><a class="reference internal" href="_modules/candelabra/errors.html#SchedulerTaskException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.SchedulerTaskException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.CandelabraException" title="candelabra.errors.CandelabraException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.CandelabraException</span></tt></a></p>
+<p>Scheduler error</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.TopologyException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">TopologyException</tt><a class="reference internal" href="_modules/candelabra/errors.html#TopologyException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.TopologyException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.CandelabraException" title="candelabra.errors.CandelabraException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.CandelabraException</span></tt></a></p>
+<p>Topology error</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.UnsupportedBoxException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">UnsupportedBoxException</tt><a class="reference internal" href="_modules/candelabra/errors.html#UnsupportedBoxException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.UnsupportedBoxException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.CandelabraException" title="candelabra.errors.CandelabraException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.CandelabraException</span></tt></a></p>
+<p>Unsupported box or not recognized error</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="candelabra.errors.UnsupportedCommandException">
+<em class="property">exception </em><tt class="descclassname">candelabra.errors.</tt><tt class="descname">UnsupportedCommandException</tt><a class="reference internal" href="_modules/candelabra/errors.html#UnsupportedCommandException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.errors.UnsupportedCommandException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#candelabra.errors.CandelabraException" title="candelabra.errors.CandelabraException"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.errors.CandelabraException</span></tt></a></p>
+<p>Unsupported command</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.logs">
+<span id="logs-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">logs</span></tt> Module<a class="headerlink" href="#module-candelabra.logs" title="Permalink to this headline">¶</a></h2>
+<p>Commands must define, in the __init__ file:
+- a DESCRIPTION
+- a argparser() function
+- a run() function</p>
+<dl class="function">
+<dt id="candelabra.logs.setup_console">
+<tt class="descclassname">candelabra.logs.</tt><tt class="descname">setup_console</tt><big>(</big><em>level=20</em>, <em>date_format=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/logs.html#setup_console"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.logs.setup_console" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup the logging in console</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.logs.setup_file">
+<tt class="descclassname">candelabra.logs.</tt><tt class="descname">setup_file</tt><big>(</big><em>filename=None</em>, <em>level=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/logs.html#setup_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.logs.setup_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a logging file to the logging configuration</p>
+<p>If no filename is given, we will check the config file for a valid logfile configuration.
+If not found, no logging to file is configured.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.main">
+<span id="main-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">main</span></tt> Module<a class="headerlink" href="#module-candelabra.main" title="Permalink to this headline">¶</a></h2>
+<p>Commands must define, in the __init__ file:
+- a DESCRIPTION
+- a argparser() function
+- a run() function</p>
+<dl class="function">
+<dt id="candelabra.main.main">
+<tt class="descclassname">candelabra.main.</tt><tt class="descname">main</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/main.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.main.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.plugins">
+<span id="plugins-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">plugins</span></tt> Module<a class="headerlink" href="#module-candelabra.plugins" title="Permalink to this headline">¶</a></h2>
+<p>Plugins infrastructure for Candelabra..</p>
+<p>You can add a plugin by defining an entry-point in your software distribution. For example, for a provider
+for VMware, you should define an entry point like this in your <cite>setup.py</cite> file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="s">&#39;candelabra.provider&#39;</span><span class="p">:</span> <span class="p">[</span>
+<span class="gp">&gt;&gt;&gt; </span>       <span class="s">&#39;vmware_provider = candelabra_vmware.plugin:register_me&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Then, in your candelabra_vmware/plugin.py, there must be a register_me function like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">candelabra.plugins</span> <span class="kn">import</span> <span class="n">ProviderPlugin</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">VMWareProvider</span><span class="p">(</span><span class="n">ProviderPlugin</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">MACHINE</span> <span class="o">=</span> <span class="n">VMWareMachine</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">provider_instance</span> <span class="o">=</span> <span class="n">VMWareProvider</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">register_me</span><span class="p">(</span><span class="n">registry_instance</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">registry_instance</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s">&#39;vmware&#39;</span><span class="p">,</span> <span class="n">provider_instance</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="candelabra.plugins.CommandPlugin">
+<em class="property">class </em><tt class="descclassname">candelabra.plugins.</tt><tt class="descname">CommandPlugin</tt><a class="reference internal" href="_modules/candelabra/plugins.html#CommandPlugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.CommandPlugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A command from command line</p>
+<dl class="attribute">
+<dt id="candelabra.plugins.CommandPlugin.DESCRIPTION">
+<tt class="descname">DESCRIPTION</tt><em class="property"> = 'unknown'</em><a class="headerlink" href="#candelabra.plugins.CommandPlugin.DESCRIPTION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.plugins.CommandPlugin.NAME">
+<tt class="descname">NAME</tt><em class="property"> = 'unknown'</em><a class="headerlink" href="#candelabra.plugins.CommandPlugin.NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="candelabra.plugins.CommandPlugin.run">
+<tt class="descname">run</tt><big>(</big><em>args</em>, <em>command</em><big>)</big><a class="reference internal" href="_modules/candelabra/plugins.html#CommandPlugin.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.CommandPlugin.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the command</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.plugins.CommandPlugin.run_with_topology">
+<tt class="descname">run_with_topology</tt><big>(</big><em>args</em>, <em>topology_file</em>, <em>command=None</em>, <em>save_state=True</em><big>)</big><a class="reference internal" href="_modules/candelabra/plugins.html#CommandPlugin.run_with_topology"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.CommandPlugin.run_with_topology" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a command, managing the topology</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="candelabra.plugins.CommunicatorPlugin">
+<em class="property">class </em><tt class="descclassname">candelabra.plugins.</tt><tt class="descname">CommunicatorPlugin</tt><a class="reference internal" href="_modules/candelabra/plugins.html#CommunicatorPlugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.CommunicatorPlugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A communicator</p>
+<dl class="attribute">
+<dt id="candelabra.plugins.CommunicatorPlugin.COMMUNICATOR">
+<tt class="descname">COMMUNICATOR</tt><em class="property"> = None</em><a class="headerlink" href="#candelabra.plugins.CommunicatorPlugin.COMMUNICATOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.plugins.CommunicatorPlugin.DESCRIPTION">
+<tt class="descname">DESCRIPTION</tt><em class="property"> = 'unknown'</em><a class="headerlink" href="#candelabra.plugins.CommunicatorPlugin.DESCRIPTION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.plugins.CommunicatorPlugin.NAME">
+<tt class="descname">NAME</tt><em class="property"> = 'unknown'</em><a class="headerlink" href="#candelabra.plugins.CommunicatorPlugin.NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.plugins.CommunicatorPlugin.ONLY_PROVIDERS">
+<tt class="descname">ONLY_PROVIDERS</tt><em class="property"> = []</em><a class="headerlink" href="#candelabra.plugins.CommunicatorPlugin.ONLY_PROVIDERS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="candelabra.plugins.GuestPlugin">
+<em class="property">class </em><tt class="descclassname">candelabra.plugins.</tt><tt class="descname">GuestPlugin</tt><a class="reference internal" href="_modules/candelabra/plugins.html#GuestPlugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.GuestPlugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A guest definition</p>
+<dl class="attribute">
+<dt id="candelabra.plugins.GuestPlugin.DESCRIPTION">
+<tt class="descname">DESCRIPTION</tt><em class="property"> = 'unknown'</em><a class="headerlink" href="#candelabra.plugins.GuestPlugin.DESCRIPTION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.plugins.GuestPlugin.NAME">
+<tt class="descname">NAME</tt><em class="property"> = 'unknown'</em><a class="headerlink" href="#candelabra.plugins.GuestPlugin.NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="candelabra.plugins.PluginsRegistry">
+<em class="property">class </em><tt class="descclassname">candelabra.plugins.</tt><tt class="descname">PluginsRegistry</tt><a class="reference internal" href="_modules/candelabra/plugins.html#PluginsRegistry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.PluginsRegistry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A registry for plugins</p>
+<dl class="attribute">
+<dt id="candelabra.plugins.PluginsRegistry.names">
+<tt class="descname">names</tt><a class="reference internal" href="_modules/candelabra/plugins.html#PluginsRegistry.names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.PluginsRegistry.names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="candelabra.plugins.PluginsRegistry.register">
+<tt class="descname">register</tt><big>(</big><em>name</em>, <em>plugin</em><big>)</big><a class="reference internal" href="_modules/candelabra/plugins.html#PluginsRegistry.register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.PluginsRegistry.register" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="candelabra.plugins.PluginsRegistry.validate">
+<tt class="descname">validate</tt><big>(</big><em>plugin</em><big>)</big><a class="reference internal" href="_modules/candelabra/plugins.html#PluginsRegistry.validate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.PluginsRegistry.validate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="candelabra.plugins.ProviderPlugin">
+<em class="property">class </em><tt class="descclassname">candelabra.plugins.</tt><tt class="descname">ProviderPlugin</tt><a class="reference internal" href="_modules/candelabra/plugins.html#ProviderPlugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.ProviderPlugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A provider</p>
+<dl class="attribute">
+<dt id="candelabra.plugins.ProviderPlugin.APPLIANCE">
+<tt class="descname">APPLIANCE</tt><em class="property"> = None</em><a class="headerlink" href="#candelabra.plugins.ProviderPlugin.APPLIANCE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.plugins.ProviderPlugin.COMMUNICATORS">
+<tt class="descname">COMMUNICATORS</tt><em class="property"> = None</em><a class="headerlink" href="#candelabra.plugins.ProviderPlugin.COMMUNICATORS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.plugins.ProviderPlugin.DESCRIPTION">
+<tt class="descname">DESCRIPTION</tt><em class="property"> = 'unknown'</em><a class="headerlink" href="#candelabra.plugins.ProviderPlugin.DESCRIPTION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.plugins.ProviderPlugin.INTERFACE">
+<tt class="descname">INTERFACE</tt><em class="property"> = None</em><a class="headerlink" href="#candelabra.plugins.ProviderPlugin.INTERFACE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.plugins.ProviderPlugin.MACHINE">
+<tt class="descname">MACHINE</tt><em class="property"> = None</em><a class="headerlink" href="#candelabra.plugins.ProviderPlugin.MACHINE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.plugins.ProviderPlugin.NAME">
+<tt class="descname">NAME</tt><em class="property"> = 'unknown'</em><a class="headerlink" href="#candelabra.plugins.ProviderPlugin.NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.plugins.ProviderPlugin.SHARED">
+<tt class="descname">SHARED</tt><em class="property"> = None</em><a class="headerlink" href="#candelabra.plugins.ProviderPlugin.SHARED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="candelabra.plugins.ProvisionerPlugin">
+<em class="property">class </em><tt class="descclassname">candelabra.plugins.</tt><tt class="descname">ProvisionerPlugin</tt><a class="reference internal" href="_modules/candelabra/plugins.html#ProvisionerPlugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.ProvisionerPlugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A provisioner</p>
+<dl class="attribute">
+<dt id="candelabra.plugins.ProvisionerPlugin.DESCRIPTION">
+<tt class="descname">DESCRIPTION</tt><em class="property"> = 'unknown'</em><a class="headerlink" href="#candelabra.plugins.ProvisionerPlugin.DESCRIPTION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.plugins.ProvisionerPlugin.NAME">
+<tt class="descname">NAME</tt><em class="property"> = 'unknown'</em><a class="headerlink" href="#candelabra.plugins.ProvisionerPlugin.NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.plugins.ProvisionerPlugin.PROVISIONER">
+<tt class="descname">PROVISIONER</tt><em class="property"> = None</em><a class="headerlink" href="#candelabra.plugins.ProvisionerPlugin.PROVISIONER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="candelabra.plugins.ProvisionerPlugin.run">
+<tt class="descname">run</tt><big>(</big><em>command</em><big>)</big><a class="reference internal" href="_modules/candelabra/plugins.html#ProvisionerPlugin.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.ProvisionerPlugin.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a command</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.plugins.build_communicator_instance">
+<tt class="descclassname">candelabra.plugins.</tt><tt class="descname">build_communicator_instance</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/plugins.html#build_communicator_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.build_communicator_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>The factory for communicator that returns a subclass fo Communicator with the right node</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.plugins.build_guest_instance">
+<tt class="descclassname">candelabra.plugins.</tt><tt class="descname">build_guest_instance</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/plugins.html#build_guest_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.build_guest_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>The factory for guests that returns a subclass fo Guest with the right node</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.plugins.build_interface_instance">
+<tt class="descclassname">candelabra.plugins.</tt><tt class="descname">build_interface_instance</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/plugins.html#build_interface_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.build_interface_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>The factory for interfaces that returns a subclass fo InterfaceNode with the right node</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.plugins.build_machine_instance">
+<tt class="descclassname">candelabra.plugins.</tt><tt class="descname">build_machine_instance</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/plugins.html#build_machine_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.build_machine_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>The factory for machine that returns a subclass fo MachineNode with the right node</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.plugins.build_network_instance">
+<tt class="descclassname">candelabra.plugins.</tt><tt class="descname">build_network_instance</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/plugins.html#build_network_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.build_network_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>The factory for networks that returns a subclass fo NetworkNode with the right node</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.plugins.build_provisioner_instance">
+<tt class="descclassname">candelabra.plugins.</tt><tt class="descname">build_provisioner_instance</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/plugins.html#build_provisioner_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.build_provisioner_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>The factory for provisioners that returns a subclass fo Provisioner with the right node</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.plugins.build_shared_instance">
+<tt class="descclassname">candelabra.plugins.</tt><tt class="descname">build_shared_instance</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/plugins.html#build_shared_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.build_shared_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>The factory for shared folders that returns a subclass fo SharedNode with the right node</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.plugins.get_provider">
+<tt class="descclassname">candelabra.plugins.</tt><tt class="descname">get_provider</tt><big>(</big><em>name</em><big>)</big><a class="reference internal" href="_modules/candelabra/plugins.html#get_provider"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.get_provider" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a ProviderPlugin for a given name</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.plugins.register_all">
+<tt class="descclassname">candelabra.plugins.</tt><tt class="descname">register_all</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/plugins.html#register_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.plugins.register_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register all plugins we can find in the system.</p>
+<p>For each plugin, we will invoke the entry point with a <a class="reference internal" href="#candelabra.plugins.PluginsRegistry" title="candelabra.plugins.PluginsRegistry"><tt class="xref py py-class docutils literal"><span class="pre">PluginsRegistry</span></tt></a> instance as the
+only parameter. Then, the entry point must call the instance :meth:<a href="#id2"><span class="problematic" id="id3">`</span></a>register: method in order
+to register it...</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.tasks">
+<span id="tasks-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">tasks</span></tt> Module<a class="headerlink" href="#module-candelabra.tasks" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="candelabra.tasks.TaskGenerator">
+<em class="property">class </em><tt class="descclassname">candelabra.tasks.</tt><tt class="descname">TaskGenerator</tt><a class="reference internal" href="_modules/candelabra/tasks.html#TaskGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.tasks.TaskGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A class that generates tasks</p>
+<dl class="method">
+<dt id="candelabra.tasks.TaskGenerator.add_task">
+<tt class="descname">add_task</tt><big>(</big><em>task</em>, <em>depends_on=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/tasks.html#TaskGenerator.add_task"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.tasks.TaskGenerator.add_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a task to the list of tasks that must be run
+The task can depend on a previous task, specified with the <a href="#id4"><span class="problematic" id="id5">:param:`depends_on`</span></a> parameter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.tasks.TaskGenerator.add_task_seq">
+<tt class="descname">add_task_seq</tt><big>(</big><em>task</em>, <em>depends_on=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/tasks.html#TaskGenerator.add_task_seq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.tasks.TaskGenerator.add_task_seq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a task to the list of tasks that must be run, depending on the last inserted task.
+The task can depend on another task, specified with the <a href="#id6"><span class="problematic" id="id7">:param:`depends_on`</span></a> parameter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.tasks.TaskGenerator.clear_tasks">
+<tt class="descname">clear_tasks</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/tasks.html#TaskGenerator.clear_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.tasks.TaskGenerator.clear_tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a cleanup in the list of tasks that must be run</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.tasks.TaskGenerator.first_task">
+<tt class="descname">first_task</tt><em class="property"> = &lt;object object at 0x1108c80b0&gt;</em><a class="headerlink" href="#candelabra.tasks.TaskGenerator.first_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dummy first task.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.tasks.TaskGenerator.get_tasks">
+<tt class="descname">get_tasks</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/tasks.html#TaskGenerator.get_tasks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.tasks.TaskGenerator.get_tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of tasks that must be run, as a list of tuples with dependencies.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.tests">
+<span id="tests-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">tests</span></tt> Module<a class="headerlink" href="#module-candelabra.tests" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="candelabra.tests.CandelabraTestBase">
+<em class="property">class </em><tt class="descclassname">candelabra.tests.</tt><tt class="descname">CandelabraTestBase</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="reference internal" href="_modules/candelabra/tests.html#CandelabraTestBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.tests.CandelabraTestBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<p>Base class for unit tests</p>
+<dl class="attribute">
+<dt id="candelabra.tests.CandelabraTestBase.CONFIG">
+<tt class="descname">CONFIG</tt><em class="property"> = ''</em><a class="headerlink" href="#candelabra.tests.CandelabraTestBase.CONFIG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="candelabra.tests.CandelabraTestBase.setUpClass">
+<em class="property">classmethod </em><tt class="descname">setUpClass</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/tests.html#CandelabraTestBase.setUpClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.tests.CandelabraTestBase.setUpClass" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.tests.skipTravis">
+<tt class="descclassname">candelabra.tests.</tt><tt class="descname">skipTravis</tt><big>(</big><em>x</em><big>)</big><a class="headerlink" href="#candelabra.tests.skipTravis" title="Permalink to this definition">¶</a></dt>
+<dd><p>skip a unit test if running in Travis CI</p>
+</dd></dl>
+
+</div>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="candelabra.command.html">command Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.command.html#id1"><tt class="docutils literal"><span class="pre">command</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.command.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.command.destroy.html">destroy Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.destroy.html#id1"><tt class="docutils literal"><span class="pre">destroy</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.destroy.html#module-candelabra.command.destroy.command"><tt class="docutils literal"><span class="pre">command</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.destroy.html#module-candelabra.command.destroy.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.command.down.html">down Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.down.html#id1"><tt class="docutils literal"><span class="pre">down</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.down.html#module-candelabra.command.down.command"><tt class="docutils literal"><span class="pre">command</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.down.html#module-candelabra.command.down.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.command.import.html">import Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.import.html#id1"><tt class="docutils literal"><span class="pre">import</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.import.html#module-candelabra.command.import.command"><tt class="docutils literal"><span class="pre">command</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.import.html#module-candelabra.command.import.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.command.net.html">net Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.net.html#id1"><tt class="docutils literal"><span class="pre">net</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.net.html#module-candelabra.command.net.command"><tt class="docutils literal"><span class="pre">command</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.net.html#module-candelabra.command.net.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.command.provision.html">provision Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.provision.html#id1"><tt class="docutils literal"><span class="pre">provision</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.provision.html#module-candelabra.command.provision.command"><tt class="docutils literal"><span class="pre">command</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.provision.html#module-candelabra.command.provision.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.command.show.html">show Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.show.html#id1"><tt class="docutils literal"><span class="pre">show</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.show.html#module-candelabra.command.show.command"><tt class="docutils literal"><span class="pre">command</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.show.html#module-candelabra.command.show.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.command.up.html">up Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.up.html#id1"><tt class="docutils literal"><span class="pre">up</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.up.html#module-candelabra.command.up.command"><tt class="docutils literal"><span class="pre">command</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.up.html#module-candelabra.command.up.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="candelabra.communicator.html">communicator Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.communicator.html#id1"><tt class="docutils literal"><span class="pre">communicator</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.communicator.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.communicator.ssh.html">ssh Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.communicator.ssh.html#module-candelabra.communicator.ssh.communicator"><tt class="docutils literal"><span class="pre">communicator</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.communicator.ssh.html#module-candelabra.communicator.ssh.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.communicator.virtualbox.html">virtualbox Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.communicator.virtualbox.html#module-candelabra.communicator.virtualbox.communicator"><tt class="docutils literal"><span class="pre">communicator</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.communicator.virtualbox.html#module-candelabra.communicator.virtualbox.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="candelabra.guest.html">guest Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.guest.html#id1"><tt class="docutils literal"><span class="pre">guest</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.guest.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.guest.linux.html">linux Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.guest.linux.html#module-candelabra.guest.linux.guest"><tt class="docutils literal"><span class="pre">guest</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.guest.linux.html#module-candelabra.guest.linux.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="candelabra.provider.html">provider Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.provider.html#id1"><tt class="docutils literal"><span class="pre">provider</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.provider.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.provider.virtualbox.html">virtualbox Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.provider.virtualbox.html#id1"><tt class="docutils literal"><span class="pre">virtualbox</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.appliance"><tt class="docutils literal"><span class="pre">appliance</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.interface"><tt class="docutils literal"><span class="pre">interface</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.machine"><tt class="docutils literal"><span class="pre">machine</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.network"><tt class="docutils literal"><span class="pre">network</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.shared"><tt class="docutils literal"><span class="pre">shared</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="candelabra.provisioner.html">provisioner Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.provisioner.html#id1"><tt class="docutils literal"><span class="pre">provisioner</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.provisioner.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.provisioner.puppet.html">puppet Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.provisioner.puppet.html#id1"><tt class="docutils literal"><span class="pre">puppet</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.provisioner.puppet.html#module-candelabra.provisioner.puppet.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.provisioner.puppet.html#module-candelabra.provisioner.puppet.provision"><tt class="docutils literal"><span class="pre">provision</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="candelabra.scheduler.html">scheduler Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.scheduler.html#module-candelabra.scheduler.base"><tt class="docutils literal"><span class="pre">base</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.scheduler.html#module-candelabra.scheduler.rad_util"><tt class="docutils literal"><span class="pre">rad_util</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.scheduler.html#module-candelabra.scheduler.topsort"><tt class="docutils literal"><span class="pre">topsort</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="candelabra.topology.html">topology Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.topology.html#id1"><tt class="docutils literal"><span class="pre">topology</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.box"><tt class="docutils literal"><span class="pre">box</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.interface"><tt class="docutils literal"><span class="pre">interface</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.machine"><tt class="docutils literal"><span class="pre">machine</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.network"><tt class="docutils literal"><span class="pre">network</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.node"><tt class="docutils literal"><span class="pre">node</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.provisioner"><tt class="docutils literal"><span class="pre">provisioner</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.root"><tt class="docutils literal"><span class="pre">root</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.shared"><tt class="docutils literal"><span class="pre">shared</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.state"><tt class="docutils literal"><span class="pre">state</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Alvaro Saurin.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

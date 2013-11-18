@@ -1,0 +1,27 @@
+net Package
+===========
+
+:mod:`net` Package
+------------------
+
+.. automodule:: candelabra.command.net
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`command` Module
+---------------------
+
+.. automodule:: candelabra.command.net.command
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`plugin` Module
+--------------------
+
+.. automodule:: candelabra.command.net.plugin
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

@@ -1,0 +1,18 @@
+provider Package
+================
+
+:mod:`provider` Package
+-----------------------
+
+.. automodule:: candelabra.provider
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+    candelabra.provider.virtualbox
+

@@ -1,0 +1,27 @@
+down Package
+============
+
+:mod:`down` Package
+-------------------
+
+.. automodule:: candelabra.command.down
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`command` Module
+---------------------
+
+.. automodule:: candelabra.command.down.command
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`plugin` Module
+--------------------
+
+.. automodule:: candelabra.command.down.plugin
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

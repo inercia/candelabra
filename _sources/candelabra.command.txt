@@ -1,0 +1,24 @@
+command Package
+===============
+
+:mod:`command` Package
+----------------------
+
+.. automodule:: candelabra.command
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+    candelabra.command.destroy
+    candelabra.command.down
+    candelabra.command.import
+    candelabra.command.net
+    candelabra.command.provision
+    candelabra.command.show
+    candelabra.command.up
+

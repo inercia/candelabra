@@ -1,0 +1,2124 @@
+
+
+
+
+  
+  
+ 
+  
+ 
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Index &mdash; candelabra 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="candelabra 1.0 documentation" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="doc_index.html">Candelabra</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://github.com/inercia/candelabra">Github</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a href="doc_index.html"
+     class="dropdown-toggle"
+     data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+    ><ul class="simple">
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_install.html">Software installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#build-requirements">Build Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#on-mac-os-x">On Mac OS X</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_running.html">Running the software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#on-development-machines">On development machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#unit-tests">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_topology.html">Topology files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#topology-files-structure">Topology files structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#defaults">Defaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#networks">Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#machines">Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_provisioning.html">    Provisioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_provisioning.html#puppet">Puppet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_hooks.html">Hooks</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Main modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html">candelabra Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_plugins.html">Extending Candelabra with plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_plugins.html#deafult-plugins">Deafult plugins</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html">Candelabra software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html#third-party-packages">Third party packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_license.html#bottle">Bottle</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.base.TasksScheduler.add">add() (candelabra.scheduler.base.TasksScheduler method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.tasks.TaskGenerator.add_task">add_task() (candelabra.tasks.TaskGenerator method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.tasks.TaskGenerator.add_task_seq">add_task_seq() (candelabra.tasks.TaskGenerator method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.base.TasksScheduler.append">append() (candelabra.scheduler.base.TasksScheduler method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.ProviderPlugin.APPLIANCE">APPLIANCE (candelabra.plugins.ProviderPlugin attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.APPLIANCE">(candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.command.destroy.html#candelabra.command.destroy.command.DestroyCommandPlugin.argparser">argparser() (candelabra.command.destroy.command.DestroyCommandPlugin method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.command.down.html#candelabra.command.down.command.DownCommandPlugin.argparser">(candelabra.command.down.command.DownCommandPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.import.html#candelabra.command.import.command.ImportCommandPlugin.argparser">(candelabra.command.import.command.ImportCommandPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.net.html#candelabra.command.net.command.NetCommandPlugin.argparser">(candelabra.command.net.command.NetCommandPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.provision.html#candelabra.command.provision.command.ProvisionCommandPlugin.argparser">(candelabra.command.provision.command.ProvisionCommandPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.show.html#candelabra.command.show.command.ShowCommandPlugin.argparser">(candelabra.command.show.command.ShowCommandPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.up.html#candelabra.command.up.command.UpCommandPlugin.argparser">(candelabra.command.up.command.UpCommandPlugin method)</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.bin2int">bin2int() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.binary_range">binary_range() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.boxes.boxes_storage_factory">boxes_storage_factory() (in module candelabra.boxes)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.boxes.BoxesStorage">BoxesStorage (class in candelabra.boxes)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.box.BoxNode">BoxNode (class in candelabra.topology.box)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.build_communicator_instance">build_communicator_instance() (in module candelabra.plugins)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.html#candelabra.plugins.build_guest_instance">build_guest_instance() (in module candelabra.plugins)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.build_interface_instance">build_interface_instance() (in module candelabra.plugins)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.build_machine_instance">build_machine_instance() (in module candelabra.plugins)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.build_network_instance">build_network_instance() (in module candelabra.plugins)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.build_provisioner_instance">build_provisioner_instance() (in module candelabra.plugins)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.build_shared_instance">build_shared_instance() (in module candelabra.plugins)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.html#module-candelabra.__init__">candelabra.__init__ (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#module-candelabra.base">candelabra.base (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#module-candelabra.boxes">candelabra.boxes (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.html#module-candelabra.command">candelabra.command (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.destroy.html#module-candelabra.command.destroy">candelabra.command.destroy (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.destroy.html#module-candelabra.command.destroy.command">candelabra.command.destroy.command (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.destroy.html#module-candelabra.command.destroy.plugin">candelabra.command.destroy.plugin (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.down.html#module-candelabra.command.down">candelabra.command.down (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.down.html#module-candelabra.command.down.command">candelabra.command.down.command (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.down.html#module-candelabra.command.down.plugin">candelabra.command.down.plugin (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.import.html#module-candelabra.command.import">candelabra.command.import (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.import.html#module-candelabra.command.import.command">candelabra.command.import.command (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.import.html#module-candelabra.command.import.plugin">candelabra.command.import.plugin (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.net.html#module-candelabra.command.net">candelabra.command.net (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.net.html#module-candelabra.command.net.command">candelabra.command.net.command (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.net.html#module-candelabra.command.net.plugin">candelabra.command.net.plugin (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.provision.html#module-candelabra.command.provision">candelabra.command.provision (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.provision.html#module-candelabra.command.provision.command">candelabra.command.provision.command (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.provision.html#module-candelabra.command.provision.plugin">candelabra.command.provision.plugin (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.show.html#module-candelabra.command.show">candelabra.command.show (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.show.html#module-candelabra.command.show.command">candelabra.command.show.command (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.show.html#module-candelabra.command.show.plugin">candelabra.command.show.plugin (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.up.html#module-candelabra.command.up">candelabra.command.up (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.up.html#module-candelabra.command.up.command">candelabra.command.up.command (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.up.html#module-candelabra.command.up.plugin">candelabra.command.up.plugin (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.communicator.html#module-candelabra.communicator">candelabra.communicator (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.communicator.ssh.html#module-candelabra.communicator.ssh.communicator">candelabra.communicator.ssh.communicator (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.communicator.ssh.html#module-candelabra.communicator.ssh.plugin">candelabra.communicator.ssh.plugin (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.communicator.virtualbox.html#module-candelabra.communicator.virtualbox.communicator">candelabra.communicator.virtualbox.communicator (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.communicator.virtualbox.html#module-candelabra.communicator.virtualbox.plugin">candelabra.communicator.virtualbox.plugin (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#module-candelabra.config">candelabra.config (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#module-candelabra.constants">candelabra.constants (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#module-candelabra.errors">candelabra.errors (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.guest.html#module-candelabra.guest">candelabra.guest (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.guest.linux.html#module-candelabra.guest.linux.guest">candelabra.guest.linux.guest (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.guest.linux.html#module-candelabra.guest.linux.plugin">candelabra.guest.linux.plugin (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#module-candelabra.logs">candelabra.logs (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#module-candelabra.main">candelabra.main (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#module-candelabra.plugins">candelabra.plugins (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.html#module-candelabra.provider">candelabra.provider (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox">candelabra.provider.virtualbox (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.appliance">candelabra.provider.virtualbox.appliance (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.interface">candelabra.provider.virtualbox.interface (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.machine">candelabra.provider.virtualbox.machine (module)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.network">candelabra.provider.virtualbox.network (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.plugin">candelabra.provider.virtualbox.plugin (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.shared">candelabra.provider.virtualbox.shared (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provisioner.html#module-candelabra.provisioner">candelabra.provisioner (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provisioner.puppet.html#module-candelabra.provisioner.puppet">candelabra.provisioner.puppet (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provisioner.puppet.html#module-candelabra.provisioner.puppet.plugin">candelabra.provisioner.puppet.plugin (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provisioner.puppet.html#module-candelabra.provisioner.puppet.provision">candelabra.provisioner.puppet.provision (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#module-candelabra.scheduler.base">candelabra.scheduler.base (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#module-candelabra.scheduler.rad_util">candelabra.scheduler.rad_util (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#module-candelabra.scheduler.topsort">candelabra.scheduler.topsort (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#module-candelabra.tasks">candelabra.tasks (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#module-candelabra.tests">candelabra.tests (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#module-candelabra.topology">candelabra.topology (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#module-candelabra.topology.box">candelabra.topology.box (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#module-candelabra.topology.interface">candelabra.topology.interface (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#module-candelabra.topology.machine">candelabra.topology.machine (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#module-candelabra.topology.network">candelabra.topology.network (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#module-candelabra.topology.node">candelabra.topology.node (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#module-candelabra.topology.provisioner">candelabra.topology.provisioner (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#module-candelabra.topology.root">candelabra.topology.root (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#module-candelabra.topology.shared">candelabra.topology.shared (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#module-candelabra.topology.state">candelabra.topology.state (module)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.config.CandelabraConfig">CandelabraConfig (class in candelabra.config)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.CandelabraException">CandelabraException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.tests.CandelabraTestBase">CandelabraTestBase (class in candelabra.tests)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.cfg_uuid">cfg_uuid (candelabra.provider.virtualbox.machine.VirtualboxMachineNode attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.base.Guest.change_hostname">change_hostname() (candelabra.base.Guest method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.guest.LinuxGuest.change_hostname">(candelabra.guest.linux.guest.LinuxGuest method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.check_name">check_name() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.box.CHUNK_SIZE">CHUNK_SIZE (in module candelabra.topology.box)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.base.TasksScheduler.clean">clean() (candelabra.scheduler.base.TasksScheduler method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.tasks.TaskGenerator.clear_tasks">clear_tasks() (candelabra.tasks.TaskGenerator method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.CommandPlugin">CommandPlugin (class in candelabra.plugins)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.communicator.ssh.html#candelabra.communicator.ssh.plugin.SshCommunicatorPlugin.COMMUNICATOR">COMMUNICATOR (candelabra.communicator.ssh.plugin.SshCommunicatorPlugin attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.communicator.virtualbox.html#candelabra.communicator.virtualbox.plugin.VirtualboxCommunicatorPlugin.COMMUNICATOR">(candelabra.communicator.virtualbox.plugin.VirtualboxCommunicatorPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.html#candelabra.plugins.CommunicatorPlugin.COMMUNICATOR">(candelabra.plugins.CommunicatorPlugin attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.html#candelabra.base.Communicator">Communicator (class in candelabra.base)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.communicator_ip">communicator_ip (candelabra.topology.machine.MachineNode attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.CommunicatorException">CommunicatorException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.CommunicatorNotConnectedException">CommunicatorNotConnectedException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.CommunicatorPlugin">CommunicatorPlugin (class in candelabra.plugins)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.ProviderPlugin.COMMUNICATORS">COMMUNICATORS (candelabra.plugins.ProviderPlugin attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.COMMUNICATORS">(candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.html#candelabra.errors.ComponentNotFoundException">ComponentNotFoundException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.tests.CandelabraTestBase.CONFIG">CONFIG (candelabra.tests.CandelabraTestBase attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.ConfigFileMissingException">ConfigFileMissingException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.ConfigFileNotLoadedException">ConfigFileNotLoadedException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.topsort.CycleError">CycleError</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.root.DEFAULT_INTERFACES">DEFAULT_INTERFACES (in module candelabra.topology.root)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.root.DEFAULT_NAT_INTERFACE_NAME">DEFAULT_NAT_INTERFACE_NAME (in module candelabra.topology.root)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.root.DEFAULT_NAT_NETWORK_NAME">DEFAULT_NAT_NETWORK_NAME (in module candelabra.topology.root)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.root.DEFAULT_NETWORKS">DEFAULT_NETWORKS (in module candelabra.topology.root)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.communicator.ssh.html#candelabra.communicator.ssh.communicator.DEFAULT_SSH_PORT">DEFAULT_SSH_PORT (in module candelabra.communicator.ssh.communicator)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.destroy.html#candelabra.command.destroy.command.DestroyCommandPlugin.DESCRIPTION">DESCRIPTION (candelabra.command.destroy.command.DestroyCommandPlugin attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.command.down.html#candelabra.command.down.command.DownCommandPlugin.DESCRIPTION">(candelabra.command.down.command.DownCommandPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.import.html#candelabra.command.import.command.ImportCommandPlugin.DESCRIPTION">(candelabra.command.import.command.ImportCommandPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.net.html#candelabra.command.net.command.NetCommandPlugin.DESCRIPTION">(candelabra.command.net.command.NetCommandPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.provision.html#candelabra.command.provision.command.ProvisionCommandPlugin.DESCRIPTION">(candelabra.command.provision.command.ProvisionCommandPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.show.html#candelabra.command.show.command.ShowCommandPlugin.DESCRIPTION">(candelabra.command.show.command.ShowCommandPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.up.html#candelabra.command.up.command.UpCommandPlugin.DESCRIPTION">(candelabra.command.up.command.UpCommandPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.communicator.ssh.html#candelabra.communicator.ssh.plugin.SshCommunicatorPlugin.DESCRIPTION">(candelabra.communicator.ssh.plugin.SshCommunicatorPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.communicator.virtualbox.html#candelabra.communicator.virtualbox.plugin.VirtualboxCommunicatorPlugin.DESCRIPTION">(candelabra.communicator.virtualbox.plugin.VirtualboxCommunicatorPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.plugin.LinuxGuestPlugin.DESCRIPTION">(candelabra.guest.linux.plugin.LinuxGuestPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.html#candelabra.plugins.CommandPlugin.DESCRIPTION">(candelabra.plugins.CommandPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.html#candelabra.plugins.CommunicatorPlugin.DESCRIPTION">(candelabra.plugins.CommunicatorPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.html#candelabra.plugins.GuestPlugin.DESCRIPTION">(candelabra.plugins.GuestPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.html#candelabra.plugins.ProviderPlugin.DESCRIPTION">(candelabra.plugins.ProviderPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.html#candelabra.plugins.ProvisionerPlugin.DESCRIPTION">(candelabra.plugins.ProvisionerPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.DESCRIPTION">(candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.provisioner.puppet.html#candelabra.provisioner.puppet.plugin.PuppetProvisionerPlugin.DESCRIPTION">(candelabra.provisioner.puppet.plugin.PuppetProvisionerPlugin attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.command.destroy.html#candelabra.command.destroy.command.DestroyCommandPlugin">DestroyCommandPlugin (class in candelabra.command.destroy.command)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_close_guest_sessions">do_close_guest_sessions() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_copy_appliance">do_copy_appliance() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.do_copy_appliance">(candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_create_guest_reference">do_create_guest_reference() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.do_create_guest_reference">(candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_create_user">do_create_user() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_destroy">do_destroy() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.box.BoxNode.do_download">do_download() (candelabra.topology.box.BoxNode method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.interface.VirtualboxInterfaceNode.do_iface_create">do_iface_create() (candelabra.provider.virtualbox.interface.VirtualboxInterfaceNode method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.interface.InterfaceNode.do_iface_create">(candelabra.topology.interface.InterfaceNode method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.interface.VirtualboxInterfaceNode.do_iface_up">do_iface_up() (candelabra.provider.virtualbox.interface.VirtualboxInterfaceNode method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.interface.InterfaceNode.do_iface_up">(candelabra.topology.interface.InterfaceNode method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.network.VirtualboxNetworkNode.do_network_create">do_network_create() (candelabra.provider.virtualbox.network.VirtualboxNetworkNode method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.network.NetworkNode.do_network_create">(candelabra.topology.network.NetworkNode method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.network.VirtualboxNetworkNode.do_network_up">do_network_up() (candelabra.provider.virtualbox.network.VirtualboxNetworkNode method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.network.NetworkNode.do_network_up">(candelabra.topology.network.NetworkNode method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_pause">do_pause() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.do_pause">(candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_power_down">do_power_down() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.do_power_down">(candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_power_up">do_power_up() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.do_power_up">(candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.shared.VirtualboxSharedNode.do_shared_create">do_shared_create() (candelabra.provider.virtualbox.shared.VirtualboxSharedNode method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.shared.SharedNode.do_shared_create">(candelabra.topology.shared.SharedNode method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.shared.VirtualboxSharedNode.do_shared_mount">do_shared_mount() (candelabra.provider.virtualbox.shared.VirtualboxSharedNode method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.shared.SharedNode.do_shared_mount">(candelabra.topology.shared.SharedNode method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.command.show.html#candelabra.command.show.command.ShowCommandPlugin.do_show_boxes">do_show_boxes() (candelabra.command.show.command.ShowCommandPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.show.html#candelabra.command.show.command.ShowCommandPlugin.do_show_status">do_show_status() (candelabra.command.show.command.ShowCommandPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_wait_userland">do_wait_userland() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.do_wait_userland">(candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.command.down.html#candelabra.command.down.command.DownCommandPlugin">DownCommandPlugin (class in candelabra.command.down.command)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.state.State.filename">filename (candelabra.topology.state.State attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.find_common_fixes">find_common_fixes() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.topsort.find_cycles">find_cycles() (in module candelabra.scheduler.topsort)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.html#candelabra.tasks.TaskGenerator.first_task">first_task (candelabra.tasks.TaskGenerator attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.float_range">float_range() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.appliance.VirtualboxAppliance.from_dir">from_dir() (candelabra.provider.virtualbox.appliance.VirtualboxAppliance static method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.gcf">gcf() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.box.BoxNode.get_appliance">get_appliance() (candelabra.topology.box.BoxNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.get_args">get_args() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.boxes.BoxesStorage.get_box">get_box() (candelabra.boxes.BoxesStorage method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.get_communicator_ip">get_communicator_ip() (candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.root.TopologyRoot.get_global_machine">get_global_machine() (candelabra.topology.root.TopologyRoot method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_guest_level_system">get_guest_level_system() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_guest_level_userland">get_guest_level_userland() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_guest_session">get_guest_session() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_guest_type">get_guest_type() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.node.TopologyNode.get_inc_counter">get_inc_counter() (candelabra.topology.node.TopologyNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_info">get_info() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.base.Guest.get_ips">get_ips() (candelabra.base.Guest method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.guest.LinuxGuest.get_ips">(candelabra.guest.linux.guest.LinuxGuest method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.guest.GET_IPS_COMMAND">GET_IPS_COMMAND (in module candelabra.guest.linux.guest)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.config.CandelabraConfig.get_key">get_key() (candelabra.config.CandelabraConfig method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.root.TopologyRoot.get_machine_by_name">get_machine_by_name() (candelabra.topology.root.TopologyRoot method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.root.TopologyRoot.get_machine_by_uuid">get_machine_by_uuid() (candelabra.topology.root.TopologyRoot method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.state.State.get_machine_state">get_machine_state() (candelabra.topology.state.State method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.get_network_by_name">get_network_by_name() (candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.get_provider">get_provider() (in module candelabra.plugins)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.boxes.BoxesStorage.get_relative_path">get_relative_path() (candelabra.boxes.BoxesStorage static method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_state">get_state() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.get_state">(candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.get_state_dict">get_state_dict() (candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.node.TopologyNode.get_state_dict">(candelabra.topology.node.TopologyNode method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.get_state_str">get_state_str() (candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.boxes.BoxesStorage.get_storage_root">get_storage_root() (candelabra.boxes.BoxesStorage static method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.base.TasksScheduler.get_task_as_str">get_task_as_str() (candelabra.scheduler.base.TasksScheduler static method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.tasks.TaskGenerator.get_tasks">get_tasks() (candelabra.tasks.TaskGenerator method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.root.TopologyRoot.get_tasks">(candelabra.topology.root.TopologyRoot method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.get_tasks_destroy">get_tasks_destroy() (candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.get_tasks_down">get_tasks_down() (candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_tasks_net_bridge">get_tasks_net_bridge() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.get_tasks_net_show">get_tasks_net_show() (candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.get_tasks_net_up">get_tasks_net_up() (candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.get_tasks_pause">get_tasks_pause() (candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.get_tasks_up">get_tasks_up() (candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_uuid">get_uuid() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_vbox_machine">get_vbox_machine() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.getmodule">getmodule() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.gray_encode">gray_encode() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.root.guess_topology_file">guess_topology_file() (in module candelabra.topology.root)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.plugin.LinuxGuestPlugin.GUEST">GUEST (candelabra.guest.linux.plugin.LinuxGuestPlugin attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.base.Guest">Guest (class in candelabra.base)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.GuestPlugin">GuestPlugin (class in candelabra.plugins)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.html#candelabra.boxes.BoxesStorage.has_box">has_box() (candelabra.boxes.BoxesStorage method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.appliance.VirtualboxAppliance.import_to_machine">import_to_machine() (candelabra.provider.virtualbox.appliance.VirtualboxAppliance method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.import.html#candelabra.command.import.command.ImportCommandPlugin">ImportCommandPlugin (class in candelabra.command.import.command)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.ImportException">ImportException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.int2bin">int2bin() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.ProviderPlugin.INTERFACE">INTERFACE (candelabra.plugins.ProviderPlugin attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.INTERFACE">(candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.interface.InterfaceNode">InterfaceNode (class in candelabra.topology.interface)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.is_aborted">is_aborted (candelabra.topology.machine.MachineNode attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.is_global">is_global (candelabra.topology.machine.MachineNode attribute)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.network.NetworkNode.is_nat">is_nat (candelabra.topology.network.NetworkNode attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.is_powered_down">is_powered_down (candelabra.topology.machine.MachineNode attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.is_rotated">is_rotated() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.is_running">is_running (candelabra.topology.machine.MachineNode attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.is_starting">is_starting (candelabra.topology.machine.MachineNode attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.is_stopping">is_stopping (candelabra.topology.machine.MachineNode attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.is_unknown">is_unknown (candelabra.topology.machine.MachineNode attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.appliance.VirtualboxAppliance.is_valid">is_valid() (candelabra.provider.virtualbox.appliance.VirtualboxAppliance static method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.lcm">lcm() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.guest.LinuxGuest">LinuxGuest (class in candelabra.guest.linux.guest)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.plugin.LinuxGuestPlugin">LinuxGuestPlugin (class in candelabra.guest.linux.plugin)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.listen_events">listen_events() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.config.CandelabraConfig.load">load() (candelabra.config.CandelabraConfig method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.box.BoxNode.load">(candelabra.topology.box.BoxNode method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.root.TopologyRoot.load">(candelabra.topology.root.TopologyRoot method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.state.State.load">(candelabra.topology.state.State method)</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.root.TopologyRoot.load_str">load_str() (candelabra.topology.root.TopologyRoot method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.config.CandelabraConfig.load_string">load_string() (candelabra.config.CandelabraConfig method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.lock">lock() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.lsb">lsb() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.html#candelabra.plugins.ProviderPlugin.MACHINE">MACHINE (candelabra.plugins.ProviderPlugin attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.interface.VirtualboxInterfaceNode.machine">machine (candelabra.provider.virtualbox.interface.VirtualboxInterfaceNode attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.network.VirtualboxNetworkNode.machine">(candelabra.provider.virtualbox.network.VirtualboxNetworkNode attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.MACHINE">MACHINE (candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.shared.VirtualboxSharedNode.machine">machine (candelabra.provider.virtualbox.shared.VirtualboxSharedNode attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.interface.InterfaceNode.machine">(candelabra.topology.interface.InterfaceNode attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.network.NetworkNode.machine">(candelabra.topology.network.NetworkNode attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.provisioner.ProvisionerNode.machine">(candelabra.topology.provisioner.ProvisionerNode attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.shared.SharedNode.machine">(candelabra.topology.shared.SharedNode attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.html#candelabra.errors.MachineChangeException">MachineChangeException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.MachineDefinitionException">MachineDefinitionException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.MachineException">MachineException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.MachineNetworkSetupException">MachineNetworkSetupException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode">MachineNode (class in candelabra.topology.machine)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.root.TopologyRoot.machines">machines (candelabra.topology.root.TopologyRoot attribute)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.html#candelabra.main.main">main() (in module candelabra.main)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.MalformedStateFileException">MalformedStateFileException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.MalformedTopologyException">MalformedTopologyException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.box.MBYTE">MBYTE (in module candelabra.topology.box)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.MissingBoxException">MissingBoxException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.base.Guest.mkdir">mkdir() (candelabra.base.Guest method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.guest.LinuxGuest.mkdir">(candelabra.guest.linux.guest.LinuxGuest method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.guest.MKDIR_COMMAND">MKDIR_COMMAND (in module candelabra.guest.linux.guest)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.base.Guest.mount">mount() (candelabra.base.Guest method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.guest.LinuxGuest.mount">(candelabra.guest.linux.guest.LinuxGuest method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.guest.MOUNT_COMMAND">MOUNT_COMMAND (in module candelabra.guest.linux.guest)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.command.destroy.html#candelabra.command.destroy.command.DestroyCommandPlugin.NAME">NAME (candelabra.command.destroy.command.DestroyCommandPlugin attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.command.down.html#candelabra.command.down.command.DownCommandPlugin.NAME">(candelabra.command.down.command.DownCommandPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.import.html#candelabra.command.import.command.ImportCommandPlugin.NAME">(candelabra.command.import.command.ImportCommandPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.net.html#candelabra.command.net.command.NetCommandPlugin.NAME">(candelabra.command.net.command.NetCommandPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.provision.html#candelabra.command.provision.command.ProvisionCommandPlugin.NAME">(candelabra.command.provision.command.ProvisionCommandPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.show.html#candelabra.command.show.command.ShowCommandPlugin.NAME">(candelabra.command.show.command.ShowCommandPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.up.html#candelabra.command.up.command.UpCommandPlugin.NAME">(candelabra.command.up.command.UpCommandPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.communicator.ssh.html#candelabra.communicator.ssh.plugin.SshCommunicatorPlugin.NAME">(candelabra.communicator.ssh.plugin.SshCommunicatorPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.communicator.virtualbox.html#candelabra.communicator.virtualbox.plugin.VirtualboxCommunicatorPlugin.NAME">(candelabra.communicator.virtualbox.plugin.VirtualboxCommunicatorPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.plugin.LinuxGuestPlugin.NAME">(candelabra.guest.linux.plugin.LinuxGuestPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.html#candelabra.plugins.CommandPlugin.NAME">(candelabra.plugins.CommandPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.html#candelabra.plugins.CommunicatorPlugin.NAME">(candelabra.plugins.CommunicatorPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.html#candelabra.plugins.GuestPlugin.NAME">(candelabra.plugins.GuestPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.html#candelabra.plugins.ProviderPlugin.NAME">(candelabra.plugins.ProviderPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.html#candelabra.plugins.ProvisionerPlugin.NAME">(candelabra.plugins.ProvisionerPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.NAME">(candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin attribute)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.provisioner.puppet.html#candelabra.provisioner.puppet.plugin.PuppetProvisionerPlugin.NAME">(candelabra.provisioner.puppet.plugin.PuppetProvisionerPlugin attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.html#candelabra.plugins.PluginsRegistry.names">names (candelabra.plugins.PluginsRegistry attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.net.html#candelabra.command.net.command.NetCommandPlugin">NetCommandPlugin (class in candelabra.command.net.command)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.NETWORK">NETWORK (candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin attribute)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.network.NetworkNode">NetworkNode (class in candelabra.topology.network)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.nice_units">nice_units() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.base.TasksScheduler.num_completed">num_completed (candelabra.scheduler.base.TasksScheduler attribute)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.html#candelabra.plugins.CommunicatorPlugin.ONLY_PROVIDERS">ONLY_PROVIDERS (candelabra.plugins.CommunicatorPlugin attribute)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.permutations">permutations() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.state.State.persisted">persisted (candelabra.topology.state.State attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.PluginsRegistry">PluginsRegistry (class in candelabra.plugins)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.polygon_area">polygon_area() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.pretty_print">pretty_print() (candelabra.topology.machine.MachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.appliance.VirtualboxAppliance.provider">provider (candelabra.provider.virtualbox.appliance.VirtualboxAppliance attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.ProviderException">ProviderException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.ProviderNotFoundException">ProviderNotFoundException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.ProviderPlugin">ProviderPlugin (class in candelabra.plugins)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.command.provision.html#candelabra.command.provision.command.ProvisionCommandPlugin">ProvisionCommandPlugin (class in candelabra.command.provision.command)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.ProvisionerPlugin.PROVISIONER">PROVISIONER (candelabra.plugins.ProvisionerPlugin attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.provisioner.puppet.html#candelabra.provisioner.puppet.plugin.PuppetProvisionerPlugin.PROVISIONER">(candelabra.provisioner.puppet.plugin.PuppetProvisionerPlugin attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.html#candelabra.base.Provisioner">Provisioner (class in candelabra.base)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.provisioner.ProvisionerNode">ProvisionerNode (class in candelabra.topology.provisioner)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.ProvisionerPlugin">ProvisionerPlugin (class in candelabra.plugins)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.pt2str">pt2str() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provisioner.puppet.html#candelabra.provisioner.puppet.provision.PuppetProvisioner">PuppetProvisioner (class in candelabra.provisioner.puppet.provision)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provisioner.puppet.html#candelabra.provisioner.puppet.plugin.PuppetProvisionerPlugin">PuppetProvisionerPlugin (class in candelabra.provisioner.puppet.plugin)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.quantile">quantile() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.random_vec">random_vec() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.reduce_fraction">reduce_fraction() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.boxes.BoxesStorage.refresh">refresh() (candelabra.boxes.BoxesStorage method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.PluginsRegistry.register">register() (candelabra.plugins.PluginsRegistry method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.command.destroy.html#candelabra.command.destroy.plugin.register">(in module candelabra.command.destroy.plugin)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.down.html#candelabra.command.down.plugin.register">(in module candelabra.command.down.plugin)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.import.html#candelabra.command.import.plugin.register">(in module candelabra.command.import.plugin)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.net.html#candelabra.command.net.plugin.register">(in module candelabra.command.net.plugin)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.provision.html#candelabra.command.provision.plugin.register">(in module candelabra.command.provision.plugin)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.show.html#candelabra.command.show.plugin.register">(in module candelabra.command.show.plugin)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.up.html#candelabra.command.up.plugin.register">(in module candelabra.command.up.plugin)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.communicator.ssh.html#candelabra.communicator.ssh.plugin.register">(in module candelabra.communicator.ssh.plugin)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.communicator.virtualbox.html#candelabra.communicator.virtualbox.plugin.register">(in module candelabra.communicator.virtualbox.plugin)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.plugin.register">(in module candelabra.guest.linux.plugin)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.plugin.register">(in module candelabra.provider.virtualbox.plugin)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.provisioner.puppet.html#candelabra.provisioner.puppet.plugin.register">(in module candelabra.provisioner.puppet.plugin)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.html#candelabra.plugins.register_all">register_all() (in module candelabra.plugins)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.state.State.remove">remove() (candelabra.topology.state.State method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.reverse">reverse() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.reverse_dict">reverse_dict() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.round_grid">round_grid() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.base.Communicator.run">run() (candelabra.base.Communicator method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.command.destroy.html#candelabra.command.destroy.command.DestroyCommandPlugin.run">(candelabra.command.destroy.command.DestroyCommandPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.down.html#candelabra.command.down.command.DownCommandPlugin.run">(candelabra.command.down.command.DownCommandPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.import.html#candelabra.command.import.command.ImportCommandPlugin.run">(candelabra.command.import.command.ImportCommandPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.net.html#candelabra.command.net.command.NetCommandPlugin.run">(candelabra.command.net.command.NetCommandPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.provision.html#candelabra.command.provision.command.ProvisionCommandPlugin.run">(candelabra.command.provision.command.ProvisionCommandPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.show.html#candelabra.command.show.command.ShowCommandPlugin.run">(candelabra.command.show.command.ShowCommandPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.command.up.html#candelabra.command.up.command.UpCommandPlugin.run">(candelabra.command.up.command.UpCommandPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.communicator.ssh.html#candelabra.communicator.ssh.communicator.SshCommunicator.run">(candelabra.communicator.ssh.communicator.SshCommunicator method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.communicator.virtualbox.html#candelabra.communicator.virtualbox.communicator.VirtualboxCommunicator.run">(candelabra.communicator.virtualbox.communicator.VirtualboxCommunicator method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.html#candelabra.plugins.CommandPlugin.run">(candelabra.plugins.CommandPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.html#candelabra.plugins.ProvisionerPlugin.run">(candelabra.plugins.ProvisionerPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.base.TasksScheduler.run">(candelabra.scheduler.base.TasksScheduler method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.html#candelabra.plugins.CommandPlugin.run_with_topology">run_with_topology() (candelabra.plugins.CommandPlugin method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.state.State.save">save() (candelabra.topology.state.State method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.base.TasksScheduler.schedule">schedule() (candelabra.scheduler.base.TasksScheduler method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.SchedulerTaskException">SchedulerTaskException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.set_uuid">set_uuid() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.node.TopologyAttribute.setall">setall() (candelabra.topology.node.TopologyAttribute static method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.logs.setup_console">setup_console() (in module candelabra.logs)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.logs.setup_file">setup_file() (in module candelabra.logs)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.base.Guest.setup_iface">setup_iface() (candelabra.base.Guest method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.guest.LinuxGuest.setup_iface">(candelabra.guest.linux.guest.LinuxGuest method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.html#candelabra.tests.CandelabraTestBase.setUpClass">setUpClass() (candelabra.tests.CandelabraTestBase class method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.plugins.ProviderPlugin.SHARED">SHARED (candelabra.plugins.ProviderPlugin attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.SHARED">(candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.shared.SharedNode">SharedNode (class in candelabra.topology.shared)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.show.html#candelabra.command.show.command.ShowCommandPlugin">ShowCommandPlugin (class in candelabra.command.show.command)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.html#candelabra.base.Guest.shutdown">shutdown() (candelabra.base.Guest method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.guest.LinuxGuest.shutdown">(candelabra.guest.linux.guest.LinuxGuest method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.guest.SHUTDOWN_COMMAND">SHUTDOWN_COMMAND (in module candelabra.guest.linux.guest)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.tests.skipTravis">skipTravis() (in module candelabra.tests)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.communicator.ssh.html#candelabra.communicator.ssh.communicator.SshCommunicator">SshCommunicator (class in candelabra.communicator.ssh.communicator)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.communicator.ssh.html#candelabra.communicator.ssh.plugin.SshCommunicatorPlugin">SshCommunicatorPlugin (class in candelabra.communicator.ssh.plugin)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.state">state (candelabra.topology.machine.MachineNode attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.topology.html#candelabra.topology.root.TopologyRoot.state">(candelabra.topology.root.TopologyRoot attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.state.State">State (class in candelabra.topology.state)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.machine.MachineNode.state_str">state_str (candelabra.topology.machine.MachineNode attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.base.Communicator.sudo">sudo() (candelabra.base.Communicator method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="candelabra.communicator.ssh.html#candelabra.communicator.ssh.communicator.SshCommunicator.sudo">(candelabra.communicator.ssh.communicator.SshCommunicator method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="candelabra.html#candelabra.base.Communicator.sudo_lines">sudo_lines() (candelabra.base.Communicator method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.network.SUPPORTED_SCOPES">SUPPORTED_SCOPES (in module candelabra.topology.network)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.sync_name">sync_name() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.html#candelabra.tasks.TaskGenerator">TaskGenerator (class in candelabra.tasks)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.base.TasksScheduler">TasksScheduler (class in candelabra.scheduler.base)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.guest.TEMPLATE_DHCP">TEMPLATE_DHCP (in module candelabra.guest.linux.guest)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.guest.linux.html#candelabra.guest.linux.guest.TEMPLATE_STATIC">TEMPLATE_STATIC (in module candelabra.guest.linux.guest)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.base.Communicator.test">test() (candelabra.base.Communicator method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.timestamp">timestamp() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.node.TopologyAttribute">TopologyAttribute (class in candelabra.topology.node)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.TopologyException">TopologyException</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.node.TopologyNode">TopologyNode (class in candelabra.topology.node)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.topology.html#candelabra.topology.root.TopologyRoot">TopologyRoot (class in candelabra.topology.root)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.topsort.topsort">topsort() (in module candelabra.scheduler.topsort)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.topsort.topsort_levels">topsort_levels() (in module candelabra.scheduler.topsort)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.topsort.topsort_levels_core">topsort_levels_core() (in module candelabra.scheduler.topsort)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.transpose">transpose() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.trim">trim() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.unique">unique() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.scheduler.html#candelabra.scheduler.rad_util.uniquify">uniquify() (in module candelabra.scheduler.rad_util)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.unlock">unlock() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.html#candelabra.errors.UnsupportedBoxException">UnsupportedBoxException</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.html#candelabra.errors.UnsupportedCommandException">UnsupportedCommandException</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.command.up.html#candelabra.command.up.command.UpCommandPlugin">UpCommandPlugin (class in candelabra.command.up.command)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.communicator.virtualbox.html#candelabra.communicator.virtualbox.communicator.VirtualboxCommunicator.upload_file">upload_file() (candelabra.communicator.virtualbox.communicator.VirtualboxCommunicator method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.html#candelabra.plugins.PluginsRegistry.validate">validate() (candelabra.plugins.PluginsRegistry method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.vbox_machine">vbox_machine (candelabra.provider.virtualbox.machine.VirtualboxMachineNode attribute)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.appliance.VirtualboxAppliance">VirtualboxAppliance (class in candelabra.provider.virtualbox.appliance)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.communicator.virtualbox.html#candelabra.communicator.virtualbox.communicator.VirtualboxCommunicator">VirtualboxCommunicator (class in candelabra.communicator.virtualbox.communicator)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.communicator.virtualbox.html#candelabra.communicator.virtualbox.plugin.VirtualboxCommunicatorPlugin">VirtualboxCommunicatorPlugin (class in candelabra.communicator.virtualbox.plugin)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.interface.VirtualboxInterfaceNode">VirtualboxInterfaceNode (class in candelabra.provider.virtualbox.interface)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode">VirtualboxMachineNode (class in candelabra.provider.virtualbox.machine)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.network.VirtualboxNetworkNode">VirtualboxNetworkNode (class in candelabra.provider.virtualbox.network)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin">VirtualboxProviderPlugin (class in candelabra.provider.virtualbox.plugin)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.shared.VirtualboxSharedNode">VirtualboxSharedNode (class in candelabra.provider.virtualbox.shared)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.wait_for_event">wait_for_event() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.wait_for_guest_session_state_change">wait_for_guest_session_state_change() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="candelabra.provider.virtualbox.html#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.wait_for_session_state_change">wait_for_session_state_change() (candelabra.provider.virtualbox.machine.VirtualboxMachineNode method)</a>
+  </dt>
+
+      
+  <dt><a href="candelabra.communicator.virtualbox.html#candelabra.communicator.virtualbox.communicator.VirtualboxCommunicator.write_file">write_file() (candelabra.communicator.virtualbox.communicator.VirtualboxCommunicator method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Alvaro Saurin.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

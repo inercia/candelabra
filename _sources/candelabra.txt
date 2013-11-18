@@ -1,0 +1,104 @@
+candelabra Package
+==================
+
+:mod:`candelabra` Package
+-------------------------
+
+.. automodule:: candelabra.__init__
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`base` Module
+------------------
+
+.. automodule:: candelabra.base
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`boxes` Module
+-------------------
+
+.. automodule:: candelabra.boxes
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`config` Module
+--------------------
+
+.. automodule:: candelabra.config
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`constants` Module
+-----------------------
+
+.. automodule:: candelabra.constants
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`errors` Module
+--------------------
+
+.. automodule:: candelabra.errors
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`logs` Module
+------------------
+
+.. automodule:: candelabra.logs
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`main` Module
+------------------
+
+.. automodule:: candelabra.main
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`plugins` Module
+---------------------
+
+.. automodule:: candelabra.plugins
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`tasks` Module
+-------------------
+
+.. automodule:: candelabra.tasks
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`tests` Module
+-------------------
+
+.. automodule:: candelabra.tests
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+    candelabra.command
+    candelabra.communicator
+    candelabra.guest
+    candelabra.provider
+    candelabra.provisioner
+    candelabra.scheduler
+    candelabra.topology
+

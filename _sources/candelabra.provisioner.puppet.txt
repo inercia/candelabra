@@ -1,0 +1,27 @@
+puppet Package
+==============
+
+:mod:`puppet` Package
+---------------------
+
+.. automodule:: candelabra.provisioner.puppet
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`plugin` Module
+--------------------
+
+.. automodule:: candelabra.provisioner.puppet.plugin
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`provision` Module
+-----------------------
+
+.. automodule:: candelabra.provisioner.puppet.provision
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

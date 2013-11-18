@@ -1,0 +1,27 @@
+import Package
+==============
+
+:mod:`import` Package
+---------------------
+
+.. automodule:: candelabra.command.import
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`command` Module
+---------------------
+
+.. automodule:: candelabra.command.import.command
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`plugin` Module
+--------------------
+
+.. automodule:: candelabra.command.import.plugin
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

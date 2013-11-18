@@ -1,0 +1,18 @@
+provisioner Package
+===================
+
+:mod:`provisioner` Package
+--------------------------
+
+.. automodule:: candelabra.provisioner
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+    candelabra.provisioner.puppet
+

@@ -1,0 +1,569 @@
+
+
+  
+  
+ 
+  
+ 
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>virtualbox Package &mdash; candelabra 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="candelabra 1.0 documentation" href="index.html" />
+    <link rel="up" title="provider Package" href="candelabra.provider.html" />
+    <link rel="next" title="provisioner Package" href="candelabra.provisioner.html" />
+    <link rel="prev" title="provider Package" href="candelabra.provider.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="doc_index.html">Candelabra</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://github.com/inercia/candelabra">Github</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a href="doc_index.html"
+     class="dropdown-toggle"
+     data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+    ><ul class="simple">
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_install.html">Software installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#build-requirements">Build Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#on-mac-os-x">On Mac OS X</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_running.html">Running the software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#on-development-machines">On development machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#unit-tests">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_topology.html">Topology files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#topology-files-structure">Topology files structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#defaults">Defaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#networks">Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#machines">Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_provisioning.html">    Provisioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_provisioning.html#puppet">Puppet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_hooks.html">Hooks</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Main modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html">candelabra Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_plugins.html">Extending Candelabra with plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_plugins.html#deafult-plugins">Deafult plugins</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html">Candelabra software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html#third-party-packages">Third party packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_license.html#bottle">Bottle</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">virtualbox Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">virtualbox</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-candelabra.provider.virtualbox.appliance"><tt class="docutils literal"><span class="pre">appliance</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.provider.virtualbox.interface"><tt class="docutils literal"><span class="pre">interface</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.provider.virtualbox.machine"><tt class="docutils literal"><span class="pre">machine</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.provider.virtualbox.network"><tt class="docutils literal"><span class="pre">network</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.provider.virtualbox.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-candelabra.provider.virtualbox.shared"><tt class="docutils literal"><span class="pre">shared</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li><a href="candelabra.provider.html"
+         title="Previous Chapter: provider Package">&laquo; provider Package</a></li>
+  <li><a href="candelabra.provisioner.html"
+         title="Next Chapter: provisioner Package">provisioner Pack... &raquo;</a></li>
+              
+            
+            
+            
+            
+              <li>
+<div id="sourcelink">
+  <a href="_sources/candelabra.provider.virtualbox.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="virtualbox-package">
+<h1>virtualbox Package<a class="headerlink" href="#virtualbox-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">virtualbox</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-candelabra.provider.virtualbox"></span></div>
+<div class="section" id="module-candelabra.provider.virtualbox.appliance">
+<span id="appliance-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">appliance</span></tt> Module<a class="headerlink" href="#module-candelabra.provider.virtualbox.appliance" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="candelabra.provider.virtualbox.appliance.VirtualboxAppliance">
+<em class="property">class </em><tt class="descclassname">candelabra.provider.virtualbox.appliance.</tt><tt class="descname">VirtualboxAppliance</tt><big>(</big><em>path</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/appliance.html#VirtualboxAppliance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.appliance.VirtualboxAppliance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A VirtualBox appliance</p>
+<dl class="staticmethod">
+<dt id="candelabra.provider.virtualbox.appliance.VirtualboxAppliance.from_dir">
+<em class="property">static </em><tt class="descname">from_dir</tt><big>(</big><em>folder</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/appliance.html#VirtualboxAppliance.from_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.appliance.VirtualboxAppliance.from_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtain a VirtualboxBox appliance from a directory
+:raises UnsupportedBoxException: if there is no valid VirtualboxBox found at that directory</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.appliance.VirtualboxAppliance.import_to_machine">
+<tt class="descname">import_to_machine</tt><big>(</big><em>machine_node</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/appliance.html#VirtualboxAppliance.import_to_machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.appliance.VirtualboxAppliance.import_to_machine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy (import) the appliance to VirtualBox</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="candelabra.provider.virtualbox.appliance.VirtualboxAppliance.is_valid">
+<em class="property">static </em><tt class="descname">is_valid</tt><big>(</big><em>folder</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/appliance.html#VirtualboxAppliance.is_valid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.appliance.VirtualboxAppliance.is_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the folder contains a valid VirtualBox template</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.provider.virtualbox.appliance.VirtualboxAppliance.provider">
+<tt class="descname">provider</tt><em class="property"> = 'virtualbox'</em><a class="headerlink" href="#candelabra.provider.virtualbox.appliance.VirtualboxAppliance.provider" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.provider.virtualbox.interface">
+<span id="interface-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">interface</span></tt> Module<a class="headerlink" href="#module-candelabra.provider.virtualbox.interface" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="candelabra.provider.virtualbox.interface.VirtualboxInterfaceNode">
+<em class="property">class </em><tt class="descclassname">candelabra.provider.virtualbox.interface.</tt><tt class="descname">VirtualboxInterfaceNode</tt><big>(</big><em>_parent=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/interface.html#VirtualboxInterfaceNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.interface.VirtualboxInterfaceNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="candelabra.topology.html#candelabra.topology.interface.InterfaceNode" title="candelabra.topology.interface.InterfaceNode"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.topology.interface.InterfaceNode</span></tt></a></p>
+<p>A VirtualBox interface</p>
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.interface.VirtualboxInterfaceNode.do_iface_create">
+<tt class="descname">do_iface_create</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/interface.html#VirtualboxInterfaceNode.do_iface_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.interface.VirtualboxInterfaceNode.do_iface_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup the net</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.interface.VirtualboxInterfaceNode.do_iface_up">
+<tt class="descname">do_iface_up</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/interface.html#VirtualboxInterfaceNode.do_iface_up"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.interface.VirtualboxInterfaceNode.do_iface_up" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup the interface in the guest machine</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.provider.virtualbox.interface.VirtualboxInterfaceNode.machine">
+<tt class="descname">machine</tt><a class="reference internal" href="_modules/candelabra/provider/virtualbox/interface.html#VirtualboxInterfaceNode.machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.interface.VirtualboxInterfaceNode.machine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.provider.virtualbox.machine">
+<span id="machine-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">machine</span></tt> Module<a class="headerlink" href="#module-candelabra.provider.virtualbox.machine" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode">
+<em class="property">class </em><tt class="descclassname">candelabra.provider.virtualbox.machine.</tt><tt class="descname">VirtualboxMachineNode</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="candelabra.topology.html#candelabra.topology.machine.MachineNode" title="candelabra.topology.machine.MachineNode"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.topology.machine.MachineNode</span></tt></a></p>
+<p>A VirtualBox machine</p>
+<dl class="attribute">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.cfg_uuid">
+<tt class="descname">cfg_uuid</tt><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.cfg_uuid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the machine UUID</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.check_name">
+<tt class="descname">check_name</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.check_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.check_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that the configured name matches the real VM name</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_close_guest_sessions">
+<tt class="descname">do_close_guest_sessions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.do_close_guest_sessions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_close_guest_sessions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close all guest sessions</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_copy_appliance">
+<tt class="descname">do_copy_appliance</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.do_copy_appliance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_copy_appliance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy the appliance as a new virtual machine.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_create_guest_reference">
+<tt class="descname">do_create_guest_reference</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.do_create_guest_reference"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_create_guest_reference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a guest reference, creating a <tt class="xref py py-class docutils literal"><span class="pre">Guest</span></tt> instance that can be used for
+mounting directories, creating network devices, etc...</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_create_user">
+<tt class="descname">do_create_user</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.do_create_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_create_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a user</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_destroy">
+<tt class="descname">do_destroy</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.do_destroy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_destroy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroy a virtual machine</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_pause">
+<tt class="descname">do_pause</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.do_pause"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_pause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pause the machine via launch</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_power_down">
+<tt class="descname">do_power_down</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.do_power_down"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_power_down" title="Permalink to this definition">¶</a></dt>
+<dd><p>Power down the machine</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_power_up">
+<tt class="descname">do_power_up</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.do_power_up"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_power_up" title="Permalink to this definition">¶</a></dt>
+<dd><p>Power up the machine via launch</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_wait_userland">
+<tt class="descname">do_wait_userland</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.do_wait_userland"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.do_wait_userland" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for the guest session to be in userland-ready</p>
+<p>Once the session is in userland-ready, we can launch processes from here...</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_guest_level_system">
+<tt class="descname">get_guest_level_system</tt><big>(</big><em>guest=None</em>, <em>session=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.get_guest_level_system"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_guest_level_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the guest session level is system</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_guest_level_userland">
+<tt class="descname">get_guest_level_userland</tt><big>(</big><em>guest=None</em>, <em>session=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.get_guest_level_userland"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_guest_level_userland" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the guest session level is userland</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_guest_session">
+<tt class="descname">get_guest_session</tt><big>(</big><em>session</em>, <em>username='vagrant'</em>, <em>password='vagrant'</em>, <em>name='vagrant'</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.get_guest_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_guest_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get or create a guest session</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_guest_type">
+<tt class="descname">get_guest_type</tt><big>(</big><em>locked_session=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.get_guest_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_guest_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the guess type, as a tuple of (name, description)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_info">
+<tt class="descname">get_info</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.get_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get some machine information</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_state">
+<tt class="descname">get_state</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.get_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the VirtualBox machine state, as a recognized state code</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_tasks_net_bridge">
+<tt class="descname">get_tasks_net_bridge</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.get_tasks_net_bridge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_tasks_net_bridge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the tasks needed for the command &#8220;net up&#8221;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_uuid">
+<tt class="descname">get_uuid</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.get_uuid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_uuid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the machine UUID</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_vbox_machine">
+<tt class="descname">get_vbox_machine</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.get_vbox_machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.get_vbox_machine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the underlying VirtualBox &#8220;machine&#8221; instance</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.listen_events">
+<tt class="descname">listen_events</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.listen_events"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.listen_events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Listen for events</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.lock">
+<tt class="descname">lock</tt><big>(</big><em>session=None</em>, <em>lock_type='shared'</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.lock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.lock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lock the machine</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.set_uuid">
+<tt class="descname">set_uuid</tt><big>(</big><em>val</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.set_uuid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.set_uuid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the machine UUID</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.sync_name">
+<tt class="descname">sync_name</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.sync_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.sync_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the VirtualBox virtual machine name to the same name as this node</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.unlock">
+<tt class="descname">unlock</tt><big>(</big><em>session</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.unlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.unlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unlock the machine</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.vbox_machine">
+<tt class="descname">vbox_machine</tt><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.vbox_machine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the underlying VirtualBox &#8220;machine&#8221; instance</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.wait_for_event">
+<tt class="descname">wait_for_event</tt><big>(</big><em>event</em>, <em>timeout=10000</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.wait_for_event"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.wait_for_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for an event
+:param event: an instance of _virtualbox.library.VBoxEventType</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.wait_for_guest_session_state_change">
+<tt class="descname">wait_for_guest_session_state_change</tt><big>(</big><em>timeout=5</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.wait_for_guest_session_state_change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.wait_for_guest_session_state_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for the session state to change</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.machine.VirtualboxMachineNode.wait_for_session_state_change">
+<tt class="descname">wait_for_session_state_change</tt><big>(</big><em>timeout=5</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/machine.html#VirtualboxMachineNode.wait_for_session_state_change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.machine.VirtualboxMachineNode.wait_for_session_state_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for the session state to change</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.provider.virtualbox.network">
+<span id="network-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">network</span></tt> Module<a class="headerlink" href="#module-candelabra.provider.virtualbox.network" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="candelabra.provider.virtualbox.network.VirtualboxNetworkNode">
+<em class="property">class </em><tt class="descclassname">candelabra.provider.virtualbox.network.</tt><tt class="descname">VirtualboxNetworkNode</tt><big>(</big><em>_parent=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/network.html#VirtualboxNetworkNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.network.VirtualboxNetworkNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="candelabra.topology.html#candelabra.topology.network.NetworkNode" title="candelabra.topology.network.NetworkNode"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.topology.network.NetworkNode</span></tt></a></p>
+<p>A VirtualBox network</p>
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.network.VirtualboxNetworkNode.do_network_create">
+<tt class="descname">do_network_create</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/network.html#VirtualboxNetworkNode.do_network_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.network.VirtualboxNetworkNode.do_network_create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.network.VirtualboxNetworkNode.do_network_up">
+<tt class="descname">do_network_up</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/network.html#VirtualboxNetworkNode.do_network_up"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.network.VirtualboxNetworkNode.do_network_up" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.provider.virtualbox.network.VirtualboxNetworkNode.machine">
+<tt class="descname">machine</tt><a class="reference internal" href="_modules/candelabra/provider/virtualbox/network.html#VirtualboxNetworkNode.machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.network.VirtualboxNetworkNode.machine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.provider.virtualbox.plugin">
+<span id="plugin-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">plugin</span></tt> Module<a class="headerlink" href="#module-candelabra.provider.virtualbox.plugin" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin">
+<em class="property">class </em><tt class="descclassname">candelabra.provider.virtualbox.plugin.</tt><tt class="descname">VirtualboxProviderPlugin</tt><a class="reference internal" href="_modules/candelabra/provider/virtualbox/plugin.html#VirtualboxProviderPlugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="candelabra.html#candelabra.plugins.ProviderPlugin" title="candelabra.plugins.ProviderPlugin"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.plugins.ProviderPlugin</span></tt></a></p>
+<p>A provider</p>
+<dl class="attribute">
+<dt id="candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.APPLIANCE">
+<tt class="descname">APPLIANCE</tt><a class="headerlink" href="#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.APPLIANCE" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">VirtualboxAppliance</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.COMMUNICATORS">
+<tt class="descname">COMMUNICATORS</tt><em class="property"> = None</em><a class="headerlink" href="#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.COMMUNICATORS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.DESCRIPTION">
+<tt class="descname">DESCRIPTION</tt><em class="property"> = 'a virtualbox provider'</em><a class="headerlink" href="#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.DESCRIPTION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.INTERFACE">
+<tt class="descname">INTERFACE</tt><a class="headerlink" href="#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.INTERFACE" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">VirtualboxInterfaceNode</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.MACHINE">
+<tt class="descname">MACHINE</tt><a class="headerlink" href="#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.MACHINE" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">VirtualboxMachineNode</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.NAME">
+<tt class="descname">NAME</tt><em class="property"> = 'virtualbox'</em><a class="headerlink" href="#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.NETWORK">
+<tt class="descname">NETWORK</tt><a class="headerlink" href="#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.NETWORK" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">VirtualboxNetworkNode</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.SHARED">
+<tt class="descname">SHARED</tt><a class="headerlink" href="#candelabra.provider.virtualbox.plugin.VirtualboxProviderPlugin.SHARED" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">VirtualboxSharedNode</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="candelabra.provider.virtualbox.plugin.register">
+<tt class="descclassname">candelabra.provider.virtualbox.plugin.</tt><tt class="descname">register</tt><big>(</big><em>registry_instance</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/plugin.html#register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.plugin.register" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-candelabra.provider.virtualbox.shared">
+<span id="shared-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">shared</span></tt> Module<a class="headerlink" href="#module-candelabra.provider.virtualbox.shared" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="candelabra.provider.virtualbox.shared.VirtualboxSharedNode">
+<em class="property">class </em><tt class="descclassname">candelabra.provider.virtualbox.shared.</tt><tt class="descname">VirtualboxSharedNode</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/shared.html#VirtualboxSharedNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.shared.VirtualboxSharedNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="candelabra.topology.html#candelabra.topology.shared.SharedNode" title="candelabra.topology.shared.SharedNode"><tt class="xref py py-class docutils literal"><span class="pre">candelabra.topology.shared.SharedNode</span></tt></a></p>
+<p>A VirtualBox shared folder for a machine</p>
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.shared.VirtualboxSharedNode.do_shared_create">
+<tt class="descname">do_shared_create</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/shared.html#VirtualboxSharedNode.do_shared_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.shared.VirtualboxSharedNode.do_shared_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Share the folders</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="candelabra.provider.virtualbox.shared.VirtualboxSharedNode.do_shared_mount">
+<tt class="descname">do_shared_mount</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/provider/virtualbox/shared.html#VirtualboxSharedNode.do_shared_mount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.shared.VirtualboxSharedNode.do_shared_mount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mount the folders</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="candelabra.provider.virtualbox.shared.VirtualboxSharedNode.machine">
+<tt class="descname">machine</tt><a class="reference internal" href="_modules/candelabra/provider/virtualbox/shared.html#VirtualboxSharedNode.machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.provider.virtualbox.shared.VirtualboxSharedNode.machine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Alvaro Saurin.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

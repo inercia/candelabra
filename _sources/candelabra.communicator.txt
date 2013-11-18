@@ -1,0 +1,19 @@
+communicator Package
+====================
+
+:mod:`communicator` Package
+---------------------------
+
+.. automodule:: candelabra.communicator
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+    candelabra.communicator.ssh
+    candelabra.communicator.virtualbox
+

@@ -1,0 +1,59 @@
+virtualbox Package
+==================
+
+:mod:`virtualbox` Package
+-------------------------
+
+.. automodule:: candelabra.provider.virtualbox
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`appliance` Module
+-----------------------
+
+.. automodule:: candelabra.provider.virtualbox.appliance
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`interface` Module
+-----------------------
+
+.. automodule:: candelabra.provider.virtualbox.interface
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`machine` Module
+---------------------
+
+.. automodule:: candelabra.provider.virtualbox.machine
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`network` Module
+---------------------
+
+.. automodule:: candelabra.provider.virtualbox.network
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`plugin` Module
+--------------------
+
+.. automodule:: candelabra.provider.virtualbox.plugin
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`shared` Module
+--------------------
+
+.. automodule:: candelabra.provider.virtualbox.shared
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

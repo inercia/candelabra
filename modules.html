@@ -1,0 +1,346 @@
+
+
+  
+  
+ 
+  
+ 
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>candelabra &mdash; candelabra 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="candelabra 1.0 documentation" href="index.html" />
+    <link rel="next" title="candelabra Package" href="candelabra.html" />
+    <link rel="prev" title="Hooks" href="doc_hooks.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="doc_index.html">Candelabra</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://github.com/inercia/candelabra">Github</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a href="doc_index.html"
+     class="dropdown-toggle"
+     data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+    ><ul class="simple">
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_install.html">Software installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#build-requirements">Build Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#on-mac-os-x">On Mac OS X</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_install.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_running.html">Running the software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#on-development-machines">On development machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#unit-tests">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_topology.html">Topology files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#topology-files-structure">Topology files structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#defaults">Defaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#networks">Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#machines">Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_provisioning.html">    Provisioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_provisioning.html#puppet">Puppet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_hooks.html">Hooks</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Main modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html">candelabra Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_plugins.html">Extending Candelabra with plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_plugins.html#deafult-plugins">Deafult plugins</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html">Candelabra software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html#third-party-packages">Third party packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_license.html#bottle">Bottle</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">candelabra</a><ul>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li><a href="doc_hooks.html"
+         title="Previous Chapter: Hooks">&laquo; Hooks</a></li>
+  <li><a href="candelabra.html"
+         title="Next Chapter: candelabra Package">candelabra Packa... &raquo;</a></li>
+              
+            
+            
+            
+            
+              <li>
+<div id="sourcelink">
+  <a href="_sources/modules.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="candelabra">
+<h1>candelabra<a class="headerlink" href="#candelabra" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="candelabra.html">candelabra Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html#id1"><tt class="docutils literal"><span class="pre">candelabra</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html#module-candelabra.base"><tt class="docutils literal"><span class="pre">base</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html#module-candelabra.boxes"><tt class="docutils literal"><span class="pre">boxes</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html#module-candelabra.config"><tt class="docutils literal"><span class="pre">config</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html#module-candelabra.constants"><tt class="docutils literal"><span class="pre">constants</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html#module-candelabra.errors"><tt class="docutils literal"><span class="pre">errors</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html#module-candelabra.logs"><tt class="docutils literal"><span class="pre">logs</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html#module-candelabra.main"><tt class="docutils literal"><span class="pre">main</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html#module-candelabra.plugins"><tt class="docutils literal"><span class="pre">plugins</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html#module-candelabra.tasks"><tt class="docutils literal"><span class="pre">tasks</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html#module-candelabra.tests"><tt class="docutils literal"><span class="pre">tests</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.command.html">command Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.html#id1"><tt class="docutils literal"><span class="pre">command</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.command.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="candelabra.command.destroy.html">destroy Package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.destroy.html#id1"><tt class="docutils literal"><span class="pre">destroy</span></tt> Package</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.destroy.html#module-candelabra.command.destroy.command"><tt class="docutils literal"><span class="pre">command</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.destroy.html#module-candelabra.command.destroy.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="candelabra.command.down.html">down Package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.down.html#id1"><tt class="docutils literal"><span class="pre">down</span></tt> Package</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.down.html#module-candelabra.command.down.command"><tt class="docutils literal"><span class="pre">command</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.down.html#module-candelabra.command.down.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="candelabra.command.import.html">import Package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.import.html#id1"><tt class="docutils literal"><span class="pre">import</span></tt> Package</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.import.html#module-candelabra.command.import.command"><tt class="docutils literal"><span class="pre">command</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.import.html#module-candelabra.command.import.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="candelabra.command.net.html">net Package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.net.html#id1"><tt class="docutils literal"><span class="pre">net</span></tt> Package</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.net.html#module-candelabra.command.net.command"><tt class="docutils literal"><span class="pre">command</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.net.html#module-candelabra.command.net.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="candelabra.command.provision.html">provision Package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.provision.html#id1"><tt class="docutils literal"><span class="pre">provision</span></tt> Package</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.provision.html#module-candelabra.command.provision.command"><tt class="docutils literal"><span class="pre">command</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.provision.html#module-candelabra.command.provision.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="candelabra.command.show.html">show Package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.show.html#id1"><tt class="docutils literal"><span class="pre">show</span></tt> Package</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.show.html#module-candelabra.command.show.command"><tt class="docutils literal"><span class="pre">command</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.show.html#module-candelabra.command.show.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="candelabra.command.up.html">up Package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.up.html#id1"><tt class="docutils literal"><span class="pre">up</span></tt> Package</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.up.html#module-candelabra.command.up.command"><tt class="docutils literal"><span class="pre">command</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.command.up.html#module-candelabra.command.up.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.communicator.html">communicator Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.communicator.html#id1"><tt class="docutils literal"><span class="pre">communicator</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.communicator.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="candelabra.communicator.ssh.html">ssh Package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.communicator.ssh.html#module-candelabra.communicator.ssh.communicator"><tt class="docutils literal"><span class="pre">communicator</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.communicator.ssh.html#module-candelabra.communicator.ssh.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="candelabra.communicator.virtualbox.html">virtualbox Package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.communicator.virtualbox.html#module-candelabra.communicator.virtualbox.communicator"><tt class="docutils literal"><span class="pre">communicator</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.communicator.virtualbox.html#module-candelabra.communicator.virtualbox.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.guest.html">guest Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.guest.html#id1"><tt class="docutils literal"><span class="pre">guest</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.guest.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="candelabra.guest.linux.html">linux Package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.guest.linux.html#module-candelabra.guest.linux.guest"><tt class="docutils literal"><span class="pre">guest</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.guest.linux.html#module-candelabra.guest.linux.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.provider.html">provider Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.provider.html#id1"><tt class="docutils literal"><span class="pre">provider</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.provider.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="candelabra.provider.virtualbox.html">virtualbox Package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.provider.virtualbox.html#id1"><tt class="docutils literal"><span class="pre">virtualbox</span></tt> Package</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.appliance"><tt class="docutils literal"><span class="pre">appliance</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.interface"><tt class="docutils literal"><span class="pre">interface</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.machine"><tt class="docutils literal"><span class="pre">machine</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.network"><tt class="docutils literal"><span class="pre">network</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.provider.virtualbox.html#module-candelabra.provider.virtualbox.shared"><tt class="docutils literal"><span class="pre">shared</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.provisioner.html">provisioner Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.provisioner.html#id1"><tt class="docutils literal"><span class="pre">provisioner</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.provisioner.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="candelabra.provisioner.puppet.html">puppet Package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.provisioner.puppet.html#id1"><tt class="docutils literal"><span class="pre">puppet</span></tt> Package</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.provisioner.puppet.html#module-candelabra.provisioner.puppet.plugin"><tt class="docutils literal"><span class="pre">plugin</span></tt> Module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="candelabra.provisioner.puppet.html#module-candelabra.provisioner.puppet.provision"><tt class="docutils literal"><span class="pre">provision</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.scheduler.html">scheduler Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.scheduler.html#module-candelabra.scheduler.base"><tt class="docutils literal"><span class="pre">base</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.scheduler.html#module-candelabra.scheduler.rad_util"><tt class="docutils literal"><span class="pre">rad_util</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.scheduler.html#module-candelabra.scheduler.topsort"><tt class="docutils literal"><span class="pre">topsort</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="candelabra.topology.html">topology Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.topology.html#id1"><tt class="docutils literal"><span class="pre">topology</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.box"><tt class="docutils literal"><span class="pre">box</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.interface"><tt class="docutils literal"><span class="pre">interface</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.machine"><tt class="docutils literal"><span class="pre">machine</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.network"><tt class="docutils literal"><span class="pre">network</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.node"><tt class="docutils literal"><span class="pre">node</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.provisioner"><tt class="docutils literal"><span class="pre">provisioner</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.root"><tt class="docutils literal"><span class="pre">root</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.shared"><tt class="docutils literal"><span class="pre">shared</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="candelabra.topology.html#module-candelabra.topology.state"><tt class="docutils literal"><span class="pre">state</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Alvaro Saurin.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

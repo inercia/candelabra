@@ -1,0 +1,18 @@
+guest Package
+=============
+
+:mod:`guest` Package
+--------------------
+
+.. automodule:: candelabra.guest
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+    candelabra.guest.linux
+

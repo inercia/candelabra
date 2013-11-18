@@ -1,0 +1,271 @@
+
+
+  
+  
+ 
+  
+ 
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation &mdash; candelabra 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="candelabra 1.0 documentation" href="index.html" />
+    <link rel="next" title="Running the software" href="doc_running.html" />
+    <link rel="prev" title="Candelabra documentation" href="doc_index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="doc_index.html">Candelabra</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://github.com/inercia/candelabra">Github</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a href="doc_index.html"
+     class="dropdown-toggle"
+     data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+    ><ul class="simple">
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Software installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#build-requirements">Build Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#on-mac-os-x">On Mac OS X</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_running.html">Running the software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#on-development-machines">On development machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#unit-tests">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_running.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_topology.html">Topology files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#topology-files-structure">Topology files structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#defaults">Defaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#networks">Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#machines">Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_provisioning.html">    Provisioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_provisioning.html#puppet">Puppet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_hooks.html">Hooks</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Main modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="candelabra.html">candelabra Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc_plugins.html">Extending Candelabra with plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_plugins.html#deafult-plugins">Deafult plugins</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html">Candelabra software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc_license.html#third-party-packages">Third party packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc_license.html#bottle">Bottle</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#build-requirements">Build Requirements</a></li>
+<li><a class="reference internal" href="#development">Development</a></li>
+<li><a class="reference internal" href="#on-mac-os-x">On Mac OS X</a></li>
+<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li><a href="doc_index.html"
+         title="Previous Chapter: Candelabra documentation">&laquo; Candelabra docum...</a></li>
+  <li><a href="doc_running.html"
+         title="Next Chapter: Running the software">Running the soft... &raquo;</a></li>
+              
+            
+            
+            
+            
+              <li>
+<div id="sourcelink">
+  <a href="_sources/doc_install.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="build-requirements">
+<h2>Build Requirements<a class="headerlink" href="#build-requirements" title="Permalink to this headline">¶</a></h2>
+<p>In order to build XXXX, you need:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">Python</span></tt> 2.7 or higher (but &lt; 3.x)</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="development">
+<h2>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h2>
+<p>For a development build of the software, just do a</p>
+<div class="highlight-python"><pre>make all</pre>
+</div>
+<p>This will install all the required components in the local project directory. You only need to do
+this once, or if you change the dependencies.</p>
+</div>
+<div class="section" id="on-mac-os-x">
+<h2>On Mac OS X<a class="headerlink" href="#on-mac-os-x" title="Permalink to this headline">¶</a></h2>
+<p>First, you need the <tt class="docutils literal"><span class="pre">XCode</span> <span class="pre">development</span> <span class="pre">package</span></tt>. Then you must export these variables before
+launching <tt class="docutils literal"><span class="pre">make</span></tt>:</p>
+<div class="highlight-python"><pre>export OSX_VERS=10.7
+export MACOSX_DEPLOYMENT_TARGET=$OSX_VERS
+export OSX_SDK="/Developer/SDKs/MacOSX$OSX_VERS.sdk"
+export ARCHFLAGS="-arch x86_64"
+export LDFLAGS="$ARCHFLAGS -L$OSX_SDK/usr/X11/lib -L$OSX_SDK/usr/lib -L/usr/local/lib -syslibroot,$OSX_SDK"
+export CFLAGS="-O2 $LDFLAGS -I$OSX_SDK/usr/X11/include -I$OSX_SDK/usr/X11/include/freetype2 -I/usr/local/include -isysroot $OSX_SDK"
+export FFLAGS="$ARCHFLAGS"
+export PKG_CONFIG_PATH="/usr/X11/lib/pkgconfig"</pre>
+</div>
+<p>You must customize some of these variables:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">OSX_VERS</span></tt>, depending on the OS X version you are using. If you are using OS X 10.7 (Lion),</li>
+</ul>
+<p>maybe you must use the 10.6 SDK version, depending on the virtualenv version you have... just try.
+* <tt class="docutils literal"><span class="pre">arch</span></tt> flags, depending on your architecture - ie, <tt class="docutils literal"><span class="pre">-arch</span> <span class="pre">ppc</span></tt> for PowerPC machines</p>
+</div></blockquote>
+<p>Most of the requirements are already installed with XCode. However, you will need to build from the
+source distribution some extra packages:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">swig</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">pcre</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">zeromq</span></tt></li>
+</ul>
+</div></blockquote>
+<p>Make sure these dependencies install their include files and libraries in <tt class="docutils literal"><span class="pre">/usr/local/</span></tt>. Otherwise,
+add the corresponding paths to the <tt class="docutils literal"><span class="pre">CFLAGS</span></tt> and <tt class="docutils literal"><span class="pre">LDFLAGS</span></tt>.</p>
+</div>
+<div class="section" id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">You are getting this error: <tt class="docutils literal"><span class="pre">/usr/include/gnu/stubs.h:7:27:</span> <span class="pre">fatal</span> <span class="pre">error:</span> <span class="pre">gnu/stubs-32.h:</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></tt></p>
+<blockquote>
+<div><p>You are developing on a 64bits platform but you are compiling for 32bits.
+Install the 32bits development SDK. On Ubuntu you will need:</p>
+<blockquote>
+<div><p><tt class="docutils literal"><span class="pre">gcc-*-multilib</span> <span class="pre">gcc-multilib</span> <span class="pre">lib32gomp1</span> <span class="pre">libc6-dev-i386</span></tt></p>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p class="first">You are getting a <tt class="docutils literal"><span class="pre">png.h</span></tt> error on OS X 10.7</p>
+<blockquote>
+<div><p>I know. You have to use the 10.6 SDK even on Lion...</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Alvaro Saurin.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

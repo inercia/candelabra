@@ -1,0 +1,27 @@
+show Package
+============
+
+:mod:`show` Package
+-------------------
+
+.. automodule:: candelabra.command.show
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`command` Module
+---------------------
+
+.. automodule:: candelabra.command.show.command
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`plugin` Module
+--------------------
+
+.. automodule:: candelabra.command.show.plugin
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
