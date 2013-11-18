@@ -1,0 +1,405 @@
+
+
+  
+  
+ 
+  
+ 
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>candelabra.topology.node &mdash; candelabra 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../static/jquery.js"></script>
+    <script type="text/javascript" src="../../../static/underscore.js"></script>
+    <script type="text/javascript" src="../../../static/doctools.js"></script>
+    <script type="text/javascript" src="../../../static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../../../static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="candelabra 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../doc_index.html">Candelabra</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="http://github.com/inercia/candelabra">Github</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a href="../../../doc_index.html"
+     class="dropdown-toggle"
+     data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+    ><ul class="simple">
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc_install.html">Software installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc_install.html#build-requirements">Build Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc_install.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc_install.html#on-mac-os-x">On Mac OS X</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc_install.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc_running.html">Running the software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc_running.html#on-development-machines">On development machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc_running.html#unit-tests">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc_running.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc_topology.html">Topology files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc_topology.html#topology-files-structure">Topology files structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc_topology.html#defaults">Defaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc_topology.html#networks">Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc_topology.html#machines">Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc_provisioning.html">    Provisioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc_provisioning.html#puppet">Puppet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc_hooks.html">Hooks</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Main modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../candelabra.html">candelabra Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc_plugins.html">Extending Candelabra with plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc_plugins.html#deafult-plugins">Deafult plugins</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc_license.html">Candelabra software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc_license.html#third-party-packages">Third party packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc_license.html#bottle">Bottle</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <h1>Source code for candelabra.topology.node</h1><div class="highlight"><pre>
+<span class="c">#</span>
+<span class="c"># Candelabra</span>
+<span class="c">#</span>
+<span class="c"># Copyright Alvaro Saurin 2013 - All right Reserved</span>
+<span class="c">#</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A base module for all the topology nodes.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+<span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
+<span class="kn">from</span> <span class="nn">candelabra.tasks</span> <span class="kn">import</span> <span class="n">TaskGenerator</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="n">_unset</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="TopologyAttribute"><a class="viewcode-back" href="../../../candelabra.topology.html#candelabra.topology.node.TopologyAttribute">[docs]</a><span class="k">class</span> <span class="nc">TopologyAttribute</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A topology node attribute</span>
+
+<span class="sd">    Nodes have some important attributes:</span>
+
+<span class="sd">    * a **class** that identifies what kind of node is this</span>
+<span class="sd">    * a unique **name**</span>
+<span class="sd">    * a unique **uuid**, usually established by the Candelabra engine.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">constructor</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">_unset</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize a topology node attribute</span>
+
+<span class="sd">        Topology node attributes are built by invoking a :param:`constructor` with the</span>
+<span class="sd">        dictionary of elements in the YAML file. If no values are found, a default value can be</span>
+<span class="sd">        set with the :param:`default` parameter.</span>
+
+<span class="sd">        For nodes with a `_parent` attribute, the value can be inherited from the parent if the</span>
+<span class="sd">        :param:`inhertited` value is set. In this case, both parent and child will refer to the</span>
+<span class="sd">        same variable instance, so a change in one of them will be seen in the other.</span>
+
+<span class="sd">        :param inherited: the attribute is kept as a link to the value in the parent, so if the value changes in</span>
+<span class="sd">                          the parent, it does so in this instance</span>
+<span class="sd">        :param copy: the attribute is copied from the parent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">constructor</span> <span class="o">=</span> <span class="n">constructor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="n">default</span>
+
+        <span class="k">if</span> <span class="s">&#39;copy&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">copy</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;copy&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inherited</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">copy</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inherited</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;inherited&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">copy</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">inherited</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">copy</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inherited</span><span class="p">),</span> <span class="s">&#39;both parameters are exclusive&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="n">doc</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">append</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;append&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">append</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">,</span> <span class="s">&quot;we can only append when copying&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="TopologyAttribute.setall"><a class="viewcode-back" href="../../../candelabra.topology.html#candelabra.topology.node.TopologyAttribute.setall">[docs]</a>    <span class="k">def</span> <span class="nf">setall</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">,</span> <span class="n">known_attributes</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Set attributes from a dictionary if they are found in the `known_attributes` as known attributes.</span>
+
+<span class="sd">        We can define all attributed this kind of object accept with the :param:`known_attributes`</span>
+<span class="sd">        For constructor, we pass the dictionary expanded as parameters, and we add a `_parent_contructor`</span>
+<span class="sd">        for referring to this instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">simple_constructor</span><span class="p">(</span><span class="n">attr_instance</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot; A constructor that tries to build with the given function or type</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">def</span> <span class="nf">recursive_constructor</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">constructor</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                    <span class="n">constructed_value</span> <span class="o">=</span> <span class="p">[</span><span class="n">recursive_constructor</span><span class="p">(</span><span class="n">value_item</span><span class="p">,</span> <span class="n">constructor</span><span class="p">)</span> <span class="k">for</span> <span class="n">value_item</span> <span class="ow">in</span> <span class="n">value</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                    <span class="n">constructed_value</span> <span class="o">=</span> <span class="n">constructor</span><span class="p">(</span><span class="n">_container</span><span class="o">=</span><span class="n">container</span><span class="p">,</span> <span class="o">**</span><span class="n">value</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">constructed_value</span> <span class="o">=</span> <span class="n">constructor</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">constructed_value</span>
+
+            <span class="k">if</span> <span class="n">attr_instance</span><span class="o">.</span><span class="n">constructor</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">recursive_constructor</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="n">attr_name</span><span class="p">],</span> <span class="n">attr_instance</span><span class="o">.</span><span class="n">constructor</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">attr_instance</span><span class="o">.</span><span class="n">default</span>
+
+        <span class="k">def</span> <span class="nf">copy_constructor</span><span class="p">(</span><span class="n">parent_value</span><span class="p">,</span> <span class="n">container</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot; A constructor that copies from a parent</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">def</span> <span class="nf">copy_builder</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">container</span><span class="p">):</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="s">&#39;_container&#39;</span><span class="p">):</span>
+                    <span class="n">v</span><span class="o">.</span><span class="n">_container</span> <span class="o">=</span> <span class="n">container</span>
+                <span class="k">return</span> <span class="n">v</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parent_value</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">copy_builder</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">container</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">parent_value</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">copy_builder</span><span class="p">(</span><span class="n">parent_value</span><span class="p">,</span> <span class="n">container</span><span class="p">)</span>
+
+        <span class="c"># iterate for each known attribute...</span>
+        <span class="k">for</span> <span class="n">attr_instance</span> <span class="ow">in</span> <span class="n">known_attributes</span><span class="p">:</span>
+            <span class="n">attr_name</span> <span class="o">=</span> <span class="n">attr_instance</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attr_instance</span><span class="p">,</span> <span class="n">TopologyAttribute</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">attr_instance</span><span class="o">.</span><span class="n">copy</span> <span class="ow">and</span> <span class="n">container</span><span class="o">.</span><span class="n">_parent</span><span class="p">:</span>
+                <span class="c"># get the parent value (if it exists), and copy it</span>
+                <span class="n">parent_value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">_parent</span><span class="p">,</span> <span class="s">&#39;cfg_&#39;</span> <span class="o">+</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">_unset</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">parent_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_unset</span><span class="p">:</span>
+                    <span class="n">copied_value</span> <span class="o">=</span> <span class="n">copy_constructor</span><span class="p">(</span><span class="n">parent_value</span><span class="p">,</span> <span class="n">container</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">attr_instance</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_unset</span><span class="p">:</span>
+                    <span class="n">copied_value</span> <span class="o">=</span> <span class="n">attr_instance</span><span class="o">.</span><span class="n">default</span>
+
+                <span class="c"># ... maybe we must append a locally generated attribute</span>
+                <span class="k">if</span> <span class="n">attr_instance</span><span class="o">.</span><span class="n">append</span><span class="p">:</span>
+                    <span class="n">copied_value</span> <span class="o">+=</span> <span class="n">simple_constructor</span><span class="p">(</span><span class="n">attr_instance</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">)</span>
+
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="s">&#39;cfg_&#39;</span> <span class="o">+</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">copied_value</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
+                <span class="n">constructed_value</span> <span class="o">=</span> <span class="n">simple_constructor</span><span class="p">(</span><span class="n">attr_instance</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="s">&#39;cfg_&#39;</span> <span class="o">+</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">constructed_value</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">attr_instance</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_unset</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="s">&#39;cfg_&#39;</span> <span class="o">+</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">attr_instance</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="n">attr_instance</span><span class="o">.</span><span class="n">inherited</span>
+                <span class="k">assert</span> <span class="n">attr_instance</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="n">_unset</span>
+                <span class="c"># do not try to set the default value if it was not set</span>
+                <span class="c"># so __getattr__ will be invoked and we will look for the value in the parent object</span>
+
+
+<span class="c">######################################################################################################################</span>
+</div></div>
+<div class="viewcode-block" id="TopologyNode"><a class="viewcode-back" href="../../../candelabra.topology.html#candelabra.topology.node.TopologyNode">[docs]</a><span class="k">class</span> <span class="nc">TopologyNode</span><span class="p">(</span><span class="n">TaskGenerator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Base class for all topology nodes.</span>
+
+<span class="sd">    *Attributes:*</span>
+
+<span class="sd">    All known attributed will be loaded from the topology wile and added to the current instance with</span>
+<span class="sd">    the &#39;cfg_&#39; prefix. For example, if &#39;hostname&#39; is a known attribute, it will be set for the</span>
+<span class="sd">    instance under the name &#39;cfg_hostname&#39;</span>
+
+<span class="sd">    *Commands:*</span>
+
+<span class="sd">    Topology nodes can react to commands by providing methods named `get_tasks_&lt;COMMAND&gt;` that return a list</span>
+<span class="sd">    of tuples (function1, function2)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># known attributes</span>
+    <span class="c"># the right tuple is the constructor and a default value (None means &quot;inherited from parent&quot;)</span>
+    <span class="n">__known_attributes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">TopologyAttribute</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">),</span>
+        <span class="n">TopologyAttribute</span><span class="p">(</span><span class="s">&#39;class&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">),</span>
+        <span class="n">TopologyAttribute</span><span class="p">(</span><span class="s">&#39;uuid&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">),</span>
+    <span class="p">]</span>
+
+    <span class="n">__state_attributes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;name&#39;</span><span class="p">,</span>
+        <span class="s">&#39;class&#39;</span><span class="p">,</span>
+        <span class="s">&#39;uuid&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Initialize a topology node, building all the attributes by merging the dictionary given</span>
+<span class="sd">        in the keyword arguments and the `__known_attributes` parameter</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TopologyNode</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;_parent&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_container</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;_container&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+        <span class="n">TopologyAttribute</span><span class="o">.</span><span class="n">setall</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__known_attributes</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TopologyNode.get_inc_counter"><a class="viewcode-back" href="../../../candelabra.topology.html#candelabra.topology.node.TopologyNode.get_inc_counter">[docs]</a>    <span class="k">def</span> <span class="nf">get_inc_counter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">where</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get an incremental counter on an atribute (for example, for the network interfaces)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="p">:</span>
+            <span class="n">already_stored</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_container</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">already_stored</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">))</span>
+            <span class="n">already_stored_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">already_stored</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">already_stored_len</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">num</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">where</span><span class="p">,</span> <span class="s">&quot;__num_</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">,</span> <span class="n">already_stored_len</span><span class="p">)</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">where</span><span class="p">,</span> <span class="s">&quot;__num_</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">,</span> <span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">num</span>
+
+    <span class="c">#####################</span>
+    <span class="c"># attributes</span>
+    <span class="c">#####################</span>
+</div>
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;cfg_&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s">&#39;&quot;</span><span class="si">%s</span><span class="s">&quot; not found in </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+
+<div class="viewcode-block" id="TopologyNode.get_state_dict"><a class="viewcode-back" href="../../../candelabra.topology.html#candelabra.topology.node.TopologyNode.get_state_dict">[docs]</a>    <span class="k">def</span> <span class="nf">get_state_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get current state as a dictionary, suitable for saving in a state file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">local_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__state_attributes</span><span class="p">:</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;cfg_&#39;</span> <span class="o">+</span> <span class="n">attr</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">v</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="s">&#39;get_state_dict&#39;</span><span class="p">):</span>
+                        <span class="n">local_dict</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">get_state_dict</span><span class="p">()</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">local_dict</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">return</span> <span class="n">local_dict</span>
+
+    <span class="c">#####################</span>
+    <span class="c"># auxiliary</span>
+    <span class="c">#####################</span>
+</div>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg_name</span><span class="p">:</span>
+            <span class="n">extra</span> <span class="o">+=</span> <span class="p">[</span><span class="s">&#39;name:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg_name</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg_class</span><span class="p">:</span>
+            <span class="n">extra</span> <span class="o">+=</span> <span class="p">[</span><span class="s">&#39;class:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg_class</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="s">&quot;&lt;</span><span class="si">%s</span><span class="s">(</span><span class="si">%s</span><span class="s">) at 0x</span><span class="si">%x</span><span class="s">&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extra</span><span class="p">),</span> <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+</pre></div></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Alvaro Saurin.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

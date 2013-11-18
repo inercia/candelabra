@@ -16,10 +16,10 @@
     
     <title>scheduler Package &mdash; candelabra 1.0 documentation</title>
     
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/spacelab/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -30,13 +30,13 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <script type="text/javascript" src="static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/bootstrap-sphinx.js"></script>
     <link rel="top" title="candelabra 1.0 documentation" href="index.html" />
     <link rel="up" title="candelabra Package" href="candelabra.html" />
     <link rel="next" title="topology Package" href="candelabra.topology.html" />
@@ -177,46 +177,46 @@
 <span id="base-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">base</span></tt> Module<a class="headerlink" href="#module-candelabra.scheduler.base" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="candelabra.scheduler.base.TasksScheduler">
-<em class="property">class </em><tt class="descclassname">candelabra.scheduler.base.</tt><tt class="descname">TasksScheduler</tt><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">candelabra.scheduler.base.</tt><tt class="descname">TasksScheduler</tt><a class="reference internal" href="modules/candelabra/scheduler/base.html#TasksScheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
 <p>A scheduler for tasks</p>
 <dl class="method">
 <dt id="candelabra.scheduler.base.TasksScheduler.add">
-<tt class="descname">add</tt><big>(</big><em>task</em>, <em>depends_on=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.add" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">add</tt><big>(</big><em>task</em>, <em>depends_on=None</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/base.html#TasksScheduler.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.add" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a new task to the scheduler</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="candelabra.scheduler.base.TasksScheduler.append">
-<tt class="descname">append</tt><big>(</big><em>lst</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.append" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">append</tt><big>(</big><em>lst</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/base.html#TasksScheduler.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.append" title="Permalink to this definition">¶</a></dt>
 <dd><p>Appends a list of tasks</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="candelabra.scheduler.base.TasksScheduler.clean">
-<tt class="descname">clean</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler.clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.clean" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">clean</tt><big>(</big><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/base.html#TasksScheduler.clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.clean" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clean the tasks list</p>
 </dd></dl>
 
 <dl class="staticmethod">
 <dt id="candelabra.scheduler.base.TasksScheduler.get_task_as_str">
-<em class="property">static </em><tt class="descname">get_task_as_str</tt><big>(</big><em>task</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler.get_task_as_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.get_task_as_str" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">get_task_as_str</tt><big>(</big><em>task</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/base.html#TasksScheduler.get_task_as_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.get_task_as_str" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="candelabra.scheduler.base.TasksScheduler.num_completed">
-<tt class="descname">num_completed</tt><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler.num_completed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.num_completed" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">num_completed</tt><a class="reference internal" href="modules/candelabra/scheduler/base.html#TasksScheduler.num_completed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.num_completed" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="candelabra.scheduler.base.TasksScheduler.run">
-<tt class="descname">run</tt><big>(</big><em>abort_on_error=False</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.run" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">run</tt><big>(</big><em>abort_on_error=False</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/base.html#TasksScheduler.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run all the tasks in the order that dependencies need</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="candelabra.scheduler.base.TasksScheduler.schedule">
-<tt class="descname">schedule</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/base.html#TasksScheduler.schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.schedule" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">schedule</tt><big>(</big><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/base.html#TasksScheduler.schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.base.TasksScheduler.schedule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Schedule the tasks that must be run</p>
 </dd></dl>
 
@@ -258,7 +258,7 @@ getmodule(obj) &#8211; Return the module that contains the object definition of 
 <p>This module requires Python &gt;= 2.2</p>
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.bin2int">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">bin2int</tt><big>(</big><em>bin_string</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#bin2int"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.bin2int" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">bin2int</tt><big>(</big><em>bin_string</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#bin2int"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.bin2int" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert binary number string to decimal integer.</p>
 <p>Note: Python &gt; v2 has int(bin_string, 2)</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">bin2int</span><span class="p">(</span><span class="s">&#39;1111&#39;</span><span class="p">)</span>
@@ -273,7 +273,7 @@ getmodule(obj) &#8211; Return the module that contains the object definition of 
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.binary_range">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">binary_range</tt><big>(</big><em>bits</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#binary_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.binary_range" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">binary_range</tt><big>(</big><em>bits</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#binary_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.binary_range" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of all possible binary numbers in order with width=bits.</p>
 <p>It would be nice to extend it to match the
 functionality of python&#8217;s range() built-in function.</p>
@@ -281,7 +281,7 @@ functionality of python&#8217;s range() built-in function.</p>
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.find_common_fixes">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">find_common_fixes</tt><big>(</big><em>s1</em>, <em>s2</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#find_common_fixes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.find_common_fixes" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">find_common_fixes</tt><big>(</big><em>s1</em>, <em>s2</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#find_common_fixes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.find_common_fixes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find common (prefix, suffix) of two strings.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">find_common_fixes</span><span class="p">(</span><span class="s">&#39;abc&#39;</span><span class="p">,</span> <span class="s">&#39;def&#39;</span><span class="p">)</span>
 <span class="go">(&#39;&#39;, &#39;&#39;)</span>
@@ -303,7 +303,7 @@ functionality of python&#8217;s range() built-in function.</p>
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.float_range">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">float_range</tt><big>(</big><em>start</em>, <em>stop=None</em>, <em>step=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#float_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.float_range" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">float_range</tt><big>(</big><em>start</em>, <em>stop=None</em>, <em>step=None</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#float_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.float_range" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list containing an arithmetic progression of floats.</p>
 <p>Return a list of floats between 0.0 (or start) and stop with an
 increment of step.</p>
@@ -314,7 +314,7 @@ but can accept float increments.</p>
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.gcf">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">gcf</tt><big>(</big><em>a</em>, <em>b</em>, <em>epsilon=1e-16</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#gcf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.gcf" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">gcf</tt><big>(</big><em>a</em>, <em>b</em>, <em>epsilon=1e-16</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#gcf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.gcf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the greatest common factor of a and b, using Euclidean algorithm.</p>
 <p>Arguments:
 a, b &#8211; two numbers</p>
@@ -349,7 +349,7 @@ otherwise return a float result.</div></blockquote>
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.get_args">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">get_args</tt><big>(</big><em>argv</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#get_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.get_args" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">get_args</tt><big>(</big><em>argv</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#get_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.get_args" title="Permalink to this definition">¶</a></dt>
 <dd><p>Store command-line args in a dictionary.</p>
 <p>-, &#8211; prefixes are removed
 Items not prefixed with - or &#8211; are stored as a list, indexed by &#8216;args&#8217;</p>
@@ -359,7 +359,7 @@ Items not prefixed with - or &#8211; are stored as a list, indexed by &#8216;arg
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.getmodule">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">getmodule</tt><big>(</big><em>obj</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#getmodule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.getmodule" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">getmodule</tt><big>(</big><em>obj</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#getmodule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.getmodule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the module that contains the object definition of obj.</p>
 <p>Note: Use inspect.getmodule instead.</p>
 <p>Arguments:
@@ -401,13 +401,13 @@ you&#8217;ll get.</p>
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.gray_encode">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">gray_encode</tt><big>(</big><em>i</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#gray_encode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.gray_encode" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">gray_encode</tt><big>(</big><em>i</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#gray_encode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.gray_encode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gray encode the given integer.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.int2bin">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">int2bin</tt><big>(</big><em>i</em>, <em>n</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#int2bin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.int2bin" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">int2bin</tt><big>(</big><em>i</em>, <em>n</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#int2bin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.int2bin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert decimal integer i to n-bit binary number (string).</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">int2bin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
 <span class="go">&#39;00000000&#39;</span>
@@ -430,7 +430,7 @@ you&#8217;ll get.</p>
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.is_rotated">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">is_rotated</tt><big>(</big><em>seq1</em>, <em>seq2</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#is_rotated"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.is_rotated" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">is_rotated</tt><big>(</big><em>seq1</em>, <em>seq2</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#is_rotated"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.is_rotated" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return true if the first sequence is a rotation of the second sequence.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">seq1</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">seq2</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">]</span>
@@ -463,7 +463,7 @@ you&#8217;ll get.</p>
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.lcm">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">lcm</tt><big>(</big><em>a</em>, <em>b</em>, <em>precision=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#lcm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.lcm" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">lcm</tt><big>(</big><em>a</em>, <em>b</em>, <em>precision=None</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#lcm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.lcm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the least common multiple of a and b, using the gcf function.</p>
 <p>Arguments:
 a, b &#8211; two numbers. If both are integers return an integer result,</p>
@@ -489,7 +489,7 @@ a, b &#8211; two numbers. If both are integers return an integer result,</p>
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.lsb">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">lsb</tt><big>(</big><em>x</em>, <em>n</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#lsb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.lsb" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">lsb</tt><big>(</big><em>x</em>, <em>n</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#lsb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.lsb" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the n least significant bits of x.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lsb</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="go">5</span>
@@ -499,7 +499,7 @@ a, b &#8211; two numbers. If both are integers return an integer result,</p>
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.nice_units">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">nice_units</tt><big>(</big><em>value</em>, <em>dp=0</em>, <em>sigfigs=None</em>, <em>suffix=''</em>, <em>space=' '</em>, <em>use_extra_prefixes=False</em>, <em>use_full_name=False</em>, <em>mode='si'</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#nice_units"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.nice_units" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">nice_units</tt><big>(</big><em>value</em>, <em>dp=0</em>, <em>sigfigs=None</em>, <em>suffix=''</em>, <em>space=' '</em>, <em>use_extra_prefixes=False</em>, <em>use_full_name=False</em>, <em>mode='si'</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#nice_units"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.nice_units" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return value converted to human readable units eg milli, micro, etc.</p>
 <p>Arguments:
 value &#8211; number in base units
@@ -536,7 +536,7 @@ Binary prefixes based on:
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.permutations">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">permutations</tt><big>(</big><em>input_list</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#permutations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.permutations" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">permutations</tt><big>(</big><em>input_list</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#permutations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.permutations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list containing all permutations of the input list.</p>
 <p>Note: This is a recursive function.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">perms</span> <span class="o">=</span> <span class="n">permutations</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">])</span>
@@ -555,7 +555,7 @@ Binary prefixes based on:
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.polygon_area">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">polygon_area</tt><big>(</big><em>points_list</em>, <em>precision=100</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#polygon_area"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.polygon_area" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">polygon_area</tt><big>(</big><em>points_list</em>, <em>precision=100</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#polygon_area"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.polygon_area" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate area of an arbitrary polygon using an algorithm from the web.</p>
 <p>Return the area of the polygon as a positive float.</p>
 <p>Arguments:
@@ -574,7 +574,7 @@ Area of a General Polygon by David Chandler
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.pt2str">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">pt2str</tt><big>(</big><em>point</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#pt2str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.pt2str" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">pt2str</tt><big>(</big><em>point</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#pt2str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.pt2str" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return prettier string version of point tuple.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pt2str</span><span class="p">((</span><span class="mf">1.8</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">))</span>
 <span class="go">&#39;(1.8, 1.9)&#39;</span>
@@ -584,7 +584,7 @@ Area of a General Polygon by David Chandler
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.quantile">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">quantile</tt><big>(</big><em>l</em>, <em>p</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#quantile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.quantile" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">quantile</tt><big>(</big><em>l</em>, <em>p</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#quantile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.quantile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return p quantile of list l. E.g. p=0.25 for q1.</p>
 <p>See:
 <a class="reference external" href="http://rweb.stat.umn.edu/R/library/base/html/quantile.html">http://rweb.stat.umn.edu/R/library/base/html/quantile.html</a></p>
@@ -592,13 +592,13 @@ Area of a General Polygon by David Chandler
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.random_vec">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">random_vec</tt><big>(</big><em>bits</em>, <em>max_value=None</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#random_vec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.random_vec" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">random_vec</tt><big>(</big><em>bits</em>, <em>max_value=None</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#random_vec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.random_vec" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a random binary vector of length bits and given max value.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.reduce_fraction">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">reduce_fraction</tt><big>(</big><em>fraction</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#reduce_fraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.reduce_fraction" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">reduce_fraction</tt><big>(</big><em>fraction</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#reduce_fraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.reduce_fraction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reduce fraction tuple to simplest form. fraction=(num, denom)</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce_fraction</span><span class="p">((</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 <span class="go">(2, 1)</span>
@@ -620,7 +620,7 @@ Area of a General Polygon by David Chandler
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.reverse">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">reverse</tt><big>(</big><em>input_string</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#reverse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.reverse" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">reverse</tt><big>(</big><em>input_string</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#reverse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.reverse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reverse a string. Useful for strings of binary numbers.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;abc&#39;</span><span class="p">)</span>
 <span class="go">&#39;cba&#39;</span>
@@ -630,7 +630,7 @@ Area of a General Polygon by David Chandler
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.reverse_dict">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">reverse_dict</tt><big>(</big><em>d</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#reverse_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.reverse_dict" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">reverse_dict</tt><big>(</big><em>d</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#reverse_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.reverse_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reverse a dictionary so the items become the keys and vice-versa.</p>
 <p>Note: The results will be arbitrary if the items are not unique.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">reverse_dict</span><span class="p">({</span><span class="s">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
@@ -644,7 +644,7 @@ Area of a General Polygon by David Chandler
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.round_grid">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">round_grid</tt><big>(</big><em>value</em>, <em>grid</em>, <em>mode=0</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#round_grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.round_grid" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">round_grid</tt><big>(</big><em>value</em>, <em>grid</em>, <em>mode=0</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#round_grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.round_grid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Round off the given value to the given grid size.</p>
 <p>Arguments:
 value &#8211; value to be roudne
@@ -671,14 +671,14 @@ mode &#8211; 0 nearest, 1 up, -1 down</p>
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.timestamp">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">timestamp</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#timestamp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.timestamp" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">timestamp</tt><big>(</big><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#timestamp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.timestamp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return string containing current time stamp.</p>
 <p>Note: In Python 2 onwards can use time.asctime() with no arguments.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.transpose">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">transpose</tt><big>(</big><em>matrix</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#transpose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.transpose" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">transpose</tt><big>(</big><em>matrix</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#transpose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.transpose" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transpose a list of lists.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">transpose</span><span class="p">([[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="s">&#39;e&#39;</span><span class="p">,</span> <span class="s">&#39;f&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;g&#39;</span><span class="p">,</span> <span class="s">&#39;h&#39;</span><span class="p">,</span> <span class="s">&#39;i&#39;</span><span class="p">]])</span>
 <span class="go">[[&#39;a&#39;, &#39;d&#39;, &#39;g&#39;], [&#39;b&#39;, &#39;e&#39;, &#39;h&#39;], [&#39;c&#39;, &#39;f&#39;, &#39;i&#39;]]</span>
@@ -696,7 +696,7 @@ mode &#8211; 0 nearest, 1 up, -1 down</p>
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.trim">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">trim</tt><big>(</big><em>l</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#trim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.trim" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">trim</tt><big>(</big><em>l</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#trim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.trim" title="Permalink to this definition">¶</a></dt>
 <dd><p>Discard values in list more than 1.5*IQR outside IQR.</p>
 <p>(IQR is inter-quartile-range)</p>
 <p>This function uses rad_util.quantile</p>
@@ -753,7 +753,7 @@ that of the sorted order-preserving approach output:</p>
 
 <dl class="function">
 <dt id="candelabra.scheduler.rad_util.uniquify">
-<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">uniquify</tt><big>(</big><em>seq</em>, <em>preserve_order=False</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/rad_util.html#uniquify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.uniquify" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.rad_util.</tt><tt class="descname">uniquify</tt><big>(</big><em>seq</em>, <em>preserve_order=False</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/rad_util.html#uniquify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.rad_util.uniquify" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return sequence with duplicate items in sequence seq removed.</p>
 <p>The code is based on usenet post by Tim Peters.</p>
 <p>This code is O(N) if the sequence items are hashable, O(N**2) if not.</p>
@@ -818,14 +818,14 @@ Make sure they all pass before checking in any modifications.</p>
 <p>This requires the rad_util.py module.</p>
 <dl class="exception">
 <dt id="candelabra.scheduler.topsort.CycleError">
-<em class="property">exception </em><tt class="descclassname">candelabra.scheduler.topsort.</tt><tt class="descname">CycleError</tt><a class="reference internal" href="_modules/candelabra/scheduler/topsort.html#CycleError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.topsort.CycleError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><tt class="descclassname">candelabra.scheduler.topsort.</tt><tt class="descname">CycleError</tt><a class="reference internal" href="modules/candelabra/scheduler/topsort.html#CycleError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.topsort.CycleError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></p>
 <p>Cycle Error</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="candelabra.scheduler.topsort.find_cycles">
-<tt class="descclassname">candelabra.scheduler.topsort.</tt><tt class="descname">find_cycles</tt><big>(</big><em>parent_children</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/topsort.html#find_cycles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.topsort.find_cycles" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.topsort.</tt><tt class="descname">find_cycles</tt><big>(</big><em>parent_children</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/topsort.html#find_cycles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.topsort.find_cycles" title="Permalink to this definition">¶</a></dt>
 <dd><p>Yield cycles. Each result is a list of items comprising a cycle.</p>
 <p>Use a &#8216;stack&#8217; based approach to find all the cycles.
 This is a generator, so yields each cycle as it finds it.</p>
@@ -926,7 +926,7 @@ parent_children &#8211; parent -&gt; collection of children</p>
 
 <dl class="function">
 <dt id="candelabra.scheduler.topsort.topsort">
-<tt class="descclassname">candelabra.scheduler.topsort.</tt><tt class="descname">topsort</tt><big>(</big><em>pairlist</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/topsort.html#topsort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.topsort.topsort" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.topsort.</tt><tt class="descname">topsort</tt><big>(</big><em>pairlist</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/topsort.html#topsort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.topsort.topsort" title="Permalink to this definition">¶</a></dt>
 <dd><p>Topologically sort a list of (parent, child) pairs.</p>
 <p>Return a list of the elements in dependency order (parent to child order).</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">topsort</span><span class="p">(</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span> <span class="p">)</span> 
@@ -946,7 +946,7 @@ parent_children &#8211; parent -&gt; collection of children</p>
 
 <dl class="function">
 <dt id="candelabra.scheduler.topsort.topsort_levels">
-<tt class="descclassname">candelabra.scheduler.topsort.</tt><tt class="descname">topsort_levels</tt><big>(</big><em>pairlist</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/topsort.html#topsort_levels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.topsort.topsort_levels" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.topsort.</tt><tt class="descname">topsort_levels</tt><big>(</big><em>pairlist</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/topsort.html#topsort_levels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.topsort.topsort_levels" title="Permalink to this definition">¶</a></dt>
 <dd><p>Topologically sort a list of (parent, child) pairs into depth levels.</p>
 <p>This returns a generator. 
 Turn this into a an iterator using the iter built-in function.
@@ -990,7 +990,7 @@ CycleError: ({3: 1, 4: 1}, {3: [4], 4: [3]})
 
 <dl class="function">
 <dt id="candelabra.scheduler.topsort.topsort_levels_core">
-<tt class="descclassname">candelabra.scheduler.topsort.</tt><tt class="descname">topsort_levels_core</tt><big>(</big><em>num_parents</em>, <em>children</em><big>)</big><a class="reference internal" href="_modules/candelabra/scheduler/topsort.html#topsort_levels_core"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.topsort.topsort_levels_core" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">candelabra.scheduler.topsort.</tt><tt class="descname">topsort_levels_core</tt><big>(</big><em>num_parents</em>, <em>children</em><big>)</big><a class="reference internal" href="modules/candelabra/scheduler/topsort.html#topsort_levels_core"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#candelabra.scheduler.topsort.topsort_levels_core" title="Permalink to this definition">¶</a></dt>
 <dd><p>Topologically sort a bunch of interdependent items based on dependency.</p>
 <p>This returns a generator.
 Turn this into a an iterator using the iter built-in function.
