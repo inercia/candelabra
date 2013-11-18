@@ -15,4 +15,6 @@ install:
 # - "pip install --use-mirrors -e .[develop]"
 
 # command to run tests
-script: python setup.py test
+script:
+  - "make test"
+  - "make docs-web"
