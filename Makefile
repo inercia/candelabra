@@ -201,15 +201,8 @@ docs-web: docs
 	cp -R $(API_DOCS_OUTPUT_DIR)/*  $(API_DOCS_WEB_TEMP)/
 	@echo ">>> Commiting changes..."
 	cd $(API_DOCS_WEB_TEMP) ; \
-		rm -f index.html ; \
-		cp doc_index.html index.html ; \
-		ADDED=`git ls-files --others` ; \
-		DELETED=`git ls-files --deleted` ; \
-		[ -n "$$DELETED" ] && git rm $$DELETED ; \
-		[ -n "$$ADDED" ] && git add $$ADDED ; \
-		git commit -a -m 'New version'
-	@echo ">>> Pushing changes..."
-	cd $(API_DOCS_WEB_TEMP) && git push
+		rm -f index.html && cp doc_index.html index.html ; \
+		git add -A . && git commit -a -m 'New version' && git push
 
 .PHONY: 00-docs-pdf-run
 00-docs-pdf-run: docs-api
