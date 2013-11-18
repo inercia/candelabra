@@ -47,6 +47,8 @@ NOSE_SCRIPT=nosetests-2.7
 API_GEN=sphinx-apidoc
 API_DOCS_DIR=$(TOP)/docs/api/
 API_DOCS_OUTPUT_DIR=$(TOP)/docs/api/build
+API_DOCS_WEB_TEMP=$(TOP)/docs/web
+API_DOCS_WEB_URL=https://github.com/inercia/candelabra.git
 
 COVERAGE_DOCS_OUTPUT_DIR=$(TOP)/docs/coverage
 
@@ -186,6 +188,23 @@ docs-api:
 
 .PHONY: docs
 docs:              clean-docs all 00-docs-run
+
+docs-web: docs
+	rm -rf $(API_DOCS_WEB_TEMP)
+	@echo ">>> Checking out repo..."
+	git clone $(API_DOCS_WEB_URL)  $(API_DOCS_WEB_TEMP)
+	@echo ">>> Switching to pages branch..."
+	cd $(API_DOCS_WEB_TEMP) && git checkout gh-pages
+	@echo ">>> Removing old pages..."
+	rm -rf $(API_DOCS_WEB_TEMP)/*
+	@echo ">>> Copying new pages..."
+	cp -R $(API_DOCS_OUTPUT_DIR)/*  $(API_DOCS_WEB_TEMP)/
+	@echo ">>> Commiting changes..."
+	cd $(API_DOCS_WEB_TEMP) && git rm `git ls-files --deleted`
+	cd $(API_DOCS_WEB_TEMP) && git add `git ls-files --others`
+	cd $(API_DOCS_WEB_TEMP) && git commit -a -m 'New version'
+	@echo ">>> Commiting changes..."
+	#cd $(API_DOCS_WEB_TEMP) && git push
 
 .PHONY: 00-docs-pdf-run
 00-docs-pdf-run: docs-api
