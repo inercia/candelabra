@@ -5,6 +5,13 @@ Overview
 
 [![Build Status](https://travis-ci.org/inercia/candelabra.png?branch=master)](https://travis-ci.org/inercia/candelabra)
 
+Documentation
+=============
+
+See the onine docs at:
+
+http://inercia.github.io/candelabra
+
 Running
 =======
 
