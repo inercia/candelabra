@@ -86,7 +86,8 @@ if __name__ == "__main__":
         # install with "pip install -e .[develop]"
         extras_require={
             'develop': [
-                'sphinx'
+                'sphinx',
+                'sphinx_bootstrap_theme',
             ],
         },
 
