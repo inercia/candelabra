@@ -4,7 +4,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Candelabra documentation</title>
     
     <link rel="stylesheet" href="static/basic.css" type="text/css" />
@@ -14,7 +13,7 @@
       type="text/css" />
     <link rel="stylesheet" href="static/bootstrap-sphinx.css" type="text/css" />
 
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css"
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css"
       media="screen" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700"
       media="screen" rel="stylesheet" type="text/css">
@@ -37,21 +36,18 @@
     <script type="text/javascript" src="static/bootstrap-sphinx.js"></script>
 
     <link rel="top" title="candelabra 1.0 documentation" href="index.html" />
-    <link rel="next" title="Installation" href="doc_install.html" />
 
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
     <meta name="apple-mobile-web-app-capable" content="yes">
-
-    <meta class="foundation-mq-small">
-    <meta class="foundation-mq-medium">
-    <meta class="foundation-mq-large">
-
   </head>
+
+
   <body>
 
     <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+
       <div class="container">
         <div class="navbar-header">
           <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
@@ -73,31 +69,30 @@
       </div>
     </div>
 
-
-    <section class="main">
-      <header>
-        <div class="row">
-          <div class="large-7 columns">
-            <h1 id="logo">InfluxDB</h1>
-              <h4>An open-source, distributed, time series, events, and metrics database with no external dependencies.</h4>
-          </div>
+    <div class="container">
+      <div class="row padding-bottom-medium padding-top-medium">
+        
+        <div class="large-4 columns panel">
+          <h3><i class="fa fa-cog"></i> Versatile and Configurable </h3>
+          <p>Candelabra lets you build from simple one-machine topologies to complex layouts with multiple servers. Candelabra can be used for defining simple development topologies (for example,
+          for testing your software in your own machine) and then deploy it to production environments
+          with just one command</p>
         </div>
-      </header>
-
-        <div class="row padding-bottom-medium padding-top-medium">
-          <div class="large-4 columns panel">
-            <h3><i class="fa fa-clock-o"></i> Time Series </h3>
-            <p>Everything in InfluxDB is a time series that you can perform standard functions on like min, max, sum, count, mean, median, percentiles, and more.</p>
-          </div>
-          <div class="large-4 columns">
-            <h3><i class="fa fa-tachometer"></i> Metrics </h3>
-            <p>Scalable metrics that you can collect on any interval, computing rollups on the fly later. Track 100 metrics or 1 million, InfluxDB scales horizontally.</p>
-            </div>
-          <div class="large-4 columns panel">
-            <h3><i class="fa fa-bar-chart-o"></i>  Events </h3>
-            <p>InfluxDB's data model supports arbitrary event data. Just write in a hash of associated data and count events, uniques, or grouped columns on the fly later.</p>
-          </div>
+        
+        <div class="large-4 columns panel">
+          <h3><i class="fa fa-cloud"></i> Designed for the cloud </h3>
+          <p>Caldelabra's topologies can be used both for your local VirtualBox deployments as for
+          real deployments in the cloud.</p>
         </div>
+
+        <div class="large-4 columns panel">
+          <h3><i class="fa fa-superscript"></i>  Extensible </h3>
+          <p>Candelabra can be easily extended with plugins. Or you can distribute Candelabra topologies
+          with your own hooks for running at some point.</p>
+        </div>
+
+      </div>
+    </div>
 
     <footer class="footer">
       <div class="container">
@@ -106,11 +101,11 @@
           
         </p>
         <p>
-            &copy; Copyright Alvaro Saurin.<br/>
-          Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+            &copy; Copyright Alvaro Saurin 2013.<br/>
         </p>
       </div>
     </footer>
 
   </body>
 </html>
+
