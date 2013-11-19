@@ -6,6 +6,7 @@ SYS_PYTHON=python2.7
 
 # requirements file
 REQUIREMENTS_TXT=$(TOP)/requirements.txt
+REQUIREMENTS_DEVEL_TXT=$(TOP)/requirements_devel.txt
 
 # cleanup some things after building...
 POST_BUILD_CLEANUPS=\
@@ -39,24 +40,25 @@ NOSE_ARGS=--with-xunit --all-modules
 
 ####################################################################################################
 
-all: basic
+all: devel
 
 $(PIP_CACHE):
-	echo ">>> Creating downloads cache"
-	mkdir -p $(PIP_CACHE)
+	echo ">>> Creating downloads cache..."
+	@mkdir -p $(PIP_CACHE)
 
-$(PIP): $(PIP_CACHE)
-	virtualenv .
+$(PIP):
+	echo ">>> Creating local virtualenv..."
+	@virtualenv .
 
-basic: $(PIP) $(REQUIREMENTS_TXT) $(SETUP_PY)
+basic: $(PIP) $(PIP_CACHE) $(REQUIREMENTS_TXT) $(SETUP_PY)
 	@echo
 	@echo ">>> Installing BASIC packages with PIP..."
 	$(PIP) install $(PIP_INSTALL_ARGS) -r $(REQUIREMENTS_TXT)
 	@echo ">>> BASIC packages installed SUCCESSFUL!! (do a 'make devel' in devel machines)"
 
-devel: basic
+devel: $(PIP) $(PIP_CACHE) $(REQUIREMENTS_TXT) $(REQUIREMENTS_DEVEL_TXT) $(SETUP_PY)
 	@echo ">>> Installing DEVELOPMENT packages with PIP..."
-	$(PIP) install $(PIP_INSTALL_ARGS) -e .[develop] -e .[tests]
+	$(PIP) install $(PIP_INSTALL_ARGS) -r $(REQUIREMENTS_TXT) -r $(REQUIREMENTS_DEVEL_TXT)
 	@echo ">>> DEVELOPMENT packages installed SUCCESSFUL !!"
 
 $(MAIN_SCRIPT): devel
@@ -152,14 +154,14 @@ docs-web: docs
 		rm -f index.html && cp doc_index.html index.html ; \
 		git add -A . && git commit -a -m 'New version' && git push
 
-00-docs-pdf-run: docs-api
+00-docs-pdf-run: docs-api $(SPHINX)
 	@echo ">>> Creating development docs (PDF)..."
 	@PYTHONPATH=$(PACKAGE_DIR):$$PYTHONPATH \
 	    CANDELABRA_PREFIX=$(TOP) \
 	    CANDELABRA_CONF=$(TOP)/conf/candelabra.conf \
 	    LD_LIBRARY_PATH=$(TOP)/lib:$$LD_LIBRARY_PATH   \
 	    DYLD_LIBRARY_PATH=$(TOP)/lib:$$DYLD_LIBRARY_PATH   \
-		    sphinx-build -q -b latex  \
+		    $(SPHINX) -q -b latex  \
 		        $(API_DOCS_DIR)  $(API_DOCS_OUTPUT_DIR)/latex
 	make -C  $(API_DOCS_OUTPUT_DIR)/latex   all-pdf
 	@echo ">>> PDF documentation at $(API_DOCS_OUTPUT_DIR)/latex"
@@ -171,30 +173,28 @@ docs-pdf:          clean-docs all 00-docs-pdf-run
 ####################################################################################################
 # test & coverage
 
-.PHONY: test test-fast 00-test-run
-.PHONY: coverage coverage-fast
+.PHONY: test test-fast coverage coverage-fast 00-test-run
 
 00-test-run:
 	@echo ">>> Running unit tests FAST..."
-	$(NOSE_SCRIPT) -w $(PACKAGE_TESTS_DIR)
+	$(NOSE_SCRIPT) -v -w $(PACKAGE_TESTS_DIR)
 	@echo ">>> done!"
 
-test:               $(MAIN_SCRIPT) 00-test-run
-test-fast:                         00-test-run
+test:               devel 00-test-run
+test-fast:                00-test-run
 
-00-coverage-run:
+00-coverage-run: devel
 	@echo ">>> Creating coverage report for the node..."
 	@[ -d $(COVERAGE_DOCS_OUTPUT_DIR) ] || mkdir $(COVERAGE_DOCS_OUTPUT_DIR)
 	@rm -rf $(COVERAGE_DOCS_OUTPUT_DIR)/*
-	$(NOSE_SCRIPT) --with-xcoverage \
-	      --xcoverage-file=coverage.xml \
+	@$(NOSE_SCRIPT) -v --with-coverage \
 	      --cover-package=candelabra \
 	      --cover-erase \
 	      --cover-html \
 	      --cover-html-dir=$(COVERAGE_DOCS_OUTPUT_DIR)
-	@echo ">>> Documentation left at $(COVERAGE_DOCS_OUTPUT_DIR)"
+	@echo ">>> Coverage reports left at $(COVERAGE_DOCS_OUTPUT_DIR)"
 
-coverage:              $(MAIN_SCRIPT)  00-coverage-run
-coverage-fast:                         00-coverage-run
+coverage:           devel  00-coverage-run
+coverage-fast:             00-coverage-run
 
 
