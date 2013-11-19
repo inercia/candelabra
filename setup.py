@@ -90,6 +90,9 @@ if __name__ == "__main__":
                 'sphinxtogithub',
                 'sphinx_bootstrap_theme',
             ],
+            'tests' : [
+                'nose',
+            ]
         },
 
         entry_points=entry_points,
