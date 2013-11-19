@@ -127,7 +127,7 @@ docs-api: $(API_GEN)
 	    $(API_GEN) --force -o $(API_DOCS_DIR) -d 8 -s rst  $$ABS_PACKAGE_DIR  \
 	    `find $$ABS_PACKAGE_DIR -name tests`
 
-00-docs-run: (SPHINX) docs-api
+00-docs-run: $(SPHINX) docs-api
 	@echo ">>> Creating development docs..."
 	@$(SPHINX) -q -b html  $(API_DOCS_DIR)  $(API_DOCS_OUTPUT_DIR)
 	@echo ">>> Documentation left at $(API_DOCS_OUTPUT_DIR)/doc_index.html"
