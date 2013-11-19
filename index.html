@@ -1,26 +1,23 @@
-
-
-  
-  
- 
-  
- 
-
-
 <!DOCTYPE html>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Candelabra documentation &mdash; candelabra 1.0 documentation</title>
+    <title>Candelabra documentation</title>
     
     <link rel="stylesheet" href="static/basic.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet"
+      href="http://netdna.bootstrapcdn.com/bootswatch/3.0.0/spacelab/bootstrap.min.css"
+      type="text/css" />
     <link rel="stylesheet" href="static/bootstrap-sphinx.css" type="text/css" />
-    
+
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css"
+      media="screen" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700"
+      media="screen" rel="stylesheet" type="text/css">
+
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
@@ -37,222 +34,79 @@
     <script type="text/javascript" src="static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="candelabra 1.0 documentation" href="index.html" />
-    <link rel="next" title="Installation" href="doc_install.html" />
-<meta charset='utf-8'>
-<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
-<meta name="apple-mobile-web-app-capable" content="yes">
 
+    <link rel="top" title="candelabra 1.0 documentation" href="index.html" />
+
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+    <meta name="apple-mobile-web-app-capable" content="yes">
   </head>
+
+
   <body>
 
-  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Candelabra</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
-      </div>
+    <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+
+      <div class="container">
+        <div class="navbar-header">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Candelabra</a>
+        </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             <li class="divider-vertical"></li>
-            
-                <li><a href="http://github.com/inercia/candelabra">Github</a></li>
-            
-            
-              <li class="dropdown globaltoc-container">
-  <a href="#"
-     class="dropdown-toggle"
-     data-toggle="dropdown">Site <b class="caret"></b></a>
-  <ul class="dropdown-menu globaltoc"
-    ><ul class="simple">
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="doc_install.html">Software installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="doc_install.html#build-requirements">Build Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_install.html#development">Development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_install.html#on-mac-os-x">On Mac OS X</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_install.html#troubleshooting">Troubleshooting</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="doc_running.html">Running the software</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="doc_running.html#on-development-machines">On development machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_running.html#unit-tests">Unit tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_running.html#troubleshooting">Troubleshooting</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="doc_topology.html">Topology files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#topology-files-structure">Topology files structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#defaults">Defaults</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#networks">Networks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#machines">Machines</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="doc_provisioning.html">    Provisioning</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="doc_provisioning.html#puppet">Puppet</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="doc_hooks.html">Hooks</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Main modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="candelabra.html">candelabra Package</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="doc_plugins.html">Extending Candelabra with plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="doc_plugins.html#deafult-plugins">Deafult plugins</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="doc_license.html">Candelabra software</a></li>
-<li class="toctree-l1"><a class="reference internal" href="doc_license.html#third-party-packages">Third party packages</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="doc_license.html#bottle">Bottle</a></li>
-</ul>
-</li>
-</ul>
-</ul>
-</li>
-              
-                <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Candelabra documentation</a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#installation">Installation</a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#using-candelabra">Using Candelabra</a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#developer-documentation">Developer Documentation</a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#license">License</a><ul>
-</ul>
-</li>
-</ul>
-</ul>
-</li>
-              
-            
-            
-              
-                
-  <li><a href="doc_install.html"
-         title="Next Chapter: Installation">Installation &raquo;</a></li>
-              
-            
-            
-            
-            
+            <li><a href="http://github.com/inercia/candelabra">Github</a></li>
+            <li><a href="doc_index.html">Documentation</a></li>
           </ul>
-
-          
-            
-<form class="navbar-form navbar-right" action="search.html" method="get">
- <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
- </div>
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
-</form>
-          
         </div>
+      </div>
     </div>
-  </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      
-  <div class="section" id="candelabra-documentation">
-<h1>Candelabra documentation<a class="headerlink" href="#candelabra-documentation" title="Permalink to this headline">¶</a></h1>
-<p>This is the Candelabra documentation.</p>
-<div class="toctree-wrapper compound">
-<ul class="simple">
-</ul>
-</div>
-</div>
-<div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="doc_install.html">Software installation</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="using-candelabra">
-<h1>Using Candelabra<a class="headerlink" href="#using-candelabra" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="doc_running.html">Running the software</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="doc_running.html#on-development-machines">On development machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_running.html#unit-tests">Unit tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_running.html#troubleshooting">Troubleshooting</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="doc_topology.html">Topology files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#topology-files-structure">Topology files structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#defaults">Defaults</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#networks">Networks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc_topology.html#machines">Machines</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="doc_provisioning.html">    Provisioning</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="doc_provisioning.html#puppet">Puppet</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="doc_hooks.html">Hooks</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="developer-documentation">
-<h1>Developer Documentation<a class="headerlink" href="#developer-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Modules and classes in the Candelabra software.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Main modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="doc_plugins.html">Extending Candelabra with plugins</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="license">
-<h1>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="doc_license.html">Candelabra software</a></li>
-<li class="toctree-l1"><a class="reference internal" href="doc_license.html#third-party-packages">Third party packages</a></li>
-</ul>
-</div>
-</div>
+    <div class="container">
+      <div class="row padding-bottom-medium padding-top-medium">
+        
+        <div class="large-4 columns panel">
+          <h3><i class="fa fa-cog"></i> Versatile and Configurable </h3>
+          <p>Candelabra lets you build from simple one-machine topologies to complex layouts with multiple servers. Candelabra can be used for defining simple development topologies (for example,
+          for testing your software in your own machine) and then deploy it to production environments
+          with just one command</p>
+        </div>
+        
+        <div class="large-4 columns panel">
+          <h3><i class="fa fa-cloud"></i> Designed for the cloud </h3>
+          <p>Caldelabra's topologies can be used both for your local VirtualBox deployments as for
+          real deployments in the cloud.</p>
+        </div>
 
+        <div class="large-4 columns panel">
+          <h3><i class="fa fa-superscript"></i>  Extensible </h3>
+          <p>Candelabra can be easily extended with plugins in Python. Or you can distribute
+          Candelabra topologies with your own simple hooks that are automatically invoked at
+          some point...</p>
+        </div>
 
+      </div>
     </div>
-      
-  </div>
-</div>
-<footer class="footer">
-  <div class="container">
-    <p class="pull-right">
-      <a href="#">Back to top</a>
-      
-    </p>
-    <p>
-        &copy; Copyright Alvaro Saurin.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
-    </p>
-  </div>
-</footer>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="pull-right">
+          <a href="#">Back to top</a>
+          
+        </p>
+        <p>
+            &copy; Copyright Alvaro Saurin 2013.<br/>
+        </p>
+      </div>
+    </footer>
+
   </body>
 </html>
+
