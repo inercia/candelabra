@@ -1,0 +1,5 @@
+-e .[develop]
+-e .[tests]
+
+# add extra version specification below. ie:
+# setuptools >= 1.1
