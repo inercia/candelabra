@@ -13,3 +13,5 @@ install:
 # command to run tests
 script:
   - "make test"
+  - "make bdist"
+  - "make bdist_rpm"

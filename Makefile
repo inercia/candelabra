@@ -106,6 +106,9 @@ sdist:
 bdist:
 	$(SYS_PYTHON) setup.py bdist
 
+bdist_rpm:
+	$(SYS_PYTHON) setup.py bdist_rpm
+
 ####################################################################################################
 # documentation
 
