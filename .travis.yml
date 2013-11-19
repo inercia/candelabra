@@ -13,4 +13,3 @@ install:
 # command to run tests
 script:
   - "make test"
-  - "make docs-web"
