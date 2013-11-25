@@ -5,6 +5,12 @@ Overview
 
 [![Build Status](https://travis-ci.org/inercia/candelabra.png?branch=master)](https://travis-ci.org/inercia/candelabra)
 
+Status
+======
+
+Candelabra's current status is probably something between ALPHA and BETA. SO do not use
+it yet for anything serious...
+
 Documentation
 =============
 
