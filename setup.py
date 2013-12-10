@@ -3,6 +3,7 @@
 
 
 import os
+import sys
 
 from setuptools import setup, find_packages
 
@@ -39,6 +40,15 @@ linux = candelabra.guest.linux.plugin:register
 ssh = candelabra.communicator.ssh.plugin:register
 virtualbox = candelabra.communicator.virtualbox.plugin:register
 """
+
+package_deps = []
+if sys.platform in ['darwin']:
+    package_deps = ['bdist_mpkg']
+elif sys.platform in ['linux', 'linux2']:
+    package_deps = []                          # 'bdist_rpm' is installed by default
+elif sys.platform in ['win32']:
+    package_deps = ['bdist_wininst']
+
 
 if __name__ == "__main__":
     setup(
@@ -93,7 +103,8 @@ if __name__ == "__main__":
             'tests' : [
                 'nose',
                 'coverage',
-            ]
+            ],
+            'package' : package_deps,
         },
 
         entry_points=entry_points,
