@@ -1,7 +1,12 @@
 bin/
+build/
+dist/
 develop-eggs/
 downloads/
 eggs/
+include/
+lib/
+man/
 
 .coverage
 .idea/
