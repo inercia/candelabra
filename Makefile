@@ -31,6 +31,7 @@ API_GEN=$(TOP)/bin/sphinx-apidoc
 API_DOCS_DIR=$(TOP)/docs/api/
 API_DOCS_OUTPUT_DIR=$(TOP)/docs/api/build
 API_DOCS_WEB_TEMP=$(TOP)/docs/web
+API_DOCS_WEB_BASE=$(TOP)/docs/web-base
 API_DOCS_WEB_URL=https://github.com/inercia/candelabra.git
 
 COVERAGE_DOCS_OUTPUT_DIR=$(TOP)/docs/coverage
@@ -108,8 +109,17 @@ sdist:
 bdist:
 	$(SYS_PYTHON) setup.py bdist
 
-bdist_rpm:
+rpm: bdist-rpm
+bdist-rpm:
 	$(SYS_PYTHON) setup.py bdist_rpm
+
+mpkg: bdist-mpkg
+bdist-mpkg:
+	$(SYS_PYTHON) setup.py bdist_mpkg --license $(TOP)/LICENSE -O1 
+
+wininst: bdist-mpkg
+bdist-wininst:
+	$(SYS_PYTHON) setup.py bdist_wininst
 
 ####################################################################################################
 # documentation
@@ -147,11 +157,11 @@ docs-web: docs
 	cd $(API_DOCS_WEB_TEMP) && git checkout gh-pages
 	@echo ">>> Removing old pages..."
 	rm -rf $(API_DOCS_WEB_TEMP)/*
-	@echo ">>> Copying new pages..."
+	@echo ">>> Copying web pages..."
 	cp -R $(API_DOCS_OUTPUT_DIR)/*  $(API_DOCS_WEB_TEMP)/
+	cp -R $(API_DOCS_WEB_BASE)/*.html  $(API_DOCS_WEB_TEMP)/
 	@echo ">>> Commiting changes..."
 	cd $(API_DOCS_WEB_TEMP) ; \
-		rm -f index.html && cp doc_index.html index.html ; \
 		git add -A . && git commit -a -m 'New version' && git push
 
 00-docs-pdf-run: docs-api $(SPHINX)
