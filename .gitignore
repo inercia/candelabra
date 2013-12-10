@@ -11,6 +11,8 @@ man/
 .coverage
 .idea/
 .installed.cfg
+.Python
+
 *.egg-info
 *.pyc
 *.state
